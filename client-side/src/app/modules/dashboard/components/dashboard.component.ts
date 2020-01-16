@@ -4,21 +4,21 @@ import { TranslateService } from '@ngx-translate/core';
 declare var jQuery: any;
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html'
+	selector: 'app-dashboard',
+	templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent {
 
-  constructor() {
+	constructor() {
 
-  }
+	}
 
-  dashboard(model: any) {
+	dashboard(model: any) {
 
-  }
+	}
 
-   ngOnInit() {
-// $(function () {
+	ngOnInit() {
+		// $(function () {
 		// 	var data, options;
 
 		// 	// headline charts
@@ -133,6 +133,6 @@ export class DashboardComponent {
 		// 	}
 
 		// });
-   }
+	}
 
 }

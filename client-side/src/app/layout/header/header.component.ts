@@ -1,19 +1,21 @@
 import { Component } from '@angular/core';
 declare var $: any;
 import { TranslateService } from '@ngx-translate/core';
+import { LoginService } from 'src/app/modules/authentication/login/services/login.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html'
 })
 export class HeaderComponent {
 
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private loginService: LoginService, private router: Router) {
     translate.setDefaultLang('en');
 
   }
 
   public toggleSideMenu() {
-    debugger;
+
     if (!$('body').hasClass('layout-fullwidth')) {
       $('body').addClass('layout-fullwidth');
 
@@ -33,7 +35,13 @@ export class HeaderComponent {
     }
 
   }
+
   public switchLanguage(language: string) {
     this.translate.use(language);
+  }
+
+  public logOut() {
+    this.loginService.logOut();
+    this.router.navigate(["/"]);
   }
 }

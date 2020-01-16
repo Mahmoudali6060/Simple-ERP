@@ -9,6 +9,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { FullLayoutComponent } from './full-layout/full-layout.component';
+import { LoginService } from 'src/app/modules/authentication/login/services/login.service';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { FullLayoutComponent } from './full-layout/full-layout.component';
     SharedModule.forRoot(),
   ],
   providers: [
+    LoginService
   ]
 })
 export class LayoutModule { }

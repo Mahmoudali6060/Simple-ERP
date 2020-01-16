@@ -1,11 +1,11 @@
 $(document).ready(function() {
-debugger;
+
 	/*-----------------------------------/
 	/*	TOP NAVIGATION AND LAYOUT
 	/*----------------------------------*/
 
 	$('.btn-toggle-fullwidth').on('click', function() {
-		debugger;
+		
 		if(!$('body').hasClass('layout-fullwidth')) {
 			$('body').addClass('layout-fullwidth');
 

@@ -8,7 +8,7 @@ export const routes: Routes = [
     component: FullLayoutComponent,
     children: [
       {
-         path: 'dashboard', loadChildren: '../modules/dashboard/dashboard.module#DashboardModule'
+         path: 'dashboard', loadChildren: () => import('../modules/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       
     ]

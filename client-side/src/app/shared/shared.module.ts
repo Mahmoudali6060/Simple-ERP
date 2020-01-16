@@ -11,11 +11,11 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { OrderModule } from 'ngx-order-pipe';
+import { ErrorDialogService } from 'src/app/shared/services/error-dialof.sercive';
+import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 
 @NgModule({
-  declarations: [
-  
-  ],
+
   imports: [
     CommonModule,
     FormsModule,
@@ -31,7 +31,8 @@ import { OrderModule } from 'ngx-order-pipe';
     OrderModule,
   ],
   providers: [
-    BsModalService
+    BsModalService,
+    ErrorDialogService
   ],
   exports: [
     CommonModule,
@@ -46,7 +47,13 @@ import { OrderModule } from 'ngx-order-pipe';
     NgSelectModule,
     BsDatepickerModule,
     OrderModule,
-  ]
+  ],
+  declarations: [
+    ErrorDialogComponent
+  ],
+  entryComponents: [
+    ErrorDialogComponent,
+  ],
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {

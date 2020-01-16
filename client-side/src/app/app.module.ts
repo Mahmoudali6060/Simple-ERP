@@ -4,10 +4,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
-import { HttpClient ,HttpClientModule} from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { JwtModule } from "@auth0/angular-jwt";
+import { HttpConfigInterceptor } from './shared/interceptors/httpconfig.interceptor';
+import { MatDialogModule } from '@angular/material/dialog';
+
+export function tokenGetter() {
+  return localStorage.getItem("jwt");
+}
 
 @NgModule({
   declarations: [
@@ -26,15 +33,26 @@ import { NgxSpinnerModule } from 'ngx-spinner';
         deps: [HttpClient]
       }
     }),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ["localhost:54095"],
+        blacklistedRoutes: []
+      }
+    }),
+    MatDialogModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }
   ],
+
   bootstrap: [AppComponent]
 })
-export class AppModule { 
+export class AppModule {
 
- 
+
+
 
 }
 
