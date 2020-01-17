@@ -42,7 +42,7 @@ namespace App
             });
 
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             //services.AddMvc().AddJsonOptions(options =>
             //{
@@ -61,7 +61,7 @@ namespace App
             services.AddSingleton(mapper);
             //>>>>End Auto Mapper Configurations
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             //>>>Add JWT Authentication
             services.AddAuthentication(opt =>
@@ -78,12 +78,12 @@ namespace App
                         ValidateAudience = true,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
-
                         ValidIssuer = "http://localhost:54095",
                         ValidAudience = "http://localhost:54095",
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
                  };
             });
+           //>>>END Add JWT Authentication
 
             //services.AddControllers();
             services.AddDbContext<DB_A48AC5_CaseManagmentContext>();
