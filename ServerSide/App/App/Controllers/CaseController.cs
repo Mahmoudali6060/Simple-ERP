@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Case.DataServiceLayer;
-using Case.DTOs;
+
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -15,28 +14,28 @@ namespace App.Controllers
     //This Controlle for testing 
     public class CaseController : Controller
     {
-        ICaseDSL _caseDSL;
-        public CaseController(ICaseDSL caseDSL)
-        {
-            this._caseDSL = caseDSL;
-        }
-
-        [HttpGet]
-        [Route("api/Case/GetAll")]
-        public IActionResult GetAll() => Ok(_caseDSL.GetAll());
+        //ICaseDSL _caseDSL;
+        //public CaseController(ICaseDSL caseDSL)
+        //{
+        //    this._caseDSL = caseDSL;
+        //}
 
         //[HttpGet]
-        //public IActionResult GetCaseTypes() => Ok(_caseDSL.GetCaseTypes());
-        //[HttpGet]
-        //public IActionResult GetByStructureId(int id) => Ok(_caseDSL.GetByStructureId(id));
+        //[Route("api/Case/GetAll")]
+        //public IActionResult GetAll() => Ok(_caseDSL.GetAll());
 
-        [HttpPost]
-        public IActionResult Add(CasesDTO model) => Ok(_caseDSL.Add(model));
+        ////[HttpGet]
+        ////public IActionResult GetCaseTypes() => Ok(_caseDSL.GetCaseTypes());
+        ////[HttpGet]
+        ////public IActionResult GetByStructureId(int id) => Ok(_caseDSL.GetByStructureId(id));
 
-        [HttpPost]
-        public IActionResult Uodate(CasesDTO model) => Ok(_caseDSL.Update(model));
+        //[HttpPost]
+        //public IActionResult Add(CasesDTO model) => Ok(_caseDSL.Add(model));
 
-        [HttpDelete]
-        public IActionResult Delete(int id) => Ok(_caseDSL.Delete(id));
+        //[HttpPost]
+        //public IActionResult Uodate(CasesDTO model) => Ok(_caseDSL.Update(model));
+
+        //[HttpDelete]
+        //public IActionResult Delete(int id) => Ok(_caseDSL.Delete(id));
     }
 }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Case.DTOs;
-using Data.Models;
+//using Case.DTOs;
+//using Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,8 +12,8 @@ namespace App
         public MappingProfile()
         {
             // Add as many of these lines as you need to map your objects
-            CreateMap<Cases, CasesDTO>();
-            CreateMap<CasesDTO, Cases>();
+            //CreateMap<Cases, CasesDTO>();
+            //CreateMap<CasesDTO, Cases>();
         }
     }
 }

@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using Case.DataAccessLayer;
-using Case.DataServiceLayer;
-using Case.RepositoryLayer;
-using Data.Models;
+//using Case.DataAccessLayer;
+//using Case.DataServiceLayer;
+//using Case.RepositoryLayer;
+//using Data.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,6 +18,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
+using Data.Contexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace App
 {
@@ -41,7 +43,6 @@ namespace App
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             //services.AddMvc().AddJsonOptions(options =>
@@ -56,7 +57,6 @@ namespace App
             {
                 mc.AddProfile(new MappingProfile());
             });
-
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
             //>>>>End Auto Mapper Configurations
@@ -73,25 +73,29 @@ namespace App
             .AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        ValidIssuer = "http://localhost:54095",
-                        ValidAudience = "http://localhost:54095",
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
-                 };
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = "http://localhost:54095",
+                    ValidAudience = "http://localhost:54095",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
+                };
             });
-           //>>>END Add JWT Authentication
+            //>>>END Add JWT Authentication
+
+            //>>>DB Context
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+                b => b.MigrationsAssembly("Data")));
+            ///>>>END Db Context
+
 
             //services.AddControllers();
-            services.AddDbContext<DB_A48AC5_CaseManagmentContext>();
-
-            services.AddTransient<ICaseDSL, CaseDSL>();
-            services.AddTransient<ICaseRepo, CaseRepo>();
-            services.AddTransient<ICaseDAL, CaseDAL>();
-
+            //services.AddTransient<ICaseDSL, CaseDSL>();
+            //services.AddTransient<ICaseRepo, CaseRepo>();
+            //services.AddTransient<ICaseDAL, CaseDAL>();
 
         }
 
