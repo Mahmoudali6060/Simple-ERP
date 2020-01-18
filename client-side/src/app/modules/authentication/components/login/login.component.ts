@@ -3,9 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NgForm } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { LoginModel } from '../models/login.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { LoginService } from 'src/app/modules/authentication/login/services/login.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,13 +13,14 @@ import { LoginService } from 'src/app/modules/authentication/login/services/logi
 export class LoginComponent {
   invalidLogin: boolean = false;//For showing or error message in case invalid username or password
 
-  constructor(private router: Router, private loginService: LoginService) {
+  constructor(private router: Router, private authService: AuthService) {
 
   }
 
   login(form: NgForm) {
+    debugger;
     let credentials = JSON.stringify(form.value);
-    this.loginService.login(credentials).subscribe(response => {
+    this.authService.login(credentials).subscribe(response => {
       let token = (<any>response).token;
       localStorage.setItem("jwt", token);
       this.invalidLogin = false;

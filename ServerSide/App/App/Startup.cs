@@ -20,6 +20,11 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Data.Contexts;
 using Microsoft.EntityFrameworkCore;
+using Data.Entities;
+using Microsoft.AspNetCore.Identity;
+using Account.DataServiceLayer;
+using Account.DataAccessLayer;
+using App.Helper;
 
 namespace App
 {
@@ -62,40 +67,55 @@ namespace App
             //>>>>End Auto Mapper Configurations
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddControllers(options => options.EnableEndpointRouting = false);
+            ////>>>Add JWT Authentication
+            //services.AddAuthentication(opt =>
+            //{
+            //    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //})
 
-            //>>>Add JWT Authentication
-            services.AddAuthentication(opt =>
-            {
-                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
+            //.AddJwtBearer(options =>
+            //{
+            //    options.TokenValidationParameters = new TokenValidationParameters
+            //    {
+            //        ValidateIssuer = true,
+            //        ValidateAudience = true,
+            //        ValidateLifetime = true,
+            //        ValidateIssuerSigningKey = true,
+            //        ValidIssuer = "http://localhost:54095",
+            //        ValidAudience = "http://localhost:54095",
+            //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
+            //    };
+            //});
+            ////>>>END Add JWT Authentication
 
-            .AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = "http://localhost:54095",
-                    ValidAudience = "http://localhost:54095",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
-                };
-            });
-            //>>>END Add JWT Authentication
+            ////>>>DB Context
+            //services.AddDbContext<AppDbContext>(options =>
+            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+            //    b => b.MigrationsAssembly("Data")));
+            /////>>>END Db Context
 
-            //>>>DB Context
-            services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
-                b => b.MigrationsAssembly("Data")));
-            ///>>>END Db Context
+            //>>>Add JWT Authentication And DbContext
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddIdentity<AppUser, IdentityRole>()
+              .AddEntityFrameworkStores<AppDbContext>()
+              .AddDefaultTokenProviders();
 
-            //services.AddControllers();
-            //services.AddTransient<ICaseDSL, CaseDSL>();
-            //services.AddTransient<ICaseRepo, CaseRepo>();
-            //services.AddTransient<ICaseDAL, CaseDAL>();
+            services.AddIdentityServer().AddDeveloperSigningCredential()
+               // this adds the operational data from DB (codes, tokens, consents)
+               .AddOperationalStore(options =>
+               {
+                   options.ConfigureDbContext = builder => builder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                   // this enables automatic token cleanup. this is optional.
+                   options.EnableTokenCleanup = true;
+                   options.TokenCleanupInterval = 30; // interval in seconds
+               })
+               .AddAspNetIdentity<AppUser>();
+            // >>> END Add JWT Authentication And DbContext
+
+            DependencyInjection.AddTransient(services);
 
         }
 
@@ -127,7 +147,7 @@ namespace App
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            //app.UseIdentityServer();//Add IdentityServer to our request processing pipeline
             app.UseMvc();
         }
     }

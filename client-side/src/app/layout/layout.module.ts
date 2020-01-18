@@ -9,7 +9,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { FullLayoutComponent } from './full-layout/full-layout.component';
-import { LoginService } from 'src/app/modules/authentication/login/services/login.service';
+import { AuthService } from 'src/app/modules/authentication/services/auth.service';
 
 
 @NgModule({
@@ -17,14 +17,14 @@ import { LoginService } from 'src/app/modules/authentication/login/services/logi
     HeaderComponent,
     FooterComponent,
     SideMenuComponent,
-    FullLayoutComponent 
+    FullLayoutComponent
   ],
   imports: [
     LayoutRoutingModule,
     SharedModule.forRoot(),
   ],
   providers: [
-    LoginService
+    AuthService
   ]
 })
 export class LayoutModule { }

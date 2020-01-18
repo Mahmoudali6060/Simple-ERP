@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 declare var $: any;
 import { TranslateService } from '@ngx-translate/core';
-import { LoginService } from 'src/app/modules/authentication/login/services/login.service';
+import { AuthService } from 'src/app/modules/authentication/services/auth.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 
-  constructor(private translate: TranslateService, private loginService: LoginService, private router: Router) {
+  constructor(private translate: TranslateService, private authService: AuthService, private router: Router) {
     translate.setDefaultLang('en');
 
   }
@@ -41,7 +41,7 @@ export class HeaderComponent {
   }
 
   public logOut() {
-    this.loginService.logOut();
+    this.authService.logOut();
     this.router.navigate(["/"]);
   }
 }
