@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 // import { ErrorDialogService } from '../error-dialog/errordialog.service';
-import { HttpInterceptor, HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { ErrorDialogService } from 'src/app/shared/services/error-dialof.sercive';

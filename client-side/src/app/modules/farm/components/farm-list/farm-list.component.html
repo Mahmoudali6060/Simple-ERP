@@ -1,0 +1,62 @@
+<div class="container-fluid" id="client-page">
+    <h3 class="page-title" translate>Farm.PageListName</h3>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div>
+                    <button type="button" [routerLink]="['/layout/farm/farm-form']" class="btn btn-info btn-lg" translate>Common.AddNewRecord</button>
+
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th translate>Farm.OwnerName</th>
+                                <th translate>Farm.OwnerMobile</th>
+                                <th translate>Farm.Address</th>
+                                <th translate>Farm.Notes</th>
+                                <th translate></th>
+                            </tr>
+                        </thead>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>
+                                    <input type="text" id="ownerName" name="ownerName" [(ngModel)]="searchModel.ownerName" class="form-control" placeholder="{{ 'Farm.OwnerName' | translate }}" (ngModelChange)="getAllFarm()">
+                                </th>
+                                <th>
+                                    <input type="text" id="ownerMobile" name="ownerMobile" [(ngModel)]="searchModel.ownerMobile" class="form-control"
+                                        placeholder="{{ 'Farm.OwnerMobile' | translate }}" (ngModelChange)="getAllFarm()">
+                                </th>
+                                <th>
+                                    <input type="text" id="address" name="address" [(ngModel)]="searchModel.address" class="form-control" placeholder="{{ 'Farm.Address' | translate }}" (ngModelChange)="getAllFarm()">
+                                </th>
+                                <th>
+                                    <input type="text" id="notes" name="notes" [(ngModel)]="searchModel.notes" class="form-control"
+                                        placeholder="{{ 'Farm.notes' | translate }}" (ngModelChange)="getAllFarm()">
+                                </th>
+                                <th translate></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of farmList;let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{item.ownerName}}</td>
+                                <td>{{item.ownerMobile}}</td>
+                                <td>{{item.address}}</td>
+                                <td>{{item.notes}}</td>
+                                <td>
+                                    <i class="fa fa-pencil" [routerLink]="['/layout/farm/farm-form',item.id]"></i>
+                                    <i class="fa fa-trash" (click)="showConfirmDialog(item.id)"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <app-pagination [total]="total" [scroll]="'client-page'" (changePagination)="changePagination($event)">
+            </app-pagination>
+        </div>
+    </div>
+</div>

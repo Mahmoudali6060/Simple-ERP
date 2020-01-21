@@ -34,8 +34,9 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Account\Account.csproj" />
+    <ProjectReference Include="..\..\Account\Account\Account.csproj" />
     <ProjectReference Include="..\..\Data\Data\Data.csproj" />
+    <ProjectReference Include="..\..\Farms\Farms\Farms.csproj" />
     <ProjectReference Include="..\..\Shared\Shared\Shared.csproj" />
   </ItemGroup>
 

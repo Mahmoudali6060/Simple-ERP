@@ -1,5 +1,7 @@
 ﻿using Account.DataAccessLayer;
 using Account.DataServiceLayer;
+using Farms.DataAccessLayer;
+using Farms.DataServiceLayer;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,8 @@ namespace App.Helper
         {
             services.AddTransient<IAccountDSL, AccountDSL>();
             services.AddTransient<IAccountDAL, AccountDAL>();
+            services.AddTransient<IFarmDSL, FarmDSL>();
+            services.AddTransient<IFarmDAL, FarmDAL>();
         }
     }
 }

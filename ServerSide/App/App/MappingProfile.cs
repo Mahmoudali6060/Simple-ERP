@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Data.Entities;
+using Farms.Models;
 //using Case.DTOs;
 //using Data.Models;
 using System;
@@ -12,8 +14,10 @@ namespace App
         public MappingProfile()
         {
             // Add as many of these lines as you need to map your objects
-            //CreateMap<Cases, CasesDTO>();
-            //CreateMap<CasesDTO, Cases>();
+            CreateMap<Farm, FarmDTO>();
+            CreateMap<FarmDTO, Farm>();
+            CreateMap<Export, ExportDTO>();
+            CreateMap<ExportDTO, Export>();
         }
     }
 }

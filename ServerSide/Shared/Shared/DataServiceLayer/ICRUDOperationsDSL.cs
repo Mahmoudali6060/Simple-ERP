@@ -1,15 +1,17 @@
-﻿using System;
+﻿using Shared.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Shared.DataServiceLayer
 {
     public interface ICRUDOperationsDSL<T>
     {
-        IEnumerable<T> GetAll();
-        T GetById(long id);
-        int Update(T entity);
-        int Add(T entity);
-        int Delete(long id);
+        Task<ResponseEntityList<T>> GetAll(T entity);
+        Task<T> GetById(long id);
+        Task<long> Update(T entity);
+        Task<long> Add(T entity);
+        Task<long> Delete(long id);
     }
 }

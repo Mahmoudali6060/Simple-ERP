@@ -1,57 +1,66 @@
 import { Injectable, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
-import { environment } from '../../../environments/environment';
-import { HttpClient } from 'selenium-webdriver/http';
-import { CRUDOperation } from '../../shared/enums/CRUD-Operation.enum';
 
-@Injectable()
+import { environment } from '../../../environments/environment';
+import { CRUDOperation } from '../../shared/enums/CRUD-Operation.enum';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/internal/operators/catchError';
+
+@Injectable(
+    { providedIn: 'root' }
+)
 export class BaseEntityService {
     baseUrl: string = "";
-    urlGetAll = CRUDOperation.GetAll;
-    urlGetById = CRUDOperation.GetById;
-    urlAdd = CRUDOperation.Add;
-    urlUpdate = CRUDOperation.Update;
-    urlDelete = CRUDOperation.Delete;
+    urlGetAll = "GetAll";
+    urlGetById = "GetById";
+    urlAdd = "Add";
+    urlUpdate = "Update";
+    urlDelete = "Delete";
     entityName: string = "";
     constructor(private _http: HttpClient) {
         this.baseUrl = environment.apiUrl;
     }
 
-    // getAll() {
-    //     return this._http.get(this.baseUrl + 'api/' + this.entityName + '/' + this.urlGetAll)
-    //         .map((response: Response) => response.json())
-    //         .catch(this.errorHandler);
-    // }
+    getAll(model): any {
+        return this._http.post(this.baseUrl + 'api/' + this.entityName + '/' + this.urlGetAll, model);
+        // //     .subscribe((response: Response) => response.json())
+        // //     , catchError(this.errorHandler);
+    }
 
-    // getById(id: number) {
-    //     return this._http.get(this.baseUrl + "api/" + this.entityName + '/' + this.urlGetById + '/' + id)
-    //         .map((response: Response) => response.json())
-    //         .catch(this.errorHandler)
-    // }
+    getById(id: number): any {
+        return this._http.get(this.baseUrl + "api/" + this.entityName + '/' + this.urlGetById + '/' + id);
+        // .subscribe((response: Response) => response.json())
+        // , catchError(this.errorHandler);
+    }
 
-    // add(entity) {
-    //     return this._http.post(this.baseUrl + "api/" + this.entityName + "/" + this.urlAdd + "/", entity)
-    //         .map((response: Response) => response.json())
-    //         .catch(this.errorHandler)
-    // }
+    save(entity) {
+        if (entity.id) {
+            return this.update(entity);
+        }
+        else {
+            return this.add(entity);
+        }
+    }
 
-    // update(entity) {
-    //     return this._http.put(this.baseUrl + "api/" + this.entityName + "/" + this.urlUpdate, entity)
-    //         .map((response: Response) => response.json())
-    //         .catch(this.errorHandler);
-    // }
+    add(entity) {
+        return this._http.post(this.baseUrl + "api/" + this.entityName + "/" + this.urlAdd + "/", entity);
+    }
 
-    // delete(id) {
-    //     return this._http.delete(this.baseUrl + "api/" + this.entityName + "/" + this.urlDelete + "/" + id)
-    //         .map((response: Response) => response.json())
-    //         .catch(this.errorHandler);
-    // }
+    update(entity) {
+        return this._http.post(this.baseUrl + "api/" + this.entityName + "/" + this.urlUpdate + "/", entity);
+        // .subscribe((response: Response) => response.json())
+        // , catchError(this.errorHandler);
+    }
 
-    // errorHandler(error: Response) {
-    //     console.log(error);
-    //     return Observable.throw(error);
-    // }
+    delete(id) {
+        return this._http.delete(this.baseUrl + "api/" + this.entityName + "/" + this.urlDelete + "/" + id);
+        // .subscribe((response: Response) => response.json())
+        // , catchError(this.errorHandler);
+    }
+
+    errorHandler(error: Response) {
+        console.log(error);
+        return Observable.throw(error);
+    }
 }

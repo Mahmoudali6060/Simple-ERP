@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Shared.DataAccessLayer
 {
     public interface ICRUDOperationsDAL<T>
     {
-        IEnumerable<T> GetAll();
-        T GetById(long id);
-        int Update(T entity);
-        int Add(T entity);
-        int Delete(long id);
+        Task<IEnumerable<T>> GetAll();
+        Task<T> GetById(long id);
+        Task<long> Update(T entity);
+        Task<long> Add(T entity);
+        Task<long> Delete(long id);
     }
 }

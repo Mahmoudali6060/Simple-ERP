@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
 })
 export class SideMenuComponent {
 
-  constructor() { }
+  constructor() {
+    console.log("loaded the side menu")
+   }
 }

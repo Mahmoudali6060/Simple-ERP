@@ -1,5 +1,30 @@
 {
+    "Common": {
+        "Save": "Save",
+        "Cancel": "Cancel",
+        "AddNewRecord":"Add new record",
+        "All": "All",
+        "Of": "Of",
+        "Records": "Records",
+        "Displaying": "Displaying",
+        "First": "First",
+        "Previous": "Previous",
+        "Next": "Next",
+        "Last": "Last"
+    },
     "Header": {
         "Language": "Language"
+    },
+    "Farm": {
+        "PageFormName": "Farm",
+        "PageListName": "Farm List",
+        "OwnerName": "Owner Name",
+        "OwnerMobile": "Owner Mobile",
+        "Address": "Address",
+        "Notes": "Notes"
+    },
+    "Station": {
+        "PageName": "Station",
+        "PageListName": "Station List"
     }
 }

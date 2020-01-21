@@ -13,6 +13,12 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { OrderModule } from 'ngx-order-pipe';
 import { ErrorDialogService } from 'src/app/shared/services/error-dialof.sercive';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
+import { ConfirmationDialogService } from 'src/app/shared/components/confirmation-dialog/service/confirmation-dialog.service';
+import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MaterialModule } from 'src/app/shared/modules/material.module';
+import { PaginationComponent } from 'src/app/shared/components/pagination/pagination.component';
 
 @NgModule({
 
@@ -29,11 +35,10 @@ import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/err
     HttpClientModule,
     NgSelectModule,
     OrderModule,
+    NgbModule,
+    MaterialModule
   ],
-  providers: [
-    BsModalService,
-    ErrorDialogService
-  ],
+
   exports: [
     CommonModule,
     ToastrModule,
@@ -47,12 +52,22 @@ import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/err
     NgSelectModule,
     BsDatepickerModule,
     OrderModule,
+    NgbModule,
+    PaginationComponent
   ],
   declarations: [
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    ConfirmationDialogComponent,
+    PaginationComponent
   ],
   entryComponents: [
     ErrorDialogComponent,
+    ConfirmationDialogComponent
+  ],
+  providers: [
+    BsModalService,
+    ErrorDialogService,
+    ConfirmationDialogService
   ],
 })
 export class SharedModule {

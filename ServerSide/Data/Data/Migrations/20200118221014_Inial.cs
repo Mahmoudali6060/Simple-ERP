@@ -52,6 +52,54 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Farms",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OwnerName = table.Column<string>(nullable: true),
+                    OwnerMobile = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    Notes = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Farms", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Recruitments",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Date = table.Column<DateTime>(nullable: false),
+                    Total = table.Column<decimal>(nullable: false),
+                    Debit = table.Column<decimal>(nullable: false),
+                    Credit = table.Column<decimal>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Recruitments", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Stations",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    OwnerMobile = table.Column<string>(nullable: true),
+                    Notes = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Stations", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -179,6 +227,62 @@ namespace Data.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Exports",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Date = table.Column<DateTime>(nullable: false),
+                    FarmId = table.Column<long>(nullable: false),
+                    CarPlate = table.Column<string>(nullable: true),
+                    Weight = table.Column<decimal>(nullable: false),
+                    Pardon = table.Column<decimal>(nullable: false),
+                    WeightAfterPardon = table.Column<decimal>(nullable: false),
+                    Price = table.Column<decimal>(nullable: false),
+                    Debit = table.Column<decimal>(nullable: false),
+                    Credit = table.Column<decimal>(nullable: false),
+                    Total = table.Column<decimal>(nullable: false),
+                    Notes = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Exports", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Exports_Farms_FarmId",
+                        column: x => x.FarmId,
+                        principalTable: "Farms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Incomes",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Date = table.Column<DateTime>(nullable: false),
+                    StationId = table.Column<long>(nullable: false),
+                    CarPlate = table.Column<string>(nullable: true),
+                    Weight = table.Column<decimal>(nullable: false),
+                    Price = table.Column<decimal>(nullable: false),
+                    Debit = table.Column<decimal>(nullable: false),
+                    Credit = table.Column<decimal>(nullable: false),
+                    Total = table.Column<decimal>(nullable: false),
+                    Notes = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Incomes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Incomes_Stations_StationId",
+                        column: x => x.StationId,
+                        principalTable: "Stations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -222,6 +326,16 @@ namespace Data.Migrations
                 name: "IX_Customers_IdentityId",
                 table: "Customers",
                 column: "IdentityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Exports_FarmId",
+                table: "Exports",
+                column: "FarmId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Incomes_StationId",
+                table: "Incomes",
+                column: "StationId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -245,10 +359,25 @@ namespace Data.Migrations
                 name: "Customers");
 
             migrationBuilder.DropTable(
+                name: "Exports");
+
+            migrationBuilder.DropTable(
+                name: "Incomes");
+
+            migrationBuilder.DropTable(
+                name: "Recruitments");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Farms");
+
+            migrationBuilder.DropTable(
+                name: "Stations");
         }
     }
 }

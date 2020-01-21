@@ -1,5 +1,31 @@
 {
+    "Common": {
+        "Save": "حفظ",
+        "Cancel": "الغاء",
+        "AddNewRecord":"اضافة سجل جديد",
+        "All": "الكل",
+        "Of": "من",
+        "Records": "سجل",
+        "Displaying": "يعرض",
+        "First": "أول صفحة",
+        "Previous": "السابق",
+        "Next": "التالي",
+        "Last": "آخر صفحة"
+        
+    },
     "Header": {
         "Language": "اللغة"
+    },
+    "Farm": {
+        "PageFormName": "المزرعة",
+        "PageListName": "قائمة المزارع",
+        "OwnerName": "اسم صاحب المزرعة",
+        "OwnerMobile": "رقم هاتف صاحب المزرعة",
+        "Address": "عنوان المزرعة",
+        "Notes": "ملاحظات"
+    },
+    "Station": {
+        "PageFormName": "المحطة",
+        "PageListName": "قائمة المحطات"
     }
 }

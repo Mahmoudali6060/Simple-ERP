@@ -29,15 +29,15 @@
               // "src/assets/vendor/chartist/css/chartist-custom.css",
               // "src/assets/css/main.css",
               // "src/assets/css/demo.css",
-              // "src/css/style.css"
+              "src/styles.css"
             ],
             "scripts": [
-             "src/assets/vendor/jquery/jquery.min.js",
+              "src/assets/vendor/jquery/jquery.min.js",
               "src/assets/vendor/bootstrap/js/bootstrap.min.js",
               "src/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js",
               "src/assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js",
               "src/assets/vendor/chartist/js/chartist.min.js",
-             "src/assets/scripts/klorofil-common.js"
+              "src/assets/scripts/klorofil-common.js"
             ],
             "es5BrowserSupport": true
           },
@@ -102,7 +102,7 @@
               // "src/assets/css/demo.css",
               // "src/assets/css/style.css",
               // "src/styles.css"
-              "src/styles.css", 
+              "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [

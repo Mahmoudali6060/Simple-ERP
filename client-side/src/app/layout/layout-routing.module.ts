@@ -10,6 +10,9 @@ export const routes: Routes = [
       {
          path: 'dashboard', loadChildren: () => import('../modules/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
+      {
+        path: 'farm', loadChildren: () => import('../modules/farm/farm.module').then(m => m.FarmModule)
+     },
       
     ]
   }

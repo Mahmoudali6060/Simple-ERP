@@ -11,6 +11,7 @@ export class HeaderComponent {
 
   constructor(private translate: TranslateService, private authService: AuthService, private router: Router) {
     translate.setDefaultLang('en');
+    console.log("loaded the header");
 
   }
 

@@ -9,9 +9,9 @@ using IdentityServer4.Events;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
-using Account.Models;
-using Account.DataServiceLayer;
 using Shared.Entities;
+using Account.DataServiceLayer;
+using Account.Models;
 
 namespace App.Controllers
 {
@@ -38,11 +38,12 @@ namespace App.Controllers
                 return BadRequest("Invalid client request");
             }
 
-            if (user.UserName == "johndoe" && user.Password == "def@123")
+            if (user.UserName == "admin" && user.Password == "admin@123")//Check using AppUser 
             {
                 var tokenString = _accountDSL.AddToken(user);
                 return Ok(new { Token = tokenString });
             }
+
             else
             {
                 return Unauthorized();
