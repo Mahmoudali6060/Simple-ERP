@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Data.Entities;
 using Farms.Models;
+using Stations.Models;
 //using Case.DTOs;
 //using Data.Models;
 using System;
@@ -18,6 +19,10 @@ namespace App
             CreateMap<FarmDTO, Farm>();
             CreateMap<Export, ExportDTO>();
             CreateMap<ExportDTO, Export>();
+            CreateMap<Station, StationDTO>();
+            CreateMap<StationDTO, Station>();
+            CreateMap<Income, IncomeDTO>();
+            CreateMap<IncomeDTO, Income>();
         }
     }
 }

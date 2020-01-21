@@ -38,6 +38,7 @@
     <ProjectReference Include="..\..\Data\Data\Data.csproj" />
     <ProjectReference Include="..\..\Farms\Farms\Farms.csproj" />
     <ProjectReference Include="..\..\Shared\Shared\Shared.csproj" />
+    <ProjectReference Include="..\..\Stations\Stations\Stations.csproj" />
   </ItemGroup>
 
 </Project>

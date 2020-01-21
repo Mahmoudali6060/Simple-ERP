@@ -21,11 +21,15 @@
         "PageListName": "قائمة المزارع",
         "OwnerName": "اسم صاحب المزرعة",
         "OwnerMobile": "رقم هاتف صاحب المزرعة",
-        "Address": "عنوان المزرعة",
+        "Address": "العنوان ",
         "Notes": "ملاحظات"
     },
     "Station": {
         "PageFormName": "المحطة",
-        "PageListName": "قائمة المحطات"
+        "PageListName": "قائمة المحطات",
+        "Name": "اسم المحطة ",
+        "OwnerMobile": "رقم هاتف  ",
+        "Address": "العنوان ",
+        "Notes": "ملاحظات"
     }
 }

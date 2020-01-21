@@ -24,7 +24,11 @@
         "Notes": "Notes"
     },
     "Station": {
-        "PageName": "Station",
-        "PageListName": "Station List"
+        "PageFormName": "Station",
+        "PageListName": "Station List",
+        "Name": "Name",
+        "OwnerMobile": "Owner Mobile",
+        "Address": "Address",
+        "Notes": "Notes"
     }
 }
