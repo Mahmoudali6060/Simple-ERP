@@ -9,6 +9,7 @@ namespace Shared.DataServiceLayer
     public interface ICRUDOperationsDSL<T>
     {
         Task<ResponseEntityList<T>> GetAll(T entity);
+        Task<ResponseEntityList<T>> GetAllLite();
         Task<T> GetById(long id);
         Task<long> Update(T entity);
         Task<long> Add(T entity);

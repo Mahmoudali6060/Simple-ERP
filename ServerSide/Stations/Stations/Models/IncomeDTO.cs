@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Shared.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Stations.Models
 {
-    public class IncomeDTO
+    public class IncomeDTO : PageSettingModel
     {
         public long Id { get; set; }
         public DateTime Date { get; set; }

@@ -1,0 +1,90 @@
+<div class="container-fluid" id="client-page">
+    <h3 class="page-title" translate>Income.PageListName</h3>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div>
+                    <button type="button" [routerLink]="['/layout/station/income-form']" class="btn btn-info btn-lg" translate>Common.AddNewRecord</button>
+
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th translate>Income.Date</th>
+                                <th translate>Income.CarPlate</th>
+                                <th translate>Income.Weight</th>
+                                <th translate>Income.Price</th>
+                                <th translate>Income.Debit</th>
+                                <th translate>Income.Credit</th>
+                                <th translate>Income.Total</th>
+                                <th translate>Income.Notes</th>
+                                <th translate></th>
+                            </tr>
+                        </thead>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>
+                                    <input type="text" id="date" name="date" [(ngModel)]="searchModel.date" class="form-control" placeholder="{{ 'Income.Date' | translate }}"
+                                        (ngModelChange)="getAllIncome()">
+                                </th>
+                                <th>
+                                    <input type="text" id="carPlate" name="carPlate" [(ngModel)]="searchModel.carPlate" class="form-control" placeholder="{{ 'Income.CarPlate' | translate }}"
+                                        (ngModelChange)="getAllIncome()">
+                                </th>
+                                <th>
+                                    <input type="text" id="weight" name="weight" [(ngModel)]="searchModel.weight" class="form-control" placeholder="{{ 'Income.Weight' | translate }}"
+                                        (ngModelChange)="getAllIncome()">
+                                </th>
+                                
+                                <th>
+                                    <input type="text" id="price" name="price" [(ngModel)]="searchModel.price" class="form-control" placeholder="{{ 'Income.Price' | translate }}"
+                                        (ngModelChange)="getAllIncome()">
+                                </th>
+                                <th>
+                                    <input type="text" id="debit" name="debit" [(ngModel)]="searchModel.debit" class="form-control" placeholder="{{ 'Income.Debit' | translate }}"
+                                        (ngModelChange)="getAllIncome()">
+                                </th>
+                                <th>
+                                    <input type="text" id="credit" name="credit" [(ngModel)]="searchModel.credit" class="form-control" placeholder="{{ 'Income.Credit' | translate }}"
+                                        (ngModelChange)="getAllIncome()">
+                                </th>
+                                <th>
+                                    <input type="text" id="total" name="total" [(ngModel)]="searchModel.total" class="form-control" placeholder="{{ 'Income.Total' | translate }}"
+                                        (ngModelChange)="getAllIncome()">
+                                </th>
+                                <th>
+                                    <input type="text" id="notes" name="notes" [(ngModel)]="searchModel.notes" class="form-control" placeholder="{{ 'Income.notes' | translate }}"
+                                        (ngModelChange)="getAllIncome()">
+                                </th>
+
+                                <th translate></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of incomeList;let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{item.date | date: 'dd/MM/yyyy' }}</td>
+                                <td>{{item.carPlate}}</td>
+                                <td>{{item.weight}}</td>
+                                <td>{{item.price}}</td>
+                                <td>{{item.debit}}</td>
+                                <td>{{item.credit}}</td>
+                                <td>{{item.total}}</td>
+                                <td>{{item.notes}}</td>
+                                <td>
+                                    <i class="fa fa-pencil" [routerLink]="['/layout/station/income-form',item.id]"></i>
+                                    <i class="fa fa-trash" (click)="showConfirmDialog(item.id)"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <app-pagination [total]="total" [scroll]="'client-page'" (changePagination)="changePagination($event)">
+            </app-pagination>
+        </div>
+    </div>
+</div>

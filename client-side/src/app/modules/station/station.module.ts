@@ -4,6 +4,9 @@ import { StationRoutingModule } from 'src/app/modules/station/station-routing.mo
 import { StationListComponent } from 'src/app/modules/station/components/station-list/station-list.component';
 import { StationFormComponent } from 'src/app/modules/station/components/station-form/station-form.component';
 import { StationService } from 'src/app/modules/station/services/station.service';
+import { IncomeFormComponent } from 'src/app/modules/station/components/income-form/income-form.component';
+import { IncomeListComponent } from 'src/app/modules/station/components/income-list/income-list.component';
+import { IncomeService } from 'src/app/modules/station/services/income.service';
 
 @NgModule({
   imports: [
@@ -13,10 +16,13 @@ import { StationService } from 'src/app/modules/station/services/station.service
   ],
   declarations: [
     StationListComponent,
-    StationFormComponent
+    StationFormComponent,
+    IncomeFormComponent,
+    IncomeListComponent
   ],
   providers: [
-    StationService
+    StationService,
+    IncomeService
   ]
 })
 

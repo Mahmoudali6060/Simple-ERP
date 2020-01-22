@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Shared.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Farms.Models
 {
-    public class ExportDTO
+    public class ExportDTO : PageSettingModel
     {
         public long Id { get; set; }
         public DateTime Date { get; set; }

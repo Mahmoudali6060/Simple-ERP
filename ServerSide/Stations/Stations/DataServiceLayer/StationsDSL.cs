@@ -15,11 +15,11 @@ namespace Stations.DataServiceLayer
 {
     public class StationDSL : IStationDSL
     {
-        IStationDAL _farmDAL;
+        IStationDAL _stationDAL;
         private readonly IMapper _mapper;
-        public StationDSL(IStationDAL farmDAL, IMapper mapper)
+        public StationDSL(IStationDAL stationDAL, IMapper mapper)
         {
-            this._farmDAL = farmDAL;
+            this._stationDAL = stationDAL;
             _mapper = mapper;
         }
 
@@ -27,7 +27,7 @@ namespace Stations.DataServiceLayer
         {
             try
             {
-                return await _farmDAL.Add(_mapper.Map<Station>(entity));
+                return await _stationDAL.Add(_mapper.Map<Station>(entity));
             }
             catch (Exception ex)
             {
@@ -38,7 +38,7 @@ namespace Stations.DataServiceLayer
 
         public async Task<long> Delete(long id)
         {
-            return await _farmDAL.Delete(id);
+            return await _stationDAL.Delete(id);
         }
 
         public async Task<ResponseEntityList<StationDTO>> GetAll(StationDTO entity)
@@ -48,7 +48,7 @@ namespace Stations.DataServiceLayer
                 int take = entity.Page * entity.RecordPerPage;
                 int skip = (entity.Page - 1) * entity.RecordPerPage;
 
-                var list = _mapper.Map<IEnumerable<StationDTO>>(await _farmDAL.GetAll());
+                var list = _mapper.Map<IEnumerable<StationDTO>>(await _stationDAL.GetAll());
 
                 var filteredList = list.Where(a =>
                         (String.IsNullOrEmpty(entity.Name) ? true : a.Name.Contains(entity.Name))
@@ -74,12 +74,19 @@ namespace Stations.DataServiceLayer
 
         public async Task<StationDTO> GetById(long id)
         {
-            return _mapper.Map<StationDTO>(await _farmDAL.GetById(id));
+            return _mapper.Map<StationDTO>(await _stationDAL.GetById(id));
         }
 
         public async Task<long> Update(StationDTO entity)
         {
-            return await _farmDAL.Update(_mapper.Map<Station>(entity));
+            return await _stationDAL.Update(_mapper.Map<Station>(entity));
+        }
+        public async Task<ResponseEntityList<StationDTO>> GetAllLite()
+        {
+            return new ResponseEntityList<StationDTO>()
+            {
+                List = _mapper.Map<IEnumerable<StationDTO>>(await _stationDAL.GetAll()).ToList(),
+            };
         }
     }
 }

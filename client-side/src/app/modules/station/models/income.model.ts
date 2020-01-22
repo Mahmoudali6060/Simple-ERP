@@ -1,6 +1,7 @@
 import { StationModel } from 'src/app/modules/station/models/station.model';
+import { PageSettingModel } from 'src/app/shared/models/page.model';
 
-export class IncomeModel {
+export class IncomeModel extends PageSettingModel {
     id: number;
     date: Date;
     stationId: number;

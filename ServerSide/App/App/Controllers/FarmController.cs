@@ -24,6 +24,7 @@ namespace App.Controllers
         [HttpPost, Route("GetAll")]
         public async Task<IActionResult> GetAll(FarmDTO entity) => Ok(await _farmDSL.GetAll(entity));
 
+
         [HttpGet, Route("GetById/{id}")]
         public async Task<IActionResult> GetById(long id) => Ok(await _farmDSL.GetById(id));
 
@@ -35,5 +36,8 @@ namespace App.Controllers
 
         [HttpDelete, Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int id) => Ok(await _farmDSL.Delete(id));
+
+        [HttpGet, Route("GetAllLite")]
+        public async Task<IActionResult> GetAllLite() => Ok(await _farmDSL.GetAllLite());
     }
 }

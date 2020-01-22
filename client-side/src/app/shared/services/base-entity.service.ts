@@ -17,7 +17,9 @@ export class BaseEntityService {
     urlAdd = "Add";
     urlUpdate = "Update";
     urlDelete = "Delete";
+    urlGetAllLite = "GetAllLite";
     entityName: string = "";
+
     constructor(private _http: HttpClient) {
         this.baseUrl = environment.apiUrl;
     }
@@ -28,6 +30,11 @@ export class BaseEntityService {
         // //     , catchError(this.errorHandler);
     }
 
+    getAllLite(): any {
+        return this._http.get(this.baseUrl + 'api/' + this.entityName + '/' + this.urlGetAllLite);
+        // //     .subscribe((response: Response) => response.json())
+        // //     , catchError(this.errorHandler);
+    }
     getById(id: number): any {
         return this._http.get(this.baseUrl + "api/" + this.entityName + '/' + this.urlGetById + '/' + id);
         // .subscribe((response: Response) => response.json())

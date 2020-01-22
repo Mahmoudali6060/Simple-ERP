@@ -20,8 +20,12 @@ namespace App.Helper
             services.AddTransient<IAccountDAL, AccountDAL>();
             services.AddTransient<IFarmDSL, FarmDSL>();
             services.AddTransient<IFarmDAL, FarmDAL>();
+            services.AddTransient<IExportDSL, ExportDSL>();
+            services.AddTransient<IExportDAL, ExportDAL>();
             services.AddTransient<IStationDSL, StationDSL>();
             services.AddTransient<IStationDAL, StationDAL>();
+            services.AddTransient<IIncomeDSL, IncomeDSL>();
+            services.AddTransient<IIncomeDAL, IncomeDAL>();
         }
     }
 }

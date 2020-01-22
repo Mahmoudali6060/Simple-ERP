@@ -48,11 +48,11 @@ namespace Farms.DataServiceLayer
                      && (String.IsNullOrEmpty(entity.Address) ? true : a.Address.Contains(entity.Address))
                      && (String.IsNullOrEmpty(entity.Notes) ? true : a.Notes.Contains(entity.Notes))
                      );
-                
+
                 ResponseEntityList<FarmDTO> responseEntityList = new ResponseEntityList<FarmDTO>();
                 responseEntityList.Total = filteredList.Count();
                 responseEntityList.List = filteredList.Take(take).Skip(skip).ToList();
-                
+
                 return responseEntityList;
 
             }
@@ -72,6 +72,14 @@ namespace Farms.DataServiceLayer
         public async Task<long> Update(FarmDTO entity)
         {
             return await _farmDAL.Update(_mapper.Map<Farm>(entity));
+        }
+
+        public async Task<ResponseEntityList<FarmDTO>> GetAllLite()
+        {
+            return new ResponseEntityList<FarmDTO>()
+            {
+                List = _mapper.Map<IEnumerable<FarmDTO>>(await _farmDAL.GetAll()).ToList(),
+            };
         }
     }
 }

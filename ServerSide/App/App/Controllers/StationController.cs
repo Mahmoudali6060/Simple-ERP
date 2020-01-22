@@ -35,5 +35,8 @@ namespace App.Controllers
 
         [HttpDelete, Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int id) => Ok(await _stationDSL.Delete(id));
+
+        [HttpGet, Route("GetAllLite")]
+        public async Task<IActionResult> GetAllLite() => Ok(await _stationDSL.GetAllLite());
     }
 }
