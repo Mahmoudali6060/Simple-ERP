@@ -7,7 +7,7 @@
                     <form #exportForm="ngForm" (ngSubmit)="save(exportForm)">
                         <div class="row">
                             <div class="col-lg-6">
-                                <input type="date" data-date-format="dd/MMMM/yyyy" id="date" name="date" [(ngModel)]="exportModel.date" class="form-control input-lg" placeholder="{{ 'Export.Date' | translate }}">
+                                <input type="date" date="dd-MM-yyyy"  id="date" name="date" [(ngModel)]="exportModel.date" class="form-control input-lg" placeholder="{{ 'Export.Date' | translate }}">
                                 <br>
                             </div>
 

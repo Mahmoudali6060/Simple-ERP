@@ -10,6 +10,6 @@ namespace Farms.DataServiceLayer
 {
     public interface IExportDSL : ICRUDOperationsDSL<ExportDTO>
     {
-
+        Task<ResponseEntityList<ExportDTO>> GetExportsByFarmId(long farmId);
     }
 }

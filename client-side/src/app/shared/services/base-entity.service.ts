@@ -20,7 +20,7 @@ export class BaseEntityService {
     urlGetAllLite = "GetAllLite";
     entityName: string = "";
 
-    constructor(private _http: HttpClient) {
+    constructor(public _http: HttpClient) {
         this.baseUrl = environment.apiUrl;
     }
 

@@ -12,4 +12,7 @@ export class IncomeService extends BaseEntityService {
 
   entityName = "Income";
 
+  getAllIncomesByStationId(stationId: number): any {
+    return this._http.get(this.baseUrl + "api/" + this.entityName + '/GetIncomesByStationId/' + stationId);
+  }
 }

@@ -53,5 +53,10 @@ namespace Stations.DataAccessLayer
             await _context.SaveChangesAsync();
             return entity.Id;
         }
+
+        public async Task<IEnumerable<Income>> GetIncomesByStationId(long stationId)
+        {
+            return await _context.Incomes.Where(x => x.StationId == stationId).ToListAsync();
+        }
     }
 }

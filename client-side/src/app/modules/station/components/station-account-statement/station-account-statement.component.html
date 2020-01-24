@@ -1,10 +1,10 @@
 <div class="container-fluid" id="client-page">
-    <h3 class="page-title" translate>Income.PageListName</h3>
+    <h3 class="page-title" ><span translate>Income.PageAccountName</span> {{stationName}}</h3>
     <div class="row">
         <div class="col-md-12">
             <div class="panel">
                 <div>
-                    <button type="button" [routerLink]="['/layout/station/income-form']" class="btn btn-info btn-lg" translate>Common.AddNewRecord</button>
+                    <button type="button" [routerLink]="['/layout/farm/income-form']" class="btn btn-info btn-lg" translate>Common.AddNewRecord</button>
 
                 </div>
                 <div class="panel-body">
@@ -20,10 +20,10 @@
                                 <th translate>Income.Credit</th>
                                 <th translate>Income.Total</th>
                                 <th translate>Income.Notes</th>
-                                <th translate></th>
+                                <!-- <th translate></th> -->
                             </tr>
                         </thead>
-                        <thead>
+                        <!-- <thead>
                             <tr>
                                 <th>#</th>
                                 <th>
@@ -38,7 +38,6 @@
                                     <input type="text" id="weight" name="weight" [(ngModel)]="searchModel.weight" class="form-control" placeholder="{{ 'Income.Weight' | translate }}"
                                         (ngModelChange)="getAllIncome()">
                                 </th>
-                                
                                 <th>
                                     <input type="text" id="price" name="price" [(ngModel)]="searchModel.price" class="form-control" placeholder="{{ 'Income.Price' | translate }}"
                                         (ngModelChange)="getAllIncome()">
@@ -60,9 +59,8 @@
                                         (ngModelChange)="getAllIncome()">
                                 </th>
 
-                                <th translate></th>
                             </tr>
-                        </thead>
+                        </thead> -->
                         <tbody>
                             <tr *ngFor="let item of incomeList;let i = index">
                                 <td>{{i+1}}</td>
@@ -74,10 +72,10 @@
                                 <td>{{item.credit}}</td>
                                 <td>{{item.total}}</td>
                                 <td>{{item.notes}}</td>
-                                <td>
-                                    <i class="fa fa-pencil" [routerLink]="['/layout/station/income-form',item.id]"></i>
+                                <!-- <td>
+                                    <i class="fa fa-pencil" [routerLink]="['/layout/farm/income-form',item.id]"></i>
                                     <i class="fa fa-trash" (click)="showConfirmDialog(item.id)"></i>
-                                </td>
+                                </td> -->
                             </tr>
                         </tbody>
                     </table>

@@ -53,5 +53,10 @@ namespace Farms.DataAccessLayer
             await _context.SaveChangesAsync();
             return entity.Id;
         }
+
+        public async Task<IEnumerable<Export>> GetExportsByFarmId(long farmId)
+        {
+            return await _context.Exports.Where(x => x.FarmId == farmId).ToListAsync();
+        }
     }
 }

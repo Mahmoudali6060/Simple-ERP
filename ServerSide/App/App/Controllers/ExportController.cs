@@ -35,5 +35,8 @@ namespace App.Controllers
 
         [HttpGet, Route("GetAllLite")]
         public async Task<IActionResult> GetAllLite() => Ok(await _exportDSL.GetAllLite());
+
+        [HttpGet, Route("GetExportsByFarmId/{farmId}")]
+        public async Task<IActionResult> GetExportsByFarmId(long farmId) => Ok(await _exportDSL.GetExportsByFarmId(farmId));
     }
 }

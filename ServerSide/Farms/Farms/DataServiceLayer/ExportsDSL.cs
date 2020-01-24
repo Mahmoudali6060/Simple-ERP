@@ -43,7 +43,7 @@ namespace Farms.DataServiceLayer
                 var list = _mapper.Map<IEnumerable<ExportDTO>>(await _exportDAL.GetAll());
 
                 var filteredList = list.Where(a =>
-                        //(String.IsNullOrEmpty(entity.Date.ToString()) ? true : a.Date.ToString().Contains(entity.Date.ToString()))
+                      //(String.IsNullOrEmpty(entity.Date.ToString()) ? true : a.Date.ToString().Contains(entity.Date.ToString()))
                       (String.IsNullOrEmpty(entity.CarPlate) ? true : a.CarPlate.Contains(entity.CarPlate))
                      && (String.IsNullOrEmpty(entity.Weight.ToString()) ? true : a.Weight.ToString().Contains(entity.Weight.ToString()))
                      && (String.IsNullOrEmpty(entity.Pardon.ToString()) ? true : a.Pardon.ToString().Contains(entity.Pardon.ToString()))
@@ -54,11 +54,11 @@ namespace Farms.DataServiceLayer
                      && (String.IsNullOrEmpty(entity.Total.ToString()) ? true : a.Total.ToString().Contains(entity.Total.ToString()))
                      && (String.IsNullOrEmpty(entity.Notes) ? true : a.Notes.Contains(entity.Notes))
                      );
-                
+
                 ResponseEntityList<ExportDTO> responseEntityList = new ResponseEntityList<ExportDTO>();
                 responseEntityList.Total = filteredList.Count();
                 responseEntityList.List = filteredList.Take(take).Skip(skip).ToList();
-                
+
                 return responseEntityList;
 
             }
@@ -85,6 +85,14 @@ namespace Farms.DataServiceLayer
             return new ResponseEntityList<ExportDTO>()
             {
                 List = _mapper.Map<IEnumerable<ExportDTO>>(await _exportDAL.GetAll()).ToList(),
+            };
+        }
+
+        public async Task<ResponseEntityList<ExportDTO>> GetExportsByFarmId(long farmId)
+        {
+            return new ResponseEntityList<ExportDTO>()
+            {
+                List = _mapper.Map<IEnumerable<ExportDTO>>(await _exportDAL.GetExportsByFarmId(farmId)).ToList(),
             };
         }
 

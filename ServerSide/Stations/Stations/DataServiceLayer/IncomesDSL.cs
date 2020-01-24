@@ -93,5 +93,14 @@ namespace Stations.DataServiceLayer
                 List = _mapper.Map<IEnumerable<IncomeDTO>>(await _incomeDAL.GetAll()).ToList(),
             };
         }
+
+        public async Task<ResponseEntityList<IncomeDTO>> GetIncomesByStationId(long stationId)
+        {
+            return new ResponseEntityList<IncomeDTO>()
+            {
+                List = _mapper.Map<IEnumerable<IncomeDTO>>(await _incomeDAL.GetIncomesByStationId(stationId)).ToList(),
+            };
+        }
+
     }
 }

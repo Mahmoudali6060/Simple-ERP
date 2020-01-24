@@ -7,6 +7,7 @@ import { FarmService } from 'src/app/modules/farm/services/farm.service';
 import { ExportService } from 'src/app/modules/farm/services/export.service';
 import { ExportFormComponent } from 'src/app/modules/farm/components/export-form/export-form.component';
 import { ExportListComponent } from 'src/app/modules/farm/components/export-list/export-list.component';
+import { FarmAccountStatementComponent } from 'src/app/modules/farm/components/farm-account-statement/farm-account-statement.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { ExportListComponent } from 'src/app/modules/farm/components/export-list
     FarmListComponent,
     FarmFormComponent,
     ExportListComponent,
-    ExportFormComponent
+    ExportFormComponent,
+    FarmAccountStatementComponent
   ],
   providers: [
     FarmService,

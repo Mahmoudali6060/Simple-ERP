@@ -10,6 +10,7 @@ namespace Stations.DataServiceLayer
 {
     public interface IIncomeDSL : ICRUDOperationsDSL<IncomeDTO>
     {
+        Task<ResponseEntityList<IncomeDTO>> GetIncomesByStationId(long stationId);
 
     }
 }

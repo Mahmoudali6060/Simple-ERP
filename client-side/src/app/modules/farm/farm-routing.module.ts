@@ -4,6 +4,7 @@ import { FarmFormComponent } from 'src/app/modules/farm/components/farm-form/far
 import { FarmListComponent } from 'src/app/modules/farm/components/farm-list/farm-list.component';
 import { ExportListComponent } from 'src/app/modules/farm/components/export-list/export-list.component';
 import { ExportFormComponent } from 'src/app/modules/farm/components/export-form/export-form.component';
+import { FarmAccountStatementComponent } from 'src/app/modules/farm/components/farm-account-statement/farm-account-statement.component';
 
 const routes: Routes = [
   { path: '', component: FarmListComponent },
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'farm-form/:id', component: FarmFormComponent },
   { path: 'export-list', component: ExportListComponent },
   { path: 'export-form', component: ExportFormComponent },
-  { path: 'export-form/:id', component: ExportFormComponent }
+  { path: 'export-form/:id', component: ExportFormComponent },
+  { path: 'farm-account-statement/:farmId/:farmName', component: FarmAccountStatementComponent }
 ];
 
 @NgModule({

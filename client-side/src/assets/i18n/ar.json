@@ -31,5 +31,36 @@
         "OwnerMobile": "رقم هاتف  ",
         "Address": "العنوان ",
         "Notes": "ملاحظات"
+    },
+    "Export": {
+        "PageFormName": "الصادر",
+        "PageListName": " قائمةالصادرات ",
+        "Date": "التاريخ",
+        "CarPlate": "رقم لوحة السيارة",
+        "Weight": "الوزن",
+        "Pardon": "السماح",
+        "WeightAfterPardon": "الورن بعد السماح",
+        "Price": "السعر",
+        "Debit": "مدين",
+        "Credit": "دائن",
+        "Total": "الاجمالي",
+        "Notes": "ملاحظات",
+        "PageAccountName":"كشف حساب مزرعة: "
+        
+
+    },
+    "Income": {
+        "PageFormName": "الوارد",
+        "PageListName": "قائمة الواردات",
+        "Date": "التاريخ",
+        "CarPlate": "رقم لوحة السيارة",
+        "Weight": "الوزن",
+        "Price": "السعر",
+        "Debit": "مدين",
+        "Credit": "دائن",
+        "Total": "الاجمالي",
+        "Notes": "ملاحظات",
+        "PageAccountName":"كشف حساب محطة: "
+        
     }
 }

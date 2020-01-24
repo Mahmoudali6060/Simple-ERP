@@ -7,18 +7,20 @@ import { StationService } from 'src/app/modules/station/services/station.service
 import { IncomeFormComponent } from 'src/app/modules/station/components/income-form/income-form.component';
 import { IncomeListComponent } from 'src/app/modules/station/components/income-list/income-list.component';
 import { IncomeService } from 'src/app/modules/station/services/income.service';
+import { StationAccountStatementComponent } from 'src/app/modules/station/components/station-account-statement/station-account-statement.component';
 
 @NgModule({
   imports: [
     StationRoutingModule,
     SharedModule.forRoot()
-    
+
   ],
   declarations: [
     StationListComponent,
     StationFormComponent,
     IncomeFormComponent,
-    IncomeListComponent
+    IncomeListComponent,
+    StationAccountStatementComponent
   ],
   providers: [
     StationService,

@@ -12,4 +12,7 @@ export class ExportService extends BaseEntityService {
 
   entityName = "Export";
 
+  getAllExportsByFarmId(farmId: number): any {
+    return this._http.get(this.baseUrl + "api/" + this.entityName + '/GetExportsByFarmId/' + farmId);
+  }
 }

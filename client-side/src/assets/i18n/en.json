@@ -2,7 +2,7 @@
     "Common": {
         "Save": "Save",
         "Cancel": "Cancel",
-        "AddNewRecord":"Add new record",
+        "AddNewRecord": "Add new record",
         "All": "All",
         "Of": "Of",
         "Records": "Records",
@@ -30,5 +30,33 @@
         "OwnerMobile": "Owner Mobile",
         "Address": "Address",
         "Notes": "Notes"
+    },
+    "Export": {
+        "PageFormName": "export",
+        "PageListName": "export List",
+        "Date": "Date",
+        "CarPlate": "CarPlate",
+        "Weight": "Weight",
+        "Pardon": "Pardon",
+        "WeightAfterPardon": "WeightAfterPardon",
+        "Price": "Price",
+        "Debit": "Debit",
+        "Credit": "Credit",
+        "Total": "Total",
+        "Notes": "Notes",
+        "PageAccountName":"Farm Account Statement for "
+    },
+    "Income": {
+        "PageFormName": "Income",
+        "PageListName": "Income List",
+        "Date": "Date",
+        "CarPlate": "CarPlate",
+        "Weight": "Weight",
+        "Price": "Price",
+        "Debit": "Debit",
+        "Credit": "Credit",
+        "Total": "Total",
+        "Notes": "Notes",
+        "PageAccountName":"Station Account Statement for "
     }
 }

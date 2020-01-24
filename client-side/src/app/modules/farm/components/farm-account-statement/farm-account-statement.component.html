@@ -1,5 +1,6 @@
 <div class="container-fluid" id="client-page">
-    <h3 class="page-title" translate>Export.PageListName</h3>
+    <h3 class="page-title">
+        <span translate>Export.PageAccountName</span> {{farmName}}</h3>
     <div class="row">
         <div class="col-md-12">
             <div class="panel">
@@ -23,10 +24,10 @@
                                 <th translate>Export.Total</th>
                                 <th translate>Export.Notes</th>
 
-                                <th translate></th>
+                                <!-- <th translate></th> -->
                             </tr>
                         </thead>
-                        <thead>
+                        <!-- <thead>
                             <tr>
                                 <th>#</th>
                                 <th>
@@ -72,7 +73,7 @@
 
                                 <th translate></th>
                             </tr>
-                        </thead>
+                        </thead> -->
                         <tbody>
                             <tr *ngFor="let item of exportList;let i = index">
                                 <td>{{i+1}}</td>
@@ -86,10 +87,10 @@
                                 <td>{{item.credit}}</td>
                                 <td>{{item.total}}</td>
                                 <td>{{item.notes}}</td>
-                                <td>
+                                <!-- <td>
                                     <i class="fa fa-pencil" [routerLink]="['/layout/farm/export-form',item.id]"></i>
                                     <i class="fa fa-trash" (click)="showConfirmDialog(item.id)"></i>
-                                </td>
+                                </td> -->
                             </tr>
                         </tbody>
                     </table>

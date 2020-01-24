@@ -4,6 +4,7 @@ import { StationFormComponent } from 'src/app/modules/station/components/station
 import { StationListComponent } from 'src/app/modules/station/components/station-list/station-list.component';
 import { IncomeListComponent } from 'src/app/modules/station/components/income-list/income-list.component';
 import { IncomeFormComponent } from 'src/app/modules/station/components/income-form/income-form.component';
+import { StationAccountStatementComponent } from 'src/app/modules/station/components/station-account-statement/station-account-statement.component';
 
 const routes: Routes = [
   { path: '', component: StationListComponent },
@@ -12,7 +13,9 @@ const routes: Routes = [
   { path: 'station-form/:id', component: StationFormComponent },
   { path: 'income-list', component: IncomeListComponent },
   { path: 'income-form', component: IncomeFormComponent },
-  { path: 'income-form/:id', component: IncomeFormComponent }
+  { path: 'income-form/:id', component: IncomeFormComponent },
+  { path: 'station-account-statement/:stationId/:stationName', component: StationAccountStatementComponent }
+
 ];
 
 @NgModule({
