@@ -23,7 +23,7 @@ namespace Data.Contexts
         public DbSet<Station> Stations { get; set; }
         public DbSet<Recruitment> Recruitments { get; set; }
         public DbSet<Income> Incomes { get; set; }
-        public DbSet<Outcome> Outcomes { get; set; }
+        public DbSet<Export> Exports { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
