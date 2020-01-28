@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Shared.Entities;
 using Account.DataServiceLayer;
 using Account.Models;
+using Shared.Entities.Shared;
 
 namespace App.Controllers
 {

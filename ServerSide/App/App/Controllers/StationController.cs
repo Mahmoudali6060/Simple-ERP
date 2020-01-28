@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Stations.DataServiceLayer;
-using Stations.Models;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Entities.Debit;
+using Clients.DataServiceLayer;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
