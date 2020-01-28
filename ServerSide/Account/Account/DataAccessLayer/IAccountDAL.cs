@@ -1,9 +1,9 @@
 ﻿
 
 using Account.Models;
-using Data.Entities;
+using Data.Entities.Shared;
 using Microsoft.AspNetCore.Identity;
-using Shared.Entities;
+using Shared.Entities.Shared;
 using System.Threading.Tasks;
 
 namespace Account.DataAccessLayer

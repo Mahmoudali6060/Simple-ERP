@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Stations.DataServiceLayer;
-using Stations.Models;
+using Shared.Entities.Credit;
+using Supplier.DataServiceLayer;
 
 namespace App.Controllers
 {
@@ -34,7 +34,7 @@ namespace App.Controllers
         public async Task<IActionResult> Delete(int id) => Ok(await _incomeDSL.Delete(id));
         [HttpGet, Route("GetAllLite")]
         public async Task<IActionResult> GetAllLite() => Ok(await _incomeDSL.GetAllLite());
-        [HttpGet, Route("GetIncomesByStationId/{stationId}")]
-        public async Task<IActionResult> GetIncomesByStationId(long stationId) => Ok(await _incomeDSL.GetIncomesByStationId(stationId));
+        [HttpGet, Route("GetIncomesByFarmId/{farmId}")]
+        public async Task<IActionResult> GetIncomesByFarmId(long farmId) => Ok(await _incomeDSL.GetIncomesByFarmId(farmId));
     }
 }

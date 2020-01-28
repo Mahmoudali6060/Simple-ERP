@@ -1,6 +1,6 @@
 ﻿using Account.DataAccessLayer;
 using Account.Models;
-using Data.Entities;
+using Data.Entities.Shared;
 using System;
 using System.Collections.Generic;
 using System.Text;

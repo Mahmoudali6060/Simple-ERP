@@ -1,5 +1,5 @@
 ﻿
-using Data.Entities;
+using Data.Entities.Shared;
 
 namespace Account.Models
 {

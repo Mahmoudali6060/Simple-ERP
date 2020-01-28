@@ -25,6 +25,7 @@ using Microsoft.AspNetCore.Identity;
 using Account.DataServiceLayer;
 using Account.DataAccessLayer;
 using App.Helper;
+using Data.Entities.Shared;
 
 namespace App
 {

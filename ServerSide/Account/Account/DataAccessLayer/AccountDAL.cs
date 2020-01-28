@@ -1,9 +1,11 @@
 ﻿using Account.Models;
 using Data.Constants;
 using Data.Entities;
+using Data.Entities.Shared;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Shared.Entities;
+using Shared.Entities.Shared;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;

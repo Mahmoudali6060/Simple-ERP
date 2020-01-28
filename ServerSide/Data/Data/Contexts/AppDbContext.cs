@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using Data.Entities.Shared;
+using Data.Entities.Debit;
+using Data.Entities.Credit;
 
 namespace Data.Contexts
 {
@@ -18,12 +21,28 @@ namespace Data.Contexts
 
         }
 
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Farm> Farms { get; set; }
+        //Debit entities
+        public DbSet<DebitBorrow> DebitBorrows { get; set; }
+        public DbSet<DebitCurrent> DebitCurrents { get; set; }
+        public DbSet<Outcome> Outcomes { get; set; }
+        public DbSet<Safe> Safes { get; set; }
         public DbSet<Station> Stations { get; set; }
-        public DbSet<Recruitment> Recruitments { get; set; }
+
+        //Credit entities
+        public DbSet<CreditBorrow> CreditBorrows { get; set; }
+        public DbSet<CreditCurrent> CreditCurrents { get; set; }
+        public DbSet<Farm> Farms { get; set; }
         public DbSet<Income> Incomes { get; set; }
-        public DbSet<Export> Exports { get; set; }
+        public DbSet<Reaper> Reapers { get; set; }
+        public DbSet<ReaperDetail> ReaperDetails { get; set; }
+        public DbSet<Salary> Salaries { get; set; }
+        public DbSet<Selector> Selectors { get; set; }
+
+        //Shared entities
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Driver> Drivers { get; set; }
+        public DbSet<Transfer> Transfers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
