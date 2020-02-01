@@ -14,6 +14,7 @@
     <PackageReference Include="JWT" Version="5.3.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.1">
@@ -34,9 +35,11 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Accounting\Accounting\Accounting.csproj" />
     <ProjectReference Include="..\..\Account\Account\Account.csproj" />
     <ProjectReference Include="..\..\Clients\Clients\Clients.csproj" />
     <ProjectReference Include="..\..\Data\Data\Data.csproj" />
+    <ProjectReference Include="..\..\HR\HR\HR.csproj" />
     <ProjectReference Include="..\..\Shared\Shared\Shared.csproj" />
     <ProjectReference Include="..\..\Supplier\Supplier\Supplier.csproj" />
   </ItemGroup>

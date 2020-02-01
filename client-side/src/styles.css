@@ -14,7 +14,7 @@
 }
 
 thead{
-    background-color: rgb(252, 152, 4);
+    background-color: rgb(20, 24, 29);
     color: white;
 }
 
@@ -37,3 +37,63 @@ thead{
     font-size: 20px;
     
 }
+
+#SupplierTotal ,#ClientTotal{
+    background-color: rgb(57, 82, 129);
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.loss{
+    background-color:red !important;
+    color: white;
+}
+
+.profit{
+    background-color:green !important;
+    color: white;
+}
+
+.input-container {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .icon {
+    padding: 10px;
+    background: dodgerblue;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+  }
+  
+  .input-field:focus {
+    border: 2px solid dodgerblue;
+  }
+
+  .ng-select {
+    width: 100%;
+  }
+
+  .panel .panel-body{
+    overflow-x: auto;
+  }
+
+  .table{
+    white-space: nowrap;
+  }
+
+  .btn-new-record{
+    margin: 0.5%;
+    margin-left: 2%;
+    background-color: #2B337F;
+  }

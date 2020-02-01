@@ -33,7 +33,7 @@ export class FarmListComponent {
   getAllFarm() {
     debugger;
     this.farmService.getAll(this.searchModel).subscribe(response => {
-      this.farmList = response.list;
+      this.farmList = response.List;
       this.total = response.total;
     }, err => {
 
@@ -66,8 +66,8 @@ export class FarmListComponent {
   }
 
   changePagination(data) {
-    this.searchModel.recordPerPage = data.recordPerPage;
-    this.searchModel.page = data.currentPage;
+    this.searchModel.RecordPerPage = data.recordPerPage;
+    this.searchModel.Page = data.currentPage;
     this.getAllFarm();
   }
 }

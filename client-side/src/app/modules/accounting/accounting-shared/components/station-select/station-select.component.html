@@ -1,0 +1,11 @@
+<label translate>Station</label>
+<div class="input-container">
+    <ng-select [items]="stationList" 
+        bindLabel="OwnerName" 
+        placeholder="Select item" 
+        appendTo="body" 
+        [(ngModel)]="selected"
+        (change)="onStationChange()">
+</ng-select>
+        <i class="fa fa-user icon"></i>
+</div>

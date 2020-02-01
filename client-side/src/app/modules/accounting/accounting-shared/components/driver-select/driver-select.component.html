@@ -1,0 +1,11 @@
+<label translate>Car-Driver</label>
+<div class="input-container">
+    <ng-select [items]="driverList" 
+        bindLabel="CarPlate" 
+        placeholder="Select item" 
+        appendTo="body" 
+        [(ngModel)]="selected"
+        (change)="onDriverChange()">
+</ng-select>
+        <i class="fa fa-user icon"></i>
+</div>

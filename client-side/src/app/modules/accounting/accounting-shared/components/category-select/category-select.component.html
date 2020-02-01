@@ -1,0 +1,11 @@
+<label translate>Category</label>
+<div class="input-container">
+    <ng-select [items]="categoryList" 
+        bindLabel="Name" 
+        placeholder="Select item" 
+        appendTo="body" 
+        [(ngModel)]="selected"
+        (change)="onCategoryChange()">
+</ng-select>
+        <i class="fa fa-user icon"></i>
+</div>

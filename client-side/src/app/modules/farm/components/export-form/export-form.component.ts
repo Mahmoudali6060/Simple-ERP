@@ -26,14 +26,14 @@ export class ExportFormComponent {
       this.getExportById(this.avtiveRoute.snapshot.params["id"]);
     }
     else {
-      this.exportModel.date = new Date();
+      this.exportModel.Date = new Date();
     }
   }
 
   private getAllFarm() {
 
     this.farmService.getAllLite().subscribe(response => {
-      this.farmList = response.list;
+      this.farmList = response.List;
     }, err => {
     });
   }
@@ -46,7 +46,7 @@ export class ExportFormComponent {
   }
 
   public save(form: NgForm) {
-    this.exportModel.date = new Date(this.exportModel.date);
+    this.exportModel.Date = new Date(this.exportModel.Date);
     this.exportService.save(this.exportModel).subscribe(response => {
       this.router.navigate(["/layout/farm/export-list"]);
     }, err => {
@@ -54,6 +54,6 @@ export class ExportFormComponent {
   }
 
   onFarmChange(farmId) {
-    this.exportModel.farmId = parseInt(farmId);
+    this.exportModel.FarmId = parseInt(farmId);
   }
 }

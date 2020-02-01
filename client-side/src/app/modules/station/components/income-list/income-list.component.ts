@@ -33,7 +33,7 @@ export class IncomeListComponent {
   getAllIncome() {
     debugger;
     this.incomeService.getAll(this.searchModel).subscribe(response => {
-      this.incomeList = response.list;
+      this.incomeList = response.List;
       this.total = response.total;
     }, err => {
 
@@ -66,8 +66,8 @@ export class IncomeListComponent {
   }
 
   changePagination(data) {
-    this.searchModel.recordPerPage = data.recordPerPage;
-    this.searchModel.page = data.currentPage;
+    this.searchModel.RecordPerPage = data.recordPerPage;
+    this.searchModel.Page = data.currentPage;
     this.getAllIncome();
   }
 }

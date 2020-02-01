@@ -16,6 +16,9 @@ export const routes: Routes = [
       {
         path: 'station', loadChildren: () => import('../modules/station/station.module').then(m => m.StationModule)
       },
+      {
+        path: 'transaction', loadChildren: () => import('../modules/transaction/transaction.module').then(m => m.TransactionModule)
+      },
 
     ]
   }

@@ -33,7 +33,7 @@ export class StationListComponent {
   getAllStation() {
     debugger;
     this.stationService.getAll(this.searchModel).subscribe(response => {
-      this.stationList = response.list;
+      this.stationList = response.List;
       this.total = response.total;
     }, err => {
 
@@ -60,8 +60,8 @@ export class StationListComponent {
   }
 
   changePagination(data) {
-    this.searchModel.recordPerPage = data.recordPerPage;
-    this.searchModel.page = data.currentPage;
+    this.searchModel.RecordPerPage = data.recordPerPage;
+    this.searchModel.Page = data.currentPage;
     this.getAllStation();
   }
 }

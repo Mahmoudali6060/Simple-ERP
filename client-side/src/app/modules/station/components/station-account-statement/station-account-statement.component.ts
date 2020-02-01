@@ -39,15 +39,15 @@ export class StationAccountStatementComponent {
 
   getAllIncomeBystationId(stationId: number) {
     this.incomeService.getAllIncomesByStationId(stationId).subscribe(response => {
-      this.incomeList = response.list;
+      this.incomeList = response.List;
     }, err => {
 
     });
   }
 
   changePagination(data) {
-    this.searchModel.recordPerPage = data.recordPerPage;
-    this.searchModel.page = data.currentPage;
+    this.searchModel.RecordPerPage = data.recordPerPage;
+    this.searchModel.Page = data.currentPage;
     this.getAllIncomeBystationId(this.stationId);
   }
 
@@ -57,7 +57,7 @@ export class StationAccountStatementComponent {
     let col = ['Date']; // initialization for headers
     let title = "Sample Report" // title of report
     for (let a = 0; a < this.incomeList.length; a++) {
-      row.push(this.incomeList[a].date)
+      row.push(this.incomeList[a].Date)
       // row.push(this.incomeList[a].title)
       // row.push(this.incomeList[a].total)
       // row.push(this.incomeList[a].description)

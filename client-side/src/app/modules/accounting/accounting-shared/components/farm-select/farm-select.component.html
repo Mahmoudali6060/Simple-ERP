@@ -1,0 +1,11 @@
+<label translate>Farm</label>
+<div class="input-container">
+    <ng-select [items]="farmList" 
+        bindLabel="OwnerName" 
+        placeholder="Select item" 
+        appendTo="body" 
+        [(ngModel)]="selected"
+        (change)="onFarmChange()">
+</ng-select>
+        <i class="fa fa-user icon"></i>
+</div>

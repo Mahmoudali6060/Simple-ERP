@@ -49,9 +49,9 @@
                                 <td>{{item.address}}</td>
                                 <td>{{item.notes}}</td>
                                 <td>
-                                    <i class="fa fa-list" [routerLink]="['/layout/farm/farm-account-statement',item.id,item.ownerName]"></i>
-                                    <i class="fa fa-pencil" [routerLink]="['/layout/farm/farm-form',item.id]"></i>
-                                    <i class="fa fa-trash" (click)="showConfirmDialog(item.id)"></i>
+                                    <i class="fa fa-list" [routerLink]="['/layout/farm/farm-account-statement',item.Id,item.ownerName]"></i>
+                                    <i class="fa fa-pencil" [routerLink]="['/layout/farm/farm-form',item.Id]"></i>
+                                    <i class="fa fa-trash" (click)="showConfirmDialog(item.Id)"></i>
                                 </td>
                             </tr>
                         </tbody>

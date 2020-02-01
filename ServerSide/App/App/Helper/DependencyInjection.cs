@@ -1,5 +1,7 @@
 ﻿using Account.DataAccessLayer;
 using Account.DataServiceLayer;
+using Accouting.DataAccessLayer;
+using Accouting.DataServiceLayer;
 using Clients.DataAccessLayer;
 using Clients.DataServiceLayer;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +28,15 @@ namespace App.Helper
             services.AddTransient<IStationDAL, StationDAL>();
             services.AddTransient<IOutcomeDSL, OutcomeDSL>();
             services.AddTransient<IOutcomeDAL, OutcomeDAL>();
+            services.AddTransient<ICategoryDSL, CategoryDSL>();
+            services.AddTransient<ICategoryDAL, CategoryDAL>();
+            services.AddTransient<IDriverDSL, DriverDSL>();
+            services.AddTransient<IDriverDAL, DriverDAL>();
+            services.AddTransient<IReaperDSL, ReaperDSL>();
+            services.AddTransient<IReaperDAL, ReaperDAL>();
+            services.AddTransient<ITransactionDSL, TransactionDSL>();
+            services.AddTransient<ITransactionDAL, TransactionDAL>();
+
         }
     }
 }

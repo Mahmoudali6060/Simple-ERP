@@ -33,7 +33,7 @@ export class ExportListComponent {
   getAllExport() {
     debugger;
     this.exportService.getAll(this.searchModel).subscribe(response => {
-      this.exportList = response.list;
+      this.exportList = response.List;
       this.total = response.total;
     }, err => {
 
@@ -66,8 +66,8 @@ export class ExportListComponent {
   }
 
   changePagination(data) {
-    this.searchModel.recordPerPage = data.recordPerPage;
-    this.searchModel.page = data.currentPage;
+    this.searchModel.RecordPerPage = data.RecordPerPage;
+    this.searchModel.Page = data.CurrentPage;
     this.getAllExport();
   }
 }

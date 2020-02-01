@@ -26,6 +26,7 @@ using Account.DataServiceLayer;
 using Account.DataAccessLayer;
 using App.Helper;
 using Data.Entities.Shared;
+using Newtonsoft.Json.Serialization;
 
 namespace App
 {
@@ -49,7 +50,16 @@ namespace App
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            ///>>>Allow Pascal Case
+            services.AddMvc(setupAction =>
+            {
+                setupAction.EnableEndpointRouting = false;
+            }).AddJsonOptions(jsonOptions =>
+            {
+                jsonOptions.JsonSerializerOptions.PropertyNamingPolicy = null;
+            })
+         .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            //>>>END Pascal Case
 
             //services.AddMvc().AddJsonOptions(options =>
             //{

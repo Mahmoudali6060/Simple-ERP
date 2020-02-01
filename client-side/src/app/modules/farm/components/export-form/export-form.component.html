@@ -13,7 +13,7 @@
 
                             <div class="col-lg-6">
                                 <select class="form-control input-lg" id="farmId" name="farmId" [(ngModel)]="exportModel.farmId" (change)="onFarmChange($event.target.value)">
-                                    <option *ngFor="let item of farmList" value="{{item.id}}">{{item.ownerName}} - {{item.address}}</option>
+                                    <option *ngFor="let item of farmList" value="{{item.Id}}">{{item.ownerName}} - {{item.address}}</option>
                                 </select>
                                 <br>
                             </div>

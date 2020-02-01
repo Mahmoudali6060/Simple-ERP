@@ -1,5 +1,5 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { CommonModule, registerLocaleData } from '@angular/common';
+import { CommonModule, registerLocaleData, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { TranslateModule } from '@ngx-translate/core';
@@ -11,14 +11,16 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { OrderModule } from 'ngx-order-pipe';
-import { ErrorDialogService } from 'src/app/shared/services/error-dialof.sercive';
-import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
-import { ConfirmationDialogService } from 'src/app/shared/components/confirmation-dialog/service/confirmation-dialog.service';
-import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
+import { ErrorDialogService } from '../shared/services/error-dialof.sercive';
+import { ErrorDialogComponent } from '../shared/components/error-dialog/error-dialog.component';
+import { ConfirmationDialogService } from '../shared/components/confirmation-dialog/service/confirmation-dialog.service';
+import { ConfirmationDialogComponent } from '../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MaterialModule } from 'src/app/shared/modules/material.module';
-import { PaginationComponent } from 'src/app/shared/components/pagination/pagination.component';
+import { MaterialModule } from '../shared/modules/material.module';
+import { PaginationComponent } from '../shared/components/pagination/pagination.component';
+import { DataListComponent } from '../shared/components/data-list/data-list.component';
+
 
 @NgModule({
 
@@ -36,7 +38,8 @@ import { PaginationComponent } from 'src/app/shared/components/pagination/pagina
     NgSelectModule,
     OrderModule,
     NgbModule,
-    MaterialModule
+    MaterialModule,
+   
   ],
 
   exports: [
@@ -53,12 +56,14 @@ import { PaginationComponent } from 'src/app/shared/components/pagination/pagina
     BsDatepickerModule,
     OrderModule,
     NgbModule,
-    PaginationComponent
+    PaginationComponent,
+    DataListComponent
   ],
   declarations: [
     ErrorDialogComponent,
     ConfirmationDialogComponent,
-    PaginationComponent
+    PaginationComponent,
+    DataListComponent
   ],
   entryComponents: [
     ErrorDialogComponent,
@@ -67,7 +72,8 @@ import { PaginationComponent } from 'src/app/shared/components/pagination/pagina
   providers: [
     BsModalService,
     ErrorDialogService,
-    ConfirmationDialogService
+    ConfirmationDialogService,
+    DatePipe
   ],
 })
 export class SharedModule {

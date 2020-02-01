@@ -1,0 +1,11 @@
+<label translate>Reaper</label>
+<div class="input-container">
+    <ng-select [items]="reaperList" 
+        bindLabel="HeadName" 
+        placeholder="Select item" 
+        appendTo="body" 
+        [(ngModel)]="selected"
+        (change)="onReaperChange()">
+</ng-select>
+        <i class="fa fa-user icon"></i>
+</div>

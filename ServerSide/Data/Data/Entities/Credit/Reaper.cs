@@ -8,7 +8,8 @@ namespace Data.Entities.Credit
     public class Reaper : BaseEntity
     {
         public string HeadName { get; set; }
-        public string Balance { get; set; }
+        public decimal Balance { get; set; }
+        public decimal LastTonPrice { get; set; }
         public virtual IEnumerable<ReaperDetail> ReaperDetails { get; set; }
     }
 }

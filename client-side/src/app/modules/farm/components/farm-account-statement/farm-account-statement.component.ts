@@ -36,15 +36,15 @@ export class FarmAccountStatementComponent {
 
   getAllExportByFarmId(farmId: number) {
     this.exportService.getAllExportsByFarmId(farmId).subscribe(response => {
-      this.exportList = response.list;
+      this.exportList = response.List;
     }, err => {
 
     });
   }
 
   changePagination(data) {
-    this.searchModel.recordPerPage = data.recordPerPage;
-    this.searchModel.page = data.currentPage;
+    this.searchModel.RecordPerPage = data.recordPerPage;
+    this.searchModel.Page = data.currentPage;
     this.getAllExportByFarmId(this.farmId);
   }
 }

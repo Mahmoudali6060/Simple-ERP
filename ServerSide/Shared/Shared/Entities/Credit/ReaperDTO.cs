@@ -8,7 +8,8 @@ namespace Shared.Entities.Credit
     public class ReaperDTO : BaseEntity
     {
         public string HeadName { get; set; }
-        public string Balance { get; set; }
+        public decimal Balance { get; set; }
+        public decimal LastTonPrice { get; set; }
         public virtual IEnumerable<ReaperDetailDTO> ReaperDetails { get; set; }
     }
 }

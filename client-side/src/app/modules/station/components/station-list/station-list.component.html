@@ -49,9 +49,9 @@
                                 <td>{{item.address}}</td>
                                 <td>{{item.notes}}</td>
                                 <td>
-                                    <i class="fa fa-list" [routerLink]="['/layout/station/station-account-statement',item.id,item.name]"></i>
-                                    <i class="fa fa-pencil" [routerLink]="['/layout/station/station-form',item.id]"></i>
-                                    <i class="fa fa-trash" (click)="showConfirmDialog(item.id)"></i>
+                                    <i class="fa fa-list" [routerLink]="['/layout/station/station-account-statement',item.Id,item.name]"></i>
+                                    <i class="fa fa-pencil" [routerLink]="['/layout/station/station-form',item.Id]"></i>
+                                    <i class="fa fa-trash" (click)="showConfirmDialog(item.Id)"></i>
                                 </td>
                             </tr>
                         </tbody>

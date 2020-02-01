@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -43,6 +42,7 @@ namespace Data.Contexts
         public DbSet<Category> Categories { get; set; }
         public DbSet<Driver> Drivers { get; set; }
         public DbSet<Transfer> Transfers { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

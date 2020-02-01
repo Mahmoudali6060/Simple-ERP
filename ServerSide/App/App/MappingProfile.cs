@@ -2,8 +2,10 @@
 using Data.Entities;
 using Data.Entities.Credit;
 using Data.Entities.Debit;
+using Data.Entities.Shared;
 using Shared.Entities.Credit;
 using Shared.Entities.Debit;
+using Shared.Entities.Shared;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,6 +25,14 @@ namespace App
             CreateMap<StationDTO, Station>();
             CreateMap<Outcome, OutcomeDTO>();
             CreateMap<OutcomeDTO, Outcome>();
+            CreateMap<Category, CategoryDTO>();
+            CreateMap<CategoryDTO, Category>();
+            CreateMap<Driver, DriverDTO>();
+            CreateMap<DriverDTO, Driver>();
+            CreateMap<Reaper, ReaperDTO>();
+            CreateMap<ReaperDTO, Reaper>();
+            CreateMap<Transaction, TransactionDTO>();
+            CreateMap<TransactionDTO, Transaction>();
         }
     }
 }

@@ -26,14 +26,14 @@ export class IncomeFormComponent {
       this.getIncomeById(this.avtiveRoute.snapshot.params["id"]);
     }
     else {
-      this.incomeModel.date = new Date();
+      this.incomeModel.Date = new Date();
     }
   }
 
   private getAllStation() {
 
     this.stationService.getAllLite().subscribe(response => {
-      this.stationList = response.list;
+      this.stationList = response.List;
     }, err => {
     });
   }
@@ -46,7 +46,7 @@ export class IncomeFormComponent {
   }
 
   public save(form: NgForm) {
-    this.incomeModel.date = new Date(this.incomeModel.date);
+    this.incomeModel.Date = new Date(this.incomeModel.Date);
     this.incomeService.save(this.incomeModel).subscribe(response => {
       this.router.navigate(["/layout/station/income-list"]);
     }, err => {
@@ -54,6 +54,6 @@ export class IncomeFormComponent {
   }
 
   onStationChange(stationId) {
-    this.incomeModel.stationId = parseInt(stationId);
+    this.incomeModel.StationId = parseInt(stationId);
   }
 }

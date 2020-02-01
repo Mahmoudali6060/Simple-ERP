@@ -223,14 +223,17 @@ namespace Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Balance")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("HeadName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("LastTonPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("Modified")
                         .HasColumnType("datetime2");
@@ -640,6 +643,114 @@ namespace Data.Migrations
                     b.HasIndex("IdentityId");
 
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("Data.Entities.Shared.Transaction", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CarPlate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CartNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("CategoryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("ClientDiscount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ClientPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ClientQuantity")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ClientTotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("DriverId")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal>("FarmExpense")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long>("FarmId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("FarmOwnerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Nolon")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Number")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Pardon")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ReaperHead")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("ReaperId")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal>("ReapersPay")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long>("SelectorId")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal>("SelectorsPay")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long>("StationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("StationOwnerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Sum")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("SupplierAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("SupplierPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("SupplierQuantity")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("SupplierTotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TotalAfterDiscount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TotalAfterPardon")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Transactions");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

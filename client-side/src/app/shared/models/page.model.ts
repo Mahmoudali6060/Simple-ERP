@@ -1,4 +1,4 @@
 export class PageSettingModel {
-    public page: number = 1;
-    public recordPerPage: number = 10;
+    public Page: number = 1;
+    public RecordPerPage: number = 10;
 }

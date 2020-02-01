@@ -1,0 +1,19 @@
+<div class="container-fluid" id="client-page">
+    <h3 class="page-title" translate>Transaction List</h3>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div>
+                    <button type="button" [routerLink]="['/layout/transaction/transaction-form']" class="btn btn-info btn-lg btn-new-record"
+                        translate>Add new record</button>
+                </div>
+                <div class="panel-body">
+                    <app-data-list [list]="transactionList" [columns]="columns">
+                    </app-data-list>
+                </div>
+            </div>
+            <app-pagination [total]="total" [scroll]="'client-page'" (changePagination)="changePagination($event)">
+            </app-pagination>
+        </div>
+    </div>
+</div>
