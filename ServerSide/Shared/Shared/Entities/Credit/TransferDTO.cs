@@ -9,14 +9,14 @@ namespace Shared.Entities.Credit
 {
     public class TransferDTO : BaseEntity
     {
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         public long DriverId { get; set; }
         public long FarmId { get; set; }
         public long StationId { get; set; }
         public decimal Nawlon { get; set; }
         public decimal Custody { get; set; }
-        public decimal Withdraws { get; set; }
-        public decimal Balance { get; set; }
+        public decimal? Withdraws { get; set; }
+        public decimal? Balance { get; set; }
         public string Notes { get; set; }
         public virtual DriverDTO Driver { get; set; }
         public virtual FarmDTO Farm { get; set; }

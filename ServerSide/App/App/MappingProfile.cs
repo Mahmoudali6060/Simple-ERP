@@ -33,6 +33,12 @@ namespace App
             CreateMap<ReaperDTO, Reaper>();
             CreateMap<Transaction, TransactionDTO>();
             CreateMap<TransactionDTO, Transaction>();
+            CreateMap<Transfer, TransferDTO>();
+            CreateMap<TransferDTO, Transfer>();
+            CreateMap<ReaperDetail, ReaperDetailDTO>();
+            CreateMap<ReaperDetailDTO, ReaperDetail>();
+            CreateMap<Selector, SelectorDTO>();
+            CreateMap<SelectorDTO, Selector>();
         }
     }
 }

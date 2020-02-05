@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Data.Entities.Credit;
+using Data.Entities.Debit;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,7 +12,7 @@ namespace Data.Entities.Shared
         public DateTime Date { get; set; }
         public long FarmId { get; set; }
         public string FarmOwnerName { get; set; }
-        public long CategoryId { get; set; }
+        public int CategoryId { get; set; }
         public string CategoryName { get; set; }
         public long DriverId { get; set; }
         public string CarPlate { get; set; }
@@ -36,5 +38,11 @@ namespace Data.Entities.Shared
         public decimal ClientPrice { get; set; }
         public decimal ClientTotal { get; set; }
         public decimal Sum { get; set; }
+
+        public Category Category { get; set; }
+        public Farm Farm { get; set; }
+        public Driver Driver { get; set; }
+        public Reaper Reaper { get; set; }
+        public Station Station { get; set; }
     }
 }

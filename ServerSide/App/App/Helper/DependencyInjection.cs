@@ -36,6 +36,12 @@ namespace App.Helper
             services.AddTransient<IReaperDAL, ReaperDAL>();
             services.AddTransient<ITransactionDSL, TransactionDSL>();
             services.AddTransient<ITransactionDAL, TransactionDAL>();
+            services.AddTransient<ITransferDSL, TransferDSL>();
+            services.AddTransient<ITransferDAL, TransferDAL>(); 
+                 services.AddTransient<ISelectorDSL, SelectorDSL>();
+            services.AddTransient<ISelectorDAL, SelectorDAL>();
+            services.AddTransient<IReaperDetailDSL, ReaperDetailDSL>();
+            services.AddTransient<IReaperDetailDAL, ReaperDetailDAL>();
 
         }
     }

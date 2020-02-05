@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200131222855_ChaneColTypes")]
-    partial class ChaneColTypes
+    [Migration("20200204225307_InitialDB")]
+    partial class InitialDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -166,10 +166,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DriverId")
-                        .HasColumnType("int");
-
-                    b.Property<long?>("DriverId1")
+                    b.Property<long>("DriverId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("FarmId")
@@ -209,7 +206,7 @@ namespace Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("DriverId1");
+                    b.HasIndex("DriverId");
 
                     b.HasIndex("FarmId");
 
@@ -365,8 +362,8 @@ namespace Data.Migrations
                     b.Property<decimal>("Custody")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Date")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
 
                     b.Property<long>("DriverId")
                         .HasColumnType("bigint");
@@ -488,10 +485,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DriverId")
-                        .HasColumnType("int");
-
-                    b.Property<long?>("DriverId1")
+                    b.Property<long>("DriverId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("FarmId")
@@ -531,7 +525,7 @@ namespace Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("DriverId1");
+                    b.HasIndex("DriverId");
 
                     b.HasIndex("FarmId");
 
@@ -654,11 +648,17 @@ namespace Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CarPlate")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CartNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("CategoryId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("ClientDiscount")
                         .HasColumnType("decimal(18,2)");
@@ -687,6 +687,9 @@ namespace Data.Migrations
                     b.Property<long>("FarmId")
                         .HasColumnType("bigint");
 
+                    b.Property<string>("FarmOwnerName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("Modified")
                         .HasColumnType("datetime2");
 
@@ -698,6 +701,9 @@ namespace Data.Migrations
 
                     b.Property<decimal>("Pardon")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ReaperHead")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("ReaperId")
                         .HasColumnType("bigint");
@@ -713,6 +719,9 @@ namespace Data.Migrations
 
                     b.Property<long>("StationId")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("StationOwnerName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Sum")
                         .HasColumnType("decimal(18,2)");
@@ -736,6 +745,16 @@ namespace Data.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("DriverId");
+
+                    b.HasIndex("FarmId");
+
+                    b.HasIndex("ReaperId");
+
+                    b.HasIndex("StationId");
 
                     b.ToTable("Transactions");
                 });
@@ -971,7 +990,9 @@ namespace Data.Migrations
 
                     b.HasOne("Data.Entities.Credit.Driver", "Driver")
                         .WithMany()
-                        .HasForeignKey("DriverId1");
+                        .HasForeignKey("DriverId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Data.Entities.Credit.Farm", "Farm")
                         .WithMany("Incomes")
@@ -1026,7 +1047,9 @@ namespace Data.Migrations
 
                     b.HasOne("Data.Entities.Credit.Driver", "Driver")
                         .WithMany("Outcomes")
-                        .HasForeignKey("DriverId1");
+                        .HasForeignKey("DriverId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Data.Entities.Credit.Farm", "Farm")
                         .WithMany()
@@ -1046,6 +1069,39 @@ namespace Data.Migrations
                     b.HasOne("Data.Entities.Shared.AppUser", "Identity")
                         .WithMany()
                         .HasForeignKey("IdentityId");
+                });
+
+            modelBuilder.Entity("Data.Entities.Shared.Transaction", b =>
+                {
+                    b.HasOne("Data.Entities.Shared.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Entities.Credit.Driver", "Driver")
+                        .WithMany()
+                        .HasForeignKey("DriverId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Entities.Credit.Farm", "Farm")
+                        .WithMany()
+                        .HasForeignKey("FarmId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Entities.Credit.Reaper", "Reaper")
+                        .WithMany()
+                        .HasForeignKey("ReaperId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Entities.Debit.Station", "Station")
+                        .WithMany()
+                        .HasForeignKey("StationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

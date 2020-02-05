@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
-    public partial class Initial_DB : Migration
+    public partial class InitialDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -184,7 +184,8 @@ namespace Data.Migrations
                     Created = table.Column<DateTime>(nullable: false),
                     Modified = table.Column<DateTime>(nullable: false),
                     HeadName = table.Column<string>(nullable: true),
-                    Balance = table.Column<string>(nullable: true)
+                    Balance = table.Column<decimal>(nullable: false),
+                    LastTonPrice = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -433,7 +434,7 @@ namespace Data.Migrations
                     CartNumber = table.Column<string>(nullable: true),
                     CategoryId = table.Column<int>(nullable: false),
                     FarmId = table.Column<long>(nullable: false),
-                    DriverId = table.Column<int>(nullable: false),
+                    DriverId = table.Column<long>(nullable: false),
                     Quantity = table.Column<decimal>(nullable: false),
                     KiloDiscount = table.Column<decimal>(nullable: false),
                     Total = table.Column<decimal>(nullable: false),
@@ -443,8 +444,7 @@ namespace Data.Migrations
                     StationId = table.Column<long>(nullable: false),
                     PaidUp = table.Column<decimal>(nullable: false),
                     PaidDate = table.Column<DateTime>(nullable: false),
-                    RecieptNumber = table.Column<string>(nullable: true),
-                    DriverId1 = table.Column<long>(nullable: true)
+                    RecieptNumber = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -456,11 +456,11 @@ namespace Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Incomes_Drivers_DriverId1",
-                        column: x => x.DriverId1,
+                        name: "FK_Incomes_Drivers_DriverId",
+                        column: x => x.DriverId,
                         principalTable: "Drivers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Incomes_Farms_FarmId",
                         column: x => x.FarmId,
@@ -487,7 +487,7 @@ namespace Data.Migrations
                     CartNumber = table.Column<string>(nullable: true),
                     CategoryId = table.Column<int>(nullable: false),
                     StationId = table.Column<long>(nullable: false),
-                    DriverId = table.Column<int>(nullable: false),
+                    DriverId = table.Column<long>(nullable: false),
                     Quantity = table.Column<decimal>(nullable: false),
                     KiloDiscount = table.Column<decimal>(nullable: false),
                     Total = table.Column<decimal>(nullable: false),
@@ -497,8 +497,7 @@ namespace Data.Migrations
                     FarmId = table.Column<long>(nullable: false),
                     PaidUp = table.Column<decimal>(nullable: false),
                     PaidDate = table.Column<DateTime>(nullable: false),
-                    RecieptNumber = table.Column<string>(nullable: true),
-                    DriverId1 = table.Column<long>(nullable: true)
+                    RecieptNumber = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -510,11 +509,11 @@ namespace Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Outcomes_Drivers_DriverId1",
-                        column: x => x.DriverId1,
+                        name: "FK_Outcomes_Drivers_DriverId",
+                        column: x => x.DriverId,
                         principalTable: "Drivers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Outcomes_Farms_FarmId",
                         column: x => x.FarmId,
@@ -530,6 +529,80 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Transactions",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Created = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: false),
+                    Number = table.Column<string>(nullable: true),
+                    Date = table.Column<DateTime>(nullable: false),
+                    FarmId = table.Column<long>(nullable: false),
+                    FarmOwnerName = table.Column<string>(nullable: true),
+                    CategoryId = table.Column<int>(nullable: false),
+                    CategoryName = table.Column<string>(nullable: true),
+                    DriverId = table.Column<long>(nullable: false),
+                    CarPlate = table.Column<string>(nullable: true),
+                    SupplierQuantity = table.Column<decimal>(nullable: false),
+                    Pardon = table.Column<decimal>(nullable: false),
+                    TotalAfterPardon = table.Column<decimal>(nullable: false),
+                    SupplierPrice = table.Column<decimal>(nullable: false),
+                    SupplierAmount = table.Column<decimal>(nullable: false),
+                    Nolon = table.Column<decimal>(nullable: false),
+                    ReaperId = table.Column<long>(nullable: false),
+                    ReaperHead = table.Column<string>(nullable: true),
+                    ReapersPay = table.Column<decimal>(nullable: false),
+                    SelectorId = table.Column<long>(nullable: false),
+                    SelectorsPay = table.Column<decimal>(nullable: false),
+                    FarmExpense = table.Column<decimal>(nullable: false),
+                    SupplierTotal = table.Column<decimal>(nullable: false),
+                    StationId = table.Column<long>(nullable: false),
+                    StationOwnerName = table.Column<string>(nullable: true),
+                    CartNumber = table.Column<string>(nullable: true),
+                    ClientQuantity = table.Column<decimal>(nullable: false),
+                    ClientDiscount = table.Column<decimal>(nullable: false),
+                    TotalAfterDiscount = table.Column<decimal>(nullable: false),
+                    ClientPrice = table.Column<decimal>(nullable: false),
+                    ClientTotal = table.Column<decimal>(nullable: false),
+                    Sum = table.Column<decimal>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Transactions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Transactions_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Transactions_Drivers_DriverId",
+                        column: x => x.DriverId,
+                        principalTable: "Drivers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Transactions_Farms_FarmId",
+                        column: x => x.FarmId,
+                        principalTable: "Farms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Transactions_Reapers_ReaperId",
+                        column: x => x.ReaperId,
+                        principalTable: "Reapers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Transactions_Stations_StationId",
+                        column: x => x.StationId,
+                        principalTable: "Stations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Transfers",
                 columns: table => new
                 {
@@ -537,7 +610,7 @@ namespace Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(nullable: false),
                     Modified = table.Column<DateTime>(nullable: false),
-                    Date = table.Column<string>(nullable: true),
+                    Date = table.Column<DateTime>(nullable: false),
                     DriverId = table.Column<long>(nullable: false),
                     FarmId = table.Column<long>(nullable: false),
                     StationId = table.Column<long>(nullable: false),
@@ -620,9 +693,9 @@ namespace Data.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Incomes_DriverId1",
+                name: "IX_Incomes_DriverId",
                 table: "Incomes",
-                column: "DriverId1");
+                column: "DriverId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Incomes_FarmId",
@@ -640,9 +713,9 @@ namespace Data.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Outcomes_DriverId1",
+                name: "IX_Outcomes_DriverId",
                 table: "Outcomes",
-                column: "DriverId1");
+                column: "DriverId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Outcomes_FarmId",
@@ -658,6 +731,31 @@ namespace Data.Migrations
                 name: "IX_ReaperDetails_ReaperId",
                 table: "ReaperDetails",
                 column: "ReaperId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transactions_CategoryId",
+                table: "Transactions",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transactions_DriverId",
+                table: "Transactions",
+                column: "DriverId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transactions_FarmId",
+                table: "Transactions",
+                column: "FarmId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transactions_ReaperId",
+                table: "Transactions",
+                column: "ReaperId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transactions_StationId",
+                table: "Transactions",
+                column: "StationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Transfers_DriverId",
@@ -724,6 +822,9 @@ namespace Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Selectors");
+
+            migrationBuilder.DropTable(
+                name: "Transactions");
 
             migrationBuilder.DropTable(
                 name: "Transfers");

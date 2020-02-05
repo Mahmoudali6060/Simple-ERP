@@ -11,9 +11,9 @@ namespace Shared.Entities.Credit
     {
         public DateTime Date { get; set; }
         public string CartNumber { get; set; }
-        public int CategoryId { get; set; }
+        public long CategoryId { get; set; }
         public long FarmId { get; set; }
-        public int DriverId { get; set; }
+        public long DriverId { get; set; }
         public decimal Quantity { get; set; }
         public decimal KiloDiscount { get; set; }
         public decimal Total { get; set; }

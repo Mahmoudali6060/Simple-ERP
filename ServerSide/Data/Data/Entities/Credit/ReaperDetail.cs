@@ -10,8 +10,8 @@ namespace Data.Entities.Credit
         public DateTime Date { get; set; }
         public decimal Weight { get; set; }
         public decimal TonPrice { get; set; }
-        public decimal PaidUp { get; set; }
-        public DateTime PaidDate { get; set; }
+        public decimal? PaidUp { get; set; }
+        public DateTime? PaidDate { get; set; }
         public long ReaperId { get; set; }
         public virtual Reaper Reaper { get; set; }
 
