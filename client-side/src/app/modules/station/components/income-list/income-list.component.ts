@@ -6,7 +6,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { IncomeService } from 'src/app/modules/station/services/income.service';
 import { IncomeModel } from 'src/app/modules/station/models/income.model';
-import { ConfirmationDialogService } from 'src/app/shared/components/confirmation-dialog/service/confirmation-dialog.service';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material';
 
@@ -21,7 +20,7 @@ export class IncomeListComponent {
   searchModel: IncomeModel = new IncomeModel;
   result: string;
   total: number;
-  constructor(public dialog: MatDialog, private router: Router, private incomeService: IncomeService, private confirmationDialogService: ConfirmationDialogService) {
+  constructor(public dialog: MatDialog, private router: Router, private incomeService: IncomeService) {
 
   }
 

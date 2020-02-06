@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Mvc;
 using Shared.Entities.Credit;
+using Shared.Entities.Shared;
 using Supplier.DataServiceLayer;
 
 
@@ -23,7 +24,7 @@ namespace App.Controllers
         }
 
         [HttpPost, Route("GetAll")]
-        public async Task<IActionResult> GetAll(FarmDTO entity) => Ok(await _farmDSL.GetAll(entity));
+        public async Task<IActionResult> GetAll([FromBody]DataSource dataSource) => Ok(await _farmDSL.GetAll(dataSource));
 
 
         [HttpGet, Route("GetById/{id}")]

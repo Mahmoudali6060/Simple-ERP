@@ -1,6 +1,7 @@
 ﻿using Shared.DataServiceLayer;
 using Shared.Entities;
 using Shared.Entities.Credit;
+using Shared.Entities.Shared;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,6 +11,6 @@ namespace Supplier.DataServiceLayer
 {
     public interface IFarmDSL : ICRUDOperationsDSL<FarmDTO>
     {
-
+        Task<Response> GetAll(DataSource dataSource);
     }
 }

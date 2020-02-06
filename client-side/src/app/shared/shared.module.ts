@@ -13,13 +13,13 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { OrderModule } from 'ngx-order-pipe';
 import { ErrorDialogService } from '../shared/services/error-dialof.sercive';
 import { ErrorDialogComponent } from '../shared/components/error-dialog/error-dialog.component';
-import { ConfirmationDialogService } from '../shared/components/confirmation-dialog/service/confirmation-dialog.service';
-import { ConfirmationDialogComponent } from '../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from '../shared/modules/material.module';
 import { PaginationComponent } from '../shared/components/pagination/pagination.component';
 import { DataListComponent } from '../shared/components/data-list/data-list.component';
+import { ConfirmationDialogComponent } from '../shared/components/confirmation-dialog/confirmation-dialog.component';
+import { ModalBasicComponent } from 'src/app/shared/components/modal-basic/modal-basic.component';
 
 
 @NgModule({
@@ -39,7 +39,7 @@ import { DataListComponent } from '../shared/components/data-list/data-list.comp
     OrderModule,
     NgbModule,
     MaterialModule,
-   
+
   ],
 
   exports: [
@@ -57,22 +57,24 @@ import { DataListComponent } from '../shared/components/data-list/data-list.comp
     OrderModule,
     NgbModule,
     PaginationComponent,
-    DataListComponent
+    DataListComponent,
+    ModalBasicComponent
   ],
   declarations: [
     ErrorDialogComponent,
     ConfirmationDialogComponent,
     PaginationComponent,
-    DataListComponent
+    DataListComponent,
+    ModalBasicComponent
   ],
   entryComponents: [
     ErrorDialogComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    DataListComponent
   ],
   providers: [
     BsModalService,
     ErrorDialogService,
-    ConfirmationDialogService,
     DatePipe
   ],
 })

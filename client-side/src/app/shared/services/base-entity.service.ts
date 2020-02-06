@@ -12,20 +12,20 @@ import { catchError } from 'rxjs/internal/operators/catchError';
 )
 export class BaseEntityService {
     baseUrl: string = "";
-    urlGetAll = "GetAll";
-    urlGetById = "GetById";
-    urlAdd = "Add";
-    urlUpdate = "Update";
-    urlDelete = "Delete";
-    urlGetAllLite = "GetAllLite";
+    private urlGetAll = "GetAll";
+    private urlGetById = "GetById";
+    private urlAdd = "Add";
+    private urlUpdate = "Update";
+    private urlDelete = "Delete";
+    private urlGetAllLite = "GetAllLite";
     entityName: string = "";
 
     constructor(public _http: HttpClient) {
         this.baseUrl = environment.apiUrl;
     }
 
-    getAll(model): any {
-        return this._http.post(this.baseUrl + 'api/' + this.entityName + '/' + this.urlGetAll, model);
+    getAll(dataSourceModel): any {
+        return this._http.post(this.baseUrl + 'api/' + this.entityName + '/' + this.urlGetAll, dataSourceModel);
         // //     .subscribe((response: Response) => response.json())
         // //     , catchError(this.errorHandler);
     }

@@ -1,6 +1,7 @@
 import { Component, OnChanges, Input, Output, EventEmitter, SimpleChange } from '@angular/core';
 import { PaginationModel } from './pagination.model';
 import { FixedService } from '../../services/fixed.service';
+import { DataSourceModel } from 'src/app/shared/models/data-source.model';
 
 @Component({
   selector: 'app-pagination',
@@ -10,16 +11,37 @@ export class PaginationComponent implements OnChanges {
   @Input() total: number;
   @Input() scroll: string;
   pagination: PaginationModel;
+  @Input() recordPerPage: number;
   @Output() changePagination = new EventEmitter<any>();
-
+  @Input() GoToFirstPage: boolean;
   constructor(public fixed: FixedService) {
     this.pagination = new PaginationModel();
   }
 
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
+
+    // this.pagination.total = this.total;
+    // if (this.recordPerPage != this.pagination.recordPerPage) {
+    //   this.pagination.recordPerPage = this.recordPerPage;
+    //   if (this.pagination.currentPage != 1) {
+    //     this.change('first', 1);
+
+    //   }
+    //   else {
+    //     this.generateData();
+    //     this.changePagination.emit(this.pagination);
+    //   }
+
+
+    // }
+    // if (this.GoToFirstPage == true) {
+    //   this.change('first', 1);
+    // }
+    // this.generateData();
     this.pagination.total = this.total;
     this.generateData();
   }
+
 
   generateData() {
     if (this.pagination.recordPerPage === 0) {

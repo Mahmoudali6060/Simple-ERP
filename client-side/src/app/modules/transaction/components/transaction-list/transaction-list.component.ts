@@ -6,7 +6,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { TransactionService } from '../../services/transaction.service';
 import { TransactionModel } from '../../models/transaction.model';
-import { ConfirmationDialogService } from '../../../../shared/components/confirmation-dialog/service/confirmation-dialog.service';
 import { ConfirmationDialogComponent } from '../../../../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material';
 import { DatePipe } from '@angular/common';
@@ -26,7 +25,7 @@ export class TransactionListComponent {
   searchModel: TransactionModel = new TransactionModel;
   result: string;
   total: number;
-  constructor(private datePipe: DatePipe, public dialog: MatDialog, private router: Router, private transactionService: TransactionService, private confirmationDialogService: ConfirmationDialogService) {
+  constructor(private datePipe: DatePipe, public dialog: MatDialog, private router: Router, private transactionService: TransactionService) {
 
   }
 

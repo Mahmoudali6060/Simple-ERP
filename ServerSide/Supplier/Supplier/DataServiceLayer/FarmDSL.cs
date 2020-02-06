@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Data.Entities.Credit;
 using Shared.Entities.Credit;
 using Shared.Entities.Shared;
+using Shared.Classes;
 
 namespace Supplier.DataServiceLayer
 {
@@ -33,6 +34,12 @@ namespace Supplier.DataServiceLayer
         public async Task<long> Delete(long id)
         {
             return await _farmDAL.Delete(id);
+        }
+
+        public async Task<Response> GetAll(DataSource dataSource)
+        {
+            var list = _mapper.Map<IEnumerable<FarmDTO>>(await _farmDAL.GetAll()).AsQueryable();
+            return Helper.ToResult(list, dataSource);
         }
 
         public async Task<ResponseEntityList<FarmDTO>> GetAll(FarmDTO entity)

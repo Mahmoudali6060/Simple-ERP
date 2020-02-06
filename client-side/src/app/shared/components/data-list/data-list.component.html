@@ -2,29 +2,35 @@
     <thead>
         <tr>
             <th>#</th>
-            <th *ngFor="let column of columns">
-                <span translate>{{column}}</span>
+            <th *ngFor="let property of properties">
+                <span translate>{{property}}</span>
             </th>
             <th>Actions</th>
         </tr>
-
     </thead>
     <tbody>
+        <tr>
+            <th>#</th>
+            <th *ngFor="let property of properties">
+                <input type="text" id="{{property}}" name="{{property}}" [(ngModel)]="model[property]" class="form-control" placeholder="{{ property | translate }}"
+                    type="text" (ngModelChange)="applyFilter()">
+            </th>
+        </tr>
         <tr *ngFor="let item of list;let i = index">
             <td>{{i+1}}</td>
-            <td *ngFor="let column of columns" data-column="column">
-                {{item[column]}}
+
+            <td *ngFor="let property of properties" data-colmun="property">
+                {{item[property]}}
             </td>
             <td>
-                <!-- <button class="btn btn-success" (click)="edit(item.id)">
-                    Edit
-                </button>
-                <button (click)="showConfirmDialog(item.id)" class="btn btn-danger">
-                    Delete
-                </button> -->
                 <i class="fa fa-pencil"></i>
                 <i class="fa fa-trash" (click)="showConfirmDialog(item.Id)"></i>
             </td>
         </tr>
     </tbody>
 </table>
+
+<app-pagination [total]="total" (changePagination)="onChangePagination($event)">
+</app-pagination>
+
+<app-confirmation-dialog (confirmDeleteEmitter)="delete($event)"></app-confirmation-dialog>

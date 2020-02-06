@@ -23,7 +23,7 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "@auth0/angular-jwt": "^3.0.1",
-    "@ng-bootstrap/ng-bootstrap": "^5.1.5",
+    "@ng-bootstrap/ng-bootstrap": "^5.2.1",
     "@ng-select/ng-select": "^2.20.5",
     "@ngx-pwa/local-storage": "^7.4.2",
     "@ngx-translate/core": "^11.0.1",

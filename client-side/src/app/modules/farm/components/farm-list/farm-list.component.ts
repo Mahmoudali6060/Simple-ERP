@@ -1,73 +1,77 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { NgForm } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { FarmService } from 'src/app/modules/farm/services/farm.service';
-import { FarmModel } from 'src/app/modules/farm/models/farm.model';
-import { ConfirmationDialogService } from 'src/app/shared/components/confirmation-dialog/service/confirmation-dialog.service';
-import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
-import { MatDialog } from '@angular/material';
-
+import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
+import { FarmService } from '../../services/farm.service';
+import { FarmModel } from '../../models/farm.model';
+import { ModalBasicComponent } from '../../../../shared/components/modal-basic/modal-basic.component';
+import { DataSourceModel } from 'src/app/shared/models/data-source.model';
 
 @Component({
   selector: 'app-farm-list',
   templateUrl: './farm-list.component.html'
 })
-export class FarmListComponent {
 
-  farmList: Array<FarmModel>
-  searchModel: FarmModel = new FarmModel;
-  result: string;
+export class FarmListComponent {
+  farmList: Array<FarmModel>;//Data List
+  properties = ["OwnerName", "OwnerMobile", "Address", "Notes"];//Displayed Columns 
+  farm: FarmModel = new FarmModel();//For Add/Update Farm Entity
+  @ViewChild(ModalBasicComponent, { static: false }) modalBasicComponent;//Add/Update Farm model
+  dataSourceModel: DataSourceModel = new DataSourceModel;
   total: number;
-  constructor(public dialog: MatDialog, private router: Router, private farmService: FarmService, private confirmationDialogService: ConfirmationDialogService) {
+  constructor(private farmService: FarmService) {
 
   }
 
   ngOnInit() {
-    this.getAllFarm();
+    this.getAllFarms();
   }
 
-
-  getAllFarm() {
-    debugger;
-    this.farmService.getAll(this.searchModel).subscribe(response => {
-      this.farmList = response.List;
-      this.total = response.total;
+  getAllFarms() {
+    this.farmService.getAll(this.dataSourceModel).subscribe(response => {
+      this.farmList = response.Data;
+      this.total = response.Total;
     }, err => {
-
     });
   }
 
-  // public showConfirmDialog(id) {
-  //   this.confirmationDialogService.confirm('', 'هل تريد حذف هذا السجل؟')
-  //     .then ((confirmed) => this.delete(confirmed, id))
-  //     .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
-  // }
-
-  showConfirmDialog(id): void {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent)//, {
-    dialogRef.afterClosed().subscribe(dialogResult => {
-      this.delete(dialogResult, id);
-    });
+  public getFarmById(id: number) {
+    this.farmService.getById(id)
+      .subscribe((response) => {
+        this.farm = response.data;
+        this.modalBasicComponent.open(this.farm);
+      })
+      , error => {
+      }
   }
 
-  private delete(confirmed: boolean, id: number) {
-    if (confirmed) {
-      this.farmService.delete(id)
-        .subscribe((data) => {
-          this.getAllFarm();
-        })
-        , error => {
+  public save(entity) {
+    this.farmService.save(entity)
+      .subscribe((response) => {
+        this.getAllFarms();
+      })
+      , error => {
+      }
+  }
 
-        }
+  public delete(id: number) {
+    this.farmService.delete(id)
+      .subscribe((response) => {
+        this.getAllFarms();
+      })
+      , error => {
+      }
+  }
+
+  public openModal(id?: number) {
+    if (id) {
+      this.getFarmById(id);
+    }
+    else {
+      this.farm = new FarmModel();
+      this.modalBasicComponent.open(this.farm);
     }
   }
 
-  changePagination(data) {
-    this.searchModel.RecordPerPage = data.recordPerPage;
-    this.searchModel.Page = data.currentPage;
-    this.getAllFarm();
+  public onChangePagination(dataSourceModel) {
+    this.dataSourceModel = dataSourceModel;
+    this.getAllFarms();
   }
 }
