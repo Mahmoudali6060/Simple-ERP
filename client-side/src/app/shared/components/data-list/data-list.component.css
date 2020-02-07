@@ -76,3 +76,13 @@ only screen and (max-width: 760px),
 	}
 
 }
+
+.modal.custom {
+    outline:none;
+    
+}
+
+.modal.custom .modal-dialog {
+    width:50%;
+    margin:0 auto;
+}
