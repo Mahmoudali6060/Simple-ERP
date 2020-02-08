@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, Input, EventEmitter, Output, ViewChild } fro
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { ModalBasicComponent } from '../modal-basic/modal-basic.component';
 import { DataSourceModel } from '../../../shared/models/data-source.model';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-data-list',
@@ -28,15 +29,25 @@ export class DataListComponent {
   model: any = {};
   //#endregion
 
-  constructor() {
-   
+  constructor(public dialog: MatDialog) {
+
   }
 
   ngOnInit() {
   }
 
   showConfirmDialog(id): void {
-    this.confirmationDialogComponent.open(id);//Open dialog when you press in delete button
+    // this.confirmationDialogComponent.open(id);//Open dialog when you press in delete button
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '350px',
+      data: "Do you confirm the deletion of this data?"
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.delete(id);
+      }
+    });
+
   }
 
   public delete(id) {
