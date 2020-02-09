@@ -12,7 +12,9 @@ namespace Shared.Entities.Credit
         public DateTime Date { get; set; }
         public long DriverId { get; set; }
         public long FarmId { get; set; }
+        public string FarmName { get; set; }
         public long StationId { get; set; }
+        public string StationName { get; set; }
         public decimal Nawlon { get; set; }
         public decimal Custody { get; set; }
         public decimal? Withdraws { get; set; }

@@ -2,6 +2,8 @@
 using Data.Contexts;
 using Data.Entities.Debit;
 using Microsoft.EntityFrameworkCore;
+using Shared.DataAccessLayer;
+using Shared.Entities.Debit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,9 +39,45 @@ namespace Clients.DataAccessLayer
             return id;
         }
 
-        public async Task<IEnumerable<Outcome>> GetAll()
+       
+
+        public async Task<IEnumerable<OutcomeDTO>> GetAll()
         {
-            return await _context.Outcomes.ToListAsync();
+            try
+            {
+                return (from i in _context.Outcomes
+                        join c in _context.Categories on i.CategoryId equals c.Id
+                        join d in _context.Drivers on i.DriverId equals d.Id
+                        join f in _context.Farms on i.FarmId equals f.Id
+                        join s in _context.Stations on i.StationId equals s.Id
+                        select new OutcomeDTO
+                        {
+                            Date = i.Date,
+                            CartNumber = d.CarPlate,
+                            CategoryId = c.Id,
+                            CategoryName = c.Name,
+                            FarmId = f.Id,
+                            FarmName = f.OwnerName,
+                            DriverId = d.Id,
+                            CarPlate = d.CarPlate,
+                            Quantity = i.Quantity,
+                            KiloDiscount = i.KiloDiscount,
+                            Total = i.Total,
+                            KiloPrice = i.KiloPrice,
+                            MoneyDiscount = i.MoneyDiscount,
+                            Balance = i.Balance,
+                            StationId = s.Id,
+                            StationName = s.OwnerName,
+                            PaidUp = i.PaidUp,
+                            PaidDate = i.PaidDate,
+                            RecieptNumber = i.RecieptNumber,
+                        });
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public async Task<Outcome> GetById(long id)
@@ -57,6 +95,11 @@ namespace Clients.DataAccessLayer
         public async Task<IEnumerable<Outcome>> GetOutcomesByStationId(long stationId)
         {
             return await _context.Outcomes.Where(x => x.StationId == stationId).ToListAsync();
+        }
+
+        Task<IEnumerable<Outcome>> ICRUDOperationsDAL<Outcome>.GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

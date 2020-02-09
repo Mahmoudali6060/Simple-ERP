@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Shared.Entities.Debit;
 using Data.Entities.Debit;
 using Shared.Entities.Shared;
+using Shared.Classes;
 
 namespace Accouting.DataServiceLayer
 {
@@ -42,41 +43,11 @@ namespace Accouting.DataServiceLayer
             return await _debitCurrentDAL.Delete(id);
         }
 
-        public async Task<ResponseEntityList<DebitCurrentDTO>> GetAll(DebitCurrentDTO entity)
+        public async Task<Response> GetAll(DataSource dataSource)
         {
-            try
-            {
-                int take = entity.Page * entity.RecordPerPage;
-                int skip = (entity.Page - 1) * entity.RecordPerPage;
-
-                var list = _mapper.Map<IEnumerable<DebitCurrentDTO>>(await _debitCurrentDAL.GetAll());
-
-                //var filteredList = list.Where(a =>
-                //      //(String.IsNullOrEmpty(entity.Date.ToString()) ? true : a.Date.ToString().Contains(entity.Date.ToString()))
-                //      (String.IsNullOrEmpty(entity.CarPlate) ? true : a.CarPlate.Contains(entity.CarPlate))
-                //     && (String.IsNullOrEmpty(entity.Weight.ToString()) ? true : a.Weight.ToString().Contains(entity.Weight.ToString()))
-                //     && (String.IsNullOrEmpty(entity.Price.ToString()) ? true : a.Price.ToString().Contains(entity.Price.ToString()))
-                //     && (String.IsNullOrEmpty(entity.Debit.ToString()) ? true : a.Debit.ToString().Contains(entity.Debit.ToString()))
-                //     && (String.IsNullOrEmpty(entity.Debit.ToString()) ? true : a.Debit.ToString().Contains(entity.Debit.ToString()))
-                //     && (String.IsNullOrEmpty(entity.Total.ToString()) ? true : a.Total.ToString().Contains(entity.Total.ToString()))
-                //     && (String.IsNullOrEmpty(entity.Notes) ? true : a.Notes.Contains(entity.Notes))
-                //     );
-
-                ResponseEntityList<DebitCurrentDTO> responseEntityList = new ResponseEntityList<DebitCurrentDTO>();
-                responseEntityList.Total = list.Count();
-                responseEntityList.List = list.Take(take).Skip(skip).ToList();
-
-                return responseEntityList;
-
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-
-
+            var list = _mapper.Map<IEnumerable<DebitCurrentDTO>>(await _debitCurrentDAL.GetAll()).AsQueryable();
+            return Helper.ToResult(list, dataSource);
         }
-
         public async Task<DebitCurrentDTO> GetById(long id)
         {
             return _mapper.Map<DebitCurrentDTO>(await _debitCurrentDAL.GetById(id));

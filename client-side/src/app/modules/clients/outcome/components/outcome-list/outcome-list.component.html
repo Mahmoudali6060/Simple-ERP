@@ -1,0 +1,13 @@
+<div class="mainContent">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <h2 class="pageTitle">Outcomes</h2>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <button class="btn btn-info btn-new-record" (click)="openModal()" translate >Add new recod</button>
+    </div>
+  </div>
+  <app-data-list [properties]="properties" [list]="outcomeList" (deleteRow)="delete($event)" (editRow)="openModal($event)" (changePagination)="onChangePagination($event)"
+    [total]="total">
+  </app-data-list>
+</div>

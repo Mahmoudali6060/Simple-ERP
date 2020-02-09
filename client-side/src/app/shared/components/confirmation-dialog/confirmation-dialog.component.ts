@@ -8,27 +8,14 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 
 export class ConfirmationDialogComponent {
-  closeResult: string;
-  @ViewChild('content', { static: false }) content: any;
-  @Output() confirmDeleteEmitter = new EventEmitter<number>();
-  id: number;
 
   constructor(
     public dialogRef: MatDialogRef<ConfirmationDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public message: string) { }
-  onNoClick(): void {
+
+
+  hide(): void {
     this.dialogRef.close();
   }
 
-  // constructor(private modalService: NgbModal) { }
-
-  // open(id: number) {
-  //   this.id = id;
-  //   this.modalService.open(this.content);
-  // }
-
-  // public confirmDelete() {
-  //   this.confirmDeleteEmitter.emit(this.id);
-  //   this.modalService.dismissAll();
-  // }
 }

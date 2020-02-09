@@ -20,6 +20,8 @@ import { PaginationComponent } from '../shared/components/pagination/pagination.
 import { DataListComponent } from '../shared/components/data-list/data-list.component';
 import { ConfirmationDialogComponent } from '../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { ModalBasicComponent } from 'src/app/shared/components/modal-basic/modal-basic.component';
+import { MatDialogModule, MatDialogRef } from '@angular/material';
+import { AuthGuardService } from 'src/app/shared/guards/auth-guard.service';
 
 
 @NgModule({
@@ -40,6 +42,7 @@ import { ModalBasicComponent } from 'src/app/shared/components/modal-basic/modal
     NgbModule,
     MaterialModule,
 
+
   ],
 
   exports: [
@@ -58,7 +61,8 @@ import { ModalBasicComponent } from 'src/app/shared/components/modal-basic/modal
     NgbModule,
     PaginationComponent,
     DataListComponent,
-    ModalBasicComponent
+    MaterialModule
+    // ModalBasicComponent
   ],
   declarations: [
     ErrorDialogComponent,
@@ -70,12 +74,14 @@ import { ModalBasicComponent } from 'src/app/shared/components/modal-basic/modal
   entryComponents: [
     ErrorDialogComponent,
     ConfirmationDialogComponent,
-    DataListComponent
+    DataListComponent,
+    ModalBasicComponent
   ],
   providers: [
     BsModalService,
     ErrorDialogService,
-    DatePipe
+    DatePipe,
+    AuthGuardService
   ],
 })
 export class SharedModule {

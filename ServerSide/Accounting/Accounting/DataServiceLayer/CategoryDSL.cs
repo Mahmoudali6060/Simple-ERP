@@ -14,6 +14,7 @@ using Shared.Entities.Credit;
 using Shared.Entities.Shared;
 using Data.Entities.Shared;
 using Accouting.DataAccessLayer;
+using Shared.Classes;
 
 namespace Accouting.DataServiceLayer
 {
@@ -37,37 +38,11 @@ namespace Accouting.DataServiceLayer
             return await _categoryDAL.Delete(id);
         }
 
-        public async Task<ResponseEntityList<CategoryDTO>> GetAll(CategoryDTO entity)
+        public async Task<Response> GetAll(DataSource dataSource)
         {
-            try
-            {
-                //int take = entity.Page * entity.RecordPerPage;
-                //int skip = (entity.Page - 1) * entity.RecordPerPage;
-
-                var list = _mapper.Map<IEnumerable<CategoryDTO>>(await _categoryDAL.GetAll());
-
-                //var filteredList = list.Where(a =>
-                //        (String.IsNullOrEmpty(entity.OwnerName) ? true : a.OwnerName.Contains(entity.OwnerName))
-                //     && (String.IsNullOrEmpty(entity.OwnerMobile) ? true : a.OwnerMobile.Contains(entity.OwnerMobile))
-                //     && (String.IsNullOrEmpty(entity.Address) ? true : a.Address.Contains(entity.Address))
-                //     && (String.IsNullOrEmpty(entity.Notes) ? true : a.Notes.Contains(entity.Notes))
-                //     );
-
-                ResponseEntityList<CategoryDTO> responseEntityList = new ResponseEntityList<CategoryDTO>();
-                responseEntityList.Total = list.Count();
-                responseEntityList.List = list.ToList();
-
-                return responseEntityList;
-
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-
-
+            var list = _mapper.Map<IEnumerable<CategoryDTO>>(await _categoryDAL.GetAll()).AsQueryable();
+            return Helper.ToResult(list, dataSource);
         }
-
         public async Task<CategoryDTO> GetById(long id)
         {
             return _mapper.Map<CategoryDTO>(await _categoryDAL.GetById(id));

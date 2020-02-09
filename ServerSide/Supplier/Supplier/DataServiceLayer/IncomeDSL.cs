@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Data.Entities.Credit;
 using Shared.Entities.Credit;
 using Shared.Entities.Shared;
+using Shared.Classes;
 
 namespace Supplier.DataServiceLayer
 {
@@ -31,41 +32,10 @@ namespace Supplier.DataServiceLayer
             return await _incomeDAL.Delete(id);
         }
 
-        public async Task<ResponseEntityList<IncomeDTO>> GetAll(IncomeDTO entity)
+        public async Task<Response> GetAll(DataSource dataSource)
         {
-            try
-            {
-                int take = entity.Page * entity.RecordPerPage;
-                int skip = (entity.Page - 1) * entity.RecordPerPage;
-
-                var list = _mapper.Map<IEnumerable<IncomeDTO>>(await _incomeDAL.GetAll());
-
-                //var filteredList = list.Where(a =>
-                //      //(String.IsNullOrEmpty(entity.Date.ToString()) ? true : a.Date.ToString().Contains(entity.Date.ToString()))
-                //      (String.IsNullOrEmpty(entity.CarPlate) ? true : a.CarPlate.Contains(entity.CarPlate))
-                //     && (String.IsNullOrEmpty(entity.Weight.ToString()) ? true : a.Weight.ToString().Contains(entity.Weight.ToString()))
-                //     && (String.IsNullOrEmpty(entity.Pardon.ToString()) ? true : a.Pardon.ToString().Contains(entity.Pardon.ToString()))
-                //     && (String.IsNullOrEmpty(entity.WeightAfterPardon.ToString()) ? true : a.WeightAfterPardon.ToString().Contains(entity.WeightAfterPardon.ToString()))
-                //     && (String.IsNullOrEmpty(entity.Price.ToString()) ? true : a.Price.ToString().Contains(entity.Price.ToString()))
-                //     && (String.IsNullOrEmpty(entity.Debit.ToString()) ? true : a.Debit.ToString().Contains(entity.Debit.ToString()))
-                //     && (String.IsNullOrEmpty(entity.Credit.ToString()) ? true : a.Credit.ToString().Contains(entity.Credit.ToString()))
-                //     && (String.IsNullOrEmpty(entity.Total.ToString()) ? true : a.Total.ToString().Contains(entity.Total.ToString()))
-                //     && (String.IsNullOrEmpty(entity.Notes) ? true : a.Notes.Contains(entity.Notes))
-                //     );
-
-                ResponseEntityList<IncomeDTO> responseEntityList = new ResponseEntityList<IncomeDTO>();
-                responseEntityList.Total = list.Count();
-                responseEntityList.List = list.Take(take).Skip(skip).ToList();
-
-                return responseEntityList;
-
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-
-
+            var list = (await _incomeDAL.GetAll()).AsQueryable();
+            return Helper.ToResult(list, dataSource);
         }
 
         public async Task<IncomeDTO> GetById(long id)

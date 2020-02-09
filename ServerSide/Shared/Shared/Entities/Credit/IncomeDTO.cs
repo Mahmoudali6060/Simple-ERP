@@ -12,8 +12,11 @@ namespace Shared.Entities.Credit
         public DateTime Date { get; set; }
         public string CartNumber { get; set; }
         public long CategoryId { get; set; }
+        public string CategoryName { get; set; }
         public long FarmId { get; set; }
+        public string FarmName { get; set; }
         public long DriverId { get; set; }
+        public string CarPlate { get; set; }
         public decimal Quantity { get; set; }
         public decimal KiloDiscount { get; set; }
         public decimal Total { get; set; }
@@ -21,8 +24,9 @@ namespace Shared.Entities.Credit
         public decimal MoneyDiscount { get; set; }
         public decimal Balance { get; set; }
         public long StationId { get; set; }
-        public decimal PaidUp { get; set; }
-        public DateTime PaidDate { get; set; }
+        public string StationName { get; set; }
+        public decimal? PaidUp { get; set; }
+        public DateTime? PaidDate { get; set; }
         public string RecieptNumber { get; set; }
 
         public virtual FarmDTO Farm { get; set; }

@@ -1,6 +1,4 @@
-import { PageSettingModel } from 'src/app/shared/models/page.model';
-
-export class ReaperModel extends PageSettingModel {
+export class ReaperModel {
     Id: number;
     HeadName: number;
     LastTonPrice: number;

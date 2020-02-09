@@ -6,7 +6,7 @@ import { FarmSelectComponent } from './components/farm-select/farm-select.compon
 import { DriverSelectComponent } from './components/driver-select/driver-select.component';
 import { DriverService } from '../../hr/driver/services/driver.service';
 import { StationSelectComponent } from './components/station-select/station-select.component';
-import { StationService } from '../../station/services/station.service';
+import { StationService } from '../../clients/station/services/station.service';
 import { ReaperSelectComponent } from './components/reaper-select/reaper-select.component';
 import { ReaperService } from '../../hr/reaper/services/reaper.service';
 

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FarmModel } from 'src/app/modules/farm/models/farm.model';
-import { FarmService } from 'src/app/modules/farm/services/farm.service';
+import { FarmModel } from '../../../../suppliers/farm/models/farm.model';
+import { FarmService } from '../../../../suppliers/farm/services/farm.service';
 
 @Component({
   selector: 'app-farm-select',

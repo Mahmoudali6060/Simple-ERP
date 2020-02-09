@@ -77,5 +77,14 @@
     "ClientTotal": "الاجمالي (العميل)",
     "Sum": "ارباح/خسارة",
     "Add new record":"اضافة سجل جديد",
-    "DateStr":"التاريخ"
+    "DateStr":"التاريخ",
+    "FarmName":"مزرعة",
+    "KiloDiscount":"خصم(كيلو)",
+    "KiloPrice":"سعر الكيلو",
+    "MoneyDiscount":"خصم(نقود)",
+    "Balance":"الرصيد",
+    "StationName":"محطة",
+    "PaidUp":"المدفوع",
+    "PaidDate":"تاريخ الدفع",
+    "RecieptNumber":"رقم الوصل"
 }

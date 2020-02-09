@@ -1,6 +1,5 @@
-import { PageSettingModel } from 'src/app/shared/models/page.model';
 
-export class DriverModel extends PageSettingModel {
+export class DriverModel {
     Id: number;
     FullName: string;
     Mobile: string;

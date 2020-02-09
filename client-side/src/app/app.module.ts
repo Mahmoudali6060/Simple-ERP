@@ -11,6 +11,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { JwtModule } from "@auth0/angular-jwt";
 import { HttpConfigInterceptor } from './shared/interceptors/httpconfig.interceptor';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AuthModule } from 'src/app/modules/authentication/auth.module';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -41,7 +42,9 @@ export function tokenGetter() {
         blacklistedRoutes: []
       }
     }),
-    MatDialogModule
+    MatDialogModule,
+    AuthModule
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Shared.Entities.Debit;
 using Data.Entities.Debit;
 using Shared.Entities.Shared;
+using Shared.Classes;
 
 namespace Clients.DataServiceLayer
 {
@@ -43,37 +44,11 @@ namespace Clients.DataServiceLayer
             return await _stationDAL.Delete(id);
         }
 
-        public async Task<ResponseEntityList<StationDTO>> GetAll(StationDTO entity)
+        public async Task<Response> GetAll(DataSource dataSource)
         {
-            try
-            {
-                int take = entity.Page * entity.RecordPerPage;
-                int skip = (entity.Page - 1) * entity.RecordPerPage;
-
-                var list = _mapper.Map<IEnumerable<StationDTO>>(await _stationDAL.GetAll());
-
-                var filteredList = list.Where(a =>
-                        (String.IsNullOrEmpty(entity.OwnerName) ? true : a.OwnerName.Contains(entity.OwnerName))
-                     && (String.IsNullOrEmpty(entity.OwnerMobile) ? true : a.OwnerMobile.Contains(entity.OwnerMobile))
-                     && (String.IsNullOrEmpty(entity.Address) ? true : a.Address.Contains(entity.Address))
-                     && (String.IsNullOrEmpty(entity.Notes) ? true : a.Notes.Contains(entity.Notes))
-                     );
-
-                ResponseEntityList<StationDTO> responseEntityList = new ResponseEntityList<StationDTO>();
-                responseEntityList.Total = filteredList.Count();
-                responseEntityList.List = filteredList.Take(take).Skip(skip).ToList();
-
-                return responseEntityList;
-
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-
-
+            var list = _mapper.Map<IEnumerable<StationDTO>>(await _stationDAL.GetAll()).AsQueryable();
+            return Helper.ToResult(list, dataSource);
         }
-
         public async Task<StationDTO> GetById(long id)
         {
             return _mapper.Map<StationDTO>(await _stationDAL.GetById(id));

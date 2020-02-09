@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ReaperListComponent } from './components/reaper-list/reaper-list.component';
+import { AuthGuardService } from '../../../shared/guards/auth-guard.service';
+import { ReaperDetailListComponent } from './components/reaper-detail-list/reaper-detail-list.component';
 
 const routes: Routes = [
-
+  { path: '', component: ReaperListComponent, canActivate: [AuthGuardService] },
+  { path: 'reaper-detail-list', component: ReaperDetailListComponent, canActivate: [AuthGuardService] },
 ];
 
 @NgModule({

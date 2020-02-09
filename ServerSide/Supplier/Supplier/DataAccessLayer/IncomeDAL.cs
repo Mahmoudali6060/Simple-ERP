@@ -1,8 +1,11 @@
 ﻿
+using AutoMapper;
 using Data.Contexts;
 using Data.Entities;
 using Data.Entities.Credit;
 using Microsoft.EntityFrameworkCore;
+using Shared.DataAccessLayer;
+using Shared.Entities.Credit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +19,13 @@ namespace Supplier.DataAccessLayer
     {
         private AppDbContext _context;
         private DbSet<Income> _entity;
+        private readonly IMapper _mapper;
 
-        public IncomeDAL(AppDbContext context)
+        public IncomeDAL(AppDbContext context, IMapper mapper)
         {
             this._context = context;
             this._entity = context.Set<Income>();
+            this._mapper = mapper;
         }
 
         public async Task<long> Add(Income entity)
@@ -38,9 +43,43 @@ namespace Supplier.DataAccessLayer
             return id;
         }
 
-        public async Task<IEnumerable<Income>> GetAll()
+        public async Task<IEnumerable<IncomeDTO>> GetAll()
         {
-            return await _context.Incomes.ToListAsync();
+            try
+            {
+                return (from i in _context.Incomes
+                        join c in _context.Categories on i.CategoryId equals c.Id
+                        join d in _context.Drivers on i.DriverId equals d.Id
+                        join f in _context.Farms on i.FarmId equals f.Id
+                        join s in _context.Stations on i.StationId equals s.Id
+                        select new IncomeDTO
+                        {
+                            Date = i.Date,
+                            CartNumber = d.CarPlate,
+                            CategoryId = c.Id,
+                            CategoryName = c.Name,
+                            FarmId = f.Id,
+                            FarmName = f.OwnerName,
+                            DriverId = d.Id,
+                            CarPlate = d.CarPlate,
+                            Quantity = i.Quantity,
+                            KiloDiscount = i.KiloDiscount,
+                            Total = i.Total,
+                            KiloPrice = i.KiloPrice,
+                            MoneyDiscount = i.MoneyDiscount,
+                            Balance = i.Balance,
+                            StationId = s.Id,
+                            StationName = s.OwnerName,
+                            PaidUp = i.PaidUp,
+                            PaidDate = i.PaidDate,
+                            RecieptNumber = i.RecieptNumber,
+                        });
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public async Task<Income> GetById(long id)
@@ -58,6 +97,11 @@ namespace Supplier.DataAccessLayer
         public async Task<IEnumerable<Income>> GetIncomesByFarmId(long farmId)
         {
             return await _context.Incomes.Where(x => x.FarmId == farmId).ToListAsync();
+        }
+
+        Task<IEnumerable<Income>> ICRUDOperationsDAL<Income>.GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

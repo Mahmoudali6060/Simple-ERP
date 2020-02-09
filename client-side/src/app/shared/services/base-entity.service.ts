@@ -42,7 +42,7 @@ export class BaseEntityService {
     }
 
     save(entity) {
-        if (entity.id) {
+        if (entity.Id) {
             return this.update(entity);
         }
         else {

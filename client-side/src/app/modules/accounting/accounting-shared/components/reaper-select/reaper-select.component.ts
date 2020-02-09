@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ReaperModel } from '../../../../hr/reaper/models/reaper.model';
 import { ReaperService } from '../../../../hr/reaper/services/reaper.service';
-import { ReaperLiteModel } from 'src/app/modules/hr/reaper/models/reaper-lite.model';
+import { ReaperLiteModel } from '../../../../hr/reaper/models/reaper-lite.model';
 
 @Component({
   selector: 'app-reaper-select',

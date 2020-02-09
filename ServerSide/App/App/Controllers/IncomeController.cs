@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Entities.Credit;
+using Shared.Entities.Shared;
 using Supplier.DataServiceLayer;
 
 namespace App.Controllers
@@ -19,7 +20,7 @@ namespace App.Controllers
         }
 
         [HttpPost, Route("GetAll")]
-        public async Task<IActionResult> GetAll(IncomeDTO entity) => Ok(await _incomeDSL.GetAll(entity));
+        public async Task<IActionResult> GetAll([FromBody]DataSource dataSource) => Ok(await _incomeDSL.GetAll(dataSource));
 
         [HttpGet, Route("GetById/{id}")]
         public async Task<IActionResult> GetById(long id) => Ok(await _incomeDSL.GetById(id));

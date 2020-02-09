@@ -1,6 +1,7 @@
-import { Component, ViewChild, EventEmitter, Output, Input } from '@angular/core';
+import { Component, ViewChild, EventEmitter, Output, Input, Inject } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-modal-basic',
@@ -21,17 +22,25 @@ export class ModalBasicComponent {
   @Input() properties: any;//properties names
   //#endregion
 
-  constructor(private modalService: NgbModal) { }
+  // constructor(private modalService: NgbModal) { }
 
-  public open(model: any) {
-    // this.properties = Object.keys(model).filter(x => x != 'Id');//Getting all properties except Id
-    this.model = model;
-    this.modalService.open(this.content);
-  }
+  // public open(model: any) {
+  //   // this.properties = Object.keys(model).filter(x => x != 'Id');//Getting all properties except Id
+  //   this.model = model;
+  //   this.modalService.open(this.content);
+  // }
 
   public save(form: NgForm) {
     this.saveRow.emit(this.model);//Passing of entity to parent component
-    this.modalService.dismissAll();
+    // this.modalService.dismissAll();
   }
+
+  constructor(
+    public dialogRef: MatDialogRef<ModalBasicComponent>,
+    @Inject(MAT_DIALOG_DATA) public message: string) { }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 
 }

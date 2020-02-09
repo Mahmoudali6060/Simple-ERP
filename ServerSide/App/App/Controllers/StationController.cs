@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Entities.Debit;
 using Clients.DataServiceLayer;
+using Shared.Entities.Shared;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -22,7 +23,7 @@ namespace App.Controllers
         }
 
         [HttpPost, Route("GetAll")]
-        public async Task<IActionResult> GetAll(StationDTO entity) => Ok(await _stationDSL.GetAll(entity));
+        public async Task<IActionResult> GetAll([FromBody]DataSource dataSource) => Ok(await _stationDSL.GetAll(dataSource));
 
         [HttpGet, Route("GetById/{id}")]
         public async Task<IActionResult> GetById(long id) => Ok(await _stationDSL.GetById(id));

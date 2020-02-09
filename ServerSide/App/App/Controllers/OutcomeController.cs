@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Clients.DataServiceLayer;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Entities.Debit;
+using Shared.Entities.Shared;
 
 namespace App.Controllers
 {
@@ -19,7 +20,7 @@ namespace App.Controllers
         }
 
         [HttpPost, Route("GetAll")]
-        public async Task<IActionResult> GetAll(OutcomeDTO entity) => Ok(await _outcomeDSL.GetAll(entity));
+        public async Task<IActionResult> GetAll([FromBody]DataSource dataSource) => Ok(await _outcomeDSL.GetAll(dataSource));
 
         [HttpGet, Route("GetById/{id}")]
         public async Task<IActionResult> GetById(long id) => Ok(await _outcomeDSL.GetById(id));

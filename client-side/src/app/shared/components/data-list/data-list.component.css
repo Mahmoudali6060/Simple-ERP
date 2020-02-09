@@ -3,6 +3,7 @@ table {
 	border-collapse: collapse; 
 	margin:50px auto;
 	margin-top: -9px;
+	overflow-x:auto;
 	}
 
 /* Zebra striping */
@@ -11,8 +12,8 @@ tr:nth-of-type(odd) {
 	}
 
 th { 
-	background: #2dabe2; 
-	color: white; 
+	background: #bec5c5; 
+	color: black; 
 	font-weight: bold; 
 	}
 
@@ -77,12 +78,3 @@ only screen and (max-width: 760px),
 
 }
 
-.modal.custom {
-    outline:none;
-    
-}
-
-.modal.custom .modal-dialog {
-    width:50%;
-    margin:0 auto;
-}

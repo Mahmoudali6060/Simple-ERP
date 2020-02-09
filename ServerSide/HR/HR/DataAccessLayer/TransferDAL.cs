@@ -2,15 +2,19 @@
 using Data.Contexts;
 using Data.Entities.Credit;
 using Microsoft.EntityFrameworkCore;
+using Shared.DataAccessLayer;
+using Shared.Entities.Credit;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Clients.DataAccessLayer
 {
     public class TransferDAL : ITransferDAL
     {
-        private AppDbContext _context;
-        private DbSet<Transfer> _entity;
+        private readonly AppDbContext _context;
+        private readonly DbSet<Transfer> _entity;
 
         public TransferDAL(AppDbContext context)
         {
@@ -33,10 +37,34 @@ namespace Clients.DataAccessLayer
             return id;
         }
 
-        public async Task<IEnumerable<Transfer>> GetAll()
+        public async Task<IEnumerable<TransferDTO>> GetAll()
         {
-            return await _context.Transfers.ToListAsync();
+            try
+            {
+                return from t in _context.Transfers
+                       join f in _context.Farms on t.FarmId equals f.Id
+                       join s in _context.Stations on t.StationId equals s.Id
+                       select new TransferDTO
+                       {
+                           Date = t.Date,
+                           FarmId = f.Id,
+                           FarmName = f.OwnerName,
+                           StationId = s.Id,
+                           StationName = s.OwnerName,
+                           Nawlon = t.Nawlon,
+                           Custody = t.Custody,
+                           Withdraws = t.Withdraws,
+                           Balance = t.Balance,
+                           Notes = t.Notes
+                       };
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
+
 
         public async Task<Transfer> GetById(long id)
         {
@@ -48,6 +76,11 @@ namespace Clients.DataAccessLayer
             _context.Entry(entity).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return entity.Id;
+        }
+
+        Task<IEnumerable<Transfer>> ICRUDOperationsDAL<Transfer>.GetAll()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

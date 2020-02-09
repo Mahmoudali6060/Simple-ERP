@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { TransactionService } from '../../services/transaction.service';
 import { TransactionModel } from '../../models/transaction.model';
-import { FarmModel } from 'src/app/modules/farm/models/farm.model';
-import { FarmService } from '../../../../modules/farm/services/farm.service';
+import { FarmModel } from '../../../../modules/suppliers/farm/models/farm.model';
+import { FarmService } from '../../../../modules/suppliers/farm/services/farm.service';
 
 @Component({
   selector: 'app-transaction-form',

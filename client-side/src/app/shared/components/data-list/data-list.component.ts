@@ -17,6 +17,7 @@ export class DataListComponent {
   this is a generic component for listing data
   */
   //#endregion
+
   //#region [M.Salman] -[30/1/2020] - [Variables]
   @Input() list;//List(table content)
   @Input() properties;//Table Header
@@ -36,8 +37,14 @@ export class DataListComponent {
   ngOnInit() {
   }
 
+  //#region  Editing
+  public edit(id) {
+    this.editRow.emit(id);//Send selected id to parent after editing the entity
+  }
+  //#endregion
+
+  //#region  Delation 
   showConfirmDialog(id): void {
-    // this.confirmationDialogComponent.open(id);//Open dialog when you press in delete button
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px',
       data: "Do you confirm the deletion of this data?"
@@ -53,17 +60,17 @@ export class DataListComponent {
   public delete(id) {
     this.deleteRow.emit(id);//Send selected id to parent after confirmation delete
   }
+  //#endregion
 
-  public edit(id) {
-    this.editRow.emit(id);//Send selected id to parent after editing the entity
-  }
-
+  //#region Pagination
   onChangePagination(data) {
-    this.dataSourceModel.PageSize = data.RecordPerPage;
-    this.dataSourceModel.Page = data.CurrentPage;
+    this.dataSourceModel.PageSize = data.recordPerPage;
+    this.dataSourceModel.Page = data.currentPage;
     this.changePagination.emit(this.dataSourceModel);
   }
+  //#endregion
 
+  //#region Fileration
   public applyFilter() {
     this.dataSourceModel.Filter = [];
     for (let property of this.properties) {
@@ -83,7 +90,7 @@ export class DataListComponent {
     if (!word) return word;
     return word[0].toUpperCase() + word.substr(1);
   }
-
+  //#endregion 
 }
 
 

@@ -1,0 +1,43 @@
+<div mat-dialog-content>
+    <h3 class="page-title" translate>Farm</h3>
+    <div class="panel">
+        <div class="panel-body">
+            <form #farmForm="ngForm" (ngSubmit)="save(farmForm)">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="text" id="OwnerName" name="OwnerName" [(ngModel)]="farmModel.OwnerName" class="form-control" placeholder="{{ 'OwnerName' | translate }}">
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="text" id="OwnerMobile" name="OwnerMobile" [(ngModel)]="farmModel.OwnerMobile" class="form-control" placeholder="{{ 'OwnerMobile' | translate }}">
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="text" id="Address" name="Address" [(ngModel)]="farmModel.Address" class="form-control" placeholder="{{ 'Address' | translate }}">
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <textarea id="Notes" name="Notes" class="form-control" [(ngModel)]="farmModel.Notes" placeholder="{{ 'Notes' | translate }}"
+                            rows="4"></textarea>
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2">
+                        <button type="button" class="btn btn-primary" (click)="save(farmForm)" [mat-dialog-close]="true" translate>Yes</button>
+                    </div>
+                    <div class="col-lg-2">
+                        <button type="button" class="btn btn-warning" (click)="hide()" translate>No</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

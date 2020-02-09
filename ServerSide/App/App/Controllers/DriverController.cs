@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Clients.DataServiceLayer;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Entities.Credit;
+using Shared.Entities.Shared;
 using Supplier.DataServiceLayer;
 
 
@@ -23,7 +24,7 @@ namespace App.Controllers
         }
 
         [HttpPost, Route("GetAll")]
-        public async Task<IActionResult> GetAll(DriverDTO entity) => Ok(await _driverDSL.GetAll(entity));
+        public async Task<IActionResult> GetAll([FromBody]DataSource dataSource) => Ok(await _driverDSL.GetAll(dataSource));
 
 
         [HttpGet, Route("GetById/{id}")]

@@ -24,7 +24,7 @@ namespace App.Controllers
         }
 
         [HttpPost, Route("GetAll")]
-        public async Task<IActionResult> GetAll(TransactionDTO entity) => Ok(await _transactionDSL.GetAll(entity));
+        public async Task<IActionResult> GetAll([FromBody]DataSource dataSource) => Ok(await _transactionDSL.GetAll(dataSource));
 
 
         [HttpGet, Route("GetById/{id}")]
