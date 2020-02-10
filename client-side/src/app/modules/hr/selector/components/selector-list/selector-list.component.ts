@@ -13,14 +13,14 @@ import { MatDialog } from '@angular/material';
 
 export class SelectorListComponent {
   //#region Variables
-  farmList: Array<SelectorModel>;//Data List
+  selectorList: Array<SelectorModel>;//Data List
   properties = ["PayDate", "Pay", "WithdrawsDate", "Withdraws", "Balance"];//Displayed Columns 
   selector: SelectorModel = new SelectorModel();//For Add/Update Selector Entity
   dataSourceModel: DataSourceModel = new DataSourceModel;//Pagination and Filteration Settings
   total: number;//Total number of rows
   //#endregion
 
-  constructor(private farmService: SelectorService, private dialog: MatDialog) {
+  constructor(private selectorService: SelectorService, private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -29,8 +29,8 @@ export class SelectorListComponent {
 
   //#region GetAll
   getAllSelectors() {
-    this.farmService.getAll(this.dataSourceModel).subscribe(response => {
-      this.farmList = response.Data;
+    this.selectorService.getAll(this.dataSourceModel).subscribe(response => {
+      this.selectorList = response.Data;
       this.total = response.Total;
     }, err => {
     });
@@ -39,7 +39,7 @@ export class SelectorListComponent {
 
   //#region Deleteing
   public delete(id: number) {
-    this.farmService.delete(id)
+    this.selectorService.delete(id)
       .subscribe((response) => {
         this.getAllSelectors();
       })

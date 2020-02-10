@@ -42,7 +42,7 @@ namespace Clients.DataServiceLayer
 
         public async Task<Response> GetAll(DataSource dataSource)
         {
-            var list = _mapper.Map<IEnumerable<Reaper>>(await _reaperDetailDAL.GetAll()).AsQueryable();
+            var list = _mapper.Map<IEnumerable<ReaperDetail>>(await _reaperDetailDAL.GetAll()).AsQueryable();
             return Helper.ToResult(list, dataSource);
         }
         public async Task<ReaperDetailDTO> GetById(long id)

@@ -42,7 +42,7 @@ namespace Clients.DataServiceLayer
 
         public async Task<Response> GetAll(DataSource dataSource)
         {
-            var list = _mapper.Map<IEnumerable<TransactionDTO>>(await _transferDAL.GetAll()).AsQueryable();
+            var list = _mapper.Map<IEnumerable<TransferDTO>>(await _transferDAL.GetAll()).AsQueryable();
             return Helper.ToResult(list, dataSource);
         }
         public async Task<TransferDTO> GetById(long id)

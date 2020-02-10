@@ -117,14 +117,16 @@
 
                                             <div class="col-lg-4">
                                                 <label translate>Discount</label>
-                                                <input type="number" id="ClientDiscount" name="ClientDiscount" [(ngModel)]="transactionModel.ClientDiscount" class="form-control" placeholder="{{ 'Discount' | translate }}">
+                                                <input type="number" id="ClientDiscount" name="ClientDiscount" [(ngModel)]="transactionModel.ClientDiscount" class="form-control"
+                                                    placeholder="{{ 'Discount' | translate }}">
                                                 <br>
                                             </div>
                                             <div class="col-lg-4">
                                                 <label translate>Total After Discount</label>
                                                 <input type="number" id="TotalAfterDiscount" name="TotalAfterDiscount" [(ngModel)]="transactionModel.TotalAfterDiscount"
                                                     class="form-control" placeholder="{{ 'Total After Discount' | translate }}"
-                                                    [value]="transactionModel.ClientQuantity-transactionModel.ClientDiscount" readonly>
+                                                    [value]="transactionModel.ClientQuantity-transactionModel.ClientDiscount"
+                                                    readonly>
                                                 <br>
                                             </div>
                                             <div class="col-lg-4">
@@ -132,6 +134,11 @@
                                                 <input type="number" id="ClientPrice" name="ClientPrice" [(ngModel)]="transactionModel.ClientPrice" class="form-control"
                                                     placeholder="{{ 'Price (Client)' | translate }}">
                                                 <br>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <label translate>Quantity Diffrence</label>
+                                                <input type="number" class="form-control" placeholder="{{ 'Quantity Diffrence' | translate }}" readonly
+                                                [value]="transactionModel.ClientQuantity-transactionModel.SupplierQuantity">
                                             </div>
                                             <div class="col-lg-4">
                                                 <label translate>Total (Client)</label>
