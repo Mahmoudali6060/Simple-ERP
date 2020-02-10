@@ -1,10 +1,8 @@
-import { PageSettingModel } from 'src/app/shared/models/page.model';
 
-export class TransactionModel extends PageSettingModel {
+export class TransactionModel {
     Id: number;
     Number: string;
     Date: Date;
-    DateStr:string;
     FarmId: number;
     FarmOwnerName: string;
     CategoryId: number;
@@ -34,3 +32,8 @@ export class TransactionModel extends PageSettingModel {
     ClientTotal: number;
     Sum: number;
 }
+
+
+// "Number","Date","FarmOwnerName","CategoryName","CarPlate","SupplierQuantity","Pardon","TotalAfterPardon",
+// "SupplierPrice","SupplierAmount","Nolon","ReaperHead","ReapersPay","StationOwnerName","SelectorsPay","FarmExpense",
+// "SupplierTotal","CartNumber","ClientQuantity","ClientDiscount","TotalAfterDiscount","ClientPrice","ClientTotal","Sum"

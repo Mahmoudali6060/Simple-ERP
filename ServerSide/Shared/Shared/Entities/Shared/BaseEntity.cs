@@ -7,7 +7,7 @@ using System.Text;
 namespace Shared.Entities.Shared
 {
 
-    public class BaseEntity : PageSettingModel
+    public class BaseEntity 
     {
         public long Id { get; set; }
         public DateTime Created { get; set; }

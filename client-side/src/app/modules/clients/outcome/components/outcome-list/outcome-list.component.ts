@@ -1,7 +1,6 @@
 import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { OutcomeService } from '../../services/outcome.service';
 import { OutcomeModel } from '../../models/outcome.model';
-import { ModalBasicComponent } from '../../../../../shared/components/modal-basic/modal-basic.component';
 import { DataSourceModel } from '../../../../../shared/models/data-source.model';
 import { OutcomeFormComponent } from '../outcome-form/outcome-form.component';
 import { MatDialog } from '@angular/material';
@@ -14,7 +13,7 @@ import { MatDialog } from '@angular/material';
 export class OutcomeListComponent {
   //#region Variables
   outcomeList: Array<OutcomeModel>;//Data List
-  properties = ["Date", "CartNumber", "CategoryName", "FarmName","CarPlate","Quantity","KiloDiscount","Total","KiloPrice","MoneyDiscount","Balance","StationName","PaidUp","PaidDate","RecieptNumber"];//Displayed Columns 
+  properties = ["Date", "CartNumber", "CategoryName", "FarmName","CarPlate","Quantity","KiloDiscount","QuantityAfterDiscount","KiloPrice","Total","MoneyDiscount","Balance","StationName","PaidUp","PaidDate","RecieptNumber"];//Displayed Columns 
   outcome: OutcomeModel = new OutcomeModel();//For Add/Update Outcome Entity
   dataSourceModel: DataSourceModel = new DataSourceModel;//Pagination and Filteration Settings
   total: number;//Total number of rows

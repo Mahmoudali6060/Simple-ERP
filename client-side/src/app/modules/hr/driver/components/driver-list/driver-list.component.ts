@@ -1,7 +1,6 @@
 import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { DriverService } from '../../services/driver.service';
 import { DriverModel } from '../../models/driver.model';
-import { ModalBasicComponent } from '../../../../../shared/components/modal-basic/modal-basic.component';
 import { DataSourceModel } from '../../../../../shared/models/data-source.model';
 // import { DriverFormComponent } from '../driver-form/driver-form.component';
 import { MatDialog } from '@angular/material';

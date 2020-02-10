@@ -13,7 +13,7 @@ namespace Data.Entities.Credit
         public long DriverId { get; set; }
         public long FarmId { get; set; }
         public long StationId { get; set; }
-        public decimal Nawlon { get; set; }
+        public decimal Nolon { get; set; }
         public decimal Custody { get; set; }
         public decimal? Withdraws { get; set; }
         public decimal? Balance { get; set; }

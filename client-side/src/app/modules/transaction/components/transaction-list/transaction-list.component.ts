@@ -9,6 +9,7 @@ import { TransactionModel } from '../../models/transaction.model';
 import { ConfirmationDialogComponent } from '../../../../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material';
 import { DatePipe } from '@angular/common';
+import { DataSourceModel } from '../../../../shared/models/data-source.model';
 
 @Component({
   selector: 'app-transaction-list',
@@ -18,12 +19,10 @@ export class TransactionListComponent {
 
   transactionList: Array<TransactionModel>
   transaction: TransactionModel = new TransactionModel;
-  columns = ['Number', 'DateStr', 'FarmOwnerName', 'CategoryName', 'CarPlate', 'SupplierQuantity',
-    'Pardon', 'TotalAfterPardon', 'SupplierPrice', 'SupplierAmount', 'Nolon', 'ReaperHead',
-    'ReapersPay', 'SelectorsPay', 'FarmExpense', 'SupplierTotal', 'StationOwnerName', 'CartNumber',
-    'ClientQuantity', 'ClientDiscount', 'TotalAfterDiscount', 'ClientPrice', 'ClientTotal', 'Sum',];
-  searchModel: TransactionModel = new TransactionModel;
-  result: string;
+  dataSourceModel: DataSourceModel = new DataSourceModel;//Pagination and Filteration Settings
+  properties = ["Number", "Date", "FarmOwnerName", "CategoryName", "CarPlate", "SupplierQuantity", "Pardon", "TotalAfterPardon",
+    "SupplierPrice", "SupplierAmount", "Nolon", "ReaperHead", "ReapersPay", "StationOwnerName", "SelectorsPay", "FarmExpense",
+    "SupplierTotal", "CartNumber", "ClientQuantity", "ClientDiscount", "TotalAfterDiscount", "ClientPrice", "ClientTotal", "Sum"];
   total: number;
   constructor(private datePipe: DatePipe, public dialog: MatDialog, private router: Router, private transactionService: TransactionService) {
 
@@ -34,30 +33,14 @@ export class TransactionListComponent {
   }
 
   getAllTransaction() {
-    this.transactionService.getAll(this.searchModel).subscribe(response => {
-      this.transactionList = this.prepareTransactionList(response.List);
+    this.transactionService.getAll(this.dataSourceModel).subscribe(response => {
+      this.transactionList = response.Data
       this.total = response.Total;
     }, err => {
 
     });
   }
 
-  private prepareTransactionList(transactionList: Array<TransactionModel>) {
-    for (let item of transactionList) {
-      item.Number = item.Id.toString();
-      item.DateStr = this.datePipe.transform(new Date(item.Date), "dd/MM/yyyy");
-      ///Supplier Calculations
-      item.TotalAfterPardon = item.SupplierQuantity - item.Pardon;
-      item.SupplierAmount = item.TotalAfterPardon * item.SupplierPrice;
-      item.SupplierTotal = item.SupplierAmount + item.Nolon + item.ReapersPay + item.SelectorsPay + item.FarmExpense;
-
-      ///Client Caluclations
-      item.TotalAfterDiscount = item.ClientQuantity - item.ClientDiscount;
-      item.ClientTotal = item.TotalAfterDiscount * item.ClientPrice;
-      item.Sum = item.ClientTotal - item.SupplierTotal;
-    }
-    return transactionList;
-  }
   showConfirmDialog(id): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent)//, {
     dialogRef.afterClosed().subscribe(dialogResult => {
@@ -76,9 +59,10 @@ export class TransactionListComponent {
     }
   }
 
-  changePagination(data) {
-    this.searchModel.RecordPerPage = data.recordPerPage;
-    this.searchModel.Page = data.currentPage;
+
+
+  public onChangePagination(dataSourceModel) {
+    this.dataSourceModel = dataSourceModel;
     this.getAllTransaction();
   }
 

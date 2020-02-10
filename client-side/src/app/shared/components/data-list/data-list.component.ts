@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject, Input, EventEmitter, Output, ViewChild } from '@angular/core';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
-import { ModalBasicComponent } from '../modal-basic/modal-basic.component';
 import { DataSourceModel } from '../../../shared/models/data-source.model';
 import { MatDialog } from '@angular/material';
 

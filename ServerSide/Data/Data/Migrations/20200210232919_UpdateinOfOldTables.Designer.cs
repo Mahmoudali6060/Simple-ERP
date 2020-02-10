@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200204225307_InitialDB")]
-    partial class InitialDB
+    [Migration("20200210232919_UpdateinOfOldTables")]
+    partial class UpdateinOfOldTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,13 +28,13 @@ namespace Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("Balance")
+                    b.Property<decimal?>("Balance")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Modified")
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Pay")
@@ -43,10 +43,10 @@ namespace Data.Migrations
                     b.Property<DateTime>("PayDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Withdraws")
+                    b.Property<decimal?>("Withdraws")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("WithdrawsDate")
+                    b.Property<DateTime?>("WithdrawsDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -61,13 +61,13 @@ namespace Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("Balance")
+                    b.Property<decimal?>("Balance")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Modified")
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Pay")
@@ -76,10 +76,10 @@ namespace Data.Migrations
                     b.Property<DateTime>("PayDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Withdraws")
+                    b.Property<decimal?>("Withdraws")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("WithdrawsDate")
+                    b.Property<DateTime?>("WithdrawsDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -106,7 +106,7 @@ namespace Data.Migrations
                     b.Property<string>("Mobile")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Modified")
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -127,7 +127,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Modified")
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Notes")
@@ -178,16 +178,16 @@ namespace Data.Migrations
                     b.Property<decimal>("KiloPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("Modified")
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("MoneyDiscount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("PaidDate")
+                    b.Property<DateTime?>("PaidDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("PaidUp")
+                    b.Property<decimal?>("PaidUp")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Quantity")
@@ -198,9 +198,6 @@ namespace Data.Migrations
 
                     b.Property<long>("StationId")
                         .HasColumnType("bigint");
-
-                    b.Property<decimal>("Total")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -234,7 +231,7 @@ namespace Data.Migrations
                     b.Property<decimal>("LastTonPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("Modified")
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -255,13 +252,13 @@ namespace Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Modified")
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("PaidDate")
+                    b.Property<DateTime?>("PaidDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("PaidUp")
+                    b.Property<decimal?>("PaidUp")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<long>("ReaperId")
@@ -287,13 +284,13 @@ namespace Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("Balance")
+                    b.Property<decimal?>("Balance")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Modified")
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Pay")
@@ -302,10 +299,10 @@ namespace Data.Migrations
                     b.Property<DateTime>("PayDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Withdraws")
+                    b.Property<decimal?>("Withdraws")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("WithdrawsDate")
+                    b.Property<DateTime?>("WithdrawsDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -320,13 +317,13 @@ namespace Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("Balance")
+                    b.Property<decimal?>("Balance")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Modified")
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Pay")
@@ -335,10 +332,10 @@ namespace Data.Migrations
                     b.Property<DateTime>("PayDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Withdraws")
+                    b.Property<decimal?>("Withdraws")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("WithdrawsDate")
+                    b.Property<DateTime?>("WithdrawsDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -353,7 +350,7 @@ namespace Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("Balance")
+                    b.Property<decimal?>("Balance")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("Created")
@@ -371,7 +368,7 @@ namespace Data.Migrations
                     b.Property<long>("FarmId")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("Modified")
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Nolon")
@@ -383,7 +380,7 @@ namespace Data.Migrations
                     b.Property<long>("StationId")
                         .HasColumnType("bigint");
 
-                    b.Property<decimal>("Withdraws")
+                    b.Property<decimal?>("Withdraws")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -404,13 +401,13 @@ namespace Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("Balance")
+                    b.Property<decimal?>("Balance")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Modified")
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Pay")
@@ -419,10 +416,10 @@ namespace Data.Migrations
                     b.Property<DateTime>("PayDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Withdraws")
+                    b.Property<decimal?>("Withdraws")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("WithdrawsDate")
+                    b.Property<DateTime?>("WithdrawsDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -437,13 +434,13 @@ namespace Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("Balance")
+                    b.Property<decimal?>("Balance")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Modified")
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Pay")
@@ -452,10 +449,10 @@ namespace Data.Migrations
                     b.Property<DateTime>("PayDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Withdraws")
+                    b.Property<decimal?>("Withdraws")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("WithdrawsDate")
+                    b.Property<DateTime?>("WithdrawsDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -497,16 +494,16 @@ namespace Data.Migrations
                     b.Property<decimal>("KiloPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("Modified")
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("MoneyDiscount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("PaidDate")
+                    b.Property<DateTime?>("PaidDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("PaidUp")
+                    b.Property<decimal?>("PaidUp")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Quantity")
@@ -517,9 +514,6 @@ namespace Data.Migrations
 
                     b.Property<long>("StationId")
                         .HasColumnType("bigint");
-
-                    b.Property<decimal>("Total")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -556,7 +550,7 @@ namespace Data.Migrations
                     b.Property<decimal>("Incoming")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("Modified")
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Outcoming")
@@ -583,7 +577,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Modified")
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Notes")
@@ -648,17 +642,11 @@ namespace Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CarPlate")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("CartNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
-
-                    b.Property<string>("CategoryName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("ClientDiscount")
                         .HasColumnType("decimal(18,2)");
@@ -667,9 +655,6 @@ namespace Data.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("ClientQuantity")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("ClientTotal")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("Created")
@@ -687,10 +672,7 @@ namespace Data.Migrations
                     b.Property<long>("FarmId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("FarmOwnerName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Modified")
+                    b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Nolon")
@@ -701,9 +683,6 @@ namespace Data.Migrations
 
                     b.Property<decimal>("Pardon")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("ReaperHead")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("ReaperId")
                         .HasColumnType("bigint");
@@ -720,28 +699,10 @@ namespace Data.Migrations
                     b.Property<long>("StationId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("StationOwnerName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Sum")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SupplierAmount")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<decimal>("SupplierPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("SupplierQuantity")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SupplierTotal")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("TotalAfterDiscount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("TotalAfterPardon")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");

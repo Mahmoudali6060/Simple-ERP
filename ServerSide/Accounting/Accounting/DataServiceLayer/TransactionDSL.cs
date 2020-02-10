@@ -67,7 +67,6 @@ namespace Accouting.DataServiceLayer
             // }
             return 1;
         }
-
         private async Task<long> AddIncome(TransactionDTO entity)
         {
             IncomeDTO income = new IncomeDTO()
@@ -91,7 +90,7 @@ namespace Accouting.DataServiceLayer
                 Date = entity.Date,
                 FarmId = entity.FarmId,
                 StationId = entity.StationId,
-                Nawlon = entity.Nolon,
+                Nolon = entity.Nolon,
                 DriverId = entity.DriverId
             };
             return await _transferDSL.Add(transfer);
@@ -105,7 +104,6 @@ namespace Accouting.DataServiceLayer
             };
             return await _selectorDSL.Add(selector);
         }
-
         private async Task<long> AddReaper(TransactionDTO entity)
         {
             ReaperDetailDTO reaperDetail = new ReaperDetailDTO()
@@ -117,7 +115,6 @@ namespace Accouting.DataServiceLayer
             };
             return await _reaperDetailDSL.Add(reaperDetail);
         }
-
         private async Task<long> AddOutcome(TransactionDTO entity)
         {
             OutcomeDTO outcome = new OutcomeDTO()
@@ -135,12 +132,10 @@ namespace Accouting.DataServiceLayer
             };
             return await _outcomeDSL.Add(outcome);
         }
-
         public async Task<long> Delete(long id)
         {
             return await _transactionDAL.Delete(id);
         }
-
         public async Task<Response> GetAll(DataSource dataSource)
         {
             var list = _mapper.Map<IEnumerable<TransactionDTO>>(await _transactionDAL.GetAll()).AsQueryable();
@@ -150,12 +145,10 @@ namespace Accouting.DataServiceLayer
         {
             return _mapper.Map<TransactionDTO>(await _transactionDAL.GetById(id));
         }
-
         public async Task<long> Update(TransactionDTO entity)
         {
             return await _transactionDAL.Update(_mapper.Map<Transaction>(entity));
         }
-
         public async Task<ResponseEntityList<TransactionDTO>> GetAllLite()
         {
             return new ResponseEntityList<TransactionDTO>()

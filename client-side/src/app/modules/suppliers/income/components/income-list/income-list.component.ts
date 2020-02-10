@@ -1,7 +1,6 @@
 import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { IncomeService } from '../../services/income.service';
 import { IncomeModel } from '../../models/income.model';
-import { ModalBasicComponent } from '../../../../../shared/components/modal-basic/modal-basic.component';
 import { DataSourceModel } from '../../../../../shared/models/data-source.model';
 import { IncomeFormComponent } from '../income-form/income-form.component';
 import { MatDialog } from '@angular/material';
@@ -14,7 +13,7 @@ import { MatDialog } from '@angular/material';
 export class IncomeListComponent {
   //#region Variables
   incomeList: Array<IncomeModel>;//Data List
-  properties = ["Date", "CartNumber", "CategoryName", "FarmName","CarPlate","Quantity","KiloDiscount","Total","KiloPrice","MoneyDiscount","Balance","StationName","PaidUp","PaidDate","RecieptNumber"];//Displayed Columns 
+  properties = ["Date", "CartNumber", "CategoryName", "FarmName","CarPlate","Quantity","KiloDiscount","QuantityAfterDiscount","KiloPrice","Total","MoneyDiscount","Balance","StationName","PaidUp","PaidDate","RecieptNumber"];//Displayed Columns 
   income: IncomeModel = new IncomeModel();//For Add/Update Income Entity
   dataSourceModel: DataSourceModel = new DataSourceModel;//Pagination and Filteration Settings
   total: number;//Total number of rows

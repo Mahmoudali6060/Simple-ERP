@@ -39,7 +39,7 @@ namespace Clients.DataAccessLayer
             return id;
         }
 
-       
+
 
         public async Task<IEnumerable<OutcomeDTO>> GetAll()
         {
@@ -62,8 +62,9 @@ namespace Clients.DataAccessLayer
                             CarPlate = d.CarPlate,
                             Quantity = i.Quantity,
                             KiloDiscount = i.KiloDiscount,
-                            Total = i.Total,
+                            QuantityAfterDiscount = i.Quantity - i.KiloDiscount,
                             KiloPrice = i.KiloPrice,
+                            Total = i.KiloPrice * (i.Quantity - i.KiloDiscount),
                             MoneyDiscount = i.MoneyDiscount,
                             Balance = i.Balance,
                             StationId = s.Id,

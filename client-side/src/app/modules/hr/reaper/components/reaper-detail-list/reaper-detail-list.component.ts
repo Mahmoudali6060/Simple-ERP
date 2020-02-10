@@ -1,7 +1,6 @@
 import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { ReaperDetailService } from '../../services/reaper-detail.service';
 import { ReaperDetailModel } from '../../models/reaper-detail.model';
-import { ModalBasicComponent } from '../../../../../shared/components/modal-basic/modal-basic.component';
 import { DataSourceModel } from '../../../../../shared/models/data-source.model';
 // import { reaperDetailFormComponent } from '../reaperDetail-form/reaperDetail-form.component';
 import { MatDialog } from '@angular/material';

@@ -1,7 +1,6 @@
 import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { FarmService } from '../../services/farm.service';
 import { FarmModel } from '../../models/farm.model';
-import { ModalBasicComponent } from '../../../../../shared/components/modal-basic/modal-basic.component';
 import { DataSourceModel } from '../../../../../shared/models/data-source.model';
 import { FarmFormComponent } from '../farm-form/farm-form.component';
 import { MatDialog } from '@angular/material';

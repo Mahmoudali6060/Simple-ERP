@@ -28,6 +28,7 @@ namespace Shared.Entities.Credit
         public decimal? PaidUp { get; set; }
         public DateTime? PaidDate { get; set; }
         public string RecieptNumber { get; set; }
+        public decimal QuantityAfterDiscount { get; set; }
 
         public virtual FarmDTO Farm { get; set; }
         public virtual CategoryDTO Category { get; set; }

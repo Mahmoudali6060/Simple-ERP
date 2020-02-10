@@ -28,7 +28,7 @@ namespace Shared.Entities.Debit
         public decimal? PaidUp { get; set; }
         public DateTime? PaidDate { get; set; }
         public string RecieptNumber { get; set; }
-
+        public decimal QuantityAfterDiscount { get; set; }
         public virtual FarmDTO Farm { get; set; }
         public virtual CategoryDTO Category { get; set; }
         public virtual DriverDTO Driver { get; set; }

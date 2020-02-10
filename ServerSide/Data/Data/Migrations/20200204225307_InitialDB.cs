@@ -614,7 +614,7 @@ namespace Data.Migrations
                     DriverId = table.Column<long>(nullable: false),
                     FarmId = table.Column<long>(nullable: false),
                     StationId = table.Column<long>(nullable: false),
-                    Nawlon = table.Column<decimal>(nullable: false),
+                    Nolon = table.Column<decimal>(nullable: false),
                     Custody = table.Column<decimal>(nullable: false),
                     Withdraws = table.Column<decimal>(nullable: false),
                     Balance = table.Column<decimal>(nullable: false),

@@ -1,7 +1,6 @@
 import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { StationService } from '../../services/station.service';
 import { StationModel } from '../../models/station.model';
-import { ModalBasicComponent } from '../../../../../shared/components/modal-basic/modal-basic.component';
 import { DataSourceModel } from '../../../../../shared/models/data-source.model';
 import { StationFormComponent } from '../station-form/station-form.component';
 import { MatDialog } from '@angular/material';

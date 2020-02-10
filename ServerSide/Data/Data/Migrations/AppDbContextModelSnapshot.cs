@@ -197,9 +197,6 @@ namespace Data.Migrations
                     b.Property<long>("StationId")
                         .HasColumnType("bigint");
 
-                    b.Property<decimal>("Total")
-                        .HasColumnType("decimal(18,2)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
@@ -372,7 +369,7 @@ namespace Data.Migrations
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Nawlon")
+                    b.Property<decimal>("Nolon")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Notes")
@@ -516,9 +513,6 @@ namespace Data.Migrations
                     b.Property<long>("StationId")
                         .HasColumnType("bigint");
 
-                    b.Property<decimal>("Total")
-                        .HasColumnType("decimal(18,2)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
@@ -646,17 +640,11 @@ namespace Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CarPlate")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("CartNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
-
-                    b.Property<string>("CategoryName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("ClientDiscount")
                         .HasColumnType("decimal(18,2)");
@@ -665,9 +653,6 @@ namespace Data.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("ClientQuantity")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("ClientTotal")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("Created")
@@ -685,9 +670,6 @@ namespace Data.Migrations
                     b.Property<long>("FarmId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("FarmOwnerName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
@@ -699,9 +681,6 @@ namespace Data.Migrations
 
                     b.Property<decimal>("Pardon")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("ReaperHead")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("ReaperId")
                         .HasColumnType("bigint");
@@ -718,28 +697,10 @@ namespace Data.Migrations
                     b.Property<long>("StationId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("StationOwnerName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Sum")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SupplierAmount")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<decimal>("SupplierPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("SupplierQuantity")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("SupplierTotal")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("TotalAfterDiscount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("TotalAfterPardon")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");

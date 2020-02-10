@@ -15,7 +15,7 @@ namespace Shared.Entities.Credit
         public string FarmName { get; set; }
         public long StationId { get; set; }
         public string StationName { get; set; }
-        public decimal Nawlon { get; set; }
+        public decimal Nolon { get; set; }
         public decimal Custody { get; set; }
         public decimal? Withdraws { get; set; }
         public decimal? Balance { get; set; }

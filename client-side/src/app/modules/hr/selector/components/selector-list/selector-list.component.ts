@@ -1,7 +1,6 @@
 import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { SelectorService } from '../../services/selector.service';
 import { SelectorModel } from '../../models/selector.model';
-import { ModalBasicComponent } from '../../../../../shared/components/modal-basic/modal-basic.component';
 import { DataSourceModel } from '../../../../../shared/models/data-source.model';
 // import { SelectorFormComponent } from '../selector-form/selector-form.component';
 import { MatDialog } from '@angular/material';

@@ -374,7 +374,7 @@ namespace Data.Migrations
                     b.Property<DateTime?>("Modified")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Nawlon")
+                    b.Property<decimal>("Nolon")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Notes")

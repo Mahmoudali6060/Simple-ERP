@@ -19,7 +19,6 @@ import { MaterialModule } from '../shared/modules/material.module';
 import { PaginationComponent } from '../shared/components/pagination/pagination.component';
 import { DataListComponent } from '../shared/components/data-list/data-list.component';
 import { ConfirmationDialogComponent } from '../shared/components/confirmation-dialog/confirmation-dialog.component';
-import { ModalBasicComponent } from 'src/app/shared/components/modal-basic/modal-basic.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material';
 import { AuthGuardService } from 'src/app/shared/guards/auth-guard.service';
 
@@ -68,14 +67,12 @@ import { AuthGuardService } from 'src/app/shared/guards/auth-guard.service';
     ErrorDialogComponent,
     ConfirmationDialogComponent,
     PaginationComponent,
-    DataListComponent,
-    ModalBasicComponent
+    DataListComponent
   ],
   entryComponents: [
     ErrorDialogComponent,
     ConfirmationDialogComponent,
-    DataListComponent,
-    ModalBasicComponent
+    DataListComponent
   ],
   providers: [
     BsModalService,

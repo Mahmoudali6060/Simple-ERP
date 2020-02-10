@@ -6,7 +6,7 @@ export class TransferModel {
     FarmName: string;
     StationId: number;
     StationName: string;
-    Nawlon: number;
+    Nolon: number;
     Custody: number;
     Withdraws: number;
     Balance: number;

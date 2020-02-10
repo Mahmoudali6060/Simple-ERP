@@ -51,7 +51,7 @@ namespace Clients.DataAccessLayer
                            FarmName = f.OwnerName,
                            StationId = s.Id,
                            StationName = s.OwnerName,
-                           Nawlon = t.Nawlon,
+                           Nolon = t.Nolon,
                            Custody = t.Custody,
                            Withdraws = t.Withdraws,
                            Balance = t.Balance,

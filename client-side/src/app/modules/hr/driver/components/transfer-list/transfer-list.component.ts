@@ -1,7 +1,6 @@
 import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { TransferService } from '../../services/transfer.service';
 import { TransferModel } from '../../models/transfer.model';
-import { ModalBasicComponent } from '../../../../../shared/components/modal-basic/modal-basic.component';
 import { DataSourceModel } from '../../../../../shared/models/data-source.model';
 // import { TransferFormComponent } from '../transfer-form/transfer-form.component';
 import { MatDialog } from '@angular/material';
@@ -14,7 +13,7 @@ import { MatDialog } from '@angular/material';
 export class TransferListComponent {
   //#region Variables
   transferList: Array<TransferModel>;//Data List
-  properties = ["Date", "FarmName", "StationName", "Nawlon", "Custody", "Withdraws", "Balance", "Notes"];//Displayed Columns 
+  properties = ["Date", "FarmName", "StationName", "Nolon", "Custody", "Withdraws", "Balance", "Notes"];//Displayed Columns 
   transfer: TransferModel = new TransferModel();//For Add/Update Transfer Entity
   dataSourceModel: DataSourceModel = new DataSourceModel;//Pagination and Filteration Settings
   total: number;//Total number of rows

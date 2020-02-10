@@ -15,7 +15,6 @@ namespace Data.Entities.Debit
         public long DriverId { get; set; }
         public decimal Quantity { get; set; }
         public decimal KiloDiscount { get; set; }
-        public decimal Total { get; set; }
         public decimal KiloPrice { get; set; }
         public decimal MoneyDiscount { get; set; }
         public decimal Balance { get; set; }
