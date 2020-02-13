@@ -22,9 +22,10 @@ namespace Clients.DataAccessLayer
             this._entity = context.Set<Transfer>();
         }
 
-        public async Task<long> Add(Transfer entity)
+        public async Task<long> Save(Transfer entity)
         {
-            _context.Entry(entity).State = EntityState.Added;
+            _context.Entry(entity).State = EntityState.Detached;
+            _context.Entry(entity).State = entity.Id > 0 ? EntityState.Modified : EntityState.Added;
             await _context.SaveChangesAsync();
             return entity.Id;
         }
@@ -71,12 +72,6 @@ namespace Clients.DataAccessLayer
             return await _context.Transfers.SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<long> Update(Transfer entity)
-        {
-            _context.Entry(entity).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-            return entity.Id;
-        }
 
         Task<IEnumerable<Transfer>> ICRUDOperationsDAL<Transfer>.GetAll()
         {

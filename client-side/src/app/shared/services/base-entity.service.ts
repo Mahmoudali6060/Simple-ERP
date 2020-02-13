@@ -14,8 +14,7 @@ export class BaseEntityService {
     baseUrl: string = "";
     private urlGetAll = "GetAll";
     private urlGetById = "GetById";
-    private urlAdd = "Add";
-    private urlUpdate = "Update";
+    private urlSave = "Save";
     private urlDelete = "Delete";
     private urlGetAllLite = "GetAllLite";
     entityName: string = "";
@@ -42,22 +41,7 @@ export class BaseEntityService {
     }
 
     save(entity) {
-        if (entity.Id) {
-            return this.update(entity);
-        }
-        else {
-            return this.add(entity);
-        }
-    }
-
-    add(entity) {
-        return this._http.post(this.baseUrl + "api/" + this.entityName + "/" + this.urlAdd + "/", entity);
-    }
-
-    update(entity) {
-        return this._http.post(this.baseUrl + "api/" + this.entityName + "/" + this.urlUpdate + "/", entity);
-        // .subscribe((response: Response) => response.json())
-        // , catchError(this.errorHandler);
+        return this._http.post(`${this.baseUrl}api/${this.entityName}/${this.urlSave}/`, entity);
     }
 
     delete(id) {

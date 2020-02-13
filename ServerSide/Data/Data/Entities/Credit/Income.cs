@@ -22,7 +22,7 @@ namespace Data.Entities.Credit
         public decimal? PaidUp { get; set; }
         public DateTime? PaidDate { get; set; }
         public string RecieptNumber { get; set; }
-
+        public long TransactionId { get; set; }
         public virtual Farm Farm { get; set; }
         public virtual Category Category { get; set; }
         public virtual Driver Driver { get; set; }

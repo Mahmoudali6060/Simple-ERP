@@ -23,9 +23,9 @@ namespace Accouting.DataAccessLayer
             this._entity = context.Set<Category>();
         }
 
-        public async Task<long> Add(Category entity)
+        public async Task<long> Save(Category entity)
         {
-            _context.Entry(entity).State = EntityState.Added;
+            _context.Entry(entity).State = entity.Id > 0 ? EntityState.Modified : EntityState.Added;
             await _context.SaveChangesAsync();
             return entity.Id;
         }
@@ -46,13 +46,6 @@ namespace Accouting.DataAccessLayer
         public async Task<Category> GetById(long id)
         {
             return await _context.Categories.SingleOrDefaultAsync(x => x.Id == id);
-        }
-
-        public async Task<long> Update(Category entity)
-        {
-            _context.Entry(entity).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-            return entity.Id;
         }
     }
 }

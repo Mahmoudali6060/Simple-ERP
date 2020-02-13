@@ -22,9 +22,9 @@ namespace Supplier.DataAccessLayer
             this._entity = context.Set<Farm>();
         }
 
-        public async Task<long> Add(Farm entity)
+        public async Task<long> Save(Farm entity)
         {
-            _context.Entry(entity).State = EntityState.Added;
+            _context.Entry(entity).State = entity.Id > 0 ? EntityState.Modified : EntityState.Added;
             await _context.SaveChangesAsync();
             return entity.Id;
         }
@@ -47,11 +47,5 @@ namespace Supplier.DataAccessLayer
             return await _context.Farms.SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<long> Update(Farm entity)
-        {
-            _context.Entry(entity).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-            return entity.Id;
-        }
     }
 }

@@ -12,6 +12,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Shared.Classes;
 
 namespace Supplier.DataAccessLayer
 {
@@ -28,11 +29,20 @@ namespace Supplier.DataAccessLayer
             this._mapper = mapper;
         }
 
-        public async Task<long> Add(Income entity)
+        public async Task<long> Save(Income entity)
         {
-            _context.Entry(entity).State = EntityState.Added;
-            await _context.SaveChangesAsync();
-            return entity.Id;
+            try
+            {
+                _context.Entry(entity).State = EntityState.Detached;
+                _context.Entry(entity).State = entity.Id > 0 ? EntityState.Modified : EntityState.Added;
+                await _context.SaveChangesAsync();
+                return entity.Id;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+
         }
 
         public async Task<long> Delete(long id)
@@ -88,12 +98,6 @@ namespace Supplier.DataAccessLayer
             return await _context.Incomes.SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<long> Update(Income entity)
-        {
-            _context.Entry(entity).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-            return entity.Id;
-        }
 
         public async Task<IEnumerable<Income>> GetIncomesByFarmId(long farmId)
         {

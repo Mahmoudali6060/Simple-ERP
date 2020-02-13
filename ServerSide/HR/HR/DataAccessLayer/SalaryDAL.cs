@@ -18,9 +18,9 @@ namespace Clients.DataAccessLayer
             this._entity = context.Set<Salary>();
         }
 
-        public async Task<long> Add(Salary entity)
+        public async Task<long> Save(Salary entity)
         {
-            _context.Entry(entity).State = EntityState.Added;
+            _context.Entry(entity).State = entity.Id > 0 ? EntityState.Modified : EntityState.Added;
             await _context.SaveChangesAsync();
             return entity.Id;
         }
@@ -43,11 +43,5 @@ namespace Clients.DataAccessLayer
             return await _context.Salaries.SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<long> Update(Salary entity)
-        {
-            _context.Entry(entity).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-            return entity.Id;
-        }
     }
 }

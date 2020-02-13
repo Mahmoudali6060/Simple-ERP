@@ -26,11 +26,11 @@ namespace Clients.DataServiceLayer
             _mapper = mapper;
         }
 
-        public async Task<long> Add(OutcomeDTO entity)
+        public async Task<long> Save(OutcomeDTO entity)
         {
             try
             {
-                return await _outcomeDAL.Add(_mapper.Map<Outcome>(entity));
+                return await _outcomeDAL.Save(_mapper.Map<Outcome>(entity));
             }
             catch (Exception ex)
             {
@@ -52,11 +52,6 @@ namespace Clients.DataServiceLayer
         public async Task<OutcomeDTO> GetById(long id)
         {
             return _mapper.Map<OutcomeDTO>(await _outcomeDAL.GetById(id));
-        }
-
-        public async Task<long> Update(OutcomeDTO entity)
-        {
-            return await _outcomeDAL.Update(_mapper.Map<Outcome>(entity));
         }
 
         public async Task<ResponseEntityList<OutcomeDTO>> GetAllLite()

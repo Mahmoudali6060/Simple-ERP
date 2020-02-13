@@ -27,11 +27,11 @@ namespace Accouting.DataServiceLayer
             _mapper = mapper;
         }
 
-        public async Task<long> Add(CreditBorrowDTO entity)
+        public async Task<long> Save(CreditBorrowDTO entity)
         {
             try
             {
-                return await _creditBorrowDAL.Add(_mapper.Map<CreditBorrow>(entity));
+                return await _creditBorrowDAL.Save(_mapper.Map<CreditBorrow>(entity));
             }
             catch (Exception ex)
             {
@@ -54,11 +54,6 @@ namespace Accouting.DataServiceLayer
         public async Task<CreditBorrowDTO> GetById(long id)
         {
             return _mapper.Map<CreditBorrowDTO>(await _creditBorrowDAL.GetById(id));
-        }
-
-        public async Task<long> Update(CreditBorrowDTO entity)
-        {
-            return await _creditBorrowDAL.Update(_mapper.Map<CreditBorrow>(entity));
         }
 
         public async Task<ResponseEntityList<CreditBorrowDTO>> GetAllLite()

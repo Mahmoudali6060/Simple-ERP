@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
-    public partial class InitialDB : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -71,12 +71,12 @@ namespace Data.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: true),
                     PayDate = table.Column<DateTime>(nullable: false),
                     Pay = table.Column<decimal>(nullable: false),
-                    WithdrawsDate = table.Column<DateTime>(nullable: false),
-                    Withdraws = table.Column<decimal>(nullable: false),
-                    Balance = table.Column<decimal>(nullable: false)
+                    WithdrawsDate = table.Column<DateTime>(nullable: true),
+                    Withdraws = table.Column<decimal>(nullable: true),
+                    Balance = table.Column<decimal>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -90,12 +90,12 @@ namespace Data.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: true),
                     PayDate = table.Column<DateTime>(nullable: false),
                     Pay = table.Column<decimal>(nullable: false),
-                    WithdrawsDate = table.Column<DateTime>(nullable: false),
-                    Withdraws = table.Column<decimal>(nullable: false),
-                    Balance = table.Column<decimal>(nullable: false)
+                    WithdrawsDate = table.Column<DateTime>(nullable: true),
+                    Withdraws = table.Column<decimal>(nullable: true),
+                    Balance = table.Column<decimal>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -109,12 +109,12 @@ namespace Data.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: true),
                     PayDate = table.Column<DateTime>(nullable: false),
                     Pay = table.Column<decimal>(nullable: false),
-                    WithdrawsDate = table.Column<DateTime>(nullable: false),
-                    Withdraws = table.Column<decimal>(nullable: false),
-                    Balance = table.Column<decimal>(nullable: false)
+                    WithdrawsDate = table.Column<DateTime>(nullable: true),
+                    Withdraws = table.Column<decimal>(nullable: true),
+                    Balance = table.Column<decimal>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -128,12 +128,12 @@ namespace Data.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: true),
                     PayDate = table.Column<DateTime>(nullable: false),
                     Pay = table.Column<decimal>(nullable: false),
-                    WithdrawsDate = table.Column<DateTime>(nullable: false),
-                    Withdraws = table.Column<decimal>(nullable: false),
-                    Balance = table.Column<decimal>(nullable: false)
+                    WithdrawsDate = table.Column<DateTime>(nullable: true),
+                    Withdraws = table.Column<decimal>(nullable: true),
+                    Balance = table.Column<decimal>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -147,7 +147,7 @@ namespace Data.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: true),
                     FullName = table.Column<string>(nullable: true),
                     Mobile = table.Column<string>(nullable: true),
                     CarPlate = table.Column<string>(nullable: true)
@@ -164,7 +164,7 @@ namespace Data.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: true),
                     OwnerName = table.Column<string>(nullable: true),
                     OwnerMobile = table.Column<string>(nullable: true),
                     Address = table.Column<string>(nullable: true),
@@ -182,7 +182,7 @@ namespace Data.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: true),
                     HeadName = table.Column<string>(nullable: true),
                     Balance = table.Column<decimal>(nullable: false),
                     LastTonPrice = table.Column<decimal>(nullable: false)
@@ -199,7 +199,7 @@ namespace Data.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
                     Incoming = table.Column<decimal>(nullable: false),
                     Outcoming = table.Column<decimal>(nullable: false),
@@ -218,12 +218,12 @@ namespace Data.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: true),
                     PayDate = table.Column<DateTime>(nullable: false),
                     Pay = table.Column<decimal>(nullable: false),
-                    WithdrawsDate = table.Column<DateTime>(nullable: false),
-                    Withdraws = table.Column<decimal>(nullable: false),
-                    Balance = table.Column<decimal>(nullable: false)
+                    WithdrawsDate = table.Column<DateTime>(nullable: true),
+                    Withdraws = table.Column<decimal>(nullable: true),
+                    Balance = table.Column<decimal>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -237,12 +237,12 @@ namespace Data.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: true),
                     PayDate = table.Column<DateTime>(nullable: false),
                     Pay = table.Column<decimal>(nullable: false),
-                    WithdrawsDate = table.Column<DateTime>(nullable: false),
-                    Withdraws = table.Column<decimal>(nullable: false),
-                    Balance = table.Column<decimal>(nullable: false)
+                    WithdrawsDate = table.Column<DateTime>(nullable: true),
+                    Withdraws = table.Column<decimal>(nullable: true),
+                    Balance = table.Column<decimal>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -256,7 +256,7 @@ namespace Data.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: true),
                     OwnerName = table.Column<string>(nullable: true),
                     OwnerMobile = table.Column<string>(nullable: true),
                     Balance = table.Column<decimal>(nullable: false),
@@ -403,12 +403,12 @@ namespace Data.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
                     Weight = table.Column<decimal>(nullable: false),
                     TonPrice = table.Column<decimal>(nullable: false),
-                    PaidUp = table.Column<decimal>(nullable: false),
-                    PaidDate = table.Column<DateTime>(nullable: false),
+                    PaidUp = table.Column<decimal>(nullable: true),
+                    PaidDate = table.Column<DateTime>(nullable: true),
                     ReaperId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
@@ -429,7 +429,7 @@ namespace Data.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
                     CartNumber = table.Column<string>(nullable: true),
                     CategoryId = table.Column<int>(nullable: false),
@@ -437,13 +437,12 @@ namespace Data.Migrations
                     DriverId = table.Column<long>(nullable: false),
                     Quantity = table.Column<decimal>(nullable: false),
                     KiloDiscount = table.Column<decimal>(nullable: false),
-                    Total = table.Column<decimal>(nullable: false),
                     KiloPrice = table.Column<decimal>(nullable: false),
                     MoneyDiscount = table.Column<decimal>(nullable: false),
                     Balance = table.Column<decimal>(nullable: false),
                     StationId = table.Column<long>(nullable: false),
-                    PaidUp = table.Column<decimal>(nullable: false),
-                    PaidDate = table.Column<DateTime>(nullable: false),
+                    PaidUp = table.Column<decimal>(nullable: true),
+                    PaidDate = table.Column<DateTime>(nullable: true),
                     RecieptNumber = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -482,7 +481,7 @@ namespace Data.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
                     CartNumber = table.Column<string>(nullable: true),
                     CategoryId = table.Column<int>(nullable: false),
@@ -490,13 +489,12 @@ namespace Data.Migrations
                     DriverId = table.Column<long>(nullable: false),
                     Quantity = table.Column<decimal>(nullable: false),
                     KiloDiscount = table.Column<decimal>(nullable: false),
-                    Total = table.Column<decimal>(nullable: false),
                     KiloPrice = table.Column<decimal>(nullable: false),
                     MoneyDiscount = table.Column<decimal>(nullable: false),
                     Balance = table.Column<decimal>(nullable: false),
                     FarmId = table.Column<long>(nullable: false),
-                    PaidUp = table.Column<decimal>(nullable: false),
-                    PaidDate = table.Column<DateTime>(nullable: false),
+                    PaidUp = table.Column<decimal>(nullable: true),
+                    PaidDate = table.Column<DateTime>(nullable: true),
                     RecieptNumber = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -535,37 +533,26 @@ namespace Data.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: true),
                     Number = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
                     FarmId = table.Column<long>(nullable: false),
-                    FarmOwnerName = table.Column<string>(nullable: true),
                     CategoryId = table.Column<int>(nullable: false),
-                    CategoryName = table.Column<string>(nullable: true),
                     DriverId = table.Column<long>(nullable: false),
-                    CarPlate = table.Column<string>(nullable: true),
                     SupplierQuantity = table.Column<decimal>(nullable: false),
                     Pardon = table.Column<decimal>(nullable: false),
-                    TotalAfterPardon = table.Column<decimal>(nullable: false),
                     SupplierPrice = table.Column<decimal>(nullable: false),
-                    SupplierAmount = table.Column<decimal>(nullable: false),
                     Nolon = table.Column<decimal>(nullable: false),
                     ReaperId = table.Column<long>(nullable: false),
-                    ReaperHead = table.Column<string>(nullable: true),
                     ReapersPay = table.Column<decimal>(nullable: false),
                     SelectorId = table.Column<long>(nullable: false),
                     SelectorsPay = table.Column<decimal>(nullable: false),
                     FarmExpense = table.Column<decimal>(nullable: false),
-                    SupplierTotal = table.Column<decimal>(nullable: false),
                     StationId = table.Column<long>(nullable: false),
-                    StationOwnerName = table.Column<string>(nullable: true),
                     CartNumber = table.Column<string>(nullable: true),
                     ClientQuantity = table.Column<decimal>(nullable: false),
                     ClientDiscount = table.Column<decimal>(nullable: false),
-                    TotalAfterDiscount = table.Column<decimal>(nullable: false),
-                    ClientPrice = table.Column<decimal>(nullable: false),
-                    ClientTotal = table.Column<decimal>(nullable: false),
-                    Sum = table.Column<decimal>(nullable: false)
+                    ClientPrice = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -609,15 +596,15 @@ namespace Data.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
                     DriverId = table.Column<long>(nullable: false),
                     FarmId = table.Column<long>(nullable: false),
                     StationId = table.Column<long>(nullable: false),
                     Nolon = table.Column<decimal>(nullable: false),
                     Custody = table.Column<decimal>(nullable: false),
-                    Withdraws = table.Column<decimal>(nullable: false),
-                    Balance = table.Column<decimal>(nullable: false),
+                    Withdraws = table.Column<decimal>(nullable: true),
+                    Balance = table.Column<decimal>(nullable: true),
                     Notes = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

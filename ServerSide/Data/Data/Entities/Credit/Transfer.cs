@@ -18,6 +18,8 @@ namespace Data.Entities.Credit
         public decimal? Withdraws { get; set; }
         public decimal? Balance { get; set; }
         public string Notes { get; set; }
+        public long TransactionId { get; set; }
+
         public virtual Driver Driver { get; set; }
         public virtual Farm Farm { get; set; }
         public virtual Station Station { get; set; }

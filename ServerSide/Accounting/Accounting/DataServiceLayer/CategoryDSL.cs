@@ -28,9 +28,9 @@ namespace Accouting.DataServiceLayer
             _mapper = mapper;
         }
 
-        public async Task<long> Add(CategoryDTO entity)
+        public async Task<long> Save(CategoryDTO entity)
         {
-            return await _categoryDAL.Add(_mapper.Map<Category>(entity));
+            return await _categoryDAL.Save(_mapper.Map<Category>(entity));
         }
 
         public async Task<long> Delete(long id)
@@ -46,11 +46,6 @@ namespace Accouting.DataServiceLayer
         public async Task<CategoryDTO> GetById(long id)
         {
             return _mapper.Map<CategoryDTO>(await _categoryDAL.GetById(id));
-        }
-
-        public async Task<long> Update(CategoryDTO entity)
-        {
-            return await _categoryDAL.Update(_mapper.Map<Category>(entity));
         }
 
         public async Task<ResponseEntityList<CategoryDTO>> GetAllLite()

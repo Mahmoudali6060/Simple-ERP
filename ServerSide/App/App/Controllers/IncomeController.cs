@@ -25,11 +25,8 @@ namespace App.Controllers
         [HttpGet, Route("GetById/{id}")]
         public async Task<IActionResult> GetById(long id) => Ok(await _incomeDSL.GetById(id));
 
-        [HttpPost, Route("Add")]
-        public async Task<IActionResult> Add(IncomeDTO model) => Ok(await _incomeDSL.Add(model));
-
-        [HttpPost, Route("Update")]
-        public async Task<IActionResult> Update(IncomeDTO model) => Ok(await _incomeDSL.Update(model));
+        [HttpPost, Route("Save")]
+        public async Task<IActionResult> Save(IncomeDTO model) => Ok(await _incomeDSL.Save(model));
 
         [HttpDelete, Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int id) => Ok(await _incomeDSL.Delete(id));

@@ -30,11 +30,8 @@ namespace App.Controllers
         [HttpGet, Route("GetById/{id}")]
         public async Task<IActionResult> GetById(long id) => Ok(await _farmDSL.GetById(id));
 
-        [HttpPost, Route("Add")]
-        public async Task<IActionResult> Add(FarmDTO model) => Ok(await _farmDSL.Add(model));
-
-        [HttpPost, Route("Update")]
-        public async Task<IActionResult> Update(FarmDTO model) => Ok(await _farmDSL.Update(model));
+        [HttpPost, Route("Save")]
+        public async Task<IActionResult> Save(FarmDTO model) => Ok(await _farmDSL.Save(model));
 
         [HttpDelete, Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int id) => Ok(await _farmDSL.Delete(id));

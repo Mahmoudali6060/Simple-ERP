@@ -22,11 +22,11 @@ namespace Clients.DataServiceLayer
             _mapper = mapper;
         }
 
-        public async Task<long> Add(DriverDTO entity)
+        public async Task<long> Save(DriverDTO entity)
         {
             try
             {
-                return await _driverDAL.Add(_mapper.Map<Driver>(entity));
+                return await _driverDAL.Save(_mapper.Map<Driver>(entity));
             }
             catch (Exception ex)
             {
@@ -50,10 +50,6 @@ namespace Clients.DataServiceLayer
             return _mapper.Map<DriverDTO>(await _driverDAL.GetById(id));
         }
 
-        public async Task<long> Update(DriverDTO entity)
-        {
-            return await _driverDAL.Update(_mapper.Map<Driver>(entity));
-        }
         public async Task<ResponseEntityList<DriverDTO>> GetAllLite()
         {
             return new ResponseEntityList<DriverDTO>()

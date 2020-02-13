@@ -25,11 +25,11 @@ namespace Accouting.DataServiceLayer
             _mapper = mapper;
         }
 
-        public async Task<long> Add(DebitCurrentDTO entity)
+        public async Task<long> Save(DebitCurrentDTO entity)
         {
             try
             {
-                return await _debitCurrentDAL.Add(_mapper.Map<DebitCurrent>(entity));
+                return await _debitCurrentDAL.Save(_mapper.Map<DebitCurrent>(entity));
             }
             catch (Exception ex)
             {
@@ -51,11 +51,6 @@ namespace Accouting.DataServiceLayer
         public async Task<DebitCurrentDTO> GetById(long id)
         {
             return _mapper.Map<DebitCurrentDTO>(await _debitCurrentDAL.GetById(id));
-        }
-
-        public async Task<long> Update(DebitCurrentDTO entity)
-        {
-            return await _debitCurrentDAL.Update(_mapper.Map<DebitCurrent>(entity));
         }
 
         public async Task<ResponseEntityList<DebitCurrentDTO>> GetAllLite()

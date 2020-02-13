@@ -23,6 +23,7 @@ namespace Accouting.DataServiceLayer
 {
     public class TransactionDSL : ITransactionDSL
     {
+        bool _ISEDITMODE = false;
         ITransactionDAL _transactionDAL;
         IIncomeDSL _incomeDSL;
         ITransferDSL _transferDSL;
@@ -43,7 +44,7 @@ namespace Accouting.DataServiceLayer
             _context = context;
         }
 
-        public async Task<long> Add(TransactionDTO entity)
+        public async Task<long> Save(TransactionDTO entity)
         {
 
             //using (DbTransaction transaction = _context.Database.BeginTransaction())
@@ -51,12 +52,17 @@ namespace Accouting.DataServiceLayer
 
             try
             {
-                long transactionId = await _transactionDAL.Add(_mapper.Map<Transaction>(entity));
-                long incomeId = await AddIncome(entity);
-                long transferId = await AddTransfer(entity);
-                long selectorId = await AddSelector(entity);
-                long reaperId = await AddReaper(entity);
-                long outcomeId = await AddOutcome(entity);
+                if (entity.Id > 0)
+                {
+                    _ISEDITMODE = true;
+                }
+                long transactionId = await _transactionDAL.Save(_mapper.Map<Transaction>(entity));
+                entity.Id = transactionId;
+                long incomeId = await SaveIncome(entity);
+                long transferId = await SaveTransfer(entity);
+                long selectorId = await SaveSelector(entity);
+                long reaperId = await SaveReaper(entity);
+                long outcomeId = await SaveOutcome(entity);
                 //transaction.Commit();
             }
             catch (Exception ex)
@@ -67,7 +73,8 @@ namespace Accouting.DataServiceLayer
             // }
             return 1;
         }
-        private async Task<long> AddIncome(TransactionDTO entity)
+        #region Transaction related tables
+        private async Task<long> SaveIncome(TransactionDTO entity)
         {
             IncomeDTO income = new IncomeDTO()
             {
@@ -79,43 +86,70 @@ namespace Accouting.DataServiceLayer
                 Quantity = entity.SupplierQuantity,
                 KiloDiscount = entity.Pardon,
                 KiloPrice = entity.SupplierPrice,
-                StationId = entity.StationId
+                StationId = entity.StationId,
+                TransactionId = entity.Id
             };
-            return await _incomeDSL.Add(income);
+
+            if (_ISEDITMODE)//Edit Mode
+            {
+                var oldIncome = await GetIncomeByTransactionId(entity.Id);
+                income.Id = oldIncome.Id;
+            }
+            return await _incomeDSL.Save(income);
         }
-        private async Task<long> AddTransfer(TransactionDTO entity)
+        private async Task<long> SaveTransfer(TransactionDTO entity)
         {
+
             TransferDTO transfer = new TransferDTO()
             {
                 Date = entity.Date,
                 FarmId = entity.FarmId,
                 StationId = entity.StationId,
                 Nolon = entity.Nolon,
-                DriverId = entity.DriverId
+                DriverId = entity.DriverId,
+                TransactionId = entity.Id
             };
-            return await _transferDSL.Add(transfer);
+            if (_ISEDITMODE)//Edit Mode
+            {
+                var oldTransfer = await GetTransferByTransactionId(entity.Id);
+                transfer.Id = oldTransfer.Id;
+            }
+
+            return await _transferDSL.Save(transfer);
         }
-        private async Task<long> AddSelector(TransactionDTO entity)
+        private async Task<long> SaveSelector(TransactionDTO entity)
         {
             SelectorDTO selector = new SelectorDTO()
             {
                 PayDate = entity.Date,
-                Pay = entity.SelectorsPay
+                Pay = entity.SelectorsPay,
+                TransactionId = entity.Id
             };
-            return await _selectorDSL.Add(selector);
+            if (_ISEDITMODE)//Edit Mode
+            {
+                var oldSelector = await GetSelectorByTransactionId(entity.Id);
+                selector.Id = oldSelector.Id;
+            }
+            return await _selectorDSL.Save(selector);
         }
-        private async Task<long> AddReaper(TransactionDTO entity)
+        private async Task<long> SaveReaper(TransactionDTO entity)
         {
             ReaperDetailDTO reaperDetail = new ReaperDetailDTO()
             {
                 Date = entity.Date,
                 Weight = entity.ClientQuantity,
                 TonPrice = entity.ReapersPay,
-                ReaperId = entity.ReaperId
+                ReaperId = entity.ReaperId,
+                TransactionId = entity.Id
             };
-            return await _reaperDetailDSL.Add(reaperDetail);
+            if (_ISEDITMODE)//Edit Mode
+            {
+                var oldReaperDetail = await GetReaperDetailByTransactionId(entity.Id);
+                reaperDetail.Id = oldReaperDetail.Id;
+            }
+            return await _reaperDetailDSL.Save(reaperDetail);
         }
-        private async Task<long> AddOutcome(TransactionDTO entity)
+        private async Task<long> SaveOutcome(TransactionDTO entity)
         {
             OutcomeDTO outcome = new OutcomeDTO()
             {
@@ -128,10 +162,18 @@ namespace Accouting.DataServiceLayer
                 KiloDiscount = entity.ClientDiscount,
                 Total = entity.ClientTotal,
                 KiloPrice = entity.ClientPrice,
-                StationId = entity.StationId
+                StationId = entity.StationId,
+                TransactionId = entity.Id
             };
-            return await _outcomeDSL.Add(outcome);
+            if (_ISEDITMODE)//Edit Mode
+            {
+                var oldOutcome = await GetOutcomtByTransactionId(entity.Id);
+                outcome.Id = oldOutcome.Id;
+            }
+            return await _outcomeDSL.Save(outcome);
         }
+        #endregion
+
         public async Task<long> Delete(long id)
         {
             return await _transactionDAL.Delete(id);
@@ -145,16 +187,37 @@ namespace Accouting.DataServiceLayer
         {
             return _mapper.Map<TransactionDTO>(await _transactionDAL.GetById(id));
         }
-        public async Task<long> Update(TransactionDTO entity)
-        {
-            return await _transactionDAL.Update(_mapper.Map<Transaction>(entity));
-        }
         public async Task<ResponseEntityList<TransactionDTO>> GetAllLite()
         {
             return new ResponseEntityList<TransactionDTO>()
             {
                 List = _mapper.Map<IEnumerable<TransactionDTO>>(await _transactionDAL.GetAll()).ToList(),
             };
+        }
+
+        public async Task<IncomeDTO> GetIncomeByTransactionId(long transactioId)
+        {
+            return _mapper.Map<IncomeDTO>(await _transactionDAL.GetIncomeByTransactionId(transactioId));
+        }
+
+        public async Task<OutcomeDTO> GetOutcomtByTransactionId(long transactioId)
+        {
+            return _mapper.Map<OutcomeDTO>(await _transactionDAL.GetOutcomtByTransactionId(transactioId));
+        }
+
+        public async Task<TransferDTO> GetTransferByTransactionId(long transactioId)
+        {
+            return _mapper.Map<TransferDTO>(await _transactionDAL.GetTransferByTransactionId(transactioId));
+        }
+
+        public async Task<SelectorDTO> GetSelectorByTransactionId(long transactioId)
+        {
+            return _mapper.Map<SelectorDTO>(await _transactionDAL.GetSelectorByTransactionId(transactioId));
+        }
+
+        public async Task<ReaperDetailDTO> GetReaperDetailByTransactionId(long transactioId)
+        {
+            return _mapper.Map<ReaperDetailDTO>(await _transactionDAL.GetReaperDetailByTransactionId(transactioId));
         }
     }
 }

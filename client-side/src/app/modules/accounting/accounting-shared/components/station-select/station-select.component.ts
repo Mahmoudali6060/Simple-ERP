@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { StationModel } from '../../../../clients/station/models/station.model';
 import { StationService } from '../../../../clients/station/services/station.service';
 
@@ -10,7 +10,9 @@ import { StationService } from '../../../../clients/station/services/station.ser
 export class StationSelectComponent {
   stationList: Array<StationModel>;
   @Output() entityEmitter = new EventEmitter<StationModel>();
-  selected: StationModel;
+  selected: StationModel = new StationModel();
+  @Input() id: number;
+
   constructor(private stationService: StationService) {
   }
 
@@ -21,8 +23,16 @@ export class StationSelectComponent {
   private getAllLite() {
     this.stationService.getAllLite().subscribe(response => {
       this.stationList = response.List;
+      this.prepareSelectedModel();
     }, err => {
     });
+  }
+
+  private prepareSelectedModel() {
+    if (this.id && this.id > 0 && this.stationList) {
+      this.selected.Id = this.id;
+      this.selected.OwnerName = this.stationList.find(x => x.Id == this.id).OwnerName;
+    }
   }
 
   onStationChange() {

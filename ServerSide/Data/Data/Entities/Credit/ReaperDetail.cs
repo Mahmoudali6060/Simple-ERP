@@ -13,6 +13,8 @@ namespace Data.Entities.Credit
         public decimal? PaidUp { get; set; }
         public DateTime? PaidDate { get; set; }
         public long ReaperId { get; set; }
+        public long TransactionId { get; set; }
+
         public virtual Reaper Reaper { get; set; }
 
 

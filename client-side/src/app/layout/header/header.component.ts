@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent {
 
   constructor(private translate: TranslateService, private authService: AuthService, private router: Router) {
-    translate.setDefaultLang('en');
+    translate.setDefaultLang('ar');
     console.log("loaded the header");
 
   }

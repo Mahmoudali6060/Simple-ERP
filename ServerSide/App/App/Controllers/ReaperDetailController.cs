@@ -30,11 +30,8 @@ namespace App.Controllers
         [HttpGet, Route("GetById/{id}")]
         public async Task<IActionResult> GetById(long id) => Ok(await _reaperDetailDSL.GetById(id));
 
-        [HttpPost, Route("Add")]
-        public async Task<IActionResult> Add(ReaperDetailDTO model) => Ok(await _reaperDetailDSL.Add(model));
-
-        [HttpPost, Route("Update")]
-        public async Task<IActionResult> Update(ReaperDetailDTO model) => Ok(await _reaperDetailDSL.Update(model));
+        [HttpPost, Route("Save")]
+        public async Task<IActionResult> Save(ReaperDetailDTO model) => Ok(await _reaperDetailDSL.Save(model));
 
         [HttpDelete, Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int id) => Ok(await _reaperDetailDSL.Delete(id));

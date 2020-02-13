@@ -20,9 +20,10 @@ namespace Clients.DataAccessLayer
             this._entity = context.Set<Selector>();
         }
 
-        public async Task<long> Add(Selector entity)
+        public async Task<long> Save(Selector entity)
         {
-            _context.Entry(entity).State = EntityState.Added;
+            _context.Entry(entity).State = EntityState.Detached;
+            _context.Entry(entity).State = entity.Id > 0 ? EntityState.Modified : EntityState.Added;
             await _context.SaveChangesAsync();
             return entity.Id;
         }
@@ -45,11 +46,5 @@ namespace Clients.DataAccessLayer
             return await _context.Selectors.SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<long> Update(Selector entity)
-        {
-            _context.Entry(entity).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-            return entity.Id;
-        }
     }
 }

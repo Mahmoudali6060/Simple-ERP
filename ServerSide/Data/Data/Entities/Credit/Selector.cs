@@ -7,6 +7,7 @@ namespace Data.Entities.Credit
 {
     public class Selector : BasicsData
     {
+        public long TransactionId { get; set; }
 
     }
 }

@@ -16,13 +16,13 @@
                                         <input type="date" date="dd-MM-yyyy" id="Date" name="Date" [(ngModel)]="transactionModel.Date" class="form-control" placeholder="{{ 'Transaction.Date' | translate }}">
                                     </div>
                                     <div class="col-lg-4">
-                                        <app-farm-select (entityEmitter)="onFarmChange($event)"></app-farm-select>
+                                        <app-farm-select (entityEmitter)="onFarmChange($event)" [id]="transactionModel.FarmId"></app-farm-select>
                                     </div>
                                     <div class="col-lg-4">
-                                        <app-category-select (entityEmitter)="onCategoryChange($event)"></app-category-select>
+                                        <app-category-select (entityEmitter)="onCategoryChange($event)" [id]="transactionModel.CategoryId"></app-category-select>
                                     </div>
                                     <div class="col-lg-4">
-                                        <app-driver-select (entityEmitter)="onDriverChange($event)"></app-driver-select>
+                                        <app-driver-select (entityEmitter)="onDriverChange($event)" [id]="transactionModel.DriverId"></app-driver-select>
                                     </div>
                                     <div class="col-lg-4">
                                         <label translate>Quantity (Supplier)</label>
@@ -61,7 +61,7 @@
                                     </div>
 
                                     <div class="col-lg-4">
-                                        <app-reaper-select (entityEmitter)="onReaperChange($event)"></app-reaper-select>
+                                        <app-reaper-select (entityEmitter)="onReaperChange($event)" [id]="transactionModel.ReaperId"></app-reaper-select>
                                     </div>
                                     <div class="col-lg-4">
                                         <label translate>Reapers Pay</label>
@@ -101,7 +101,7 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-lg-4">
-                                                <app-station-select (entityEmitter)="onStationChange($event)"></app-station-select>
+                                                <app-station-select (entityEmitter)="onStationChange($event)" [id]="transactionModel.StationId"></app-station-select>
                                             </div>
                                             <div class="col-lg-4">
                                                 <label translate>Cart Number</label>

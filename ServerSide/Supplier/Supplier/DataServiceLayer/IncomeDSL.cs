@@ -22,9 +22,9 @@ namespace Supplier.DataServiceLayer
             _mapper = mapper;
         }
 
-        public async Task<long> Add(IncomeDTO entity)
+        public async Task<long> Save(IncomeDTO entity)
         {
-            return await _incomeDAL.Add(_mapper.Map<Income>(entity));
+            return await _incomeDAL.Save(_mapper.Map<Income>(entity));
         }
 
         public async Task<long> Delete(long id)
@@ -43,10 +43,6 @@ namespace Supplier.DataServiceLayer
             return _mapper.Map<IncomeDTO>(await _incomeDAL.GetById(id));
         }
 
-        public async Task<long> Update(IncomeDTO entity)
-        {
-            return await _incomeDAL.Update(_mapper.Map<Income>(entity));
-        }
 
         public async Task<ResponseEntityList<IncomeDTO>> GetAllLite()
         {

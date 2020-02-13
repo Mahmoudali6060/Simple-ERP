@@ -22,11 +22,11 @@ namespace Clients.DataServiceLayer
             _mapper = mapper;
         }
 
-        public async Task<long> Add(ReaperDTO entity)
+        public async Task<long> Save(ReaperDTO entity)
         {
             try
             {
-                return await _reaperDAL.Add(_mapper.Map<Reaper>(entity));
+                return await _reaperDAL.Save(_mapper.Map<Reaper>(entity));
             }
             catch (Exception ex)
             {
@@ -51,10 +51,6 @@ namespace Clients.DataServiceLayer
             return _mapper.Map<ReaperDTO>(await _reaperDAL.GetById(id));
         }
 
-        public async Task<long> Update(ReaperDTO entity)
-        {
-            return await _reaperDAL.Update(_mapper.Map<Reaper>(entity));
-        }
         public async Task<ResponseEntityList<ReaperDTO>> GetAllLite()
         {
             return new ResponseEntityList<ReaperDTO>()

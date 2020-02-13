@@ -30,11 +30,8 @@ namespace App.Controllers
         [HttpGet, Route("GetById/{id}")]
         public async Task<IActionResult> GetById(long id) => Ok(await _driverDSL.GetById(id));
 
-        [HttpPost, Route("Add")]
-        public async Task<IActionResult> Add(DriverDTO model) => Ok(await _driverDSL.Add(model));
-
-        [HttpPost, Route("Update")]
-        public async Task<IActionResult> Update(DriverDTO model) => Ok(await _driverDSL.Update(model));
+        [HttpPost, Route("Save")]
+        public async Task<IActionResult> Save(DriverDTO model) => Ok(await _driverDSL.Save(model));
 
         [HttpDelete, Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int id) => Ok(await _driverDSL.Delete(id));

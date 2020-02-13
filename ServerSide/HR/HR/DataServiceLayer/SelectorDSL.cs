@@ -22,11 +22,11 @@ namespace Clients.DataServiceLayer
             _mapper = mapper;
         }
 
-        public async Task<long> Add(SelectorDTO entity)
+        public async Task<long> Save(SelectorDTO entity)
         {
             try
             {
-                return await _selectorDAL.Add(_mapper.Map<Selector>(entity));
+                return await _selectorDAL.Save(_mapper.Map<Selector>(entity));
             }
             catch (Exception ex)
             {
@@ -50,10 +50,6 @@ namespace Clients.DataServiceLayer
             return _mapper.Map<SelectorDTO>(await _selectorDAL.GetById(id));
         }
 
-        public async Task<long> Update(SelectorDTO entity)
-        {
-            return await _selectorDAL.Update(_mapper.Map<Selector>(entity));
-        }
         public async Task<ResponseEntityList<SelectorDTO>> GetAllLite()
         {
             return new ResponseEntityList<SelectorDTO>()

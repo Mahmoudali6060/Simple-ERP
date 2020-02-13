@@ -22,24 +22,21 @@ namespace Clients.DataServiceLayer
             _mapper = mapper;
         }
 
-        public async Task<long> Add(ReaperDetailDTO entity)
+        public async Task<long> Save(ReaperDetailDTO entity)
         {
             try
             {
-                return await _reaperDetailDAL.Add(_mapper.Map<ReaperDetail>(entity));
+                return await _reaperDetailDAL.Save(_mapper.Map<ReaperDetail>(entity));
             }
             catch (Exception ex)
             {
                 return 0;
             }
         }
-
-
         public async Task<long> Delete(long id)
         {
             return await _reaperDetailDAL.Delete(id);
         }
-
         public async Task<Response> GetAll(DataSource dataSource)
         {
             var list = _mapper.Map<IEnumerable<ReaperDetail>>(await _reaperDetailDAL.GetAll()).AsQueryable();
@@ -50,10 +47,6 @@ namespace Clients.DataServiceLayer
             return _mapper.Map<ReaperDetailDTO>(await _reaperDetailDAL.GetById(id));
         }
 
-        public async Task<long> Update(ReaperDetailDTO entity)
-        {
-            return await _reaperDetailDAL.Update(_mapper.Map<ReaperDetail>(entity));
-        }
         public async Task<ResponseEntityList<ReaperDetailDTO>> GetAllLite()
         {
             return new ResponseEntityList<ReaperDetailDTO>()

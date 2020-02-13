@@ -1,6 +1,7 @@
 ﻿
 using Data.Contexts;
 using Data.Entities.Credit;
+using Data.Entities.Debit;
 using Data.Entities.Shared;
 using Microsoft.EntityFrameworkCore;
 using Shared.DataAccessLayer;
@@ -25,9 +26,12 @@ namespace Accouting.DataAccessLayer
             this._entity = context.Set<Transaction>();
         }
 
-        public async Task<long> Add(Transaction entity)
+
+
+        public async Task<long> Save(Transaction entity)
         {
-            _context.Entry(entity).State = EntityState.Added;
+      
+            _context.Entry(entity).State = entity.Id > 0 ? EntityState.Modified : EntityState.Added;
             await _context.SaveChangesAsync();
             return entity.Id;
         }
@@ -51,6 +55,7 @@ namespace Accouting.DataAccessLayer
                         join s in _context.Stations on t.StationId equals s.Id
                         select new TransactionDTO
                         {
+                            Id = t.Id,
                             Date = t.Date,
                             FarmId = f.Id,
                             FarmOwnerName = f.OwnerName,
@@ -92,16 +97,34 @@ namespace Accouting.DataAccessLayer
             return await _context.Transactions.SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<long> Update(Transaction entity)
-        {
-            _context.Entry(entity).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-            return entity.Id;
-        }
-
         Task<IEnumerable<Transaction>> ICRUDOperationsDAL<Transaction>.GetAll()
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<Income> GetIncomeByTransactionId(long transactioId)
+        {
+            return await _context.Incomes.Where(x => x.TransactionId == transactioId).AsNoTracking().SingleOrDefaultAsync();
+        }
+
+        public async Task<Outcome> GetOutcomtByTransactionId(long transactioId)
+        {
+            return await _context.Outcomes.Where(x => x.TransactionId == transactioId).AsNoTracking().SingleOrDefaultAsync();
+        }
+
+        public async Task<Transfer> GetTransferByTransactionId(long transactioId)
+        {
+            return await _context.Transfers.Where(x => x.TransactionId == transactioId).AsNoTracking().SingleOrDefaultAsync();
+        }
+
+        public async Task<Selector> GetSelectorByTransactionId(long transactioId)
+        {
+            return await _context.Selectors.Where(x => x.TransactionId == transactioId).AsNoTracking().SingleOrDefaultAsync();
+        }
+
+        public async Task<ReaperDetail> GetReaperDetailByTransactionId(long transactioId)
+        {
+            return await _context.ReaperDetails.Where(x => x.TransactionId == transactioId).AsNoTracking().SingleOrDefaultAsync();
         }
     }
 }

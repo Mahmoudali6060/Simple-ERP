@@ -12,8 +12,7 @@ namespace Shared.DataServiceLayer
         Task<Response> GetAll(DataSource dataSource);
         Task<ResponseEntityList<T>> GetAllLite();
         Task<T> GetById(long id);
-        Task<long> Update(T entity);
-        Task<long> Add(T entity);
+        Task<long> Save(T entity);
         Task<long> Delete(long id);
     }
 }

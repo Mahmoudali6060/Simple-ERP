@@ -9,8 +9,7 @@ namespace Shared.DataAccessLayer
     {
         Task<IEnumerable<T>> GetAll();
         Task<T> GetById(long id);
-        Task<long> Update(T entity);
-        Task<long> Add(T entity);
+        Task<long> Save(T entity);
         Task<long> Delete(long id);
     }
 }

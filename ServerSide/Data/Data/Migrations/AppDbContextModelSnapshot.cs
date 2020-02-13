@@ -197,6 +197,9 @@ namespace Data.Migrations
                     b.Property<long>("StationId")
                         .HasColumnType("bigint");
 
+                    b.Property<long>("TransactionId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
@@ -265,6 +268,9 @@ namespace Data.Migrations
                     b.Property<decimal>("TonPrice")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<long>("TransactionId")
+                        .HasColumnType("bigint");
+
                     b.Property<decimal>("Weight")
                         .HasColumnType("decimal(18,2)");
 
@@ -330,6 +336,9 @@ namespace Data.Migrations
                     b.Property<DateTime>("PayDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<long>("TransactionId")
+                        .HasColumnType("bigint");
+
                     b.Property<decimal?>("Withdraws")
                         .HasColumnType("decimal(18,2)");
 
@@ -376,6 +385,9 @@ namespace Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("StationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("TransactionId")
                         .HasColumnType("bigint");
 
                     b.Property<decimal?>("Withdraws")
@@ -511,6 +523,9 @@ namespace Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("StationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("TransactionId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");

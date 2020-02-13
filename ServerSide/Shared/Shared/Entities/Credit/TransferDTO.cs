@@ -20,6 +20,7 @@ namespace Shared.Entities.Credit
         public decimal? Withdraws { get; set; }
         public decimal? Balance { get; set; }
         public string Notes { get; set; }
+        public long TransactionId { get; set; }
         public virtual DriverDTO Driver { get; set; }
         public virtual FarmDTO Farm { get; set; }
         public virtual StationDTO Station { get; set; }

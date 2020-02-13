@@ -25,11 +25,11 @@ namespace Accouting.DataServiceLayer
             _mapper = mapper;
         }
 
-        public async Task<long> Add(SafeDTO entity)
+        public async Task<long> Save(SafeDTO entity)
         {
             try
             {
-                return await _safeDAL.Add(_mapper.Map<Safe>(entity));
+                return await _safeDAL.Save(_mapper.Map<Safe>(entity));
             }
             catch (Exception ex)
             {
@@ -51,11 +51,6 @@ namespace Accouting.DataServiceLayer
         public async Task<SafeDTO> GetById(long id)
         {
             return _mapper.Map<SafeDTO>(await _safeDAL.GetById(id));
-        }
-
-        public async Task<long> Update(SafeDTO entity)
-        {
-            return await _safeDAL.Update(_mapper.Map<Safe>(entity));
         }
 
         public async Task<ResponseEntityList<SafeDTO>> GetAllLite()

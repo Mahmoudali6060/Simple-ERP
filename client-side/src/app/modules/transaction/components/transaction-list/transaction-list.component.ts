@@ -60,6 +60,9 @@ export class TransactionListComponent {
   }
 
 
+  public onEdit(id: number) {
+    this.router.navigate(["/layout/transaction/transaction-form", id]);
+  }
 
   public onChangePagination(dataSourceModel) {
     this.dataSourceModel = dataSourceModel;

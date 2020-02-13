@@ -21,11 +21,11 @@ namespace Clients.DataServiceLayer
             _mapper = mapper;
         }
 
-        public async Task<long> Add(SalaryDTO entity)
+        public async Task<long> Save(SalaryDTO entity)
         {
             try
             {
-                return await _salaryDAL.Add(_mapper.Map<Salary>(entity));
+                return await _salaryDAL.Save(_mapper.Map<Salary>(entity));
             }
             catch (Exception ex)
             {
@@ -49,10 +49,6 @@ namespace Clients.DataServiceLayer
             return _mapper.Map<SalaryDTO>(await _salaryDAL.GetById(id));
         }
 
-        public async Task<long> Update(SalaryDTO entity)
-        {
-            return await _salaryDAL.Update(_mapper.Map<Salary>(entity));
-        }
         public async Task<ResponseEntityList<SalaryDTO>> GetAllLite()
         {
             return new ResponseEntityList<SalaryDTO>()

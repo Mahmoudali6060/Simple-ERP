@@ -22,11 +22,11 @@ namespace Clients.DataServiceLayer
             _mapper = mapper;
         }
 
-        public async Task<long> Add(TransferDTO entity)
+        public async Task<long> Save(TransferDTO entity)
         {
             try
             {
-                return await _transferDAL.Add(_mapper.Map<Transfer>(entity));
+                return await _transferDAL.Save(_mapper.Map<Transfer>(entity));
             }
             catch (Exception ex)
             {
@@ -50,10 +50,6 @@ namespace Clients.DataServiceLayer
             return _mapper.Map<TransferDTO>(await _transferDAL.GetById(id));
         }
 
-        public async Task<long> Update(TransferDTO entity)
-        {
-            return await _transferDAL.Update(_mapper.Map<Transfer>(entity));
-        }
         public async Task<ResponseEntityList<TransferDTO>> GetAllLite()
         {
             return new ResponseEntityList<TransferDTO>()

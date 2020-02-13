@@ -24,11 +24,19 @@ namespace Clients.DataAccessLayer
             this._entity = context.Set<Outcome>();
         }
 
-        public async Task<long> Add(Outcome entity)
+        public async Task<long> Save(Outcome entity)
         {
-            _context.Entry(entity).State = EntityState.Added;
-            await _context.SaveChangesAsync();
-            return entity.Id;
+            try
+            {
+                _context.Entry(entity).State = EntityState.Detached;
+                _context.Entry(entity).State = entity.Id > 0 ? EntityState.Modified : EntityState.Added;
+                await _context.SaveChangesAsync();
+                return entity.Id;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
         }
 
         public async Task<long> Delete(long id)
@@ -38,8 +46,6 @@ namespace Clients.DataAccessLayer
             await _context.SaveChangesAsync();
             return id;
         }
-
-
 
         public async Task<IEnumerable<OutcomeDTO>> GetAll()
         {
@@ -84,13 +90,6 @@ namespace Clients.DataAccessLayer
         public async Task<Outcome> GetById(long id)
         {
             return await _context.Outcomes.SingleOrDefaultAsync(x => x.Id == id);
-        }
-
-        public async Task<long> Update(Outcome entity)
-        {
-            _context.Entry(entity).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-            return entity.Id;
         }
 
         public async Task<IEnumerable<Outcome>> GetOutcomesByStationId(long stationId)
