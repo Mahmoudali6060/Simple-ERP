@@ -93,11 +93,14 @@
     "Outcomes": "الصادرات",
     "Transfers": "النقل",
     "Reaper Detail": "القطف",
-    "Custody":"عهدة",
-    "Withdraws":"مسحوبات",
-    "PayDate":"تاريخ الاجر",
-    "Pay":"الاجر",
-    "WithdrawsDate":"تاريخ المسحوبات",
-    "TonPrice":"سعر الطن",
-    "Quantity Diffrence":"فرق الكميات"
+    "Custody": "عهدة",
+    "Withdraws": "مسحوبات",
+    "PayDate": "تاريخ الاجر",
+    "Pay": "الاجر",
+    "WithdrawsDate": "تاريخ المسحوبات",
+    "TonPrice": "سعر الطن",
+    "Quantity Diffrence": "فرق الكميات",
+    "Transaction": "العملية اليومية",
+    "Transactions": "العمليات اليومية",
+    "Dashboard": "لوحة التحكم"
 }
