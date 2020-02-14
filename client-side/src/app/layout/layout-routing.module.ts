@@ -23,7 +23,7 @@ export const routes: Routes = [
         path: 'outcome', loadChildren: () => import('../modules/clients/outcome/outcome.module').then(m => m.OutcomeModule)
       },
       {
-        path: 'transaction', loadChildren: () => import('../modules/transaction/transaction.module').then(m => m.TransactionModule)
+        path: 'transaction', loadChildren: () => import('../modules/accounting/transaction/transaction.module').then(m => m.TransactionModule)
       },
 
       {
@@ -36,6 +36,25 @@ export const routes: Routes = [
       {
         path: 'reaper', loadChildren: () => import('../modules/hr/reaper/reaper.module').then(m => m.ReaperModule)
       },
+      {
+        path: 'debit-current', loadChildren: () => import('../modules/debit/current/current.module').then(m => m.CurrentModule)
+      },
+      {
+        path: 'debit-borrow', loadChildren: () => import('../modules/debit/borrow/borrow.module').then(m => m.BorrowModule)
+      },
+      {
+        path: 'safe', loadChildren: () => import('../modules/debit/safe/safe.module').then(m => m.SafeModule)
+      },
+      {
+        path: 'credit-current', loadChildren: () => import('../modules/credit/current/current.module').then(m => m.CurrentModule)
+      },
+      {
+        path: 'credit-borrow', loadChildren: () => import('../modules/credit/borrow/borrow.module').then(m => m.BorrowModule)
+      },
+      {
+        path: 'salary', loadChildren: () => import('../modules/credit/salary/salary.module').then(m => m.SalaryModule)
+      },
+
     ]
   }
 ];

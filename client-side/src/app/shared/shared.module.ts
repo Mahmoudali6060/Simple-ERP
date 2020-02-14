@@ -21,7 +21,8 @@ import { DataListComponent } from '../shared/components/data-list/data-list.comp
 import { ConfirmationDialogComponent } from '../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material';
 import { AuthGuardService } from 'src/app/shared/guards/auth-guard.service';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// RECOMMENDED
 
 @NgModule({
 
@@ -60,7 +61,8 @@ import { AuthGuardService } from 'src/app/shared/guards/auth-guard.service';
     NgbModule,
     PaginationComponent,
     DataListComponent,
-    MaterialModule
+    MaterialModule,
+    
     // ModalBasicComponent
   ],
   declarations: [

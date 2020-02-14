@@ -3,14 +3,16 @@ declare var $: any;
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/modules/authentication/services/auth.service';
 import { Router } from '@angular/router';
+import { BsLocaleService } from 'ngx-bootstrap';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html'
 })
 export class HeaderComponent {
 
-  constructor(private translate: TranslateService, private authService: AuthService, private router: Router) {
+  constructor(private translate: TranslateService, private authService: AuthService, private router: Router, private localeService: BsLocaleService) {
     translate.setDefaultLang('ar');
+    this.localeService.use('ar');
     console.log("loaded the header");
 
   }
@@ -39,6 +41,8 @@ export class HeaderComponent {
 
   public switchLanguage(language: string) {
     this.translate.use(language);
+    this.localeService.use(language);
+
   }
 
   public logOut() {

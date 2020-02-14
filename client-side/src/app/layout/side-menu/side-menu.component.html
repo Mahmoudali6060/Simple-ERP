@@ -3,37 +3,56 @@
 		<nav>
 			<ul class="nav">
 				<li>
-					<a [routerLink]="['/layout/dashboard']" class="active">
+					<a [routerLink]="['/layout/dashboard']">
 						<i class="lnr lnr-home"></i>
 						<span translate>Dashboard</span>
 					</a>
 				</li>
 				<li>
-					<a [routerLink]="['/layout/farm']">
-						<i class="lnr lnr-home"></i>
-						<span translate>Farms</span>
+					<a href="#supplierPages" data-toggle="collapse" class="collapsed" aria-expanded="false">
+						<i class="lnr lnr-file-empty"></i>
+						<span translate>Suppliers</span>
+						<i class="icon-submenu lnr lnr-chevron-left"></i>
 					</a>
+					<div id="supplierPages" class="collapse" aria-expanded="false" style="height: 0px;">
+						<ul class="nav">
+							<li>
+								<a [routerLink]="['/layout/farm']">
+									<span translate>Farms</span>
+								</a>
+							</li>
+
+							<li>
+								<a [routerLink]="['/layout/income']">
+									<span translate>Incomes</span>
+								</a>
+							</li>
+						</ul>
+					</div>
 				</li>
 
 				<li>
-					<a [routerLink]="['/layout/income']">
-						<i class="lnr lnr-home"></i>
-						<span translate>Incomes</span>
+					<a href="#clientPages" data-toggle="collapse" class="collapsed" aria-expanded="false">
+						<i class="lnr lnr-file-empty"></i>
+						<span translate>Clients</span>
+						<i class="icon-submenu lnr lnr-chevron-left"></i>
 					</a>
+					<div id="clientPages" class="collapse" aria-expanded="false" style="height: 0px;">
+						<ul class="nav">
+							<li>
+								<a [routerLink]="['/layout/station']">
+									<span translate>Stations</span>
+								</a>
+							</li>
+							<li>
+								<a [routerLink]="['/layout/outcome']">
+									<span translate>Outcomes</span>
+								</a>
+							</li>
+						</ul>
+					</div>
 				</li>
 
-				<li>
-					<a [routerLink]="['/layout/station']">
-						<i class="lnr lnr-home"></i>
-						<span translate>Stations</span>
-					</a>
-				</li>
-				<li>
-					<a [routerLink]="['/layout/outcome']">
-						<i class="lnr lnr-home"></i>
-						<span translate>Outcomes</span>
-					</a>
-				</li>
 				<li>
 					<a [routerLink]="['/layout/transaction/transaction-list']">
 						<i class="lnr lnr-home"></i>
@@ -46,17 +65,69 @@
 						<span translate>Transfers</span>
 					</a>
 				</li>
+
 				<li>
-					<a [routerLink]="['/layout/selector']">
-						<i class="lnr lnr-home"></i>
-						<span translate>Selectors</span>
+					<a href="#empoloyeePages" data-toggle="collapse" class="collapsed" aria-expanded="false">
+						<i class="lnr lnr-file-empty"></i>
+						<span translate>Employee</span>
+						<i class="icon-submenu lnr lnr-chevron-left"></i>
 					</a>
+					<div id="empoloyeePages" class="collapse" aria-expanded="false" style="height: 0px;">
+						<ul class="nav">
+							<li>
+								<a [routerLink]="['/layout/selector']">
+									<span translate>Selectors</span>
+								</a>
+							</li>
+							<li>
+								<a [routerLink]="['/layout/reaper/reaper-detail-list']">
+									<span translate>Reaper Detail</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+
+
+				<li>
+					<a href="#debitPages" data-toggle="collapse" class="collapsed" aria-expanded="false">
+						<i class="lnr lnr-file-empty"></i>
+						<span translate>Debit</span>
+						<i class="icon-submenu lnr lnr-chevron-left"></i>
+					</a>
+					<div id="debitPages" class="collapse" aria-expanded="false" style="height: 0px;">
+						<ul class="nav">
+							<li>
+								<a [routerLink]="['/layout/debit-borrow']" class="" translate>Borrow</a>
+							</li>
+							<li>
+								<a [routerLink]="['/layout/debit-current']" class="" translate>Current</a>
+							</li>
+							<li>
+								<a [routerLink]="['/layout/safe']" class="" translate>Safe</a>
+							</li>
+						</ul>
+					</div>
 				</li>
 				<li>
-					<a [routerLink]="['/layout/reaper/reaper-detail-list']">
-						<i class="lnr lnr-home"></i>
-						<span translate>Reaper Detail</span>
+					<a href="#creditPages" data-toggle="collapse" class="collapsed" aria-expanded="false">
+						<i class="lnr lnr-file-empty"></i>
+						<span translate>Credit</span>
+						<i class="icon-submenu lnr lnr-chevron-left"></i>
 					</a>
+					<div id="creditPages" class="collapse" aria-expanded="false" style="height: 0px;">
+						<ul class="nav">
+							<li>
+								<a [routerLink]="['/layout/credit-borrow']" class="" translate>Borrow</a>
+							</li>
+							<li>
+								<a [routerLink]="['/layout/credit-current']" class="" translate>Current</a>
+							</li>
+							<li>
+								<a [routerLink]="['/layout/salary']" class="" translate>Salary</a>
+							</li>
+						</ul>
+					</div>
 				</li>
 			</ul>
 		</nav>

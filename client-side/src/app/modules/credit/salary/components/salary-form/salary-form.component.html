@@ -1,0 +1,48 @@
+<div mat-dialog-content>
+    <h3 class="page-title" translate>Salary</h3>
+    <div class="panel">
+        <div class="panel-body">
+            <form #salaryForm="ngForm" (ngSubmit)="save(salaryForm)">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="date" id="PayDate" name="PayDate" [(ngModel)]="borrowModel.PayDate" class="form-control" placeholder="{{ 'Pay Date' | translate }}">
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="number" id="Pay" name="Pay" [(ngModel)]="borrowModel.Pay" class="form-control" placeholder="{{ 'Pay' | translate }}">
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="date" id="WithdrawsDate" name="WithdrawsDate" [(ngModel)]="borrowModel.WithdrawsDate" class="form-control" placeholder="{{ 'Withdraws Date' | translate }}">
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="number" id="Withdraws" name="Withdraws" [(ngModel)]="borrowModel.Withdraws" class="form-control" placeholder="{{ 'Withdraws' | translate }}">
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="number" id="Balance" name="Balance" [(ngModel)]="borrowModel.Balance" class="form-control" placeholder="{{ 'Balance' | translate }}">
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2">
+                        <button type="button" class="btn btn-primary" (click)="save(salaryForm)" [mat-dialog-close]="true" translate>Yes</button>
+                    </div>
+                    <div class="col-lg-2">
+                        <button type="button" class="btn btn-warning" (click)="hide()" translate>No</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

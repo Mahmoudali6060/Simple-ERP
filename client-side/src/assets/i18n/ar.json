@@ -102,5 +102,13 @@
     "Quantity Diffrence": "فرق الكميات",
     "Transaction": "العملية اليومية",
     "Transactions": "العمليات اليومية",
-    "Dashboard": "لوحة التحكم"
+    "Dashboard": "لوحة التحكم",
+    "Suppliers":"الموردين",
+    "Clients":"العملاء",
+    "Employee":"الموظفين",
+    "Borrow":"سلف",
+    "Current":"جاري",
+    "Safe":"الخزنة",
+    "Salary":"مرتبات"
+
 }

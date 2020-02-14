@@ -21,24 +21,42 @@ namespace App
             CreateMap<FarmDTO, Farm>();
             CreateMap<Income, IncomeDTO>();
             CreateMap<IncomeDTO, Income>();
+
             CreateMap<Station, StationDTO>();
             CreateMap<StationDTO, Station>();
             CreateMap<Outcome, OutcomeDTO>();
             CreateMap<OutcomeDTO, Outcome>();
+
             CreateMap<Category, CategoryDTO>();
             CreateMap<CategoryDTO, Category>();
+            CreateMap<Transaction, TransactionDTO>();
+            CreateMap<TransactionDTO, Transaction>();
+
             CreateMap<Driver, DriverDTO>();
             CreateMap<DriverDTO, Driver>();
             CreateMap<Reaper, ReaperDTO>();
             CreateMap<ReaperDTO, Reaper>();
-            CreateMap<Transaction, TransactionDTO>();
-            CreateMap<TransactionDTO, Transaction>();
             CreateMap<Transfer, TransferDTO>();
             CreateMap<TransferDTO, Transfer>();
             CreateMap<ReaperDetail, ReaperDetailDTO>();
             CreateMap<ReaperDetailDTO, ReaperDetail>();
             CreateMap<Selector, SelectorDTO>();
             CreateMap<SelectorDTO, Selector>();
+
+            CreateMap<DebitBorrow, DebitBorrowDTO>();
+            CreateMap<DebitBorrowDTO, DebitBorrow>();
+            CreateMap<DebitCurrent, DebitCurrentDTO>();
+            CreateMap<DebitCurrentDTO, DebitCurrent>();
+            CreateMap<Safe, SafeDTO>();
+            CreateMap<SafeDTO, Safe>();
+
+            CreateMap<CreditBorrow, CreditBorrowDTO>();
+            CreateMap<CreditBorrowDTO, CreditBorrow>();
+            CreateMap<CreditCurrent, CreditCurrentDTO>();
+            CreateMap<CreditCurrentDTO, CreditCurrent>();
+            CreateMap<Salary, SalaryDTO>();
+            CreateMap<SalaryDTO, Salary>();
+
         }
     }
 }
