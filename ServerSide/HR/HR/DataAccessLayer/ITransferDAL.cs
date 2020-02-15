@@ -9,5 +9,6 @@ namespace Clients.DataAccessLayer
     public interface ITransferDAL : ICRUDOperationsDAL<Transfer>
     {
         new Task<IEnumerable<TransferDTO>> GetAll();
+        Task<IEnumerable<TransferDTO>> GetAllByDriverId(long driverId);
     }
 }

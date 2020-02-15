@@ -2,8 +2,10 @@ import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { DriverService } from '../../services/driver.service';
 import { DriverModel } from '../../models/driver.model';
 import { DataSourceModel } from '../../../../../shared/models/data-source.model';
-// import { DriverFormComponent } from '../driver-form/driver-form.component';
 import { MatDialog } from '@angular/material';
+import { ActionModel } from '../../../../../shared/models/action.model';
+import { ActionNameEnum } from '../../../../../shared/enums/Action.enum';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-driver-list',
@@ -12,24 +14,26 @@ import { MatDialog } from '@angular/material';
 
 export class DriverListComponent {
   //#region Variables
-  farmList: Array<DriverModel>;//Data List
-  properties = ["OwnerName", "OwnerMobile", "Address", "Notes"];//Displayed Columns 
+  driverList: Array<DriverModel>;//Data List
+  properties = ["FullName", "Mobile", "CarPlate"];//Displayed Columns 
   driver: DriverModel = new DriverModel();//For Add/Update Driver Entity
   dataSourceModel: DataSourceModel = new DataSourceModel;//Pagination and Filteration Settings
   total: number;//Total number of rows
+  actions: Array<ActionModel>;
   //#endregion
 
-  constructor(private farmService: DriverService, private dialog: MatDialog) {
+  constructor(private driverService: DriverService, private dialog: MatDialog, private router: Router) {
   }
 
   ngOnInit() {
     this.getAllDrivers();
+    this.prepareActions();
   }
 
   //#region GetAll
   getAllDrivers() {
-    this.farmService.getAll(this.dataSourceModel).subscribe(response => {
-      this.farmList = response.Data;
+    this.driverService.getAll(this.dataSourceModel).subscribe(response => {
+      this.driverList = response.Data;
       this.total = response.Total;
     }, err => {
     });
@@ -38,7 +42,7 @@ export class DriverListComponent {
 
   //#region Deleteing
   public delete(id: number) {
-    this.farmService.delete(id)
+    this.driverService.delete(id)
       .subscribe((response) => {
         this.getAllDrivers();
       })
@@ -68,4 +72,20 @@ export class DriverListComponent {
     this.getAllDrivers();
   }
   //#endregion
+
+  public onMakeAction(event) {
+    if (event.action.name == ActionNameEnum.Details) {
+      let driverId = event.id;
+      this.router.navigate(['layout/driver/transfer-list', driverId]);
+    }
+  }
+
+  private prepareActions() {
+    this.actions = [];
+    let action = {
+      name: ActionNameEnum.Details,
+      icon: "fa fa-list"
+    };
+    this.actions.push(action);
+  }
 }

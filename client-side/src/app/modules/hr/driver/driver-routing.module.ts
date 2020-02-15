@@ -6,6 +6,8 @@ import { TransferListComponent } from './components/transfer-list/transfer-list.
 const routes: Routes = [
   { path: '', component: DriverListComponent },
   { path: 'transfer-list', component: TransferListComponent },
+  { path: 'transfer-list/:driverId', component: TransferListComponent },
+
 
 
 ];

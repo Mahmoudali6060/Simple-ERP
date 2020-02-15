@@ -12,8 +12,7 @@
         <tr>
             <th>#</th>
             <th *ngFor="let property of properties">
-                <input type="text" id="{{property}}" name="{{property}}" [(ngModel)]="model[property]" class="form-control" 
-                    type="text" (ngModelChange)="applyFilter()">
+                <input type="text" id="{{property}}" name="{{property}}" [(ngModel)]="model[property]" class="form-control" type="text" (ngModelChange)="applyFilter()">
             </th>
             <th></th>
         </tr>
@@ -30,6 +29,8 @@
             <td>
                 <i class="fa fa-pencil" (click)="edit(item.Id)"></i>
                 <i class=" fa fa-trash " (click)="showConfirmDialog(item.Id) "></i>
+                <i *ngFor="let action of actions" class="{{action.icon}}" (click)="onActionClicked(action,item.Id)"></i>
+
             </td>
         </tr>
     </tbody>

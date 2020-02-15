@@ -11,6 +11,9 @@ namespace Shared.Entities.Credit
     {
         public DateTime Date { get; set; }
         public long DriverId { get; set; }
+        public string DriverFullName { get; set; }
+        public string DriverMobile { get; set; }
+        public string CarPlate { get; set; }
         public long FarmId { get; set; }
         public string FarmName { get; set; }
         public long StationId { get; set; }

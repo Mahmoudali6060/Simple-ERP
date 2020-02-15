@@ -1,5 +1,5 @@
 
-export class BasicsData {
+export class BasicsDataModel {
     PayDate: Date;
     Pay: number;
     WithdrawsDate: number;

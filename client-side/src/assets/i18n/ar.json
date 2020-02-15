@@ -91,7 +91,8 @@
     "Incomes": "الواردات",
     "Stations": "المحطات",
     "Outcomes": "الصادرات",
-    "Transfers": "النقل",
+    "Transfer": "الشحن",
+    "Transfers": "الشحنات",
     "Reaper Detail": "القطف",
     "Custody": "عهدة",
     "Withdraws": "مسحوبات",
@@ -109,6 +110,9 @@
     "Borrow":"سلف",
     "Current":"جاري",
     "Safe":"الخزنة",
-    "Salary":"مرتبات"
+    "Salary":"مرتبات",
+    "Driver": "سائق",
+    "Drivers": "سائقون"
+    
 
 }

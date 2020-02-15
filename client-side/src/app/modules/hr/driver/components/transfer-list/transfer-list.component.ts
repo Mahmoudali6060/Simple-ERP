@@ -4,6 +4,7 @@ import { TransferModel } from '../../models/transfer.model';
 import { DataSourceModel } from '../../../../../shared/models/data-source.model';
 // import { TransferFormComponent } from '../transfer-form/transfer-form.component';
 import { MatDialog } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-transfer-list',
@@ -13,27 +14,53 @@ import { MatDialog } from '@angular/material';
 export class TransferListComponent {
   //#region Variables
   transferList: Array<TransferModel>;//Data List
-  properties = ["Date", "FarmName", "StationName", "Nolon", "Custody", "Withdraws", "Balance", "Notes"];//Displayed Columns 
+  properties = ["Date", "DriverFullName", "DriverMobile", "CarPlate", "FarmName", "StationName", "Nolon", "Custody", "Withdraws", "Balance", "Notes"];//Displayed Columns 
   transfer: TransferModel = new TransferModel();//For Add/Update Transfer Entity
   dataSourceModel: DataSourceModel = new DataSourceModel;//Pagination and Filteration Settings
   total: number;//Total number of rows
+  driverId: number;
   //#endregion
 
-  constructor(private transferService: TransferService, private dialog: MatDialog) {
+  constructor(private transferService: TransferService, private dialog: MatDialog, private avtiveRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.getAllTransfers();
+    if (this.avtiveRoute.snapshot.params["driverId"]) {
+      this.driverId = Number(this.avtiveRoute.snapshot.params["driverId"]);
+      this.getAllByDriverId(this.driverId);
+    }
+    else {
+      this.getAllTransfers();
+    }
   }
 
   //#region GetAll
   getAllTransfers() {
+    // if (this.driverId) {
+    //   let filter = {
+    //     Key: "DriverId",
+    //     Value: this.driverId
+    //   };
+    //   if (!this.dataSourceModel.Filter)
+    //     this.dataSourceModel.Filter = [];
+    //   this.dataSourceModel.Filter.push(filter);
+    // }
+
     this.transferService.getAll(this.dataSourceModel).subscribe(response => {
       this.transferList = response.Data;
       this.total = response.Total;
     }, err => {
     });
   }
+
+  getAllByDriverId(driverId: number) {
+    this.transferService.getAllByDriverId(driverId, this.dataSourceModel).subscribe(response => {
+      this.transferList = response.Data;
+      this.total = response.Total;
+    }, err => {
+    });
+  }
+
   //#endregion 
 
   //#region Deleteing

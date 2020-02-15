@@ -2,6 +2,8 @@ import { Component, OnInit, Inject, Input, EventEmitter, Output, ViewChild } fro
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { DataSourceModel } from '../../../shared/models/data-source.model';
 import { MatDialog } from '@angular/material';
+import { ActionModel } from '../../../shared/models/action.model';
+import { ActionNameEnum } from '../../../shared/enums/Action.enum';
 
 @Component({
   selector: 'app-data-list',
@@ -27,6 +29,8 @@ export class DataListComponent {
   @Input() total: number;
   dataSourceModel = new DataSourceModel();
   model: any = {};
+  @Input() actions: Array<ActionModel>;//Custom Actions for tables component
+  @Output() makeAction = new EventEmitter<any>();//Custom Action (Details)
   //#endregion
 
   constructor(public dialog: MatDialog) {
@@ -90,6 +94,14 @@ export class DataListComponent {
     return word[0].toUpperCase() + word.substr(1);
   }
   //#endregion 
+
+  public onActionClicked(action, id) {
+    let event = {
+      id: id,
+      action: action
+    };
+    this.makeAction.emit(event);
+  }
 }
 
 

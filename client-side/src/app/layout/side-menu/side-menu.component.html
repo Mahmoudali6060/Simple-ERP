@@ -59,11 +59,28 @@
 						<span translate>Transactions</span>
 					</a>
 				</li>
+
+
 				<li>
-					<a [routerLink]="['/layout/driver/transfer-list']">
-						<i class="lnr lnr-home"></i>
-						<span translate>Transfers</span>
+					<a href="#transferPages" data-toggle="collapse" class="collapsed" aria-expanded="false">
+						<i class="lnr lnr-file-empty"></i>
+						<span translate>Transfer</span>
+						<i class="icon-submenu lnr lnr-chevron-left"></i>
 					</a>
+					<div id="transferPages" class="collapse" aria-expanded="false" style="height: 0px;">
+						<ul class="nav">
+							<li>
+								<a [routerLink]="['/layout/driver']">
+									<span translate>Drivers</span>
+								</a>
+							</li>
+							<li>
+								<a [routerLink]="['/layout/driver/transfer-list']">
+									<span translate>Transfers</span>
+								</a>
+							</li>
+						</ul>
+					</div>
 				</li>
 
 				<li>
@@ -80,8 +97,8 @@
 								</a>
 							</li>
 							<li>
-								<a [routerLink]="['/layout/reaper/reaper-detail-list']">
-									<span translate>Reaper Detail</span>
+								<a [routerLink]="['/layout/reaper']">
+									<span translate>Reapers</span>
 								</a>
 							</li>
 						</ul>

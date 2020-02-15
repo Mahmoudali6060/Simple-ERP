@@ -57,5 +57,11 @@ namespace Clients.DataServiceLayer
                 List = _mapper.Map<IEnumerable<TransferDTO>>(await _transferDAL.GetAll()).ToList(),
             };
         }
+
+        public async Task<Response> GetAllByDriverId(long driverId, DataSource dataSource)
+        {
+            var list = _mapper.Map<IEnumerable<TransferDTO>>(await _transferDAL.GetAllByDriverId(driverId)).AsQueryable();
+            return Helper.ToResult(list, dataSource);
+        }
     }
 }

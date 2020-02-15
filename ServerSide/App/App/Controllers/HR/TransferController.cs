@@ -38,5 +38,9 @@ namespace App.Controllers.HR
 
         [HttpGet, Route("GetAllLite")]
         public async Task<IActionResult> GetAllLite() => Ok(await _transferDSL.GetAllLite());
+
+        [HttpPost, Route("GetAllByDriverId/{driverId}")]
+        public async Task<IActionResult> GetAllByDriverId(long driverId, [FromBody]DataSource dataSource) => Ok(await _transferDSL.GetAllByDriverId(driverId, dataSource));
+
     }
 }

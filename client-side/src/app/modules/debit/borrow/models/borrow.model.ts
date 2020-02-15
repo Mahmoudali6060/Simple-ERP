@@ -1,5 +1,5 @@
-import { BasicsData } from '../../../../shared/models/basic-data.model';
+import { BasicsDataModel } from '../../../../shared/models/basic-data.model';
 
-export class BorrowModel extends BasicsData {
+export class BorrowModel extends BasicsDataModel {
    
 }

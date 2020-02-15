@@ -45,9 +45,13 @@ namespace Clients.DataAccessLayer
                 return from t in _context.Transfers
                        join f in _context.Farms on t.FarmId equals f.Id
                        join s in _context.Stations on t.StationId equals s.Id
+                       join d in _context.Drivers on t.DriverId equals d.Id
                        select new TransferDTO
                        {
                            Date = t.Date,
+                           DriverFullName = d.FullName,
+                           DriverMobile = d.Mobile,
+                           CarPlate = d.CarPlate,
                            FarmId = f.Id,
                            FarmName = f.OwnerName,
                            StationId = s.Id,
@@ -76,6 +80,39 @@ namespace Clients.DataAccessLayer
         Task<IEnumerable<Transfer>> ICRUDOperationsDAL<Transfer>.GetAll()
         {
             throw new System.NotImplementedException();
+        }
+
+        public async Task<IEnumerable<TransferDTO>> GetAllByDriverId(long driverId)
+        {
+            try
+            {
+                return from t in _context.Transfers
+                       join f in _context.Farms on t.FarmId equals f.Id
+                       join s in _context.Stations on t.StationId equals s.Id
+                       join d in _context.Drivers on t.DriverId equals d.Id
+                       where t.DriverId == driverId
+                       select new TransferDTO
+                       {
+                           Date = t.Date,
+                           DriverFullName = d.FullName,
+                           DriverMobile = d.Mobile,
+                           DriverId=d.Id,
+                           CarPlate = d.CarPlate,
+                           FarmId = f.Id,
+                           FarmName = f.OwnerName,
+                           StationId = s.Id,
+                           StationName = s.OwnerName,
+                           Nolon = t.Nolon,
+                           Custody = t.Custody,
+                           Withdraws = t.Withdraws,
+                           Balance = t.Balance,
+                           Notes = t.Notes
+                       };
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
     }
 }
