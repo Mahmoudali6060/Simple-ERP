@@ -51,33 +51,33 @@ namespace Clients.DataAccessLayer
         {
             try
             {
-                return (from i in _context.Outcomes
-                        join c in _context.Categories on i.CategoryId equals c.Id
-                        join d in _context.Drivers on i.DriverId equals d.Id
-                        join f in _context.Farms on i.FarmId equals f.Id
-                        join s in _context.Stations on i.StationId equals s.Id
+                return (from o in _context.Outcomes
+                        join c in _context.Categories on o.CategoryId equals c.Id
+                        join d in _context.Drivers on o.DriverId equals d.Id
+                        join f in _context.Farms on o.FarmId equals f.Id
+                        join s in _context.Stations on o.StationId equals s.Id
                         select new OutcomeDTO
                         {
-                            Date = i.Date,
-                            CartNumber = d.CarPlate,
+                            Date = o.Date,
+                            CartNumber = o.CartNumber,
                             CategoryId = c.Id,
                             CategoryName = c.Name,
                             FarmId = f.Id,
                             FarmName = f.OwnerName,
                             DriverId = d.Id,
                             CarPlate = d.CarPlate,
-                            Quantity = i.Quantity,
-                            KiloDiscount = i.KiloDiscount,
-                            QuantityAfterDiscount = i.Quantity - i.KiloDiscount,
-                            KiloPrice = i.KiloPrice,
-                            Total = i.KiloPrice * (i.Quantity - i.KiloDiscount),
-                            MoneyDiscount = i.MoneyDiscount,
-                            Balance = i.Balance,
+                            Quantity = o.Quantity,
+                            KiloDiscount = o.KiloDiscount,
+                            QuantityAfterDiscount = o.Quantity - o.KiloDiscount,
+                            KiloPrice = o.KiloPrice,
+                            Total = o.KiloPrice * (o.Quantity - o.KiloDiscount),
+                            MoneyDiscount = o.MoneyDiscount,
+                            Balance = o.Balance,
                             StationId = s.Id,
                             StationName = s.OwnerName,
-                            PaidUp = i.PaidUp,
-                            PaidDate = i.PaidDate,
-                            RecieptNumber = i.RecieptNumber,
+                            PaidUp = o.PaidUp,
+                            PaidDate = o.PaidDate,
+                            RecieptNumber = o.RecieptNumber,
                         });
 
             }

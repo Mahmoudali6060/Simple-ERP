@@ -12,7 +12,7 @@
         <tr>
             <th>#</th>
             <th *ngFor="let property of properties">
-                <input type="text" id="{{property}}" name="{{property}}" [(ngModel)]="model[property]" class="form-control" placeholder="{{ property | translate }}"
+                <input type="text" id="{{property}}" name="{{property}}" [(ngModel)]="model[property]" class="form-control" 
                     type="text" (ngModelChange)="applyFilter()">
             </th>
             <th></th>

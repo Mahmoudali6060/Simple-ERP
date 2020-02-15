@@ -65,7 +65,7 @@ namespace Supplier.DataAccessLayer
                         select new IncomeDTO
                         {
                             Date = i.Date,
-                            CartNumber = d.CarPlate,
+                            CartNumber = i.CartNumber,
                             CategoryId = c.Id,
                             CategoryName = c.Name,
                             FarmId = f.Id,
