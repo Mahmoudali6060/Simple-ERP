@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material';
 import { ActionModel } from '../../../../../shared/models/action.model';
 import { ActionNameEnum } from '../../../../../shared/enums/Action.enum';
 import { Router } from '@angular/router';
+import { DriverFormComponent } from 'src/app/modules/hr/driver/components/driver-form/driver-form.component';
 
 @Component({
   selector: 'app-driver-list',
@@ -52,18 +53,18 @@ export class DriverListComponent {
   //#endregion
 
   //#region Open Modal
-  // public openModal(id?: number) {
-  //   const dialogRef = this.dialog.open(DriverFormComponent, {
-  //     width: '900px',
-  //     // height: '400px',
-  //     data: { id: id }
-  //   });
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result) {
-  //       this.getAllDrivers();
-  //     }
-  //   });
-  // }
+  public openModal(id?: number) {
+    const dialogRef = this.dialog.open(DriverFormComponent, {
+      width: '900px',
+      // height: '400px',
+      data: { id: id }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getAllDrivers();
+      }
+    });
+  }
   //#endregion
 
   //#region Pagination
