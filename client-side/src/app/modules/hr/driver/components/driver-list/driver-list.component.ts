@@ -7,6 +7,7 @@ import { ActionModel } from '../../../../../shared/models/action.model';
 import { ActionNameEnum } from '../../../../../shared/enums/Action.enum';
 import { Router } from '@angular/router';
 import { DriverFormComponent } from 'src/app/modules/hr/driver/components/driver-form/driver-form.component';
+import { HelperService } from 'src/app/shared/services/helper.service';
 
 @Component({
   selector: 'app-driver-list',
@@ -20,15 +21,15 @@ export class DriverListComponent {
   driver: DriverModel = new DriverModel();//For Add/Update Driver Entity
   dataSourceModel: DataSourceModel = new DataSourceModel;//Pagination and Filteration Settings
   total: number;//Total number of rows
-  actions: Array<ActionModel>;
+  actions: Array<ActionModel>=[];
   //#endregion
 
-  constructor(private driverService: DriverService, private dialog: MatDialog, private router: Router) {
+  constructor(private driverService: DriverService, private dialog: MatDialog, private router: Router, private helperService: HelperService) {
   }
 
   ngOnInit() {
     this.getAllDrivers();
-    this.prepareActions();
+    this.actions.push(this.helperService.addAction(ActionNameEnum.Details, 'fa fa-list'));
   }
 
   //#region GetAll
@@ -81,12 +82,5 @@ export class DriverListComponent {
     }
   }
 
-  private prepareActions() {
-    this.actions = [];
-    let action = {
-      name: ActionNameEnum.Details,
-      icon: "fa fa-list"
-    };
-    this.actions.push(action);
-  }
+
 }

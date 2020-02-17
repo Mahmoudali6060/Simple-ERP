@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Clients.DataAccessLayer
 {
-    public interface IReaperDetailDAL : ICRUDOperationsDAL<ReaperDetail>
+    public interface ISelectorDetailDAL : ICRUDOperationsDAL<SelectorDetail>
     {
-        Task<IEnumerable<ReaperDetailDTO>> GetAllByReaperId(long reaperId);
+        Task<IEnumerable<SelectorDetailDTO>> GetAllBySelectorId(long selectorId);
+
     }
 }

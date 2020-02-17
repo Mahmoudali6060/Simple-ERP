@@ -8,8 +8,8 @@ namespace Shared.Entities.Shared
     {
         public DateTime PayDate { get; set; }
         public decimal Pay { get; set; }
-        public DateTime WithdrawsDate { get; set; }
-        public decimal Withdraws { get; set; }
-        public decimal Balance { get; set; }
+        public DateTime? WithdrawsDate { get; set; }
+        public decimal? Withdraws { get; set; }
+        public decimal? Balance { get; set; }
     }
 }

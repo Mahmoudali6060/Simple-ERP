@@ -3,6 +3,9 @@ import { SharedModule } from '../../../shared/shared.module';
 import { SelectorRoutingModule } from './selector-routing.module';
 import { SelectorService } from './services/selector.service';
 import { SelectorListComponent } from './components/selector-list/selector-list.component';
+import { SelectorDetailListComponent } from './components/selector-detail-list/selector-detail-list.component';
+import { SelectorFormComponent } from './components/selector-form/selector-form.component';
+import { SelectorDetailService } from './services/selector-detail.service';
 
 @NgModule({
   imports: [
@@ -10,10 +13,16 @@ import { SelectorListComponent } from './components/selector-list/selector-list.
     SharedModule.forRoot()
   ],
   declarations: [
-    SelectorListComponent
+    SelectorListComponent,
+    SelectorDetailListComponent,
+    SelectorFormComponent
   ],
   providers: [
-    SelectorService
+    SelectorService,
+    SelectorDetailService
+  ],
+  entryComponents: [
+    SelectorFormComponent
   ]
 })
 

@@ -21,12 +21,12 @@ export class TransferListComponent {
   driverId: number;
   //#endregion
 
-  constructor(private transferService: TransferService, private dialog: MatDialog, private avtiveRoute: ActivatedRoute) {
+  constructor(private transferService: TransferService, private dialog: MatDialog, private activeRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
-    if (this.avtiveRoute.snapshot.params["driverId"]) {
-      this.driverId = Number(this.avtiveRoute.snapshot.params["driverId"]);
+    if (this.activeRoute.snapshot.params["driverId"]) {
+      this.driverId = Number(this.activeRoute.snapshot.params["driverId"]);
       this.getAllByDriverId(this.driverId);
     }
     else {

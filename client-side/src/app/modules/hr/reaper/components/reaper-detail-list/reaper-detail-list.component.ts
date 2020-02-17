@@ -4,6 +4,7 @@ import { ReaperDetailModel } from '../../models/reaper-detail.model';
 import { DataSourceModel } from '../../../../../shared/models/data-source.model';
 // import { reaperDetailFormComponent } from '../reaperDetail-form/reaperDetail-form.component';
 import { MatDialog } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-reaper-detail-list',
@@ -17,18 +18,22 @@ export class ReaperDetailListComponent {
   reaperDetail: ReaperDetailModel = new ReaperDetailModel();//For Add/Update reaperDetail Entity
   dataSourceModel: DataSourceModel = new DataSourceModel;//Pagination and Filteration Settings
   total: number;//Total number of rows
+  reaperId: number;
   //#endregion
 
-  constructor(private reaperDetailService: ReaperDetailService, private dialog: MatDialog) {
+  constructor(private reaperDetailService: ReaperDetailService, private dialog: MatDialog, private activeRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.getAllreaperDetails();
+    if (this.activeRoute.snapshot.params["reaperId"]) {
+      this.reaperId = Number(this.activeRoute.snapshot.params["reaperId"]);
+      this.getAllByReaperId();
+    }
   }
 
   //#region GetAll
-  getAllreaperDetails() {
-    this.reaperDetailService.getAll(this.dataSourceModel).subscribe(response => {
+  getAllByReaperId() {
+    this.reaperDetailService.getAllByReaperId(this.reaperId, this.dataSourceModel).subscribe(response => {
       this.reaperDetailList = response.Data;
       this.total = response.Total;
     }, err => {
@@ -40,7 +45,7 @@ export class ReaperDetailListComponent {
   public delete(id: number) {
     this.reaperDetailService.delete(id)
       .subscribe((response) => {
-        this.getAllreaperDetails();
+        this.getAllByReaperId();
       })
       , error => {
       }
@@ -65,7 +70,7 @@ export class ReaperDetailListComponent {
   //#region Pagination
   public onChangePagination(dataSourceModel) {
     this.dataSourceModel = dataSourceModel;
-    this.getAllreaperDetails();
+    this.getAllByReaperId();
   }
   //#endregion
 }

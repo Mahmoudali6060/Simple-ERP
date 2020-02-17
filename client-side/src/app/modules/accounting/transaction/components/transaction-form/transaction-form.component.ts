@@ -88,6 +88,10 @@ export class TransactionFormComponent {
     this.calculatePearsPay();
   }
 
+  onSelectorChange(selector) {
+    this.transactionModel.SelectorId = selector.Id;
+  }
+
   private calculatePearsPay() {
     if (this.transactionModel.SupplierQuantity && this.lastTonPrice)
       this.transactionModel.ReapersPay = (this.transactionModel.SupplierQuantity / 1000) * this.lastTonPrice;

@@ -20,8 +20,9 @@ import { PaginationComponent } from '../shared/components/pagination/pagination.
 import { DataListComponent } from '../shared/components/data-list/data-list.component';
 import { ConfirmationDialogComponent } from '../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material';
-import { AuthGuardService } from 'src/app/shared/guards/auth-guard.service';
+import { AuthGuardService } from './guards/auth-guard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HelperService } from './services/helper.service';
 // RECOMMENDED
 
 @NgModule({
@@ -62,7 +63,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PaginationComponent,
     DataListComponent,
     MaterialModule,
-    
+
     // ModalBasicComponent
   ],
   declarations: [
@@ -80,7 +81,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BsModalService,
     ErrorDialogService,
     DatePipe,
-    AuthGuardService
+    AuthGuardService,
+    HelperService
   ],
 })
 export class SharedModule {

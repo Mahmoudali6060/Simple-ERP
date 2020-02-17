@@ -27,12 +27,12 @@ namespace Accouting.DataServiceLayer
         ITransactionDAL _transactionDAL;
         IIncomeDSL _incomeDSL;
         ITransferDSL _transferDSL;
-        ISelectorDSL _selectorDSL;
+        ISelectorDetailDSL _selectorDSL;
         IReaperDetailDSL _reaperDetailDSL;
         IOutcomeDSL _outcomeDSL;
         AppDbContext _context;
         private readonly IMapper _mapper;
-        public TransactionDSL(ITransactionDAL transactionDAL, IIncomeDSL incomeDSL, ITransferDSL transferDSL, ISelectorDSL selectorDSL, IReaperDetailDSL reaperDetailDSL, IOutcomeDSL outcomeDSL, AppDbContext context, IMapper mapper)
+        public TransactionDSL(ITransactionDAL transactionDAL, IIncomeDSL incomeDSL, ITransferDSL transferDSL, ISelectorDetailDSL selectorDSL, IReaperDetailDSL reaperDetailDSL, IOutcomeDSL outcomeDSL, AppDbContext context, IMapper mapper)
         {
             _transactionDAL = transactionDAL;
             _incomeDSL = incomeDSL;
@@ -43,7 +43,7 @@ namespace Accouting.DataServiceLayer
             _mapper = mapper;
             _context = context;
         }
- 
+
         public async Task<long> Save(TransactionDTO entity)
         {
 
@@ -119,18 +119,19 @@ namespace Accouting.DataServiceLayer
         }
         private async Task<long> SaveSelector(TransactionDTO entity)
         {
-            SelectorDTO selector = new SelectorDTO()
+            SelectorDetailDTO selectorDetail = new SelectorDetailDTO()
             {
                 PayDate = entity.Date,
                 Pay = entity.SelectorsPay,
-                TransactionId = entity.Id
+                TransactionId = entity.Id,
+                SelectorId = entity.SelectorId
             };
             if (_ISEDITMODE)//Edit Mode
             {
-                var oldSelector = await GetSelectorByTransactionId(entity.Id);
-                selector.Id = oldSelector.Id;
+                var oldSelector = await GetSelectorDetailByTransactionId(entity.Id);
+                selectorDetail.Id = oldSelector.Id;
             }
-            return await _selectorDSL.Save(selector);
+            return await _selectorDSL.Save(selectorDetail);
         }
         private async Task<long> SaveReaper(TransactionDTO entity)
         {
@@ -210,9 +211,9 @@ namespace Accouting.DataServiceLayer
             return _mapper.Map<TransferDTO>(await _transactionDAL.GetTransferByTransactionId(transactioId));
         }
 
-        public async Task<SelectorDTO> GetSelectorByTransactionId(long transactioId)
+        public async Task<SelectorDetailDTO> GetSelectorDetailByTransactionId(long transactioId)
         {
-            return _mapper.Map<SelectorDTO>(await _transactionDAL.GetSelectorByTransactionId(transactioId));
+            return _mapper.Map<SelectorDetailDTO>(await _transactionDAL.GetSelectorDetailByTransactionId(transactioId));
         }
 
         public async Task<ReaperDetailDTO> GetReaperDetailByTransactionId(long transactioId)

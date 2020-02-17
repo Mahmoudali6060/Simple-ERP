@@ -40,8 +40,11 @@ namespace App
             CreateMap<TransferDTO, Transfer>();
             CreateMap<ReaperDetail, ReaperDetailDTO>();
             CreateMap<ReaperDetailDTO, ReaperDetail>();
+
             CreateMap<Selector, SelectorDTO>();
             CreateMap<SelectorDTO, Selector>();
+            CreateMap<SelectorDetail, SelectorDetailDTO>();
+            CreateMap<SelectorDetailDTO, SelectorDetail>();
 
             CreateMap<DebitBorrow, DebitBorrowDTO>();
             CreateMap<DebitBorrowDTO, DebitBorrow>();

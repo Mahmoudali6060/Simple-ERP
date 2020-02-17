@@ -9,6 +9,8 @@ import { StationSelectComponent } from './components/station-select/station-sele
 import { StationService } from '../../clients/station/services/station.service';
 import { ReaperSelectComponent } from './components/reaper-select/reaper-select.component';
 import { ReaperService } from '../../hr/reaper/services/reaper.service';
+import { SelectorSelectComponent } from './components/selector-select/selector-select.component';
+import { SelectorService } from '../../hr/selector/services/selector.service';
 
 @NgModule({
   imports: [
@@ -19,21 +21,24 @@ import { ReaperService } from '../../hr/reaper/services/reaper.service';
     FarmSelectComponent,
     DriverSelectComponent,
     StationSelectComponent,
-    ReaperSelectComponent
+    ReaperSelectComponent,
+    SelectorSelectComponent
   ],
   declarations: [
     CategorySelectComponent,
     FarmSelectComponent,
     DriverSelectComponent,
     StationSelectComponent,
-    ReaperSelectComponent
+    ReaperSelectComponent,
+    SelectorSelectComponent
 
   ],
   providers: [
     CategoryService,
     DriverService,
     StationService,
-    ReaperService
+    ReaperService,
+    SelectorService
 
   ]
 })

@@ -5,6 +5,7 @@ import { ReaperService } from './services/reaper.service';
 import { ReaperListComponent } from './components/reaper-list/reaper-list.component';
 import { ReaperDetailListComponent } from './components/reaper-detail-list/reaper-detail-list.component';
 import { ReaperDetailService } from './services/reaper-detail.service';
+import { ReaperFormComponent } from './components/reaper-form/reaper-form.component';
 
 @NgModule({
   imports: [
@@ -13,11 +14,15 @@ import { ReaperDetailService } from './services/reaper-detail.service';
   ],
   declarations: [
     ReaperListComponent,
-    ReaperDetailListComponent
+    ReaperDetailListComponent,
+    ReaperFormComponent
   ],
   providers: [
     ReaperService,
     ReaperDetailService
+  ],
+  entryComponents: [
+    ReaperFormComponent
   ]
 })
 

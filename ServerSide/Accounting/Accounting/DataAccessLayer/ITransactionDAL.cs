@@ -19,7 +19,7 @@ namespace Accouting.DataAccessLayer
         Task<Income> GetIncomeByTransactionId(long transactioId);
         Task<Outcome> GetOutcomtByTransactionId(long transactioId);
         Task<Transfer> GetTransferByTransactionId(long transactioId);
-        Task<Selector> GetSelectorByTransactionId(long transactioId);
+        Task<SelectorDetail> GetSelectorDetailByTransactionId(long transactioId);
         Task<ReaperDetail> GetReaperDetailByTransactionId(long transactioId);
     }
 }

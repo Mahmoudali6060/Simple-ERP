@@ -1,0 +1,11 @@
+<label translate>Selector</label>
+<div class="input-container">
+    <ng-select [items]="selectorList" 
+        bindLabel="HeadName" 
+        placeholder="Select item" 
+        appendTo="body" 
+        [(ngModel)]="selected"
+        (change)="onSelectorChange()">
+</ng-select>
+        <i class="fa fa-user icon"></i>
+</div>

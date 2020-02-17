@@ -11,7 +11,7 @@ namespace Accouting.DataServiceLayer
         Task<IncomeDTO> GetIncomeByTransactionId(long transactioId);
         Task<OutcomeDTO> GetOutcomtByTransactionId(long transactioId);
         Task<TransferDTO> GetTransferByTransactionId(long transactioId);
-        Task<SelectorDTO> GetSelectorByTransactionId(long transactioId);
+        Task<SelectorDetailDTO> GetSelectorDetailByTransactionId(long transactioId);
         Task<ReaperDetailDTO> GetReaperDetailByTransactionId(long transactioId);
     }
 }

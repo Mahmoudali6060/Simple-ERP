@@ -42,9 +42,10 @@ namespace Clients.DataServiceLayer
 
         public async Task<Response> GetAll(DataSource dataSource)
         {
-            var list = _mapper.Map<IEnumerable<SelectorDTO>>(await _selectorDAL.GetAll()).AsQueryable();
+            var list = _mapper.Map<IEnumerable<Selector>>(await _selectorDAL.GetAll()).AsQueryable();
             return Helper.ToResult(list, dataSource);
         }
+
         public async Task<SelectorDTO> GetById(long id)
         {
             return _mapper.Map<SelectorDTO>(await _selectorDAL.GetById(id));

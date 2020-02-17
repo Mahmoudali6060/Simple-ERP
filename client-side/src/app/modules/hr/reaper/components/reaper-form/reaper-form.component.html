@@ -1,0 +1,36 @@
+<div mat-dialog-content>
+    <h3 class="page-title" translate>Reaper</h3>
+    <div class="panel">
+        <div class="panel-body">
+            <form #reaperForm="ngForm" (ngSubmit)="save(reaperForm)">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="text" id="HeadName" name="HeadName" [(ngModel)]="reaperModel.HeadName" class="form-control" placeholder="{{ 'HeadName' | translate }}">
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="number" id="LastTonPrice" name="LastTonPrice" [(ngModel)]="reaperModel.LastTonPrice" class="form-control" placeholder="{{ 'LastTonPrice' | translate }}">
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="number" id="Balance" name="Balance" class="form-control" [(ngModel)]="reaperModel.Balance" placeholder="{{ 'Balance' | translate }}">
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2">
+                        <button type="button" class="btn btn-primary" (click)="save(reaperForm)" [mat-dialog-close]="true" translate>Yes</button>
+                    </div>
+                    <div class="col-lg-2">
+                        <button type="button" class="btn btn-warning" (click)="hide()" translate>No</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

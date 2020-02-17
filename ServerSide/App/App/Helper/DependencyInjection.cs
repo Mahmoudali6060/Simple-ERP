@@ -38,12 +38,17 @@ namespace App.Helper
 
             services.AddTransient<IDriverDSL, DriverDSL>();
             services.AddTransient<IDriverDAL, DriverDAL>();
-            services.AddTransient<IReaperDSL, ReaperDSL>();
-            services.AddTransient<IReaperDAL, ReaperDAL>();
+
             services.AddTransient<ITransferDSL, TransferDSL>();
             services.AddTransient<ITransferDAL, TransferDAL>();
+
             services.AddTransient<ISelectorDSL, SelectorDSL>();
             services.AddTransient<ISelectorDAL, SelectorDAL>();
+            services.AddTransient<ISelectorDetailDSL, SelectorDetailDSL>();
+            services.AddTransient<ISelectorDetailDAL, SelectorDetialDAL>();
+
+            services.AddTransient<IReaperDSL, ReaperDSL>();
+            services.AddTransient<IReaperDAL, ReaperDAL>();
             services.AddTransient<IReaperDetailDSL, ReaperDetailDSL>();
             services.AddTransient<IReaperDetailDAL, ReaperDetailDAL>();
 

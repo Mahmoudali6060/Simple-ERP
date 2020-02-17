@@ -5,9 +5,11 @@ using System.Text;
 
 namespace Shared.Entities.Credit
 {
-    public class SelectorDTO : BasicsData
+    public class SelectorDTO : BaseEntity
     {
-        public long TransactionId { get; set; }
-
+        public string HeadName { get; set; }
+        public decimal Balance { get; set; }
+        public decimal LastTonPrice { get; set; }
+        public virtual IEnumerable<SelectorDetailDTO> SelectorDetails { get; set; }
     }
 }

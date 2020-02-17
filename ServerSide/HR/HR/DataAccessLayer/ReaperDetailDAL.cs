@@ -2,8 +2,11 @@
 using Data.Contexts;
 using Data.Entities.Credit;
 using Microsoft.EntityFrameworkCore;
+using Shared.Entities.Credit;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Clients.DataAccessLayer
 {
@@ -44,5 +47,33 @@ namespace Clients.DataAccessLayer
             return await _context.ReaperDetails.SingleOrDefaultAsync(x => x.Id == id);
         }
 
+        public async Task<IEnumerable<ReaperDetailDTO>> GetAllByReaperId(long reaperId)
+        {
+
+            try
+            {
+                return from rd in _context.ReaperDetails
+                       join r in _context.Reapers on rd.ReaperId equals r.Id
+                       where rd.ReaperId == reaperId
+                       select new ReaperDetailDTO
+                       {
+                           Date = rd.Date,
+                           Weight = rd.Weight,
+                           TonPrice = rd.TonPrice,
+                           PaidUp = rd.PaidUp,
+                           PaidDate = rd.PaidDate,
+                           Reaper = new ReaperDTO()
+                           {
+                               HeadName = r.HeadName,
+                               LastTonPrice = r.LastTonPrice,
+                               Balance = r.Balance
+                           }
+                       };
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

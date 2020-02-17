@@ -69,6 +69,9 @@
                                         <br>
                                     </div>
                                     <div class="col-lg-4">
+                                        <app-selector-select (entityEmitter)="onSelectorChange($event)" [id]="transactionModel.SelectorId"></app-selector-select>
+                                    </div>
+                                    <div class="col-lg-4">
                                         <label translate>Selectors Pay</label>
                                         <input type="number" id="SelectorsPay" name="SelectorsPay" [(ngModel)]="transactionModel.SelectorsPay" class="form-control"
                                             placeholder="{{ 'Selectors Pay' | translate }}">
@@ -138,7 +141,7 @@
                                             <div class="col-lg-4">
                                                 <label translate>Quantity Diffrence</label>
                                                 <input type="number" class="form-control" placeholder="{{ 'Quantity Diffrence' | translate }}" readonly
-                                                [value]="transactionModel.ClientQuantity-transactionModel.SupplierQuantity">
+                                                [value]="transactionModel.ClientQuantity-transactionModel.SupplierQuantity" [class.input-warning]="(transactionModel.ClientQuantity-transactionModel.SupplierQuantity) >100 || (transactionModel.ClientQuantity-transactionModel.SupplierQuantity) < -100 ">
                                             </div>
                                             <div class="col-lg-4">
                                                 <label translate>Total (Client)</label>

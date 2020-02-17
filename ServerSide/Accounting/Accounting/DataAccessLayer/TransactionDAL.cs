@@ -117,9 +117,9 @@ namespace Accouting.DataAccessLayer
             return await _context.Transfers.Where(x => x.TransactionId == transactioId).AsNoTracking().SingleOrDefaultAsync();
         }
 
-        public async Task<Selector> GetSelectorByTransactionId(long transactioId)
+        public async Task<SelectorDetail> GetSelectorDetailByTransactionId(long transactioId)
         {
-            return await _context.Selectors.Where(x => x.TransactionId == transactioId).AsNoTracking().SingleOrDefaultAsync();
+            return await _context.SelectorDetails.Where(x => x.TransactionId == transactioId).AsNoTracking().SingleOrDefaultAsync();
         }
 
         public async Task<ReaperDetail> GetReaperDetailByTransactionId(long transactioId)

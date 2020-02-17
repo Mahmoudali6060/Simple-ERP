@@ -2,10 +2,8 @@
 using Data.Contexts;
 using Data.Entities.Credit;
 using Microsoft.EntityFrameworkCore;
-using Shared.Entities.Credit;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
 
 namespace Clients.DataAccessLayer
 {
@@ -22,7 +20,6 @@ namespace Clients.DataAccessLayer
 
         public async Task<long> Save(Selector entity)
         {
-            _context.Entry(entity).State = EntityState.Detached;
             _context.Entry(entity).State = entity.Id > 0 ? EntityState.Modified : EntityState.Added;
             await _context.SaveChangesAsync();
             return entity.Id;

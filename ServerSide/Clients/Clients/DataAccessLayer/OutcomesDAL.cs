@@ -72,7 +72,7 @@ namespace Clients.DataAccessLayer
                             KiloPrice = o.KiloPrice,
                             Total = o.KiloPrice * (o.Quantity - o.KiloDiscount),
                             MoneyDiscount = o.MoneyDiscount,
-                            Balance = o.Balance,
+                            Balance = (o.KiloPrice * (o.Quantity - o.KiloDiscount)) - (decimal)o.PaidUp,
                             StationId = s.Id,
                             StationName = s.OwnerName,
                             PaidUp = o.PaidUp,

@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace Clients.DataServiceLayer
 {
-    public interface IReaperDetailDSL : ICRUDOperationsDSL<ReaperDetailDTO>
+    public interface ISelectorDetailDSL : ICRUDOperationsDSL<SelectorDetailDTO>
     {
-        Task<Response> GetAllByReaperId(long reaperId, DataSource dataSource);
+        Task<Response> GetAllBySelectorId(long selectorId, DataSource dataSource);
     }
 }

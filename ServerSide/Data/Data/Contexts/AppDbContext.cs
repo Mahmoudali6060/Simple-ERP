@@ -36,6 +36,7 @@ namespace Data.Contexts
         public DbSet<ReaperDetail> ReaperDetails { get; set; }
         public DbSet<Salary> Salaries { get; set; }
         public DbSet<Selector> Selectors { get; set; }
+        public DbSet<SelectorDetail> SelectorDetails { get; set; }
 
         //Shared entities
         public DbSet<Customer> Customers { get; set; }

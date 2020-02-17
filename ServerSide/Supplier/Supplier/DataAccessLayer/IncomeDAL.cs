@@ -78,7 +78,7 @@ namespace Supplier.DataAccessLayer
                             KiloPrice = i.KiloPrice,
                             Total = i.KiloPrice * (i.Quantity - i.KiloDiscount),
                             MoneyDiscount = i.MoneyDiscount,
-                            Balance = i.Balance,
+                            Balance = (i.KiloPrice * (i.Quantity - i.KiloDiscount)) - (decimal)i.PaidUp,
                             StationId = s.Id,
                             StationName = s.OwnerName,
                             PaidUp = i.PaidUp,

@@ -4,4 +4,8 @@ import { BaseEntityService } from '../../../../shared/services/base-entity.servi
 @Injectable()
 export class ReaperDetailService extends BaseEntityService {
   entityName = "ReaperDetail";
+
+  getAllByReaperId(reaperId, dataSource): any {
+    return this._http.post(`${this.baseUrl}api/${this.entityName}/GetAllByReaperId/` + reaperId, dataSource);
+  }
 }

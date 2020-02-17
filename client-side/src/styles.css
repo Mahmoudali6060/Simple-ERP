@@ -98,3 +98,8 @@ thead{
     margin-left: 2%;
     background-color: #2B337F;
   }
+
+  .input-warning{
+      background-color: red !important;
+      color: white !important;
+  }

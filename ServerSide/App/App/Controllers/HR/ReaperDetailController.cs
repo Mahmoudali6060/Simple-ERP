@@ -48,5 +48,8 @@ namespace App.Controllers.HR
                 return BadRequest(ex.Message);
             }
         }
+        [HttpPost, Route("GetAllByReaperId/{ReaperId}")]
+        public async Task<IActionResult> GetAllByReaperId(long reaperId, [FromBody]DataSource dataSource) => Ok(await _reaperDetailDSL.GetAllByReaperId(reaperId, dataSource));
+
     }
 }
