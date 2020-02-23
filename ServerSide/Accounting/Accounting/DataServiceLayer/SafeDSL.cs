@@ -12,6 +12,7 @@ using Shared.Entities.Debit;
 using Data.Entities.Debit;
 using Shared.Entities.Shared;
 using Shared.Classes;
+using Shared.Enums;
 
 namespace Accouting.DataServiceLayer
 {
@@ -30,6 +31,7 @@ namespace Accouting.DataServiceLayer
             try
             {
                 return await _safeDAL.Save(_mapper.Map<Safe>(entity));
+                //if(entity.AccountTreeId==AccountTreeEnum.In)
             }
             catch (Exception ex)
             {

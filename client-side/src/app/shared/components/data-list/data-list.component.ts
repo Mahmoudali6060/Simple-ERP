@@ -31,6 +31,7 @@ export class DataListComponent {
   model: any = {};
   @Input() actions: Array<ActionModel>;//Custom Actions for tables component
   @Output() makeAction = new EventEmitter<any>();//Custom Action (Details)
+  @Input() isReadonly: boolean = false;
   //#endregion
 
   constructor(public dialog: MatDialog) {

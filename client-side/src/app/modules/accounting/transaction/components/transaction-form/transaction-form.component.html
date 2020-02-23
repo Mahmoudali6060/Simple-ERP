@@ -27,12 +27,29 @@
                                     <div class="col-lg-4">
                                         <label translate>Quantity (Supplier)</label>
                                         <input type="number" id="SupplierQuantity" name="SupplierQuantity" [(ngModel)]="transactionModel.SupplierQuantity" class="form-control"
-                                            placeholder="{{ 'Quantity (Supplier)' | translate }}" (ngModelChange)="calculatePearsPay()">
+                                            placeholder="{{ 'Quantity (Supplier)' | translate }}" (ngModelChange)="calculateTotalAfterPardon()">
                                     </div>
 
                                     <div class="col-lg-4">
+                                        <label translate>Pardon Type</label>
+                                        <select class="form-control" id="pardonType" name="pardonType" [(ngModel)]="pardonType" (ngModelChange)="calculateTotalAfterPardon()">
+                                            <option value="percentage" translate>Percentage (%)</option>
+                                            <option value="value" translate>Value</option>
+                                        </select>
+                                        <br>
+                                    </div>
+                                    <div class="col-lg-4" *ngIf="pardonType=='percentage'">
+                                        <label translate>Pardon Percentage</label>
+                                        <input type="number" id="pardonPercentage" name="pardonPercentage" [(ngModel)]="pardonPercentage" class="form-control" placeholder="{{ 'Pardon Percentage' | translate }}"
+                                            [value]="2" (ngModelChange)="calculateTotalAfterPardon()">
+                                    </div>
+                                    <div class="col-lg-4">
                                         <label translate>Pardon</label>
-                                        <input type="number" id="Pardon" name="Pardon" [(ngModel)]="transactionModel.Pardon" class="form-control" placeholder="{{ 'Pardon' | translate }}">
+                                        <input *ngIf="pardonType=='percentage'" type="number" id="Pardon" name="Pardon" [(ngModel)]="transactionModel.Pardon" class="form-control"
+                                            placeholder="{{ 'Pardon' | translate }}" [value]="(pardonPercentage/100) * transactionModel.SupplierQuantity"
+                                            readonly >
+                                        <input *ngIf="pardonType=='value'" type="number" id="Pardon" name="Pardon" [(ngModel)]="transactionModel.Pardon" class="form-control"
+                                            placeholder="{{ 'Pardon' | translate }}" (ngModelChange)="calculateTotalAfterPardon()">
                                         <br>
                                     </div>
                                     <div class="col-lg-4">
@@ -58,6 +75,7 @@
                                     <div class="col-lg-4">
                                         <label translate>Nolon</label>
                                         <input type="number" id="Nolon" name="Nolon" [(ngModel)]="transactionModel.Nolon" class="form-control" placeholder="{{ 'Nolon' | translate }}">
+                                        <br>
                                     </div>
 
                                     <div class="col-lg-4">
@@ -140,8 +158,8 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <label translate>Quantity Diffrence</label>
-                                                <input type="number" class="form-control" placeholder="{{ 'Quantity Diffrence' | translate }}" readonly
-                                                [value]="transactionModel.ClientQuantity-transactionModel.SupplierQuantity" [class.input-warning]="(transactionModel.ClientQuantity-transactionModel.SupplierQuantity) >100 || (transactionModel.ClientQuantity-transactionModel.SupplierQuantity) < -100 ">
+                                                <input type="number" class="form-control" placeholder="{{ 'Quantity Diffrence' | translate }}" readonly [value]="transactionModel.ClientQuantity-transactionModel.SupplierQuantity"
+                                                    [class.input-warning]="(transactionModel.ClientQuantity-transactionModel.SupplierQuantity) >100 || (transactionModel.ClientQuantity-transactionModel.SupplierQuantity) < -100 ">
                                             </div>
                                             <div class="col-lg-4">
                                                 <label translate>Total (Client)</label>

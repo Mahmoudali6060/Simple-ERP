@@ -44,6 +44,7 @@ namespace Data.Contexts
         public DbSet<Driver> Drivers { get; set; }
         public DbSet<Transfer> Transfers { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<AccountTree> AccountTrees { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

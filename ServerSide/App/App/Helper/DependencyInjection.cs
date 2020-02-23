@@ -66,6 +66,9 @@ namespace App.Helper
             services.AddTransient<ISalaryDSL, SalaryDSL>();
             services.AddTransient<ISalaryDAL, SalaryDAL>();
 
+            services.AddTransient<IAccountTreeDSL, AccountTreeDSL>();
+            services.AddTransient<IAccountTreeDAL, AccountTreeDAL>();
+
         }
     }
 }

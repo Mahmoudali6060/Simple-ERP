@@ -16,7 +16,8 @@ export class TransactionFormComponent {
   transactionModel: TransactionModel = new TransactionModel;
   farmList: Array<FarmModel>;
   lastTonPrice: number;
-
+  pardonPercentage: number = 2;
+  pardonType: string = "percentage";
   constructor(private farmService: FarmService,
     private router: Router,
     private transactionService: TransactionService,
@@ -95,6 +96,17 @@ export class TransactionFormComponent {
   private calculatePearsPay() {
     if (this.transactionModel.SupplierQuantity && this.lastTonPrice)
       this.transactionModel.ReapersPay = (this.transactionModel.SupplierQuantity / 1000) * this.lastTonPrice;
+  }
+
+  public calculateTotalAfterPardon() {
+    if (this.pardonType == "percentage"  && this.transactionModel.SupplierQuantity) {
+      this.transactionModel.Pardon= (this.pardonPercentage / 100) * this.transactionModel.SupplierQuantity;
+      this.transactionModel.TotalAfterPardon =this.transactionModel.SupplierQuantity-this.transactionModel.Pardon;
+    }
+    else if (this.transactionModel.Pardon && this.transactionModel.SupplierQuantity) {
+      this.transactionModel.TotalAfterPardon = this.transactionModel.SupplierQuantity - this.transactionModel.Pardon;
+    }
+
   }
 
 }

@@ -3,10 +3,24 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "AccountTrees",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NameEn = table.Column<string>(nullable: true),
+                    NameAr = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AccountTrees", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -193,25 +207,6 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Safes",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Created = table.Column<DateTime>(nullable: false),
-                    Modified = table.Column<DateTime>(nullable: true),
-                    Date = table.Column<DateTime>(nullable: false),
-                    Incoming = table.Column<decimal>(nullable: false),
-                    Outcoming = table.Column<decimal>(nullable: false),
-                    Balance = table.Column<decimal>(nullable: false),
-                    Description = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Safes", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Salaries",
                 columns: table => new
                 {
@@ -238,11 +233,9 @@ namespace Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<DateTime>(nullable: false),
                     Modified = table.Column<DateTime>(nullable: true),
-                    PayDate = table.Column<DateTime>(nullable: false),
-                    Pay = table.Column<decimal>(nullable: false),
-                    WithdrawsDate = table.Column<DateTime>(nullable: true),
-                    Withdraws = table.Column<decimal>(nullable: true),
-                    Balance = table.Column<decimal>(nullable: true)
+                    HeadName = table.Column<string>(nullable: true),
+                    Balance = table.Column<decimal>(nullable: false),
+                    LastTonPrice = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -266,6 +259,32 @@ namespace Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Stations", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Safes",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Created = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: true),
+                    Date = table.Column<DateTime>(nullable: false),
+                    Incoming = table.Column<decimal>(nullable: false),
+                    Outcoming = table.Column<decimal>(nullable: false),
+                    Balance = table.Column<decimal>(nullable: false),
+                    AccountTreeId = table.Column<long>(nullable: false),
+                    Description = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Safes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Safes_AccountTrees_AccountTreeId",
+                        column: x => x.AccountTreeId,
+                        principalTable: "AccountTrees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -409,7 +428,8 @@ namespace Data.Migrations
                     TonPrice = table.Column<decimal>(nullable: false),
                     PaidUp = table.Column<decimal>(nullable: true),
                     PaidDate = table.Column<DateTime>(nullable: true),
-                    ReaperId = table.Column<long>(nullable: false)
+                    ReaperId = table.Column<long>(nullable: false),
+                    TransactionId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -443,7 +463,8 @@ namespace Data.Migrations
                     StationId = table.Column<long>(nullable: false),
                     PaidUp = table.Column<decimal>(nullable: true),
                     PaidDate = table.Column<DateTime>(nullable: true),
-                    RecieptNumber = table.Column<string>(nullable: true)
+                    RecieptNumber = table.Column<string>(nullable: true),
+                    TransactionId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -495,7 +516,8 @@ namespace Data.Migrations
                     FarmId = table.Column<long>(nullable: false),
                     PaidUp = table.Column<decimal>(nullable: true),
                     PaidDate = table.Column<DateTime>(nullable: true),
-                    RecieptNumber = table.Column<string>(nullable: true)
+                    RecieptNumber = table.Column<string>(nullable: true),
+                    TransactionId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -605,7 +627,8 @@ namespace Data.Migrations
                     Custody = table.Column<decimal>(nullable: false),
                     Withdraws = table.Column<decimal>(nullable: true),
                     Balance = table.Column<decimal>(nullable: true),
-                    Notes = table.Column<string>(nullable: true)
+                    Notes = table.Column<string>(nullable: true),
+                    TransactionId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -626,6 +649,39 @@ namespace Data.Migrations
                         name: "FK_Transfers_Stations_StationId",
                         column: x => x.StationId,
                         principalTable: "Stations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SelectorDetails",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Created = table.Column<DateTime>(nullable: false),
+                    Modified = table.Column<DateTime>(nullable: true),
+                    PayDate = table.Column<DateTime>(nullable: false),
+                    Pay = table.Column<decimal>(nullable: false),
+                    WithdrawsDate = table.Column<DateTime>(nullable: true),
+                    Withdraws = table.Column<decimal>(nullable: true),
+                    Balance = table.Column<decimal>(nullable: true),
+                    TransactionId = table.Column<long>(nullable: false),
+                    SelectorId = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SelectorDetails", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SelectorDetails_Selectors_SelectorId",
+                        column: x => x.SelectorId,
+                        principalTable: "Selectors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SelectorDetails_Transactions_TransactionId",
+                        column: x => x.TransactionId,
+                        principalTable: "Transactions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -720,6 +776,21 @@ namespace Data.Migrations
                 column: "ReaperId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Safes_AccountTreeId",
+                table: "Safes",
+                column: "AccountTreeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SelectorDetails_SelectorId",
+                table: "SelectorDetails",
+                column: "SelectorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SelectorDetails_TransactionId",
+                table: "SelectorDetails",
+                column: "TransactionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Transactions_CategoryId",
                 table: "Transactions",
                 column: "CategoryId");
@@ -808,10 +879,7 @@ namespace Data.Migrations
                 name: "Salaries");
 
             migrationBuilder.DropTable(
-                name: "Selectors");
-
-            migrationBuilder.DropTable(
-                name: "Transactions");
+                name: "SelectorDetails");
 
             migrationBuilder.DropTable(
                 name: "Transfers");
@@ -823,16 +891,25 @@ namespace Data.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "AccountTrees");
 
             migrationBuilder.DropTable(
-                name: "Reapers");
+                name: "Selectors");
+
+            migrationBuilder.DropTable(
+                name: "Transactions");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Drivers");
 
             migrationBuilder.DropTable(
                 name: "Farms");
+
+            migrationBuilder.DropTable(
+                name: "Reapers");
 
             migrationBuilder.DropTable(
                 name: "Stations");

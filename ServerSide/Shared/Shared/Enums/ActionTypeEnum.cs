@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Shared.Enums
 {
-    public enum ActionTypeEnum
+    public enum ActionTreeTypeEnum
     {
         Add,
         Update,

@@ -582,6 +582,9 @@ namespace Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long>("AccountTreeId")
+                        .HasColumnType("bigint");
+
                     b.Property<decimal>("Balance")
                         .HasColumnType("decimal(18,2)");
 
@@ -604,6 +607,8 @@ namespace Data.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AccountTreeId");
 
                     b.ToTable("Safes");
                 });
@@ -639,6 +644,24 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Stations");
+                });
+
+            modelBuilder.Entity("Data.Entities.Shared.AccountTree", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("NameAr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AccountTrees");
                 });
 
             modelBuilder.Entity("Data.Entities.Shared.Category", b =>
@@ -1083,6 +1106,15 @@ namespace Data.Migrations
                     b.HasOne("Data.Entities.Debit.Station", "Station")
                         .WithMany("Outcomes")
                         .HasForeignKey("StationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Data.Entities.Debit.Safe", b =>
+                {
+                    b.HasOne("Data.Entities.Shared.AccountTree", "AccountTree")
+                        .WithMany()
+                        .HasForeignKey("AccountTreeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

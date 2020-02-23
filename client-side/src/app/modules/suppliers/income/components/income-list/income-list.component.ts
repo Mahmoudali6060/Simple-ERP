@@ -13,7 +13,8 @@ import { MatDialog } from '@angular/material';
 export class IncomeListComponent {
   //#region Variables
   incomeList: Array<IncomeModel>;//Data List
-  properties = ["Date", "CartNumber", "CategoryName", "FarmName","CarPlate","Quantity","KiloDiscount","QuantityAfterDiscount","KiloPrice","Total","MoneyDiscount","Balance","StationName","PaidUp","PaidDate","RecieptNumber"];//Displayed Columns 
+  properties = ["Date", "CartNumber", "CategoryName", "FarmName","CarPlate","Quantity","KiloDiscount","QuantityAfterDiscount","KiloPrice","Total","MoneyDiscount","Balance","StationName"];//Displayed Columns 
+  safeProperties = ["PaidUp","PaidDate","RecieptNumber"];//Displayed Columns 
   income: IncomeModel = new IncomeModel();//For Add/Update Income Entity
   dataSourceModel: DataSourceModel = new DataSourceModel;//Pagination and Filteration Settings
   total: number;//Total number of rows

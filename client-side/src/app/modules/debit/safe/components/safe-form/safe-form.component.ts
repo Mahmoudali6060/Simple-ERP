@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { SafeService } from '../../services/safe.service';
 import { SafeModel } from '../../models/safe.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { AccountTreeEnum } from 'src/app/shared/enums/account-tree.enum';
 
 @Component({
   selector: 'app-safe-form',
@@ -13,7 +14,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 export class SafeFormComponent {
 
   safeModel: SafeModel = new SafeModel;
-
+  accountTreeList: any;
   constructor(private router: Router, private safeService: SafeService, private avtiveRoute: ActivatedRoute,
     public dialogRef: MatDialogRef<SafeFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -24,6 +25,7 @@ export class SafeFormComponent {
     if (this.data && this.data.id) {
       this.getSafeById(this.data.id);
     }
+    this.prepareAccountTreeList();
   }
 
   private getSafeById(id) {
@@ -32,6 +34,16 @@ export class SafeFormComponent {
       this.safeModel.Date = new Date(response.Date);
     }, err => {
     });
+  }
+
+  private prepareAccountTreeList() {
+    var options = Object.keys(AccountTreeEnum);
+    this.accountTreeList = options.slice(options.length / 2);
+  }
+
+  public onAccountTreeChange(value : string) {
+      // this.myValue = AgentStatus[value];
+      // this.isOffline = this.myValue == AgentStatus.offline;
   }
 
   public save(form: NgForm) {

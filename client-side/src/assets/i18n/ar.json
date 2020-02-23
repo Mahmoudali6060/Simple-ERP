@@ -104,15 +104,21 @@
     "Transaction": "العملية اليومية",
     "Transactions": "العمليات اليومية",
     "Dashboard": "لوحة التحكم",
-    "Suppliers":"الموردين",
-    "Clients":"العملاء",
-    "Employee":"الموظفين",
-    "Borrow":"سلف",
-    "Current":"جاري",
-    "Safe":"الخزنة",
-    "Salary":"مرتبات",
+    "Suppliers": "الموردين",
+    "Clients": "العملاء",
+    "Employee": "الموظفين",
+    "Borrow": "سلف",
+    "Current": "جاري",
+    "Safe": "الخزنة",
+    "Salary": "مرتبات",
     "Driver": "سائق",
-    "Drivers": "سائقون"
+    "Drivers": "سائقون",
+    "Pardon Type": "نوع السماح",
+    "Percentage (%)": "النسبة المئوية(%)",
+    "Value": "القيمة الثابتة",
+    "Pardon Percentage": "نسبة السماح ",
+    "Incoming": "وارد",
+    "Outcoming": "منصرف",
+    "Reapers":"قطف"
     
-
 }

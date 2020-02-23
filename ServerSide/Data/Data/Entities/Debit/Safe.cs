@@ -11,6 +11,8 @@ namespace Data.Entities.Debit
         public decimal Incoming { get; set; }
         public decimal Outcoming { get; set; }
         public decimal Balance { get; set; }
+        public long AccountTreeId { get; set; }
         public string Description { get; set; }
+        public virtual AccountTree AccountTree { get; set; }
     }
 }

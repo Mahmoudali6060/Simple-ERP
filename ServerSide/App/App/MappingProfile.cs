@@ -60,6 +60,8 @@ namespace App
             CreateMap<Salary, SalaryDTO>();
             CreateMap<SalaryDTO, Salary>();
 
+            CreateMap<AccountTree, AccountTreeDTO>();
+            CreateMap<AccountTreeDTO, AccountTree>();
         }
     }
 }

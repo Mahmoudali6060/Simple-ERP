@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200212214238_AddingTransactionIdToTwoTables")]
-    partial class AddingTransactionIdToTwoTables
+    [Migration("20200218234111_InitialDB")]
+    partial class InitialDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -323,6 +323,33 @@ namespace Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("HeadName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("LastTonPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Selectors");
+                });
+
+            modelBuilder.Entity("Data.Entities.Credit.SelectorDetail", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<decimal?>("Balance")
                         .HasColumnType("decimal(18,2)");
 
@@ -338,6 +365,9 @@ namespace Data.Migrations
                     b.Property<DateTime>("PayDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<long>("SelectorId")
+                        .HasColumnType("bigint");
+
                     b.Property<long>("TransactionId")
                         .HasColumnType("bigint");
 
@@ -349,7 +379,11 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Selectors");
+                    b.HasIndex("SelectorId");
+
+                    b.HasIndex("TransactionId");
+
+                    b.ToTable("SelectorDetails");
                 });
 
             modelBuilder.Entity("Data.Entities.Credit.Transfer", b =>
@@ -550,6 +584,9 @@ namespace Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long>("AccountTreeId")
+                        .HasColumnType("bigint");
+
                     b.Property<decimal>("Balance")
                         .HasColumnType("decimal(18,2)");
 
@@ -572,6 +609,8 @@ namespace Data.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AccountTreeId");
 
                     b.ToTable("Safes");
                 });
@@ -607,6 +646,24 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Stations");
+                });
+
+            modelBuilder.Entity("Data.Entities.Shared.AccountTree", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("NameAr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AccountTrees");
                 });
 
             modelBuilder.Entity("Data.Entities.Shared.Category", b =>
@@ -992,6 +1049,21 @@ namespace Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Data.Entities.Credit.SelectorDetail", b =>
+                {
+                    b.HasOne("Data.Entities.Credit.Selector", "Selector")
+                        .WithMany("SelectorDetails")
+                        .HasForeignKey("SelectorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Entities.Shared.Transaction", "Transaction")
+                        .WithMany()
+                        .HasForeignKey("TransactionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Data.Entities.Credit.Transfer", b =>
                 {
                     b.HasOne("Data.Entities.Credit.Driver", "Driver")
@@ -1036,6 +1108,15 @@ namespace Data.Migrations
                     b.HasOne("Data.Entities.Debit.Station", "Station")
                         .WithMany("Outcomes")
                         .HasForeignKey("StationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Data.Entities.Debit.Safe", b =>
+                {
+                    b.HasOne("Data.Entities.Shared.AccountTree", "AccountTree")
+                        .WithMany()
+                        .HasForeignKey("AccountTreeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
