@@ -69,6 +69,19 @@ namespace App.Helper
             services.AddTransient<IAccountTreeDSL, AccountTreeDSL>();
             services.AddTransient<IAccountTreeDAL, AccountTreeDAL>();
 
+            services.AddTransient<IFarmAccountDSL, FarmAccountDSL>();
+            services.AddTransient<IFarmAccountDAL, FarmAccountDAL>();
+            services.AddTransient<IStationAccountDSL, StationAccountDSL>();
+            services.AddTransient<IStationAccountDAL, StationAccountDAL>();
+
+            services.AddTransient<IDriverAccountDSL, DriverAccountDSL>();
+            services.AddTransient<IDriverAccountDAL, DriverAccountDAL>();
+            services.AddTransient<IReaperAccountDSL, ReaperAccountDSL>();
+            services.AddTransient<IReaperAccountDAL, ReaperAccountDAL>();
+            services.AddTransient<ISelectorAccountDSL, SelectorAccountDSL>();
+            services.AddTransient<ISelectorAccountDAL, SelectorAccountDAL>();
+
+
         }
     }
 }

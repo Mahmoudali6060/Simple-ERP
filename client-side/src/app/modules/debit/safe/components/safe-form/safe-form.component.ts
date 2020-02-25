@@ -15,6 +15,7 @@ export class SafeFormComponent {
 
   safeModel: SafeModel = new SafeModel;
   accountTreeList: any;
+  accountTreeType: any;
   constructor(private router: Router, private safeService: SafeService, private avtiveRoute: ActivatedRoute,
     public dialogRef: MatDialogRef<SafeFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -32,6 +33,7 @@ export class SafeFormComponent {
     this.safeService.getById(id).subscribe(response => {
       this.safeModel = response;
       this.safeModel.Date = new Date(response.Date);
+      this.accountTreeType = AccountTreeEnum[this.safeModel.AccountTreeType];
     }, err => {
     });
   }
@@ -41,9 +43,8 @@ export class SafeFormComponent {
     this.accountTreeList = options.slice(options.length / 2);
   }
 
-  public onAccountTreeChange(value : string) {
-      // this.myValue = AgentStatus[value];
-      // this.isOffline = this.myValue == AgentStatus.offline;
+  public onAccountTreeChange(value: string) {
+    this.safeModel.AccountTreeType = AccountTreeEnum[value];
   }
 
   public save(form: NgForm) {
@@ -55,5 +56,25 @@ export class SafeFormComponent {
 
   public hide(): void {
     this.dialogRef.close();
+  }
+
+  onFarmChange(farm) {
+    this.safeModel.AccountId = farm.Id;
+  }
+
+  onDriverChange(driver) {
+    this.safeModel.AccountId = driver.Id;
+  }
+
+  onStationChange(station) {
+    this.safeModel.AccountId = station.Id;
+  }
+
+  onReaperChange(reaper) {
+    this.safeModel.AccountId = reaper.Id;
+  }
+
+  onSelectorChange(selector) {
+    this.safeModel.AccountId = selector.Id;
   }
 }

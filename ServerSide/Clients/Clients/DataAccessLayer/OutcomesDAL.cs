@@ -72,12 +72,13 @@ namespace Clients.DataAccessLayer
                             KiloPrice = o.KiloPrice,
                             Total = o.KiloPrice * (o.Quantity - o.KiloDiscount),
                             MoneyDiscount = o.MoneyDiscount,
-                            Balance = (o.KiloPrice * (o.Quantity - o.KiloDiscount)) - (decimal)o.PaidUp,
+                            //Balance = (o.KiloPrice * (o.Quantity - o.KiloDiscount)) - (decimal)o.PaidUp,
+                            Balance = (o.KiloPrice * (o.Quantity - o.KiloDiscount)),
                             StationId = s.Id,
                             StationName = s.OwnerName,
-                            PaidUp = o.PaidUp,
-                            PaidDate = o.PaidDate,
-                            RecieptNumber = o.RecieptNumber,
+                            //PaidUp = o.PaidUp,
+                            //PaidDate = o.PaidDate,
+                            //RecieptNumber = o.RecieptNumber,
                         });
 
             }

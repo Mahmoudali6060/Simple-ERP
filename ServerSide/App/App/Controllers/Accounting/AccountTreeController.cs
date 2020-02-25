@@ -32,7 +32,7 @@ namespace App.Controllers.Accounting
         public async Task<IActionResult> GetById(long id) => Ok(await _accountTreeDSL.GetById(id));
 
         [HttpPost, Route("Save")]
-        public async Task<IActionResult> Save(AccountTreeDTO model) => Ok(await _accountTreeDSL.Save(model));
+        public async Task<IActionResult> Save(AccountTree model) => Ok(await _accountTreeDSL.Save(model));
 
         [HttpDelete, Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int id) => Ok(await _accountTreeDSL.Delete(id));

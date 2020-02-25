@@ -45,6 +45,11 @@ namespace Data.Contexts
         public DbSet<Transfer> Transfers { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<AccountTree> AccountTrees { get; set; }
+        public DbSet<FarmAccount> FarmAccounts { get; set; }
+        public DbSet<StationAccount> StationAccounts { get; set; }
+        public DbSet<DriverAccount> DriverAccounts { get; set; }
+        public DbSet<ReaperAccount> ReaperAccounts { get; set; }
+        public DbSet<SelectorAccount> SelectorAccounts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

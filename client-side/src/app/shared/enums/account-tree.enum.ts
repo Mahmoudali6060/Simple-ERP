@@ -1,10 +1,7 @@
 export enum AccountTreeEnum {
-    Suppliers,
-    Incomes,
+    Suppliers=1,
     Clients,
-    Outcomes,
     Drivers,
-    Transfers,
     Reapers,
     Selectors
 }

@@ -25,9 +25,6 @@ namespace Shared.Entities.Credit
         public decimal Balance { get; set; }
         public long StationId { get; set; }
         public string StationName { get; set; }
-        public decimal? PaidUp { get; set; }
-        public DateTime? PaidDate { get; set; }
-        public string RecieptNumber { get; set; }
         public decimal QuantityAfterDiscount { get; set; }
         public long TransactionId { get; set; }
         public virtual FarmDTO Farm { get; set; }

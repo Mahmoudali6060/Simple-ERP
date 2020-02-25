@@ -112,6 +112,41 @@ namespace Data.Migrations
                     b.ToTable("Drivers");
                 });
 
+            modelBuilder.Entity("Data.Entities.Credit.DriverAccount", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("DriverId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("PaidDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("PaidUp")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("RecieptNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("SafeId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DriverId");
+
+                    b.ToTable("DriverAccounts");
+                });
+
             modelBuilder.Entity("Data.Entities.Credit.Farm", b =>
                 {
                     b.Property<long>("Id")
@@ -140,6 +175,44 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Farms");
+                });
+
+            modelBuilder.Entity("Data.Entities.Credit.FarmAccount", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("FarmId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("FarmerId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("PaidDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("PaidUp")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("RecieptNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("SafeId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FarmId");
+
+                    b.ToTable("FarmAccounts");
                 });
 
             modelBuilder.Entity("Data.Entities.Credit.Income", b =>
@@ -182,17 +255,8 @@ namespace Data.Migrations
                     b.Property<decimal>("MoneyDiscount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime?>("PaidDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal?>("PaidUp")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<decimal>("Quantity")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("RecieptNumber")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("StationId")
                         .HasColumnType("bigint");
@@ -238,6 +302,41 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Reapers");
+                });
+
+            modelBuilder.Entity("Data.Entities.Credit.ReaperAccount", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("PaidDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("PaidUp")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long>("ReaperId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("RecieptNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("SafeId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReaperId");
+
+                    b.ToTable("ReaperAccounts");
                 });
 
             modelBuilder.Entity("Data.Entities.Credit.ReaperDetail", b =>
@@ -339,6 +438,41 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Selectors");
+                });
+
+            modelBuilder.Entity("Data.Entities.Credit.SelectorAccount", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("PaidDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("PaidUp")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("RecieptNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("SafeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("SelectorId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SelectorId");
+
+                    b.ToTable("SelectorAccounts");
                 });
 
             modelBuilder.Entity("Data.Entities.Credit.SelectorDetail", b =>
@@ -544,17 +678,8 @@ namespace Data.Migrations
                     b.Property<decimal>("MoneyDiscount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime?>("PaidDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal?>("PaidUp")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<decimal>("Quantity")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("RecieptNumber")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("StationId")
                         .HasColumnType("bigint");
@@ -582,11 +707,11 @@ namespace Data.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("AccountTreeId")
+                    b.Property<long>("AccountId")
                         .HasColumnType("bigint");
 
-                    b.Property<decimal>("Balance")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("AccountTreeType")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -606,9 +731,10 @@ namespace Data.Migrations
                     b.Property<decimal>("Outcoming")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("RecieptNumber")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("AccountTreeId");
+                    b.HasKey("Id");
 
                     b.ToTable("Safes");
                 });
@@ -644,6 +770,41 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Stations");
+                });
+
+            modelBuilder.Entity("Data.Entities.Debit.StationAccount", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("PaidDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("PaidUp")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("RecieptNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("SafeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("StationId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StationId");
+
+                    b.ToTable("StationAccounts");
                 });
 
             modelBuilder.Entity("Data.Entities.Shared.AccountTree", b =>
@@ -1011,6 +1172,22 @@ namespace Data.Migrations
                     b.HasDiscriminator().HasValue("AppUser");
                 });
 
+            modelBuilder.Entity("Data.Entities.Credit.DriverAccount", b =>
+                {
+                    b.HasOne("Data.Entities.Credit.Driver", "Driver")
+                        .WithMany()
+                        .HasForeignKey("DriverId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Data.Entities.Credit.FarmAccount", b =>
+                {
+                    b.HasOne("Data.Entities.Credit.Farm", "Farm")
+                        .WithMany()
+                        .HasForeignKey("FarmId");
+                });
+
             modelBuilder.Entity("Data.Entities.Credit.Income", b =>
                 {
                     b.HasOne("Data.Entities.Shared.Category", "Category")
@@ -1038,11 +1215,29 @@ namespace Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Data.Entities.Credit.ReaperAccount", b =>
+                {
+                    b.HasOne("Data.Entities.Credit.Reaper", "Reaper")
+                        .WithMany()
+                        .HasForeignKey("ReaperId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Data.Entities.Credit.ReaperDetail", b =>
                 {
                     b.HasOne("Data.Entities.Credit.Reaper", "Reaper")
                         .WithMany("ReaperDetails")
                         .HasForeignKey("ReaperId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Data.Entities.Credit.SelectorAccount", b =>
+                {
+                    b.HasOne("Data.Entities.Credit.Selector", "Selector")
+                        .WithMany()
+                        .HasForeignKey("SelectorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -1110,11 +1305,11 @@ namespace Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Data.Entities.Debit.Safe", b =>
+            modelBuilder.Entity("Data.Entities.Debit.StationAccount", b =>
                 {
-                    b.HasOne("Data.Entities.Shared.AccountTree", "AccountTree")
+                    b.HasOne("Data.Entities.Debit.Station", "Station")
                         .WithMany()
-                        .HasForeignKey("AccountTreeId")
+                        .HasForeignKey("StationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -11,6 +11,7 @@ import { ReaperSelectComponent } from './components/reaper-select/reaper-select.
 import { ReaperService } from '../../hr/reaper/services/reaper.service';
 import { SelectorSelectComponent } from './components/selector-select/selector-select.component';
 import { SelectorService } from '../../hr/selector/services/selector.service';
+import { FarmService } from 'src/app/modules/suppliers/farm/services/farm.service';
 
 @NgModule({
   imports: [
@@ -38,8 +39,8 @@ import { SelectorService } from '../../hr/selector/services/selector.service';
     DriverService,
     StationService,
     ReaperService,
-    SelectorService
-
+    SelectorService,
+    FarmService
   ]
 })
 

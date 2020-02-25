@@ -13,8 +13,6 @@ export class HeaderComponent {
   constructor(private translate: TranslateService, private authService: AuthService, private router: Router, private localeService: BsLocaleService) {
     translate.setDefaultLang('ar');
     this.localeService.use('ar');
-    console.log("loaded the header");
-
   }
 
   public toggleSideMenu() {

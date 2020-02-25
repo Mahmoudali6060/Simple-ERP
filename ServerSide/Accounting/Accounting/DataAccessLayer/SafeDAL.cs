@@ -48,5 +48,29 @@ namespace Accouting.DataAccessLayer
             return await _context.Safes.SingleOrDefaultAsync(x => x.Id == id);
         }
 
+        public FarmAccount GetFarmAccountBySafeId(long safeId)
+        {
+            return _context.FarmAccounts.Where(x => x.SafeId == safeId).SingleOrDefault();
+        }
+
+        public StationAccount GetStationAccountBySafeId(long safeId)
+        {
+            return _context.StationAccounts.Where(x => x.SafeId == safeId).SingleOrDefault();
+        }
+
+        public DriverAccount GetDriverAccountBySafeId(long safeId)
+        {
+            return _context.DriverAccounts.Where(x => x.SafeId == safeId).SingleOrDefault();
+        }
+
+        public SelectorAccount GetSelectorAccountBySafeId(long safeId)
+        {
+            return _context.SelectorAccounts.Where(x => x.SafeId == safeId).SingleOrDefault();
+        }
+
+        public ReaperAccount GetReaperAccountBySafeId(long safeId)
+        {
+            return _context.ReaperAccounts.Where(x => x.SafeId == safeId).SingleOrDefault();
+        }
     }
 }

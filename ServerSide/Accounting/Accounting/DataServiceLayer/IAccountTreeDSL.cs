@@ -4,7 +4,7 @@ using Shared.DataServiceLayer;
 
 namespace Accouting.DataServiceLayer
 {
-    public interface IAccountTreeDSL : ICRUDOperationsDSL<AccountTreeDTO>
+    public interface IAccountTreeDSL : ICRUDOperationsDSL<AccountTree>
     {
 
     }

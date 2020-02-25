@@ -26,7 +26,7 @@ namespace Accouting.DataServiceLayer
             _mapper = mapper;
         }
 
-        public async Task<long> Save(AccountTreeDTO entity)
+        public async Task<long> Save(AccountTree entity)
         {
             try
             {
@@ -46,19 +46,19 @@ namespace Accouting.DataServiceLayer
 
         public async Task<Response> GetAll(DataSource dataSource)
         {
-            var list = _mapper.Map<IEnumerable<AccountTreeDTO>>(await _accountTreeDAL.GetAll()).AsQueryable();
+            var list = _mapper.Map<IEnumerable<AccountTree>>(await _accountTreeDAL.GetAll()).AsQueryable();
             return Helper.ToResult(list, dataSource);
         }
-        public async Task<AccountTreeDTO> GetById(long id)
+        public async Task<AccountTree> GetById(long id)
         {
-            return _mapper.Map<AccountTreeDTO>(await _accountTreeDAL.GetById(id));
+            return _mapper.Map<AccountTree>(await _accountTreeDAL.GetById(id));
         }
 
-        public async Task<ResponseEntityList<AccountTreeDTO>> GetAllLite()
+        public async Task<ResponseEntityList<AccountTree>> GetAllLite()
         {
-            return new ResponseEntityList<AccountTreeDTO>()
+            return new ResponseEntityList<AccountTree>()
             {
-                List = _mapper.Map<IEnumerable<AccountTreeDTO>>(await _accountTreeDAL.GetAll()).ToList(),
+                List = _mapper.Map<IEnumerable<AccountTree>>(await _accountTreeDAL.GetAll()).ToList(),
             };
         }
     }

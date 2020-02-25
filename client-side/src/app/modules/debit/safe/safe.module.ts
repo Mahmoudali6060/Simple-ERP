@@ -4,11 +4,13 @@ import { SafeRoutingModule } from './safe-routing.module';
 import { SafeListComponent } from './components/safe-list/safe-list.component';
 import { SafeService } from './services/safe.service';
 import { SafeFormComponent } from './components/safe-form/safe-form.component';
+import { AccountingSharedModule } from 'src/app/modules/accounting/accounting-shared/accounting-shared.module';
 
 @NgModule({
   imports: [
     SafeRoutingModule,
-    SharedModule.forRoot()
+    SharedModule.forRoot(),
+    AccountingSharedModule
 
   ],
   declarations: [

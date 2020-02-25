@@ -60,8 +60,23 @@ namespace App
             CreateMap<Salary, SalaryDTO>();
             CreateMap<SalaryDTO, Salary>();
 
-            CreateMap<AccountTree, AccountTreeDTO>();
-            CreateMap<AccountTreeDTO, AccountTree>();
+            CreateMap<AccountTree, AccountTree>();
+            CreateMap<AccountTree, AccountTree>();
+
+            CreateMap<FarmAccount, FarmAccountDTO>();
+            CreateMap<FarmAccountDTO, FarmAccount>();
+
+            CreateMap<StationAccount, StationAccountDTO>();
+            CreateMap<StationAccountDTO, StationAccount>();
+
+            CreateMap<DriverAccount, DriverAccountDTO>();
+            CreateMap<DriverAccountDTO, DriverAccount>();
+            CreateMap<ReaperAccount, ReaperAccountDTO>();
+            CreateMap<ReaperAccountDTO, ReaperAccount>();
+            CreateMap<SelectorAccount, SelectorAccountDTO>();
+            CreateMap<SelectorAccountDTO, SelectorAccount>();
+
+
         }
     }
 }

@@ -25,9 +25,6 @@ namespace Shared.Entities.Debit
         public decimal Balance { get; set; }
         public long FarmId { get; set; }
         public string FarmName { get; set; }
-        public decimal? PaidUp { get; set; }
-        public DateTime? PaidDate { get; set; }
-        public string RecieptNumber { get; set; }
         public decimal QuantityAfterDiscount { get; set; }
         public long TransactionId { get; set; }
         public virtual FarmDTO Farm { get; set; }

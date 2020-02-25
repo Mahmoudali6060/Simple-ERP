@@ -39,5 +39,10 @@
     "Total": "Total",
     "Station Account Statement": "Station Account Statement for ",
     "Car-Driver": "Car-Driver",
-    "Number":"Number"
+    "Number": "Number",
+    "Suppliers": "Suppliers",
+    "Clients": "Clients",
+    "Drivers": "Drivers",
+    "Reapers": "Reapers",
+    "Selectors": "Selectors"
 }
