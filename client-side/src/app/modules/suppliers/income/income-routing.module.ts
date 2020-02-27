@@ -4,6 +4,8 @@ import { IncomeListComponent } from './components/income-list/income-list.compon
 
 const routes: Routes = [
   { path: '', component: IncomeListComponent },
+  { path: 'income-list/:farmId', component: IncomeListComponent },
+
 ];
 
 @NgModule({

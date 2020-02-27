@@ -44,5 +44,7 @@
     "Clients": "Clients",
     "Drivers": "Drivers",
     "Reapers": "Reapers",
-    "Selectors": "Selectors"
+    "Selectors": "Selectors",
+    "PaidUpTotal":"PaidUp Total",
+    "BalanceTotal":"Balance Total"
 }

@@ -12,6 +12,6 @@ namespace Supplier.DataServiceLayer
 {
     public interface IDriverAccountDSL : ICRUDOperationsDSL<DriverAccountDTO>
     {
-
+        Task<Response> GetAllByDriverId(long driverId, DataSource dataSource);
     }
 }

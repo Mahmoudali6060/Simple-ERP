@@ -11,7 +11,7 @@ namespace Clients.DataServiceLayer
 {
     public interface IOutcomeDSL : ICRUDOperationsDSL<OutcomeDTO>
     {
-        Task<ResponseEntityList<OutcomeDTO>> GetOutcomesByStationId(long stationId);
+        Task<Response> GetOutcomesByStationId(long stationId, DataSource dataSource);
 
     }
 }

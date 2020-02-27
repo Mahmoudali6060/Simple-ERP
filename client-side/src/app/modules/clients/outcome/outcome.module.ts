@@ -3,6 +3,7 @@ import { SharedModule } from '../../../shared/shared.module';
 import { OutcomeRoutingModule } from './outcome-routing.module';
 import { OutcomeListComponent } from './components/outcome-list/outcome-list.component';
 import { OutcomeService } from './services/outcome.service';
+import { StationAccountService } from './services/station-account.service';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { OutcomeService } from './services/outcome.service';
   ],
   providers: [
     OutcomeService,
+    StationAccountService
   ]
 })
 

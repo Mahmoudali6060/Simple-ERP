@@ -52,12 +52,15 @@ namespace Supplier.DataServiceLayer
             };
         }
 
-        public async Task<ResponseEntityList<IncomeDTO>> GetIncomesByFarmId(long farmId)
+        public async Task<Response> GetIncomesByFarmId(long farmId, DataSource dataSource)
         {
-            return new ResponseEntityList<IncomeDTO>()
+            var list = (await _incomeDAL.GetIncomesByFarmId(farmId)).AsQueryable();
+            Response response = Helper.ToResult(list, dataSource);
+            response.Entity = new IncomeListDTO()
             {
-                List = _mapper.Map<IEnumerable<IncomeDTO>>(await _incomeDAL.GetIncomesByFarmId(farmId)).ToList(),
+                BalanceTotal = list.Sum(x => x.Balance)
             };
+            return response;
         }
 
     }

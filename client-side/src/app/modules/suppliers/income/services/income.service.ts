@@ -12,4 +12,7 @@ export class IncomeService extends BaseEntityService {
 
   entityName = "Income";
 
+  getIncomesByFarmId(farmId, dataSource): any {
+    return this._http.post(`${this.baseUrl}api/${this.entityName}/GetIncomesByFarmId/` + farmId, dataSource);
+  }
 }

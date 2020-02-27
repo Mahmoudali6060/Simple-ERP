@@ -12,7 +12,7 @@ namespace Clients.DataAccessLayer
 {
     public interface IOutcomeDAL : ICRUDOperationsDAL<Outcome>
     {
-        Task<IEnumerable<Outcome>> GetOutcomesByStationId(long stationId);
+        Task<IEnumerable<OutcomeDTO>> GetOutcomesByStationId(long stationId);
         Task<IEnumerable<OutcomeDTO>> GetAll();
 
     }

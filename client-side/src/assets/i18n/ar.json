@@ -119,6 +119,7 @@
     "Pardon Percentage": "نسبة السماح ",
     "Incoming": "وارد",
     "Outcoming": "منصرف",
-    "Reapers":"قطف"
-   
+    "Reapers":"قطف",
+    "PaidUpTotal":"اجمالي المدفوع",
+    "BalanceTotal":"اجمالي الرصيد"
 }

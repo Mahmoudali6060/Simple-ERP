@@ -8,6 +8,6 @@
     </div>
   </div>
   <app-data-list [properties]="properties" [list]="farmList" (deleteRow)="delete($event)" (editRow)="openModal($event)" (changePagination)="onChangePagination($event)"
-    [total]="total">
+    [total]="total" [actions]="actions" (makeAction)="onMakeAction($event)">
   </app-data-list>
 </div>

@@ -11,7 +11,7 @@ namespace Supplier.DataAccessLayer
 {
     public interface IIncomeDAL : ICRUDOperationsDAL<Income>
     {
-        Task<IEnumerable<Income>> GetIncomesByFarmId(long farmId);
+        Task<IEnumerable<IncomeDTO>> GetIncomesByFarmId(long farmId);
         new Task<IEnumerable<IncomeDTO>> GetAll();
     }
 }

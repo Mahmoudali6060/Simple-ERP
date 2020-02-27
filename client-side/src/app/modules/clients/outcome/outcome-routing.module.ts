@@ -4,6 +4,7 @@ import { OutcomeListComponent } from './components/outcome-list/outcome-list.com
 
 const routes: Routes = [
   { path: '', component: OutcomeListComponent },
+  { path: 'outcome-list/:stationId', component: OutcomeListComponent },
 ];
 
 @NgModule({

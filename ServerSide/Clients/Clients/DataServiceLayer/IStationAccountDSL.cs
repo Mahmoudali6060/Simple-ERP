@@ -12,6 +12,6 @@ namespace Supplier.DataServiceLayer
 {
     public interface IStationAccountDSL : ICRUDOperationsDSL<StationAccountDTO>
     {
-       
+        Task<Response> GetAllByStationId(long stationId, DataSource dataSource);
     }
 }

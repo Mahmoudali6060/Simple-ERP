@@ -8,11 +8,11 @@ import { LocalStorage } from '@ngx-pwa/local-storage';
 import { BaseEntityService } from 'src/app/shared/services/base-entity.service';
 
 @Injectable()
-export class OutcomeService extends BaseEntityService {
+export class StationAccountService extends BaseEntityService {
 
-  entityName = "Outcome";
+  entityName = "StationAccount";
 
-  getOutcomesByStationId(stationId, dataSource): any {
-    return this._http.post(`${this.baseUrl}api/${this.entityName}/GetOutcomesByStationId/` + stationId, dataSource);
+  getStationAccountsByStationId(stationId, dataSource): any {
+    return this._http.post(`${this.baseUrl}api/${this.entityName}/GetStationAccountsByStationId/` + stationId, dataSource);
   }
 }

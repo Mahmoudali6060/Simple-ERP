@@ -2,6 +2,7 @@
 using Data.Contexts;
 using Data.Entities.Credit;
 using Microsoft.EntityFrameworkCore;
+using Shared.Entities.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,8 +32,8 @@ namespace Supplier.DataAccessLayer
 
         public async Task<long> Delete(long id)
         {
-            ReaperAccount driverAccount = await GetById(id);
-            _context.ReaperAccounts.Remove(driverAccount);
+            ReaperAccount reaperAccount = await GetById(id);
+            _context.ReaperAccounts.Remove(reaperAccount);
             await _context.SaveChangesAsync();
             return id;
         }
@@ -47,5 +48,9 @@ namespace Supplier.DataAccessLayer
             return await _context.ReaperAccounts.SingleOrDefaultAsync(x => x.Id == id);
         }
 
+        public async Task<IEnumerable<ReaperAccount>> GetAllByReaperId(long reaperId)
+        {
+            return await _context.ReaperAccounts.Where(x => x.ReaperId == reaperId).ToListAsync();
+        }
     }
 }

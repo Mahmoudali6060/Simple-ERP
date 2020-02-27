@@ -93,9 +93,46 @@ namespace Clients.DataAccessLayer
             return await _context.Outcomes.SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<IEnumerable<Outcome>> GetOutcomesByStationId(long stationId)
+        public async Task<IEnumerable<OutcomeDTO>> GetOutcomesByStationId(long stationId)
         {
-            return await _context.Outcomes.Where(x => x.StationId == stationId).ToListAsync();
+            try
+            {
+                return (from o in _context.Outcomes
+                        join c in _context.Categories on o.CategoryId equals c.Id
+                        join d in _context.Drivers on o.DriverId equals d.Id
+                        join f in _context.Farms on o.FarmId equals f.Id
+                        join s in _context.Stations on o.StationId equals s.Id
+                        where o.StationId == stationId
+                        select new OutcomeDTO
+                        {
+                            Date = o.Date,
+                            CartNumber = o.CartNumber,
+                            CategoryId = c.Id,
+                            CategoryName = c.Name,
+                            FarmId = f.Id,
+                            FarmName = f.OwnerName,
+                            DriverId = d.Id,
+                            CarPlate = d.CarPlate,
+                            Quantity = o.Quantity,
+                            KiloDiscount = o.KiloDiscount,
+                            QuantityAfterDiscount = o.Quantity - o.KiloDiscount,
+                            KiloPrice = o.KiloPrice,
+                            Total = o.KiloPrice * (o.Quantity - o.KiloDiscount),
+                            MoneyDiscount = o.MoneyDiscount,
+                            //Balance = (o.KiloPrice * (o.Quantity - o.KiloDiscount)) - (decimal)o.PaidUp,
+                            Balance = (o.KiloPrice * (o.Quantity - o.KiloDiscount)),
+                            StationId = s.Id,
+                            StationName = s.OwnerName,
+                            //PaidUp = o.PaidUp,
+                            //PaidDate = o.PaidDate,
+                            //RecieptNumber = o.RecieptNumber,
+                        });
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         Task<IEnumerable<Outcome>> ICRUDOperationsDAL<Outcome>.GetAll()

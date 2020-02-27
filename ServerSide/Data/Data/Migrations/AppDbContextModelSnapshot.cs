@@ -187,10 +187,7 @@ namespace Data.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<long?>("FarmId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("FarmerId")
+                    b.Property<long>("FarmId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("Modified")
@@ -1185,7 +1182,9 @@ namespace Data.Migrations
                 {
                     b.HasOne("Data.Entities.Credit.Farm", "Farm")
                         .WithMany()
-                        .HasForeignKey("FarmId");
+                        .HasForeignKey("FarmId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Data.Entities.Credit.Income", b =>

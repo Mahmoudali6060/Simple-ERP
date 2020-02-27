@@ -4,6 +4,10 @@ import { FarmModel } from '../../models/farm.model';
 import { DataSourceModel } from '../../../../../shared/models/data-source.model';
 import { FarmFormComponent } from '../farm-form/farm-form.component';
 import { MatDialog } from '@angular/material';
+import { ActionNameEnum } from 'src/app/shared/enums/Action.enum';
+import { Router } from '@angular/router';
+import { ActionModel } from 'src/app/shared/models/action.model';
+import { HelperService } from 'src/app/shared/services/helper.service';
 
 @Component({
   selector: 'app-farm-list',
@@ -17,13 +21,19 @@ export class FarmListComponent {
   farm: FarmModel = new FarmModel();//For Add/Update Farm Entity
   dataSourceModel: DataSourceModel = new DataSourceModel;//Pagination and Filteration Settings
   total: number;//Total number of rows
+  actions: Array<ActionModel> = [];
+
   //#endregion
 
-  constructor(private farmService: FarmService, private dialog: MatDialog) {
+  constructor(private farmService: FarmService,
+    private dialog: MatDialog,
+    private router: Router,
+    private helperService: HelperService) {
   }
 
   ngOnInit() {
     this.getAllFarms();
+    this.actions.push(this.helperService.addAction(ActionNameEnum.Details, 'fa fa-list'));
   }
 
   //#region GetAll
@@ -68,4 +78,9 @@ export class FarmListComponent {
     this.getAllFarms();
   }
   //#endregion
+  public onMakeAction(event) {
+    if (event.action.name == ActionNameEnum.Details) {
+      this.router.navigate(['layout/income/income-list', event.id]);
+    }
+  }
 }

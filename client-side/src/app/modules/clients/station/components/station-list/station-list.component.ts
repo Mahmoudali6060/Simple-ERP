@@ -4,6 +4,10 @@ import { StationModel } from '../../models/station.model';
 import { DataSourceModel } from '../../../../../shared/models/data-source.model';
 import { StationFormComponent } from '../station-form/station-form.component';
 import { MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
+import { HelperService } from 'src/app/shared/services/helper.service';
+import { ActionModel } from 'src/app/shared/models/action.model';
+import { ActionNameEnum } from 'src/app/shared/enums/Action.enum';
 
 @Component({
   selector: 'app-station-list',
@@ -17,13 +21,19 @@ export class StationListComponent {
   station: StationModel = new StationModel();//For Add/Update Station Entity
   dataSourceModel: DataSourceModel = new DataSourceModel;//Pagination and Filteration Settings
   total: number;//Total number of rows
+  actions: Array<ActionModel> = [];
+  
   //#endregion
 
-  constructor(private stationService: StationService, private dialog: MatDialog) {
+  constructor(private stationService: StationService,
+     private dialog: MatDialog,
+    private router: Router,
+    private helperService: HelperService) {
   }
 
   ngOnInit() {
     this.getAllStations();
+    this.actions.push(this.helperService.addAction(ActionNameEnum.Details, 'fa fa-list'));
   }
 
   //#region GetAll
@@ -68,4 +78,10 @@ export class StationListComponent {
     this.getAllStations();
   }
   //#endregion
+  public onMakeAction(event) {
+    if (event.action.name == ActionNameEnum.Details) {
+      this.router.navigate(['layout/outcome/outcome-list', event.id]);
+    }
+  }
+
 }

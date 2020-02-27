@@ -56,5 +56,16 @@ namespace Supplier.DataServiceLayer
                 List = _mapper.Map<IEnumerable<StationAccountDTO>>(await _stationAccountDAL.GetAll()).ToList(),
             };
         }
+
+        public async Task<Response> GetAllByStationId(long stationId, DataSource dataSource)
+        {
+            var list = _mapper.Map<IEnumerable<StationAccountDTO>>(await _stationAccountDAL.GetAllByStationId(stationId)).AsQueryable();
+            Response response = Helper.ToResult(list, dataSource);
+            response.Entity = new StationAccountListDTO()
+            {
+                PaidUpTotal = list.Sum(x => x.PaidUp)
+            };
+            return response;
+        }
     }
 }

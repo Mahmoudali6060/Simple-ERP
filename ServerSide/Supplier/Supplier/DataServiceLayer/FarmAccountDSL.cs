@@ -54,5 +54,16 @@ namespace Supplier.DataServiceLayer
                 List = _mapper.Map<IEnumerable<FarmAccountDTO>>(await _farmAccountDAL.GetAll()).ToList(),
             };
         }
+
+        public async Task<Response> GetAllByFarmId(long farmId, DataSource dataSource)
+        {
+            var list = _mapper.Map<IEnumerable<FarmAccountDTO>>(await _farmAccountDAL.GetAllByFarmId(farmId)).AsQueryable();
+            Response response = Helper.ToResult(list, dataSource);
+            response.Entity = new FarmAccountListDTO()
+            {
+                PaidUpTotal = list.Sum(x => x.PaidUp)
+            };
+            return response;
+        }
     }
 }

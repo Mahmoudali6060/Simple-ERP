@@ -2,6 +2,7 @@
 using Data.Contexts;
 using Data.Entities.Credit;
 using Microsoft.EntityFrameworkCore;
+using Shared.Entities.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,5 +48,10 @@ namespace Supplier.DataAccessLayer
             return await _context.FarmAccounts.SingleOrDefaultAsync(x => x.Id == id);
         }
 
+
+        public async Task<IEnumerable<FarmAccount>> GetAllByFarmId(long farmId)
+        {
+            return await _context.FarmAccounts.Where(x => x.FarmId == farmId).ToListAsync();
+        }
     }
 }

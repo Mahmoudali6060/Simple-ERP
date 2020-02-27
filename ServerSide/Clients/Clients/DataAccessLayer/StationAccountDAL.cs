@@ -3,6 +3,7 @@ using Data.Contexts;
 using Data.Entities.Credit;
 using Data.Entities.Debit;
 using Microsoft.EntityFrameworkCore;
+using Shared.Entities.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,5 +49,9 @@ namespace Supplier.DataAccessLayer
             return await _context.StationAccounts.SingleOrDefaultAsync(x => x.Id == id);
         }
 
+        public async Task<IEnumerable<StationAccount>> GetAllByStationId(long stationId)
+        {
+            return await _context.StationAccounts.Where(x => x.StationId == stationId).ToListAsync();
+        }
     }
 }

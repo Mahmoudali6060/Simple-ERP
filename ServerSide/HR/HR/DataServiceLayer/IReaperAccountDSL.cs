@@ -12,6 +12,7 @@ namespace Supplier.DataServiceLayer
 {
     public interface IReaperAccountDSL : ICRUDOperationsDSL<ReaperAccountDTO>
     {
+        Task<Response> GetAllByReaperId(long reaperId, DataSource dataSource);
 
     }
 }

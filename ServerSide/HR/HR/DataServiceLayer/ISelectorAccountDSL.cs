@@ -12,6 +12,6 @@ namespace Supplier.DataServiceLayer
 {
     public interface ISelectorAccountDSL : ICRUDOperationsDSL<SelectorAccountDTO>
     {
-
+        Task<Response> GetAllBySelectorId(long selectorId, DataSource dataSource);
     }
 }

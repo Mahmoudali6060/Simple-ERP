@@ -11,6 +11,6 @@ namespace Supplier.DataServiceLayer
 {
     public interface IIncomeDSL : ICRUDOperationsDSL<IncomeDTO>
     {
-        Task<ResponseEntityList<IncomeDTO>> GetIncomesByFarmId(long farmId);
+        Task<Response> GetIncomesByFarmId(long farmId, DataSource dataSource);
     }
 }

@@ -56,5 +56,10 @@ namespace Supplier.DataServiceLayer
                 List = _mapper.Map<IEnumerable<ReaperAccountDTO>>(await _reaperAccountDAL.GetAll()).ToList(),
             };
         }
+        public async Task<Response> GetAllByReaperId(long reaperId, DataSource dataSource)
+        {
+            var list = _mapper.Map<IEnumerable<ReaperAccountDTO>>(await _reaperAccountDAL.GetAllByReaperId(reaperId)).AsQueryable();
+            return Helper.ToResult(list, dataSource);
+        }
     }
 }

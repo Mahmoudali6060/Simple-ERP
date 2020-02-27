@@ -34,7 +34,7 @@ namespace App.Controllers.Clients
         [HttpGet, Route("GetAllLite")]
         public async Task<IActionResult> GetAllLite() => Ok(await _outcomeDSL.GetAllLite());
 
-        [HttpGet, Route("GetOutcomesByStationId/{stationId}")]
-        public async Task<IActionResult> GetOutcomesByStationId(long stationId) => Ok(await _outcomeDSL.GetOutcomesByStationId(stationId));
+        [HttpPost, Route("GetOutcomesByStationId/{stationId}")]
+        public async Task<IActionResult> GetOutcomesByStationId(long stationId, DataSource dataSource) => Ok(await _outcomeDSL.GetOutcomesByStationId(stationId, dataSource));
     }
 }

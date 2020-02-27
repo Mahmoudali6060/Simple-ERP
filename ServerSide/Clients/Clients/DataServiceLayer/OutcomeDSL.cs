@@ -13,6 +13,7 @@ using Shared.Entities.Debit;
 using Data.Entities.Debit;
 using Shared.Entities.Shared;
 using Shared.Classes;
+using Shared.Entities.Credit;
 
 namespace Clients.DataServiceLayer
 {
@@ -62,13 +63,18 @@ namespace Clients.DataServiceLayer
             };
         }
 
-        public async Task<ResponseEntityList<OutcomeDTO>> GetOutcomesByStationId(long stationId)
+
+        public async Task<Response> GetOutcomesByStationId(long stationId, DataSource dataSource)
         {
-            return new ResponseEntityList<OutcomeDTO>()
+            var list = (await _outcomeDAL.GetOutcomesByStationId(stationId)).AsQueryable();
+            Response response = Helper.ToResult(list, dataSource);
+            response.Entity = new OutcomeListDTO()
             {
-                List = _mapper.Map<IEnumerable<OutcomeDTO>>(await _outcomeDAL.GetOutcomesByStationId(stationId)).ToList(),
+                BalanceTotal = list.Sum(x => x.Balance)
             };
+            return response;
         }
+
 
     }
 }

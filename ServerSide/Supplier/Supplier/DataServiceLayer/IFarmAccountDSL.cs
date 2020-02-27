@@ -11,6 +11,6 @@ namespace Supplier.DataServiceLayer
 {
     public interface IFarmAccountDSL : ICRUDOperationsDSL<FarmAccountDTO>
     {
-       
+        Task<Response> GetAllByFarmId(long farmId, DataSource dataSource);
     }
 }

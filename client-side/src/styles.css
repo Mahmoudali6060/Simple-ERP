@@ -4,6 +4,9 @@
 /* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; */
 @import "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700";
 
+body{
+    /* font-size: 20px !important; */
+}
 .auth-box .right .heading{
     font-size: 50px !important;
     font-weight: 600 !important;
@@ -103,3 +106,25 @@ thead{
       background-color: red !important;
       color: white !important;
   }
+  
+  .mainContent{
+    margin-top: -35px;
+  }
+
+  .pagination{
+      margin-top: auto !important;
+  }
+
+  .header-m{
+    font-size: 19px;
+    margin-top: 28px;
+    font-weight: bold;
+  }
+
+  .lbl-warning{
+      color: red;
+  }
+
+  .lbl-success{
+    color: green;
+}

@@ -2,6 +2,7 @@
 using Data.Contexts;
 using Data.Entities.Credit;
 using Microsoft.EntityFrameworkCore;
+using Shared.Entities.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,5 +48,9 @@ namespace Supplier.DataAccessLayer
             return await _context.SelectorAccounts.SingleOrDefaultAsync(x => x.Id == id);
         }
 
+        public async Task<IEnumerable<SelectorAccount>> GetAllBySelectorId(long selectorId)
+        {
+            return await _context.SelectorAccounts.Where(x => x.SelectorId == selectorId).ToListAsync();
+        }
     }
 }

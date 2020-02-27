@@ -100,9 +100,46 @@ namespace Supplier.DataAccessLayer
         }
 
 
-        public async Task<IEnumerable<Income>> GetIncomesByFarmId(long farmId)
+        public async Task<IEnumerable<IncomeDTO>> GetIncomesByFarmId(long farmId)
         {
-            return await _context.Incomes.Where(x => x.FarmId == farmId).ToListAsync();
+            try
+            {
+                return (from i in _context.Incomes
+                        join c in _context.Categories on i.CategoryId equals c.Id
+                        join d in _context.Drivers on i.DriverId equals d.Id
+                        join f in _context.Farms on i.FarmId equals f.Id
+                        join s in _context.Stations on i.StationId equals s.Id
+                        where i.FarmId == farmId
+                        select new IncomeDTO
+                        {
+                            Date = i.Date,
+                            CartNumber = i.CartNumber,
+                            CategoryId = c.Id,
+                            CategoryName = c.Name,
+                            FarmId = f.Id,
+                            FarmName = f.OwnerName,
+                            DriverId = d.Id,
+                            CarPlate = d.CarPlate,
+                            Quantity = i.Quantity,
+                            KiloDiscount = i.KiloDiscount,
+                            QuantityAfterDiscount = i.Quantity - i.KiloDiscount,
+                            KiloPrice = i.KiloPrice,
+                            Total = i.KiloPrice * (i.Quantity - i.KiloDiscount),
+                            MoneyDiscount = i.MoneyDiscount,
+                            //Balance = (i.KiloPrice * (i.Quantity - i.KiloDiscount)) - (decimal)i.PaidUp,
+                            Balance = (i.KiloPrice * (i.Quantity - i.KiloDiscount)),
+                            StationId = s.Id,
+                            StationName = s.OwnerName,
+                            //PaidUp = i.PaidUp,
+                            //PaidDate = i.PaidDate,
+                            //RecieptNumber = i.RecieptNumber,
+                        });
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         Task<IEnumerable<Income>> ICRUDOperationsDAL<Income>.GetAll()

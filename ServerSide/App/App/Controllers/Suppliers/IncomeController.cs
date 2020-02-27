@@ -32,7 +32,7 @@ namespace App.Controllers.Suppliers
         public async Task<IActionResult> Delete(int id) => Ok(await _incomeDSL.Delete(id));
         [HttpGet, Route("GetAllLite")]
         public async Task<IActionResult> GetAllLite() => Ok(await _incomeDSL.GetAllLite());
-        [HttpGet, Route("GetIncomesByFarmId/{farmId}")]
-        public async Task<IActionResult> GetIncomesByFarmId(long farmId) => Ok(await _incomeDSL.GetIncomesByFarmId(farmId));
+        [HttpPost, Route("GetIncomesByFarmId/{farmId}")]
+        public async Task<IActionResult> GetIncomesByFarmId(long farmId, DataSource dataSource) => Ok(await _incomeDSL.GetIncomesByFarmId(farmId, dataSource));
     }
 }

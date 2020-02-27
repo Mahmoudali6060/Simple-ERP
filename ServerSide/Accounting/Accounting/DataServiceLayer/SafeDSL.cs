@@ -125,7 +125,7 @@ namespace Accouting.DataServiceLayer
                 PaidDate = entity.Date,
                 PaidUp = entity.Outcoming,
                 RecieptNumber = entity.RecieptNumber,
-                FarmerId = entity.AccountId
+                FarmId = entity.AccountId
             };
             return await _farmAccountDSL.Save(farmAccount);
         }

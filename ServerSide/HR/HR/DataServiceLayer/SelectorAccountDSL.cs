@@ -56,5 +56,11 @@ namespace Supplier.DataServiceLayer
                 List = _mapper.Map<IEnumerable<SelectorAccountDTO>>(await _selectorAccountDAL.GetAll()).ToList(),
             };
         }
+
+        public async Task<Response> GetAllBySelectorId(long selectorId, DataSource dataSource)
+        {
+            var list = _mapper.Map<IEnumerable<SelectorAccountDTO>>(await _selectorAccountDAL.GetAllBySelectorId(selectorId)).AsQueryable();
+            return Helper.ToResult(list, dataSource);
+        }
     }
 }
