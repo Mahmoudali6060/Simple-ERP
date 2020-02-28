@@ -60,8 +60,13 @@ namespace Clients.DataServiceLayer
 
         public async Task<Response> GetAllBySelectorId(long selectorId, DataSource dataSource)
         {
-            var list = _mapper.Map<IEnumerable<SelectorDetailDTO>>(await _selectorDetailDAL.GetAllBySelectorId(selectorId)).AsQueryable();
-            return Helper.ToResult(list, dataSource);
+            var list = (await _selectorDetailDAL.GetAllBySelectorId(selectorId)).AsQueryable();
+            Response response = Helper.ToResult(list, dataSource);
+            response.Entity = new SelectorDetailListDTO()
+            {
+                BalanceTotal = list.Sum(x => x.Balance)
+            };
+            return response;
         }
     }
 }

@@ -5,8 +5,8 @@ import { AuthGuardService } from '../../../shared/guards/auth-guard.service';
 import { ReaperDetailListComponent } from './components/reaper-detail-list/reaper-detail-list.component';
 
 const routes: Routes = [
-  { path: '', component: ReaperListComponent, canActivate: [AuthGuardService] },
-  { path: 'reaper-detail-list/:reaperId', component: ReaperDetailListComponent, canActivate: [AuthGuardService] },
+  { path: '', component: ReaperListComponent },
+  { path: 'reaper-detail-list/:reaperId', component: ReaperDetailListComponent},
 ];
 
 @NgModule({

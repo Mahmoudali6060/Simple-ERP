@@ -18,7 +18,7 @@
       <h4 class="header-m">{{'PaidUpTotal'|translate}}: {{paidUpTotal}}</h4>
     </div>
   </div>
-  <div class="row">
+  <div class="row" id="print-section">
     <div class="col-lg-8">
       <app-data-list [properties]="properties" [list]="incomeList" (deleteRow)="delete($event)" (editRow)="openModal($event)" (changePagination)="onChangePagination($event)"
         [total]="total" [isReadonly]="'true'">
@@ -31,3 +31,4 @@
   </div>
 
 </div>
+<!-- <button (click)="print()">print</button> -->

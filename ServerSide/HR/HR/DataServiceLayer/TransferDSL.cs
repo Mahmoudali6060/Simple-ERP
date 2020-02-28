@@ -60,8 +60,13 @@ namespace Clients.DataServiceLayer
 
         public async Task<Response> GetAllByDriverId(long driverId, DataSource dataSource)
         {
-            var list = _mapper.Map<IEnumerable<TransferDTO>>(await _transferDAL.GetAllByDriverId(driverId)).AsQueryable();
-            return Helper.ToResult(list, dataSource);
+            var list = (await _transferDAL.GetAllByDriverId(driverId)).AsQueryable();
+            Response response = Helper.ToResult(list, dataSource);
+            response.Entity = new TransferListDTO()
+            {
+                BalanceTotal = list.Sum(x => x.Nolon)
+            };
+            return response;
         }
     }
 }

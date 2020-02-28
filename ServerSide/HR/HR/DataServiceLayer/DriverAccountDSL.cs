@@ -60,7 +60,12 @@ namespace Supplier.DataServiceLayer
         public async Task<Response> GetAllByDriverId(long driverId, DataSource dataSource)
         {
             var list = _mapper.Map<IEnumerable<DriverAccountDTO>>(await _driverAccountDAL.GetAllByDriverId(driverId)).AsQueryable();
-            return Helper.ToResult(list, dataSource);
+            Response response = Helper.ToResult(list, dataSource);
+            response.Entity = new DriverAccountListDTO()
+            {
+                PaidUpTotal = list.Sum(x => x.PaidUp)
+            };
+            return response;
         }
     }
 }

@@ -6,6 +6,7 @@ import { TransferService } from './services/transfer.service';
 import { DriverListComponent } from './components/driver-list/driver-list.component';
 import { TransferListComponent } from './components/transfer-list/transfer-list.component';
 import { DriverFormComponent } from './components/driver-form/driver-form.component';
+import { DriverAccountService } from 'src/app/modules/hr/driver/services/driver-account.service';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { DriverFormComponent } from './components/driver-form/driver-form.compon
   ],
   providers: [
     DriverService,
-    TransferService
+    TransferService,
+    DriverAccountService
   ],
   entryComponents: [
     DriverFormComponent

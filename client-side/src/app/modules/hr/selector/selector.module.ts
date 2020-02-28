@@ -6,6 +6,7 @@ import { SelectorListComponent } from './components/selector-list/selector-list.
 import { SelectorDetailListComponent } from './components/selector-detail-list/selector-detail-list.component';
 import { SelectorFormComponent } from './components/selector-form/selector-form.component';
 import { SelectorDetailService } from './services/selector-detail.service';
+import { SelectorAccountService } from './services/selector-account.service';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { SelectorDetailService } from './services/selector-detail.service';
   ],
   providers: [
     SelectorService,
-    SelectorDetailService
+    SelectorDetailService,
+    SelectorAccountService
   ],
   entryComponents: [
     SelectorFormComponent

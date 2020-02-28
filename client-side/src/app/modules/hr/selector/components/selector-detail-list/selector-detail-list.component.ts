@@ -2,9 +2,9 @@ import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { SelectorDetailService } from '../../services/selector-detail.service';
 import { SelectorDetailModel } from '../../models/selector-detail.model';
 import { DataSourceModel } from '../../../../../shared/models/data-source.model';
-// import { SelectorDetailFormComponent } from '../selectorDetail-form/selectorDetail-form.component';
 import { MatDialog } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
+import { SelectorAccountService } from '../../services/selector-account.service';
 
 @Component({
   selector: 'app-selector-detail-list',
@@ -15,62 +15,80 @@ export class SelectorDetailListComponent {
   //#region Variables
   selectorDetailList: Array<SelectorDetailModel>;//Data List
   properties = ["PayDate", "Pay", "WithdrawsDate", "Withdraws", "Balance"];//Displayed Columns 
+  selectorAccountProperties = ["PaidUp", "PaidDate", "RecieptNumber"];//Displayed Columns 
+  selectorAccountList: any = [];//Data List
   selectorDetail: SelectorDetailModel = new SelectorDetailModel();//For Add/Update SelectorDetail Entity
   dataSourceModel: DataSourceModel = new DataSourceModel;//Pagination and Filteration Settings
   total: number;//Total number of rows
+  selectorAccountTotal: number;
   selectorId: number;
+  balanceTotal: number;
+  paidUpTotal: number;
   //#endregion
 
-  constructor(private selectorService: SelectorDetailService, private dialog: MatDialog, private activeRoute: ActivatedRoute) {
+  constructor(private selectorDetailService: SelectorDetailService,
+    private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute,
+    private selectorAccountService: SelectorAccountService) {
   }
 
   ngOnInit() {
-    if (this.activeRoute.snapshot.params["selectorId"]) {
-      this.selectorId = Number(this.activeRoute.snapshot.params["selectorId"]);
-      this.getAllBySelectorId();
+    if (this.activatedRoute.snapshot.params["selectorId"]) {
+      this.selectorId = Number(this.activatedRoute.snapshot.params["selectorId"]);
+      this.getAllSelectorDetails();
+      this.getAllSelectorAccount();
+
     }
   }
 
   //#region GetAll
-  getAllBySelectorId() {
-    this.selectorService.getAllBySelectorId(this.selectorId, this.dataSourceModel).subscribe(response => {
-      this.selectorDetailList = response.Data;
-      this.total = response.Total;
+  getAllSelectorDetails() {
+    if (this.selectorId) {
+      this.selectorDetailService.getAllBySelectorId(this.selectorId, this.dataSourceModel).subscribe(response => {
+        this.selectorDetailList = response.Data;
+        this.total = response.Total;
+        this.balanceTotal = response.Entity.BalanceTotal;
+      }, err => {
+      });
+    }
+    else {
+      this.selectorDetailService.getAll(this.dataSourceModel).subscribe(response => {
+        this.selectorDetailList = response.Data;
+        this.total = response.Total;
+      }, err => {
+      });
+    }
+
+  }
+  //#endregion 
+  getAllSelectorAccount() {
+    this.selectorAccountService.getSelectorAccountsBySelectorId(this.selectorId, this.dataSourceModel).subscribe(response => {
+      this.selectorAccountList = response.Data;
+      this.selectorAccountTotal = response.Total;
+      this.paidUpTotal = response.Entity.PaidUpTotal;
     }, err => {
     });
   }
-  //#endregion 
-
   //#region Deleteing
   public delete(id: number) {
-    this.selectorService.delete(id)
+    this.selectorDetailService.delete(id)
       .subscribe((response) => {
-        this.getAllBySelectorId();
+        this.getAllSelectorDetails();
       })
       , error => {
       }
   }
   //#endregion
 
-  //#region Open Modal
-  // public openModal(id?: number) {
-  //   const dialogRef = this.dialog.open(SelectorDetailFormComponent, {
-  //     width: '900px',
-  //     // height: '400px',
-  //     data: { id: id }
-  //   });
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result) {
-  //       this.getAllSelectorDetails();
-  //     }
-  //   });
-  // }
-  //#endregion
-
   //#region Pagination
   public onChangePagination(dataSourceModel) {
     this.dataSourceModel = dataSourceModel;
-    this.getAllBySelectorId();
+    this.getAllSelectorDetails();
   }
+  public onChangeAccountPagination(dataSourceModel) {
+    this.dataSourceModel = dataSourceModel;
+    this.getAllSelectorAccount();
+  }
+
   //#endregion
 }

@@ -60,7 +60,12 @@ namespace Supplier.DataServiceLayer
         public async Task<Response> GetAllBySelectorId(long selectorId, DataSource dataSource)
         {
             var list = _mapper.Map<IEnumerable<SelectorAccountDTO>>(await _selectorAccountDAL.GetAllBySelectorId(selectorId)).AsQueryable();
-            return Helper.ToResult(list, dataSource);
+            Response response = Helper.ToResult(list, dataSource);
+            response.Entity = new SelectorAccountListDTO()
+            {
+                PaidUpTotal = list.Sum(x => x.PaidUp)
+            };
+            return response;
         }
     }
 }

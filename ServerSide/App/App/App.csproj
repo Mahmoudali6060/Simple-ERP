@@ -5,9 +5,18 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Reports\SupplierAccount.repx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\SupplierAccount.repx" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="DevExpress.Reporting.Core" Version="19.1.6" />
     <PackageReference Include="IdentityServer4" Version="3.1.0" />
     <PackageReference Include="IdentityServer4.AspNetIdentity" Version="3.1.0" />
     <PackageReference Include="IdentityServer4.EntityFramework" Version="3.1.0" />
@@ -42,6 +51,16 @@
     <ProjectReference Include="..\..\HR\HR\HR.csproj" />
     <ProjectReference Include="..\..\Shared\Shared\Shared.csproj" />
     <ProjectReference Include="..\..\Supplier\Supplier\Supplier.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Compile Update="Reports\SupplierAccount.cs">
+      <DependentUpon>SupplierAccount.repx</DependentUpon>
+    </Compile>
+    <Compile Update="Reports\SupplierAccount.Designer.cs">
+      <DependentUpon>SupplierAccount.repx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>

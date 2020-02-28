@@ -57,8 +57,13 @@ namespace Clients.DataServiceLayer
 
         public async Task<Response> GetAllByReaperId(long reaperId, DataSource dataSource)
         {
-            var list = _mapper.Map<IEnumerable<ReaperDetailDTO>>(await _reaperDetailDAL.GetAllByReaperId(reaperId)).AsQueryable();
-            return Helper.ToResult(list, dataSource);
+            var list = (await _reaperDetailDAL.GetAllByReaperId(reaperId)).AsQueryable();
+            Response response = Helper.ToResult(list, dataSource);
+            response.Entity = new ReaperDetailListDTO()
+            {
+                BalanceTotal = list.Sum(x => x.TonPrice)
+            };
+            return response;
         }
     }
 }
