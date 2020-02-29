@@ -9,6 +9,7 @@ namespace Shared.Entities.Credit
     {
         public long TransactionId { get; set; }
         public long SelectorId { get; set; }
+        public string HeadName { get; set; }
         public virtual TransactionDTO Transaction { get; set; }
         public virtual SelectorDTO Selector { get; set; }
     }

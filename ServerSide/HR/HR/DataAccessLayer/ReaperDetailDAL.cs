@@ -55,6 +55,7 @@ namespace Clients.DataAccessLayer
                 return from rd in _context.ReaperDetails
                        join r in _context.Reapers on rd.ReaperId equals r.Id
                        where rd.ReaperId == reaperId
+                       orderby rd.Date
                        select new ReaperDetailDTO
                        {
                            Date = rd.Date,
@@ -62,6 +63,7 @@ namespace Clients.DataAccessLayer
                            TonPrice = rd.TonPrice,
                            PaidUp = rd.PaidUp,
                            PaidDate = rd.PaidDate,
+                           HeadName = r.HeadName,
                            Reaper = new ReaperDTO()
                            {
                                HeadName = r.HeadName,

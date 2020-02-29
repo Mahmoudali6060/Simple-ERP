@@ -51,7 +51,7 @@ namespace Supplier.DataAccessLayer
 
         public async Task<IEnumerable<FarmAccount>> GetAllByFarmId(long farmId)
         {
-            return await _context.FarmAccounts.Where(x => x.FarmId == farmId).ToListAsync();
+            return await _context.FarmAccounts.Where(x => x.FarmId == farmId).OrderBy(x=>x.PaidDate).ToListAsync();
         }
     }
 }

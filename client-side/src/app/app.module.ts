@@ -13,6 +13,8 @@ import { HttpConfigInterceptor } from './shared/interceptors/httpconfig.intercep
 import { MatDialogModule } from '@angular/material/dialog';
 import { AuthModule } from 'src/app/modules/authentication/auth.module';
 
+import { DxReportDesignerModule } from 'devexpress-reporting-angular';
+
 export function tokenGetter() {
   return localStorage.getItem("jwt");
 }
@@ -43,7 +45,8 @@ export function tokenGetter() {
       }
     }),
     MatDialogModule,
-    AuthModule
+    AuthModule,
+    DxReportDesignerModule
 
   ],
   providers: [

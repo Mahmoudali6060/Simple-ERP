@@ -10,12 +10,12 @@ using System;
 
 namespace Clients.DataAccessLayer
 {
-    public class SelectorDetialDAL : ISelectorDetailDAL
+    public class SelectorDetailDAL : ISelectorDetailDAL
     {
         private AppDbContext _context;
         private DbSet<SelectorDetail> _entity;
 
-        public SelectorDetialDAL(AppDbContext context)
+        public SelectorDetailDAL(AppDbContext context)
         {
             this._context = context;
             this._entity = context.Set<SelectorDetail>();
@@ -54,6 +54,7 @@ namespace Clients.DataAccessLayer
                 return from sd in _context.SelectorDetails
                        join s in _context.Selectors on sd.SelectorId equals s.Id
                        where sd.SelectorId == selectorId
+                       orderby sd.PayDate
                        select new SelectorDetailDTO
                        {
                            PayDate = sd.PayDate,
@@ -61,6 +62,7 @@ namespace Clients.DataAccessLayer
                            WithdrawsDate = sd.WithdrawsDate,
                            Withdraws = sd.Withdraws,
                            Balance = sd.Balance,
+                           HeadName = s.HeadName,
                            Selector = new SelectorDTO()
                            {
                                HeadName = s.HeadName,

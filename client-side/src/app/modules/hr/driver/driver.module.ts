@@ -7,11 +7,13 @@ import { DriverListComponent } from './components/driver-list/driver-list.compon
 import { TransferListComponent } from './components/transfer-list/transfer-list.component';
 import { DriverFormComponent } from './components/driver-form/driver-form.component';
 import { DriverAccountService } from 'src/app/modules/hr/driver/services/driver-account.service';
+import { ReportModule } from 'src/app/modules/report/report.module';
 
 @NgModule({
   imports: [
     DriverRoutingModule,
-    SharedModule.forRoot()
+    SharedModule.forRoot(),
+    ReportModule
   ],
   declarations: [
     DriverListComponent,

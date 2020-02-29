@@ -121,5 +121,12 @@
     "Outcoming": "منصرف",
     "Reapers":"قطف",
     "PaidUpTotal":"اجمالي المدفوع",
-    "BalanceTotal":"اجمالي الرصيد"
+    "BalanceTotal":"اجمالي الرصيد",
+    "QuantityAfterDiscount":"الصافي",
+    "ReaperDetails":"القطف",
+    "Selector":"فريزة",
+    "DriverFullName":"اسم السائق",
+    "DriverMobile":"هاتف السائق",
+    "HeadName":"اسم الريس",
+    "LastTonPrice":"اخر سعر للطن"
 }

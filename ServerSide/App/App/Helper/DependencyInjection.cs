@@ -4,6 +4,7 @@ using Accouting.DataAccessLayer;
 using Accouting.DataServiceLayer;
 using Clients.DataAccessLayer;
 using Clients.DataServiceLayer;
+using DevExpress.XtraReports.Web.WebDocumentViewer;
 using Microsoft.Extensions.DependencyInjection;
 using Supplier.DataAccessLayer;
 using Supplier.DataServiceLayer;
@@ -45,7 +46,7 @@ namespace App.Helper
             services.AddTransient<ISelectorDSL, SelectorDSL>();
             services.AddTransient<ISelectorDAL, SelectorDAL>();
             services.AddTransient<ISelectorDetailDSL, SelectorDetailDSL>();
-            services.AddTransient<ISelectorDetailDAL, SelectorDetialDAL>();
+            services.AddTransient<ISelectorDetailDAL, SelectorDetailDAL>();
 
             services.AddTransient<IReaperDSL, ReaperDSL>();
             services.AddTransient<IReaperDAL, ReaperDAL>();
@@ -80,7 +81,6 @@ namespace App.Helper
             services.AddTransient<IReaperAccountDAL, ReaperAccountDAL>();
             services.AddTransient<ISelectorAccountDSL, SelectorAccountDSL>();
             services.AddTransient<ISelectorAccountDAL, SelectorAccountDAL>();
-
 
         }
     }

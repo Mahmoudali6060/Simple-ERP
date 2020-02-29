@@ -27,6 +27,7 @@ using Account.DataAccessLayer;
 using App.Helper;
 using Data.Entities.Shared;
 using Newtonsoft.Json.Serialization;
+using Microsoft.Extensions.FileProviders;
 
 namespace App
 {
@@ -159,6 +160,19 @@ namespace App
             app.UseStaticFiles();
             app.UseCookiePolicy();
             //app.UseIdentityServer();//Add IdentityServer to our request processing pipeline
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                Path.Combine(Directory.GetCurrentDirectory(), "Images")),
+                RequestPath = "/Images"
+            });
+            //Enable directory browsing
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                            Path.Combine(Directory.GetCurrentDirectory(), "Images")),
+                RequestPath = "/Images"
+            });
             app.UseMvc();
         }
     }

@@ -7,11 +7,13 @@ import { ReaperDetailListComponent } from './components/reaper-detail-list/reape
 import { ReaperDetailService } from './services/reaper-detail.service';
 import { ReaperFormComponent } from './components/reaper-form/reaper-form.component';
 import { ReaperAccountService } from 'src/app/modules/hr/reaper/services/reaper-account.service';
+import { ReportModule } from 'src/app/modules/report/report.module';
 
 @NgModule({
   imports: [
     ReaperRoutingModule,
-    SharedModule.forRoot()
+    SharedModule.forRoot(),
+    ReportModule
   ],
   declarations: [
     ReaperListComponent,

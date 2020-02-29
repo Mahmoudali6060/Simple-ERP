@@ -7,6 +7,7 @@ import { SelectorDetailListComponent } from './components/selector-detail-list/s
 import { SelectorFormComponent } from './components/selector-form/selector-form.component';
 import { SelectorDetailService } from './services/selector-detail.service';
 import { SelectorAccountService } from './services/selector-account.service';
+import { ReportModule } from 'src/app/modules/report/report.module';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { SelectorAccountService } from './services/selector-account.service';
   providers: [
     SelectorService,
     SelectorDetailService,
-    SelectorAccountService
+    SelectorAccountService,
+    ReportModule
   ],
   entryComponents: [
     SelectorFormComponent

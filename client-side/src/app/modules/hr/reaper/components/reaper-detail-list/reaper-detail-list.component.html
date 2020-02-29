@@ -6,16 +6,16 @@
     <div class="col-lg-3 col-md-3 col-sm-3">
       <h4 class="header-m">
         <span *ngIf="paidUpTotal - balanceTotal < 0" [class.lbl-warning]="paidUpTotal - balanceTotal < 0">
-          <span translate>Total</span>: {{paidUpTotal - balanceTotal}}</span>
+          <span translate>Total</span>: {{(paidUpTotal - balanceTotal) | number:'1.2-2'}}</span>
         <span *ngIf="paidUpTotal - balanceTotal > 0" [class.lbl-success]="paidUpTotal - balanceTotal > 0">
-          <span translate>Total</span>: {{paidUpTotal - balanceTotal}}</span>
+          <span translate>Total</span>: {{(paidUpTotal - balanceTotal) | number:'1.2-2'}}</span>
       </h4>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3">
-      <h4 class="header-m" translate>{{'BalanceTotal'|translate}}: {{balanceTotal}}</h4>
+      <h4 class="header-m" translate>{{'BalanceTotal'|translate}}: {{balanceTotal | number:'1.2-2'}}</h4>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3">
-      <h4 class="header-m">{{'PaidUpTotal'|translate}}: {{paidUpTotal}}</h4>
+      <h4 class="header-m">{{'PaidUpTotal'|translate}}: {{paidUpTotal | number:'1.2-2'}}</h4>
     </div>
   </div>
   <div class="row">
@@ -29,5 +29,6 @@
       </app-data-list>
     </div>
   </div>
-
+  <button (click)="print()" class="btn btn-info">طباعة</button>
+  
 </div>

@@ -133,7 +133,7 @@ namespace Supplier.DataAccessLayer
                             //PaidUp = i.PaidUp,
                             //PaidDate = i.PaidDate,
                             //RecieptNumber = i.RecieptNumber,
-                        });
+                        }).OrderBy(x=>x.Date);
 
             }
             catch (Exception ex)

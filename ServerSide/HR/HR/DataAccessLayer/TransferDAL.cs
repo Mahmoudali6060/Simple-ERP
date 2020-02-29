@@ -46,6 +46,7 @@ namespace Clients.DataAccessLayer
                        join f in _context.Farms on t.FarmId equals f.Id
                        join s in _context.Stations on t.StationId equals s.Id
                        join d in _context.Drivers on t.DriverId equals d.Id
+                       orderby t.Date
                        select new TransferDTO
                        {
                            Date = t.Date,

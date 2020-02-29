@@ -40,7 +40,7 @@ namespace Supplier.DataAccessLayer
 
         public async Task<IEnumerable<SelectorAccount>> GetAll()
         {
-            return await _context.SelectorAccounts.ToListAsync();
+            return await _context.SelectorAccounts.OrderBy(x => x.PaidDate).ToListAsync();
         }
 
         public async Task<SelectorAccount> GetById(long id)
@@ -50,7 +50,7 @@ namespace Supplier.DataAccessLayer
 
         public async Task<IEnumerable<SelectorAccount>> GetAllBySelectorId(long selectorId)
         {
-            return await _context.SelectorAccounts.Where(x => x.SelectorId == selectorId).ToListAsync();
+            return await _context.SelectorAccounts.Where(x => x.SelectorId == selectorId).OrderBy(x => x.PaidDate).ToListAsync();
         }
     }
 }

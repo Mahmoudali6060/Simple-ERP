@@ -50,7 +50,7 @@ namespace Supplier.DataAccessLayer
 
         public async Task<IEnumerable<ReaperAccount>> GetAllByReaperId(long reaperId)
         {
-            return await _context.ReaperAccounts.Where(x => x.ReaperId == reaperId).ToListAsync();
+            return await _context.ReaperAccounts.Where(x => x.ReaperId == reaperId).OrderBy(x => x.PaidDate).ToListAsync();
         }
     }
 }

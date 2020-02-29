@@ -6,6 +6,8 @@ import { IncomeFormComponent } from '../income-form/income-form.component';
 import { MatDialog } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { FarmAccountService } from 'src/app/modules/suppliers/income/services/farm-account.service';
+import { DatePipe } from '@angular/common';
+import { ReportService } from 'src/app/modules/report/services/report.service';
 
 @Component({
   selector: 'app-income-list',
@@ -25,13 +27,15 @@ export class IncomeListComponent {
   farmId: number;
   balanceTotal: number;
   paidUpTotal: number;
-
+  reportData: any = [];
   //#endregion
 
   constructor(private incomeService: IncomeService,
     private dialog: MatDialog,
     private activatedRoute: ActivatedRoute,
-    private farmAccountService: FarmAccountService) {
+    private farmAccountService: FarmAccountService,
+    private datePipe: DatePipe,
+    private reportService: ReportService) {
   }
 
   ngOnInit() {
@@ -39,8 +43,8 @@ export class IncomeListComponent {
       this.farmId = Number(this.activatedRoute.snapshot.params["farmId"]);
       this.getAllIncomes(this.dataSourceModel);
       this.getAllFarmAccount(this.dataSourceModel);
-
     }
+
   }
 
   //#region GetAll
@@ -109,85 +113,43 @@ export class IncomeListComponent {
 
   //#endregion
 
-  // print(): void {
-  //   let dataSourceModel = new DataSourceModel();
-  //   dataSourceModel.PageSize = 1000000000;
+  //#region  Printing
+  print(): void {
+    this.reportData = [];
+    let dataSourceModel = new DataSourceModel();
+    dataSourceModel.PageSize = 1000000000;
+    this.getAllIncomeList(dataSourceModel);
 
-  //   var incomes: any = [];
-  //   var accountList: any = [];
+  }
 
-  //   this.incomeService.getIncomesByFarmId(this.farmId, dataSourceModel).subscribe(response => {
-  //     incomes = response.Data;
-  //   }, err => {
-  //   });
+  private getAllfarmAccountList(dataSourceModel) {
+    this.farmAccountService.getFarmAccountsByFarmId(this.farmId, dataSourceModel).subscribe(response => {
+      let data = {
+        list: response.Data,
+        title: "المدفوعات",
+        headers: ["تاريخ الدفع", "المدفوع", "رقم الوصل"],
+        properties: ["PaidDate", "PaidUp", "RecieptNumber"]
+      }
+      this.reportData.push(data);
+      this.reportService.generateReport("كشف حساب مزرعة",this.reportData,this.paidUpTotal,this.balanceTotal);
 
-  //   this.farmAccountService.getFarmAccountsByFarmId(this.farmId, dataSourceModel).subscribe(response => {
-  //     accountList = response.Data;
-  //   }, err => {
-  //   });
+    }, err => {
+    });
+  }
+  getAllIncomeList(dataSourceModel) {
+    this.incomeService.getIncomesByFarmId(this.farmId, dataSourceModel).subscribe(response => {
+      let data = {
+        list: response.Data,
+        title: "الواردات",
+        headers: ["التاريخ", "كارتة", "صنف", "مرزعة", "سيارة", "كمية", "خصم", "صافي", "سعر", "اجمالي", "خصم", "رصيد", "محطة"],
+        properties: ["Date", "CartNumber", "CategoryName", "FarmName", "CarPlate", "Quantity", "KiloDiscount", "QuantityAfterDiscount", "KiloPrice", "Total", "MoneyDiscount", "Balance", "StationName"]
+      }
+      this.reportData.push(data);
+      this.getAllfarmAccountList(dataSourceModel);
 
-  //   let printContents, popupWin;
-  //   printContents = document.getElementById('print-section').innerHTML;
-  //   popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
-  //   popupWin.document.open();
-  //   var html = `
-  //     <html>
-  //       <head>
-  //         <title>Supplier Account</title>
-  //         <style>
-  //         </style>
-  //       </head>
-  //       <body onload="window.print()">
-  //   <div class="wrapper" style="font-family: 'Helvetica Neue', lato, arial, sans-serif;font-size: 16px;">
-  //   <table class="main-table" style="width: 100%;table-layout: fixed;">
-  //     <tr>
-  //       <td></td>
-  //       <td width="1000">
-  //         <div class="header" style="text-align: center;margin: 30px 0 50px 0;">
-  //           <img src="//static.woopra.com/newsletters/woopra-logo-v2.png">
-  //         </div>
-  //         <div class="report" style="margin-bottom: 50px;">
-  //           <h2 style="font-weight: 300;">Supplier Account</h2>
+    }, err => {
+    });
+  }
 
-  //           <table class="report-table" style="width: 100%;table-layout: fixed;border-spacing: 0;border-collapse: separate;font-size: 14px;border: 1px solid #ddd;border-radius: 3px;" border="1">
-  //             <thead>
-  //               <tr>`;
-  //   for (let property of this.properties) {
-  //     html += `<th style="height: 36px;border-bottom: 1px solid #D3DEE4;color: black;text-align: left;padding: 0 8px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">` + property + `</th>`;
-  //   }
 
-  //   html += `</tr>
-  //             </thead>
-  //             <tbody>`;
-  //    html+=`<tr>
-  //                 <td style="text-align: left;padding: 0 8px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;height: 42px;line-height: 42px;">Wed, Jul 29, 2015</td>
-  //               </tr>
-
-  //             </tbody>
-
-  //             <tfoot>
-  //               <tr>
-  //                 <td style="text-align: left;padding: 0 8px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;height: 36px;line-height: 36px;font-weight: bold;color: #3F6984;background: #E8ECEF;">Total</td>
-  //                 <td style="text-align: right;padding: 0 8px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;height: 36px;line-height: 36px;font-weight: bold;color: #3F6984;background: #E8ECEF;">40</td>
-  //                 <td style="text-align: right;padding: 0 8px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;height: 36px;line-height: 36px;font-weight: bold;color: #3F6984;background: #E8ECEF;">150</td>
-  //                 <td style="text-align: right;padding: 0 8px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;height: 36px;line-height: 36px;font-weight: bold;color: #3F6984;background: #E8ECEF;">-$9,312.12</td>
-  //                 <td style="text-align: right;padding: 0 8px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;height: 36px;line-height: 36px;font-weight: bold;color: #3F6984;background: #E8ECEF;">$143.12</td>
-  //                 <td style="text-align: right;padding: 0 8px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;height: 36px;line-height: 36px;font-weight: bold;color: #3F6984;background: #E8ECEF;">-$8,123.12</td>
-  //               </tr>
-  //             </tfoot>
-  //           </table>
-  //         </div>
-  //         <div class="footer">
-  //           <p> Developed by Mahmoud A.Salman &copy; 2020</p>
-  //         </div>
-  //       </td>
-  //       <td></td>
-  //     </tr>
-  //   </table>
-  // </div>
-  //   </body>
-  //     </html>`
-  //   popupWin.document.write(html);
-  //   popupWin.document.close();
-  // }
 }

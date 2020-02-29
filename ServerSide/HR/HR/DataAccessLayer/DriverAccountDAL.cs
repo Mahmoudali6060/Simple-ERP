@@ -50,7 +50,7 @@ namespace Supplier.DataAccessLayer
 
         public async Task<IEnumerable<DriverAccount>> GetAllByDriverId(long driverId)
         {
-            return await _context.DriverAccounts.Where(x => x.DriverId == driverId).ToListAsync();
+            return await _context.DriverAccounts.Where(x => x.DriverId == driverId).OrderBy(x => x.PaidDate) .ToListAsync();
         }
     }
 }
