@@ -41,22 +41,14 @@ export class TransactionListComponent {
     });
   }
 
-  showConfirmDialog(id): void {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent)//, {
-    dialogRef.afterClosed().subscribe(dialogResult => {
-      this.delete(dialogResult, id);
-    });
-  }
 
-  private delete(confirmed: boolean, id: number) {
-    if (confirmed) {
-      this.transactionService.delete(id)
-        .subscribe((data) => {
-          this.getAllTransaction();
-        })
-        , error => {
-        }
-    }
+  public delete(id: number) {
+    this.transactionService.delete(id)
+      .subscribe((data) => {
+        this.getAllTransaction();
+      })
+      , error => {
+      }
   }
 
 

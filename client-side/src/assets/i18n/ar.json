@@ -128,5 +128,8 @@
     "DriverFullName":"اسم السائق",
     "DriverMobile":"هاتف السائق",
     "HeadName":"اسم الريس",
-    "LastTonPrice":"اخر سعر للطن"
+    "LastTonPrice":"اخر سعر للطن",
+    "Add new recod":"اضافة سجل جديد",
+    "FullName":"الاسم",
+    "Mobile":"رقم الهاتف"
 }

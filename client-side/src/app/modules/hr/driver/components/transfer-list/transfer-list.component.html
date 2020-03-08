@@ -20,7 +20,7 @@
   </div>
   <div class="row">
     <div class="col-lg-8">
-      <app-data-list [properties]="properties" [list]="transferList" (deleteRow)="delete($event)" (editRow)="openModal($event)" (changePagination)="onChangePagination($event)"
+      <app-data-list [properties]="properties" [list]="transferList" (deleteRow)="delete($event)" (changePagination)="onChangePagination($event)"
         [total]="total" [isReadonly]="'true'">
       </app-data-list>
     </div>

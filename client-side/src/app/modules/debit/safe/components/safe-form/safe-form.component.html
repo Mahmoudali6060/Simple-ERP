@@ -5,18 +5,22 @@
             <form #safeForm="ngForm" (ngSubmit)="save(safeForm)">
                 <div class="row">
                     <div class="col-lg-12">
-                        <input type="text" id="Date" name="Date" [(ngModel)]="safeModel.Date" class="form-control" placeholder="{{ 'Date' | translate }}"
-                            #dp="bsDatepicker" bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }">
+                        <input type="date" id="Date" name="Date" [(ngModel)]="safeModel.Date" class="form-control" placeholder="{{ 'Date' | translate }}">
                         <br>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <label translate>Account Tree</label>
+                        <!-- <label translate>Account Tree</label> -->
                         <div class="input-container">
-                            <ng-select [items]="accountTreeList" [(ngModel)]="accountTreeType" [ngModelOptions]="{standalone: true}" placeholder="Select item" appendTo="body" (change)="onAccountTreeChange($event)">
+                            <!-- <ng-select [items]="accountTreeList" [(ngModel)]="accountTreeType" [ngModelOptions]="{standalone: true}" placeholder="Select item"
+                                appendTo="body" (change)="onAccountTreeChange($event)">
                             </ng-select>
-                            <i class="fa fa-user icon"></i>
+                            <i class="fa fa-user icon"></i> -->
+                            <select class="form-control" [(ngModel)]="accountTreeType" [ngModelOptions]="{standalone: true}" (change)="onAccountTreeChange($event)">
+                                <option value="null">اختر نوع الحساب</option>
+                                <option *ngFor="let item of accountTreeList" value="{{item}}" translate>{{item}}</option>
+                            </select>
                         </div>
                     </div>
                 </div>

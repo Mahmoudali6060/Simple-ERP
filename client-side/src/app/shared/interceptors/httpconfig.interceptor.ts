@@ -3,13 +3,12 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { ErrorDialogService } from 'src/app/shared/services/error-dialof.sercive';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Injectable()
 export class HttpConfigInterceptor implements HttpInterceptor {
 
-    constructor(private spinner: NgxSpinnerService, private errorDialogService: ErrorDialogService) {
+    constructor(private spinner: NgxSpinnerService) {
 
     }
 
@@ -38,7 +37,6 @@ export class HttpConfigInterceptor implements HttpInterceptor {
                             reason: error && error.error.reason ? error.error.reason : '',
                             status: error.status
                         };
-                        this.errorDialogService.openDialog(data);
                         return throwError(error);
                     })
                 }

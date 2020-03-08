@@ -11,8 +11,6 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { OrderModule } from 'ngx-order-pipe';
-import { ErrorDialogService } from '../shared/services/error-dialof.sercive';
-import { ErrorDialogComponent } from '../shared/components/error-dialog/error-dialog.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from '../shared/modules/material.module';
@@ -67,19 +65,16 @@ import { HelperService } from './services/helper.service';
     // ModalBasicComponent
   ],
   declarations: [
-    ErrorDialogComponent,
     ConfirmationDialogComponent,
     PaginationComponent,
     DataListComponent
   ],
   entryComponents: [
-    ErrorDialogComponent,
     ConfirmationDialogComponent,
     DataListComponent
   ],
   providers: [
     BsModalService,
-    ErrorDialogService,
     DatePipe,
     AuthGuardService,
     HelperService

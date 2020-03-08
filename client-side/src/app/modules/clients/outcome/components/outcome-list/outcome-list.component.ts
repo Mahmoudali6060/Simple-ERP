@@ -2,7 +2,6 @@ import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { OutcomeService } from '../../services/outcome.service';
 import { OutcomeModel } from '../../models/outcome.model';
 import { DataSourceModel } from '../../../../../shared/models/data-source.model';
-import { OutcomeFormComponent } from '../outcome-form/outcome-form.component';
 import { MatDialog } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { StationAccountService } from '../../services/station-account.service';
@@ -83,21 +82,6 @@ export class OutcomeListComponent {
       })
       , error => {
       }
-  }
-  //#endregion
-
-  //#region Open Modal
-  public openModal(id?: number) {
-    const dialogRef = this.dialog.open(OutcomeFormComponent, {
-      width: '900px',
-      // height: '400px',
-      data: { id: id }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.getAllOutcomes(this.dataSourceModel);
-      }
-    });
   }
   //#endregion
 

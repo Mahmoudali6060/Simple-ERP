@@ -8,11 +8,13 @@ import { SelectorFormComponent } from './components/selector-form/selector-form.
 import { SelectorDetailService } from './services/selector-detail.service';
 import { SelectorAccountService } from './services/selector-account.service';
 import { ReportModule } from 'src/app/modules/report/report.module';
+import { ReportService } from 'src/app/modules/report/services/report.service';
 
 @NgModule({
   imports: [
     SelectorRoutingModule,
-    SharedModule.forRoot()
+    SharedModule.forRoot(),
+    ReportService
   ],
   declarations: [
     SelectorListComponent,

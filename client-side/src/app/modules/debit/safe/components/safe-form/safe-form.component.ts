@@ -43,8 +43,9 @@ export class SafeFormComponent {
     this.accountTreeList = options.slice(options.length / 2);
   }
 
-  public onAccountTreeChange(value: string) {
-    this.safeModel.AccountTreeType = AccountTreeEnum[value];
+  public onAccountTreeChange(event: any) {
+    let accounName: string = event.target.value;
+    this.safeModel.AccountTreeType = AccountTreeEnum[accounName];
   }
 
   public save(form: NgForm) {

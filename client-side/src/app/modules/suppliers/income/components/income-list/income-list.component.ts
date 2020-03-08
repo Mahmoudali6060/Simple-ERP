@@ -2,7 +2,6 @@ import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { IncomeService } from '../../services/income.service';
 import { IncomeModel } from '../../models/income.model';
 import { DataSourceModel } from '../../../../../shared/models/data-source.model';
-import { IncomeFormComponent } from '../income-form/income-form.component';
 import { MatDialog } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { FarmAccountService } from 'src/app/modules/suppliers/income/services/farm-account.service';
@@ -83,21 +82,6 @@ export class IncomeListComponent {
       })
       , error => {
       }
-  }
-  //#endregion
-
-  //#region Open Modal
-  public openModal(id?: number) {
-    const dialogRef = this.dialog.open(IncomeFormComponent, {
-      width: '900px',
-      // height: '400px',
-      data: { id: id }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.getAllIncomes(this.dataSourceModel);
-      }
-    });
   }
   //#endregion
 
