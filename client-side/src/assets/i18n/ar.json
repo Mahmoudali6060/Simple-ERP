@@ -134,5 +134,6 @@
     "Mobile": "رقم الهاتف",
     "incomingTotal": "اجمالي الوارد",
     "outcomingTotal": "اجمالي المنصرف",
-    "AccountNameAr": "اسم الحساب"
+    "AccountNameAr": "اسم الحساب",
+    "QuantityTotal":"اجمالي الكمية"
 }

@@ -26,6 +26,7 @@ export class IncomeListComponent {
   farmId: number;
   balanceTotal: number;
   paidUpTotal: number;
+  quantityTotal: number;
   reportData: any = [];
   //#endregion
 
@@ -53,6 +54,8 @@ export class IncomeListComponent {
         this.incomeList = response.Data;
         this.total = response.Total;
         this.balanceTotal = response.Entity.BalanceTotal;
+        this.quantityTotal = response.Entity.QuantityTotal;
+
       }, err => {
       });
     }
@@ -71,6 +74,7 @@ export class IncomeListComponent {
       this.farmAccountList = response.Data;
       this.farmAccountTotal = response.Total;
       this.paidUpTotal = response.Entity.PaidUpTotal;
+      this.quantityTotal = response.Entity.QuantityTotal;
     }, err => {
     });
   }
@@ -115,7 +119,7 @@ export class IncomeListComponent {
         properties: ["PaidDate", "PaidUp", "RecieptNumber"]
       }
       this.reportData.push(data);
-      this.reportService.generateReport("كشف حساب مزرعة",this.reportData,this.paidUpTotal,this.balanceTotal);
+      this.reportService.generateReport("كشف حساب مزرعة", this.reportData, this.paidUpTotal, this.balanceTotal);
 
     }, err => {
     });

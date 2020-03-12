@@ -10,5 +10,7 @@ namespace Shared.Entities.Credit
     public class OutcomeListDTO
     {
         public decimal BalanceTotal { get; set; }
+        public decimal QuantityTotal { get; set; }
+
     }
 }

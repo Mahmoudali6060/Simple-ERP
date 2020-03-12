@@ -70,7 +70,8 @@ namespace Clients.DataServiceLayer
             Response response = Helper.ToResult(list, dataSource);
             response.Entity = new OutcomeListDTO()
             {
-                BalanceTotal = list.Sum(x => x.Balance)
+                BalanceTotal = list.Sum(x => x.Balance),
+                QuantityTotal = list.Sum(x => x.QuantityAfterDiscount)
             };
             return response;
         }

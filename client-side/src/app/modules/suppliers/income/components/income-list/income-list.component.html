@@ -3,7 +3,7 @@
     <div class="col-lg-2 col-md-2 col-sm-2">
       <h2 class="pageTitle" translate>Incomes</h2>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-3">
+    <div class="col-lg-2 col-md-2 col-sm-2">
       <h4 class="header-m">
         <span *ngIf="paidUpTotal - balanceTotal < 0" [class.lbl-warning]="paidUpTotal - balanceTotal < 0">
           <span translate>Total</span>: {{(paidUpTotal - balanceTotal) | number:'1.2-2'}}</span>
@@ -11,21 +11,25 @@
           <span translate>Total</span>: {{(paidUpTotal - balanceTotal) | number:'1.2-2'}}</span>
       </h4>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-3">
+    <div class="col-lg-2 col-md-2 col-sm-2">
       <h4 class="header-m" translate>{{'BalanceTotal'|translate}}: {{balanceTotal | number:'1.2-2'}}</h4>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-3">
+    <div class="col-lg-2 col-md-2 col-sm-2">
       <h4 class="header-m">{{'PaidUpTotal'|translate}}: {{paidUpTotal | number:'1.2-2'}}</h4>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-2">
+      <h4 class="header-m" translate>{{'QuantityTotal'|translate}}: {{quantityTotal}}</h4>
     </div>
   </div>
   <div class="row" id="print-section">
     <div class="col-lg-8">
-      <app-data-list [properties]="properties" [list]="incomeList" (deleteRow)="delete($event)"  (changePagination)="onChangePagination($event)"
+      <app-data-list [properties]="properties" [list]="incomeList" (deleteRow)="delete($event)" (changePagination)="onChangePagination($event)"
         [total]="total" [isReadonly]="'true'">
       </app-data-list>
     </div>
     <div class="col-lg-4">
-      <app-data-list [properties]="farmAccountProperties" [list]="farmAccountList" [total]="farmAccountTotal" [isReadonly]="'true'" (changePagination)="onChangeAccountPagination($event)">
+      <app-data-list [properties]="farmAccountProperties" [list]="farmAccountList" [total]="farmAccountTotal" [isReadonly]="'true'"
+        (changePagination)="onChangeAccountPagination($event)">
       </app-data-list>
     </div>
   </div>

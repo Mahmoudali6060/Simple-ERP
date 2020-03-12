@@ -26,6 +26,7 @@ export class OutcomeListComponent {
   stationId: number;
   balanceTotal: number;
   paidUpTotal: number;
+  quantityTotal: number;
   reportData: any = [];
   //#endregion
 
@@ -53,6 +54,7 @@ export class OutcomeListComponent {
         this.outcomeList = response.Data;
         this.total = response.Total;
         this.balanceTotal = response.Entity.BalanceTotal;
+        this.quantityTotal = response.Entity.QuantityTotal;
       }, err => {
       });
     }
@@ -115,7 +117,7 @@ export class OutcomeListComponent {
         properties: ["PaidDate", "PaidUp", "RecieptNumber"]
       }
       this.reportData.push(data);
-      this.reportService.generateReport("كشف حساب محطة",this.reportData,this.paidUpTotal,this.balanceTotal);
+      this.reportService.generateReport("كشف حساب محطة", this.reportData, this.paidUpTotal, this.balanceTotal);
 
     }, err => {
     });

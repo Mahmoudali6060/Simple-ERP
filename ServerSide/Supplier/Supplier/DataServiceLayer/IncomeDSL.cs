@@ -58,7 +58,8 @@ namespace Supplier.DataServiceLayer
             Response response = Helper.ToResult(list, dataSource);
             response.Entity = new IncomeListDTO()
             {
-                BalanceTotal = list.Sum(x => x.Balance)
+                BalanceTotal = list.Sum(x => x.Balance),
+                QuantityTotal=list.Sum(x=>x.QuantityAfterDiscount)
             };
             return response;
         }
