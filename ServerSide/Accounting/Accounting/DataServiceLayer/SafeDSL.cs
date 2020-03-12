@@ -187,7 +187,13 @@ namespace Accouting.DataServiceLayer
         public async Task<Response> GetAll(DataSource dataSource)
         {
             var list = _mapper.Map<IEnumerable<SafeDTO>>(await _safeDAL.GetAll()).AsQueryable();
-            return Helper.ToResult(list, dataSource);
+            Response response = Helper.ToResult(list, dataSource);
+            response.Entity = new SafeListDTO()
+            {
+                IncomingTotal = list.Sum(x => x.Incoming),
+                OutcomingTotal = list.Sum(x => x.Outcoming),
+            };
+            return response;
         }
         public async Task<SafeDTO> GetById(long id)
         {

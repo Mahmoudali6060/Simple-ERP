@@ -9,15 +9,19 @@ using Shared.Entities.Shared;
 using Shared.Entities.Credit;
 using Data.Entities.Credit;
 using Shared.Classes;
+using Accouting.Shared.DataServiceLayer;
 
 namespace Clients.DataServiceLayer
 {
     public class DriverDSL : IDriverDSL
     {
         IDriverDAL _driverDAL;
+        IAccountingSharedDSL _accountingSharedDSL;
+
         private readonly IMapper _mapper;
-        public DriverDSL(IDriverDAL driverDAL, IMapper mapper)
+        public DriverDSL(IDriverDAL driverDAL, IAccountingSharedDSL accountingSharedDSL, IMapper mapper)
         {
+            _accountingSharedDSL = accountingSharedDSL;
             this._driverDAL = driverDAL;
             _mapper = mapper;
         }
@@ -26,6 +30,10 @@ namespace Clients.DataServiceLayer
         {
             try
             {
+                if (entity.Id > 0)
+                {
+                    await _accountingSharedDSL.UpdateAccountName(entity.Id, entity.FullName);
+                }
                 return await _driverDAL.Save(_mapper.Map<Driver>(entity));
             }
             catch (Exception ex)

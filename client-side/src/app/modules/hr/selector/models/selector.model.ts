@@ -1,7 +1,7 @@
 
 export class SelectorModel {
     Id: number;
-    HeadName: number;
+    HeadName: string;
     LastTonPrice: number;
     Balance: number;
     SelectorDetail: any;

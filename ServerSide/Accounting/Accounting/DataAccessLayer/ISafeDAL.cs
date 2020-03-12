@@ -17,5 +17,6 @@ namespace Accouting.DataAccessLayer
         DriverAccount GetDriverAccountBySafeId(long safeId);
         SelectorAccount GetSelectorAccountBySafeId(long safeId);
         ReaperAccount GetReaperAccountBySafeId(long safeId);
+        Task<long> UpdateAccountName(int accountId, string accountName);
     }
 }

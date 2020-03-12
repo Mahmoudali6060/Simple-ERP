@@ -13,16 +13,19 @@ using Shared.Entities.Debit;
 using Data.Entities.Debit;
 using Shared.Entities.Shared;
 using Shared.Classes;
+using Accouting.Shared.DataServiceLayer;
 
 namespace Clients.DataServiceLayer
 {
     public class StationDSL : IStationDSL
     {
         IStationDAL _stationDAL;
+        IAccountingSharedDSL _accountingSharedDSL;
         private readonly IMapper _mapper;
-        public StationDSL(IStationDAL stationDAL, IMapper mapper)
+        public StationDSL(IStationDAL stationDAL, IAccountingSharedDSL accountingSharedDSL, IMapper mapper)
         {
-            this._stationDAL = stationDAL;
+            _stationDAL = stationDAL;
+            _accountingSharedDSL = accountingSharedDSL;
             _mapper = mapper;
         }
 
@@ -30,6 +33,10 @@ namespace Clients.DataServiceLayer
         {
             try
             {
+                if (entity.Id > 0)
+                {
+                    await _accountingSharedDSL.UpdateAccountName(entity.Id, entity.OwnerName);
+                }
                 return await _stationDAL.Save(_mapper.Map<Station>(entity));
             }
             catch (Exception ex)

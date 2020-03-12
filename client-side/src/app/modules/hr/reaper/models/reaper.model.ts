@@ -1,6 +1,6 @@
 export class ReaperModel {
     Id: number;
-    HeadName: number;
+    HeadName: string;
     LastTonPrice: number;
     Balance: number;
     ReaperDetail: any;

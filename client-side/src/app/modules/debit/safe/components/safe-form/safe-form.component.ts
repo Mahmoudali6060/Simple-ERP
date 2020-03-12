@@ -5,6 +5,11 @@ import { SafeService } from '../../services/safe.service';
 import { SafeModel } from '../../models/safe.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { AccountTreeEnum } from 'src/app/shared/enums/account-tree.enum';
+import { FarmModel } from 'src/app/modules/suppliers/farm/models/farm.model';
+import { DriverModel } from 'src/app/modules/hr/driver/models/driver.model';
+import { StationModel } from 'src/app/modules/clients/station/models/station.model';
+import { ReaperModel } from 'src/app/modules/hr/reaper/models/reaper.model';
+import { SelectorModel } from 'src/app/modules/hr/selector/models/selector.model';
 
 @Component({
   selector: 'app-safe-form',
@@ -59,23 +64,30 @@ export class SafeFormComponent {
     this.dialogRef.close();
   }
 
-  onFarmChange(farm) {
+  onFarmChange(farm: FarmModel) {
     this.safeModel.AccountId = farm.Id;
+    this.safeModel.AccountNameAr = farm.OwnerName;
+
   }
 
-  onDriverChange(driver) {
+  onDriverChange(driver: DriverModel) {
     this.safeModel.AccountId = driver.Id;
+    this.safeModel.AccountNameAr = driver.FullName;
   }
 
-  onStationChange(station) {
+  onStationChange(station: StationModel) {
     this.safeModel.AccountId = station.Id;
+    this.safeModel.AccountNameAr = station.OwnerName;
   }
 
-  onReaperChange(reaper) {
+  onReaperChange(reaper: ReaperModel) {
     this.safeModel.AccountId = reaper.Id;
+    this.safeModel.AccountNameAr = reaper.HeadName;
+
   }
 
-  onSelectorChange(selector) {
+  onSelectorChange(selector: SelectorModel) {
     this.safeModel.AccountId = selector.Id;
+    this.safeModel.AccountNameAr = selector.HeadName;
   }
 }

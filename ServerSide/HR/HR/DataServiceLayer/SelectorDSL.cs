@@ -9,16 +9,19 @@ using Shared.Entities.Shared;
 using Shared.Entities.Credit;
 using Data.Entities.Credit;
 using Shared.Classes;
+using Accouting.Shared.DataServiceLayer;
 
 namespace Clients.DataServiceLayer
 {
     public class SelectorDSL : ISelectorDSL
     {
         ISelectorDAL _selectorDAL;
+        IAccountingSharedDSL _accountingSharedDSL;
         private readonly IMapper _mapper;
-        public SelectorDSL(ISelectorDAL selectorDAL, IMapper mapper)
+        public SelectorDSL(ISelectorDAL selectorDAL, IAccountingSharedDSL accountingSharedDSL, IMapper mapper)
         {
-            this._selectorDAL = selectorDAL;
+            _selectorDAL = selectorDAL;
+            _accountingSharedDSL = accountingSharedDSL;
             _mapper = mapper;
         }
 
@@ -26,6 +29,7 @@ namespace Clients.DataServiceLayer
         {
             try
             {
+                await _accountingSharedDSL.UpdateAccountName(entity.Id, entity.HeadName);
                 return await _selectorDAL.Save(_mapper.Map<Selector>(entity));
             }
             catch (Exception ex)

@@ -13,10 +13,12 @@ import { MatDialog } from '@angular/material';
 export class SafeListComponent {
   //#region Variables
   safeList: Array<SafeModel>;//Data List
-  properties = ["Date","Incoming","Outcoming","Balance","Description"];//Displayed Columns 
+  properties = ["Date", "Incoming", "Outcoming", "AccountNameAr"];//Displayed Columns 
   safe: SafeModel = new SafeModel();//For Add/Update Safe Entity
   dataSourceModel: DataSourceModel = new DataSourceModel;//Pagination and Filteration Settings
   total: number;//Total number of rows
+  incomingTotal: number;
+  outcomingTotal: number;
   //#endregion
 
   constructor(private safeService: SafeService, private dialog: MatDialog) {
@@ -31,6 +33,8 @@ export class SafeListComponent {
     this.safeService.getAll(this.dataSourceModel).subscribe(response => {
       this.safeList = response.Data;
       this.total = response.Total;
+      this.incomingTotal = response.Entity.IncomingTotal;
+      this.outcomingTotal = response.Entity.OutcomingTotal;
     }, err => {
     });
   }

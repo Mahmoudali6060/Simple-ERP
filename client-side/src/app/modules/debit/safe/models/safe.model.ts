@@ -7,6 +7,7 @@ export class SafeModel {
     Balance: number;
     AccountTreeType: AccountTreeEnum;
     AccountId: number;
+    AccountNameAr: string;
     Description: string;
     RecieptNumber: string;
 }

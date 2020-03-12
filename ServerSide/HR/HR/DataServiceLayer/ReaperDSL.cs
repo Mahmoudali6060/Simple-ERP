@@ -9,16 +9,20 @@ using Shared.Entities.Shared;
 using Shared.Entities.Credit;
 using Data.Entities.Credit;
 using Shared.Classes;
+using Accouting.Shared.DataServiceLayer;
 
 namespace Clients.DataServiceLayer
 {
     public class ReaperDSL : IReaperDSL
     {
         IReaperDAL _reaperDAL;
+        IAccountingSharedDSL _accountingSharedDSL;
+
         private readonly IMapper _mapper;
-        public ReaperDSL(IReaperDAL reaperDAL, IMapper mapper)
+        public ReaperDSL(IReaperDAL reaperDAL, IAccountingSharedDSL accountingSharedDSL, IMapper mapper)
         {
-            this._reaperDAL = reaperDAL;
+            _reaperDAL = reaperDAL;
+            _accountingSharedDSL = accountingSharedDSL;
             _mapper = mapper;
         }
 
@@ -26,6 +30,10 @@ namespace Clients.DataServiceLayer
         {
             try
             {
+                if (entity.Id > 0)
+                {
+                    await _accountingSharedDSL.UpdateAccountName(entity.Id, entity.HeadName);
+                }
                 return await _reaperDAL.Save(_mapper.Map<Reaper>(entity));
             }
             catch (Exception ex)

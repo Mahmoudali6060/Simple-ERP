@@ -72,5 +72,26 @@ namespace Accouting.DataAccessLayer
         {
             return _context.ReaperAccounts.Where(x => x.SafeId == safeId).SingleOrDefault();
         }
+
+        public async Task<long> UpdateAccountName(int accountId, string accountName)
+        {
+            try
+            {
+                var safes = (from s in _context.Safes
+                             where s.AccountId == accountId
+                             select new Safe
+                             {
+                                 Id = s.Id,
+                                 AccountNameAr = accountName
+                             });
+                _context.Safes.UpdateRange(safes);
+                await _context.SaveChangesAsync();
+                return accountId;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
     }
 }

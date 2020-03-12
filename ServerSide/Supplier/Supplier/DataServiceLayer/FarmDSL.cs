@@ -13,21 +13,30 @@ using Data.Entities.Credit;
 using Shared.Entities.Credit;
 using Shared.Entities.Shared;
 using Shared.Classes;
+using Data.Entities.Debit;
+using Accouting.Shared.DataServiceLayer;
 
 namespace Supplier.DataServiceLayer
 {
     public class FarmDSL : IFarmDSL
     {
         IFarmDAL _farmDAL;
+        IAccountingSharedDSL _accountingSharedDSL;
         private readonly IMapper _mapper;
-        public FarmDSL(IFarmDAL farmDAL, IMapper mapper)
+
+        public FarmDSL(IFarmDAL farmDAL, IAccountingSharedDSL accountingSharedDSL, IMapper mapper)
         {
             this._farmDAL = farmDAL;
+            _accountingSharedDSL = accountingSharedDSL;
             _mapper = mapper;
         }
 
         public async Task<long> Save(FarmDTO entity)
         {
+            if (entity.Id > 0)
+            {
+                await _accountingSharedDSL.UpdateAccountName(entity.Id, entity.OwnerName);
+            }
             return await _farmDAL.Save(_mapper.Map<Farm>(entity));
         }
 

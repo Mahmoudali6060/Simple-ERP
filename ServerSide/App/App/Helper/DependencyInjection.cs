@@ -2,6 +2,8 @@
 using Account.DataServiceLayer;
 using Accouting.DataAccessLayer;
 using Accouting.DataServiceLayer;
+using Accouting.Shared.DataAccessLayer;
+using Accouting.Shared.DataServiceLayer;
 using Clients.DataAccessLayer;
 using Clients.DataServiceLayer;
 using DevExpress.XtraReports.Web.WebDocumentViewer;
@@ -81,6 +83,10 @@ namespace App.Helper
             services.AddTransient<IReaperAccountDAL, ReaperAccountDAL>();
             services.AddTransient<ISelectorAccountDSL, SelectorAccountDSL>();
             services.AddTransient<ISelectorAccountDAL, SelectorAccountDAL>();
+
+            services.AddTransient<IAccountingSharedDSL, AccountingSharedDSL>();
+            services.AddTransient<IAccountingSharedDAL, AccountingSharedDAL>();
+
 
         }
     }

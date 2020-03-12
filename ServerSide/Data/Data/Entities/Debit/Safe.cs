@@ -14,6 +14,7 @@ namespace Data.Entities.Debit
         public string RecieptNumber { get; set; }
         public AccountTreeEnum AccountTreeType { get; set; }
         public long AccountId { get; set; }
+        public string AccountNameAr { get; set; }
         public string Description { get; set; }
     }
 }
