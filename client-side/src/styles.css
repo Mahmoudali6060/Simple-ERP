@@ -3,6 +3,7 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 /* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; */
 @import "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700";
+@import '~ngx-toastr/toastr';
 
 body{
     /* font-size: 20px !important; */
@@ -121,12 +122,6 @@ thead{
     font-weight: bold;
   }
 
-  .lbl-warning{
-      color: red;
-  }
-
-
-
   table { 
 	width: 98%; 
 	border-collapse: collapse; 
@@ -208,8 +203,10 @@ only screen and (max-width: 760px),
 
 }
 
+.lbl-success{
+    /* color: green; */
+}
 
-
-  .lbl-success{
-    color: green;
+.lbl-warning{
+    /* color: red; */
 }

@@ -13,7 +13,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 export class FarmFormComponent {
 
   farmModel: FarmModel = new FarmModel;
-
+  clicked = false;
   constructor(private router: Router, private farmService: FarmService, private avtiveRoute: ActivatedRoute,
     public dialogRef: MatDialogRef<FarmFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {

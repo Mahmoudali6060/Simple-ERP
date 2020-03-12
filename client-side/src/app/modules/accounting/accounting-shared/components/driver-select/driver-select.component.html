@@ -6,6 +6,14 @@
         appendTo="body" 
         [(ngModel)]="selected"
         (change)="onDriverChange()">
+
+        <ng-template ng-label-tmp let-item="item">
+                {{item.CarPlate}}-{{item.FullName}}
+            </ng-template>
+            <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+                {{item.CarPlate}}-{{item.FullName}}
+            </ng-template>
+
 </ng-select>
         <i class="fa fa-user icon"></i>
 </div>

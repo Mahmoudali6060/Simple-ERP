@@ -14,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AuthModule } from 'src/app/modules/authentication/auth.module';
 
 import { DxReportDesignerModule } from 'devexpress-reporting-angular';
+import { SpinnerInterceptor } from 'src/app/shared/interceptors/spinner.interceptor';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -50,7 +51,8 @@ export function tokenGetter() {
 
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },
   ],
 
   bootstrap: [AppComponent]

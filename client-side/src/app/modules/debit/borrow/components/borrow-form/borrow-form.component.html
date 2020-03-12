@@ -35,7 +35,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-2">
-                        <button type="button" class="btn btn-primary" (click)="save(borrowForm)" [mat-dialog-close]="true" translate>Yes</button>
+                        <button type="button" class="btn btn-primary" [disabled]="clicked" (click)="save(borrowForm);clicked=true" [mat-dialog-close]="true" translate>Yes</button>
                     </div>
                     <div class="col-lg-2">
                         <button type="button" class="btn btn-warning" (click)="hide()" translate>No</button>

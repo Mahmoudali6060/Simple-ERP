@@ -11,26 +11,26 @@
                             </div>
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <label translate>Date</label>
                                         <input type="date" date="dd-MM-yyyy" id="Date" name="Date" [(ngModel)]="transactionModel.Date" class="form-control" placeholder="{{ 'Transaction.Date' | translate }}">
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <app-farm-select (entityEmitter)="onFarmChange($event)" [id]="transactionModel.FarmId"></app-farm-select>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <app-category-select (entityEmitter)="onCategoryChange($event)" [id]="transactionModel.CategoryId"></app-category-select>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <app-driver-select (entityEmitter)="onDriverChange($event)" [id]="transactionModel.DriverId"></app-driver-select>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <label translate>Quantity (Supplier)</label>
                                         <input type="number" id="SupplierQuantity" name="SupplierQuantity" [(ngModel)]="transactionModel.SupplierQuantity" class="form-control"
                                             placeholder="{{ 'Quantity (Supplier)' | translate }}" (ngModelChange)="calculateTotalAfterPardon()">
                                     </div>
 
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <label translate>Pardon Type</label>
                                         <select class="form-control" id="pardonType" name="pardonType" [(ngModel)]="pardonType" (ngModelChange)="calculateTotalAfterPardon()">
                                             <option value="percentage" translate>Percentage (%)</option>
@@ -38,70 +38,70 @@
                                         </select>
                                         <br>
                                     </div>
-                                    <div class="col-lg-4" *ngIf="pardonType=='percentage'">
+                                    <div class="col-lg-6" *ngIf="pardonType=='percentage'">
                                         <label translate>Pardon Percentage</label>
                                         <input type="number" id="pardonPercentage" name="pardonPercentage" [(ngModel)]="pardonPercentage" class="form-control" placeholder="{{ 'Pardon Percentage' | translate }}"
                                             [value]="2" (ngModelChange)="calculateTotalAfterPardon()">
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <label translate>Pardon</label>
                                         <input *ngIf="pardonType=='percentage'" type="number" id="Pardon" name="Pardon" [(ngModel)]="transactionModel.Pardon" class="form-control"
                                             placeholder="{{ 'Pardon' | translate }}" [value]="(pardonPercentage/100) * transactionModel.SupplierQuantity"
-                                            readonly >
+                                            readonly>
                                         <input *ngIf="pardonType=='value'" type="number" id="Pardon" name="Pardon" [(ngModel)]="transactionModel.Pardon" class="form-control"
                                             placeholder="{{ 'Pardon' | translate }}" (ngModelChange)="calculateTotalAfterPardon()">
                                         <br>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <label translate>Total After Pardon</label>
                                         <input type="number" id="TotalAfterPardon" name="TotalAfterPardon" [(ngModel)]="transactionModel.TotalAfterPardon" class="form-control"
                                             placeholder="{{ 'Total After Pardon' | translate }}" [value]="transactionModel.SupplierQuantity-transactionModel.Pardon"
                                             readonly>
                                         <br>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <label translate>Price (Supplier)</label>
                                         <input type="number" id="SupplierPrice" name="SupplierPrice" [(ngModel)]="transactionModel.SupplierPrice" class="form-control"
                                             placeholder="{{ 'Price (Supplier)' | translate }}">
                                         <br>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <label translate>Amount (Supplier)</label>
                                         <input type="number" id="SupplierAmount" name="SupplierAmount" [(ngModel)]="transactionModel.SupplierAmount" class="form-control"
                                             placeholder="{{ 'Amount (Supplier)' | translate }}" [value]="(transactionModel.SupplierQuantity-transactionModel.Pardon) * transactionModel.SupplierPrice"
                                             readonly>
                                         <br>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <label translate>Nolon</label>
                                         <input type="number" id="Nolon" name="Nolon" [(ngModel)]="transactionModel.Nolon" class="form-control" placeholder="{{ 'Nolon' | translate }}">
                                         <br>
                                     </div>
 
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <app-reaper-select (entityEmitter)="onReaperChange($event)" [id]="transactionModel.ReaperId"></app-reaper-select>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <label translate>Reapers Pay</label>
                                         <input type="number" id="ReapersPay" name="ReapersPay" [(ngModel)]="transactionModel.ReapersPay" class="form-control" placeholder="{{ 'Reapers Pay' | translate }}">
                                         <br>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <app-selector-select (entityEmitter)="onSelectorChange($event)" [id]="transactionModel.SelectorId"></app-selector-select>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <label translate>Selectors Pay</label>
                                         <input type="number" id="SelectorsPay" name="SelectorsPay" [(ngModel)]="transactionModel.SelectorsPay" class="form-control"
                                             placeholder="{{ 'Selectors Pay' | translate }}">
 
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <label translate>Farm Expense</label>
                                         <input type="number" id="FarmExpense" name="FarmExpense" [(ngModel)]="transactionModel.FarmExpense" class="form-control"
                                             placeholder="{{ 'Farm Expense' | translate }}">
                                         <br>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <label translate>Total (Supplier)</label>
                                         <input type="number" id="SupplierTotal" name="SupplierTotal" [(ngModel)]="transactionModel.SupplierTotal" class="form-control"
                                             placeholder="{{ 'Total (Supplier)' | translate }}" [value]="((transactionModel.SupplierQuantity-transactionModel.Pardon) * transactionModel.SupplierPrice)+transactionModel.Nolon+transactionModel.FarmExpense+transactionModel.ReapersPay+transactionModel.SelectorsPay"
@@ -121,28 +121,28 @@
                                     </div>
                                     <div class="panel-body">
                                         <div class="row">
-                                            <div class="col-lg-4">
+                                            <div class="col-lg-6">
                                                 <app-station-select (entityEmitter)="onStationChange($event)" [id]="transactionModel.StationId"></app-station-select>
                                             </div>
-                                            <div class="col-lg-4">
+                                            <div class="col-lg-6">
                                                 <label translate>Cart Number</label>
                                                 <input type="text" id="CartNumber" name="CartNumber" [(ngModel)]="transactionModel.CartNumber" class="form-control" placeholder="{{ 'Cart Number' | translate }}">
                                                 <br>
                                             </div>
-                                            <div class="col-lg-4">
+                                            <div class="col-lg-6">
                                                 <label translate>Quantity (Client)</label>
                                                 <input type="number" id="ClientQuantity" name="ClientQuantity" [(ngModel)]="transactionModel.ClientQuantity" class="form-control"
                                                     placeholder="{{ 'Quantity (Client)' | translate }}">
                                                 <br>
                                             </div>
 
-                                            <div class="col-lg-4">
+                                            <div class="col-lg-6">
                                                 <label translate>Discount</label>
                                                 <input type="number" id="ClientDiscount" name="ClientDiscount" [(ngModel)]="transactionModel.ClientDiscount" class="form-control"
                                                     placeholder="{{ 'Discount' | translate }}">
                                                 <br>
                                             </div>
-                                            <div class="col-lg-4">
+                                            <div class="col-lg-6">
                                                 <label translate>Total After Discount</label>
                                                 <input type="number" id="TotalAfterDiscount" name="TotalAfterDiscount" [(ngModel)]="transactionModel.TotalAfterDiscount"
                                                     class="form-control" placeholder="{{ 'Total After Discount' | translate }}"
@@ -150,18 +150,18 @@
                                                     readonly>
                                                 <br>
                                             </div>
-                                            <div class="col-lg-4">
+                                            <div class="col-lg-6">
                                                 <label translate>Price (Client)</label>
                                                 <input type="number" id="ClientPrice" name="ClientPrice" [(ngModel)]="transactionModel.ClientPrice" class="form-control"
                                                     placeholder="{{ 'Price (Client)' | translate }}">
                                                 <br>
                                             </div>
-                                            <div class="col-lg-4">
+                                            <div class="col-lg-6">
                                                 <label translate>Quantity Diffrence</label>
                                                 <input type="number" class="form-control" placeholder="{{ 'Quantity Diffrence' | translate }}" readonly [value]="transactionModel.ClientQuantity-transactionModel.SupplierQuantity"
                                                     [class.input-warning]="(transactionModel.ClientQuantity-transactionModel.SupplierQuantity) >100 || (transactionModel.ClientQuantity-transactionModel.SupplierQuantity) < -100 ">
                                             </div>
-                                            <div class="col-lg-4">
+                                            <div class="col-lg-6">
                                                 <label translate>Total (Client)</label>
                                                 <input type="number" id="ClientTotal" name="ClientTotal" [(ngModel)]="transactionModel.ClientTotal" class="form-control"
                                                     placeholder="{{ 'Total (Client)' | translate }}" [value]="(transactionModel.ClientQuantity-transactionModel.ClientDiscount) * transactionModel.ClientPrice"
@@ -186,7 +186,8 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-2">
-                        <button type="submit" class="btn btn-primary btn-lg" translate>Save</button>
+                        <button type="button" [disabled]="clicked" class="btn btn-primary btn-lg" (click)="save(transactionForm); clicked = true;"
+                            translate>Yes</button>
                     </div>
                     <div class="col-lg-2">
                         <button type="button" [routerLink]="['/layout/transaction/transaction-list']" class="btn btn-warning btn-lg" translate>Cancel</button>

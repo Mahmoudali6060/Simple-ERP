@@ -11,7 +11,7 @@
             <p class="lead">تسجيل الدخول بحسابك</p>
             <div *ngIf="invalidLogin" class="alert alert-danger">Invalid username or password.</div>
           </div>
-          <form class="form-auth-small" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+          <form class="form-auth-small" #loginForm="ngForm" (ngSubmit)="login(loginForm);clicked=true">
             <div class="form-group">
               <label for="signin-email" class="control-label sr-only">اسم المستخدم او الايميل</label>
               <input type="email" id="username" name="username" ngModel class="form-control" placeholder="User Name" required autofocus>
@@ -20,7 +20,7 @@
               <label for="signin-password" class="control-label sr-only">كلمة المرور</label>
               <input type="password" id="password" name="password" ngModel class="form-control" placeholder="Password" required>
             </div>
-            <button type="submit" class="btn btn-primary btn-lg btn-block">تسجيل الدخول</button>
+            <button [disabled]="clicked" (click)="login(loginForm);clicked=true" type="button" class="btn btn-primary btn-lg btn-block">تسجيل الدخول</button>
           </form>
         </div>
       </div>

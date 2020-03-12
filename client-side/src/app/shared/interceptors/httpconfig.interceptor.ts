@@ -4,16 +4,17 @@ import { HttpInterceptor, HttpRequest, HttpResponse, HttpHandler, HttpEvent, Htt
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class HttpConfigInterceptor implements HttpInterceptor {
-
-    constructor(private spinner: NgxSpinnerService) {
+    count = 0;
+    constructor(private spinner: NgxSpinnerService, private toastrService: ToastrService) {
 
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        this.spinner.show();
+        // this.spinner.show();
 
         const token: string = localStorage.getItem('token');
 
@@ -27,20 +28,27 @@ export class HttpConfigInterceptor implements HttpInterceptor {
 
         request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
 
+        // this.count++;
         return next.handle(request).pipe(
             map((event: HttpEvent<any>) => {
                 if (event instanceof HttpResponse) {
-                    this.spinner.hide();
+                    // this.toastrService.success("", "عملية ناجحة", { positionClass: 'toast-bottom-right' });
+
                     catchError((error: HttpErrorResponse) => {
+
                         let data = {};
                         data = {
                             reason: error && error.error.reason ? error.error.reason : '',
                             status: error.status
                         };
+                        // this.toastrService.error("", "عملية فاشلة", { positionClass: 'toast-bottom-right' });
+
                         return throwError(error);
                     })
                 }
-                // 
+                // this.count--;
+                // if (this.count == 0) this.spinner.hide()
+
                 return event;
             }));
     }
