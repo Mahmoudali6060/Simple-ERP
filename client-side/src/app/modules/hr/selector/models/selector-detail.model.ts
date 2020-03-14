@@ -1,10 +1,10 @@
 
 export class SelectorDetailModel {
     Id: number;
-    PayDate: Date;
-    Pay: number;
-    WithdrawsDate: Date;
-    Withdraws: number;
+    Date: Date;
+    Weight: number;
+    Price: number;
+    HeadName: string;
     Balance: number;
     SelectorId:number;
 }

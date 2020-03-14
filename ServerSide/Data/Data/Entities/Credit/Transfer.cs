@@ -15,8 +15,6 @@ namespace Data.Entities.Credit
         public long StationId { get; set; }
         public decimal Nolon { get; set; }
         public decimal Custody { get; set; }
-        public decimal? Withdraws { get; set; }
-        public decimal? Balance { get; set; }
         public string Notes { get; set; }
         public long TransactionId { get; set; }
 

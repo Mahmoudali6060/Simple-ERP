@@ -49,14 +49,26 @@ thead{
     color: #ffffff;
 }
 
-.loss{
-    background-color:red !important;
-    color: white;
-}
 
 .profit{
     background-color:green !important;
-    color: white;
+    color: white !important;
+}
+
+.loss{
+    background-color:red !important;
+    color: white !important;
+}
+
+
+.transaction-profit{
+    background-color:green !important;
+    color: white !important;
+}
+
+.transaction-loss{
+    background-color:red !important;
+    color: white !important;
 }
 
 .input-container {

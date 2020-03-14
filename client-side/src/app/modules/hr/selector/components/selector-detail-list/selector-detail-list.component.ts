@@ -16,7 +16,7 @@ import { ReportService } from 'src/app/modules/report/services/report.service';
 export class SelectorDetailListComponent {
   //#region Variables
   selectorDetailList: Array<SelectorDetailModel>;//Data List
-  properties = ["Date","HeadName", "Weight", "TonPrice"];//Displayed Columns 
+  properties = ["Date","HeadName", "Weight", "Price"];//Displayed Columns 
   selectorAccountProperties: any = ["PaidUp", "PaidDate", "RecieptNumber"];//Displayed Columns 
   selectorAccountList: any = [];//Data List
   selectorDetail: SelectorDetailModel = new SelectorDetailModel();//For Add/Update SelectorDetail Entity

@@ -21,7 +21,6 @@ import { MatDialogModule, MatDialogRef } from '@angular/material';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HelperService } from './services/helper.service';
-// RECOMMENDED
 
 @NgModule({
 

@@ -13,16 +13,22 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <label translate>Date</label>
-                                        <input type="date" date="dd-MM-yyyy" id="Date" name="Date" [(ngModel)]="transactionModel.Date" class="form-control" placeholder="{{ 'Transaction.Date' | translate }}">
+                                        <input type="text" id="Date" name="Date" [(ngModel)]="transactionModel.Date" class="form-control" placeholder="{{ 'Date' | translate }}"
+                                            bsDatepicker [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}">
                                     </div>
                                     <div class="col-lg-6">
-                                        <app-farm-select (entityEmitter)="onFarmChange($event)" [id]="transactionModel.FarmId"></app-farm-select>
+                                        <app-farm-select *ngIf="!(transactionModel.Id > 0)" (entityEmitter)="onFarmChange($event)"></app-farm-select>
+                                        <app-farm-select *ngIf="transactionModel.Id > 0 && transactionModel.FarmId" (entityEmitter)="onFarmChange($event)" [id]="transactionModel.FarmId"></app-farm-select>
                                     </div>
                                     <div class="col-lg-6">
-                                        <app-category-select (entityEmitter)="onCategoryChange($event)" [id]="transactionModel.CategoryId"></app-category-select>
+                                        <app-category-select *ngIf="!(transactionModel.Id > 0)" (entityEmitter)="onCategoryChange($event)"></app-category-select>
+                                        <app-category-select *ngIf="transactionModel.Id > 0 && transactionModel.CategoryId" (entityEmitter)="onCategoryChange($event)"
+                                            [id]="transactionModel.CategoryId"></app-category-select>
                                     </div>
                                     <div class="col-lg-6">
-                                        <app-driver-select (entityEmitter)="onDriverChange($event)" [id]="transactionModel.DriverId"></app-driver-select>
+                                        <app-driver-select *ngIf="!(transactionModel.Id > 0)" (entityEmitter)="onDriverChange($event)"></app-driver-select>
+                                        <app-driver-select *ngIf="transactionModel.Id > 0 && transactionModel.DriverId" (entityEmitter)="onDriverChange($event)"
+                                            [id]="transactionModel.DriverId"></app-driver-select>
                                     </div>
                                     <div class="col-lg-6">
                                         <label translate>Quantity (Supplier)</label>
@@ -77,17 +83,19 @@
                                         <input type="number" id="Nolon" name="Nolon" [(ngModel)]="transactionModel.Nolon" class="form-control" placeholder="{{ 'Nolon' | translate }}">
                                         <br>
                                     </div>
-
                                     <div class="col-lg-6">
-                                        <app-reaper-select (entityEmitter)="onReaperChange($event)" [id]="transactionModel.ReaperId"></app-reaper-select>
+                                        <app-reaper-select *ngIf="!(transactionModel.Id > 0)" (entityEmitter)="onReaperChange($event)"></app-reaper-select>
+                                        <app-reaper-select *ngIf="transactionModel.Id > 0 && transactionModel.ReaperId" (entityEmitter)="onReaperChange($event)"
+                                            [id]="transactionModel.ReaperId"></app-reaper-select>
                                     </div>
                                     <div class="col-lg-6">
                                         <label translate>Reapers Pay</label>
                                         <input type="number" id="ReapersPay" name="ReapersPay" [(ngModel)]="transactionModel.ReapersPay" class="form-control" placeholder="{{ 'Reapers Pay' | translate }}">
-                                        <br>
                                     </div>
                                     <div class="col-lg-6">
-                                        <app-selector-select (entityEmitter)="onSelectorChange($event)" [id]="transactionModel.SelectorId"></app-selector-select>
+                                        <app-selector-select *ngIf="!(transactionModel.Id > 0)" (entityEmitter)="onSelectorChange($event)"></app-selector-select>
+                                        <app-selector-select *ngIf="transactionModel.Id > 0 && transactionModel.SelectorId" (entityEmitter)="onSelectorChange($event)"
+                                            [id]="transactionModel.SelectorId"></app-selector-select>
                                     </div>
                                     <div class="col-lg-6">
                                         <label translate>Selectors Pay</label>
@@ -122,7 +130,9 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <app-station-select (entityEmitter)="onStationChange($event)" [id]="transactionModel.StationId"></app-station-select>
+                                                <app-station-select *ngIf="!(transactionModel.Id > 0)" (entityEmitter)="onStationChange($event)"></app-station-select>
+                                                <app-station-select *ngIf="transactionModel.Id > 0 && transactionModel.StationId" (entityEmitter)="onStationChange($event)"
+                                                    [id]="transactionModel.StationId"></app-station-select>
                                             </div>
                                             <div class="col-lg-6">
                                                 <label translate>Cart Number</label>
@@ -177,8 +187,9 @@
                         <div class="row">
                             <div class="col-lg-12 input-lg">
                                 <label translate>Profit/Loss </label>
-                                <input type="number" id="Sum" name="Sum" [(ngModel)]="transactionModel.Sum" [class.profit]="transactionModel.Sum>0" [class.loss]="transactionModel.Sum<0"
-                                    class="form-control input-lg" placeholder="{{ 'Profit/Loss' | translate }}" readonly [value]="((transactionModel.ClientQuantity-transactionModel.ClientDiscount) * transactionModel.ClientPrice) - (((transactionModel.SupplierQuantity-transactionModel.Pardon) * transactionModel.SupplierPrice)+transactionModel.Nolon+transactionModel.FarmExpense+transactionModel.ReapersPay+transactionModel.SelectorsPay) ">
+                                <input type="number" step='0.01' id="Sum" name="Sum" [(ngModel)]="transactionModel.Sum" [class.transaction-profit]="transactionModel.Sum>0"
+                                    [class.transaction-loss]="transactionModel.Sum<0" class="form-control input-lg" placeholder="{{ 'Profit/Loss' | translate }}"
+                                    readonly [value]="((transactionModel.ClientQuantity-transactionModel.ClientDiscount) * transactionModel.ClientPrice) - (((transactionModel.SupplierQuantity-transactionModel.Pardon) * transactionModel.SupplierPrice)+transactionModel.Nolon+transactionModel.FarmExpense+transactionModel.ReapersPay+transactionModel.SelectorsPay) ">
                             </div>
                         </div>
 
@@ -187,7 +198,7 @@
                 <div class="row">
                     <div class="col-lg-2">
                         <button type="button" [disabled]="clicked" class="btn btn-primary btn-lg" (click)="save(transactionForm); clicked = true;"
-                            translate>Yes</button>
+                            translate>Save</button>
                     </div>
                     <div class="col-lg-2">
                         <button type="button" [routerLink]="['/layout/transaction/transaction-list']" class="btn btn-warning btn-lg" translate>Cancel</button>

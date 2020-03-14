@@ -60,9 +60,7 @@ namespace Clients.DataAccessLayer
                        {
                            Date = rd.Date,
                            Weight = rd.Weight,
-                           TonPrice = rd.TonPrice,
-                           PaidUp = rd.PaidUp,
-                           PaidDate = rd.PaidDate,
+                           Price = rd.Price,
                            HeadName = r.HeadName,
                            Reaper = new ReaperDTO()
                            {

@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 export class SelectorListComponent {
   //#region Variables
   selectorList: Array<SelectorModel>;//Data List
-  properties = ["HeadName", "LastTonPrice", "Balance"];//Displayed Columns 
+  properties = ["HeadName", "LastTonPrice"];//Displayed Columns 
   selector: SelectorModel = new SelectorModel();//For Add/Update Selector Entity
   dataSourceModel: DataSourceModel = new DataSourceModel;//Pagination and Filteration Settings
   total: number;//Total number of rows

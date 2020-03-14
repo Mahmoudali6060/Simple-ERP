@@ -20,7 +20,7 @@ export class SafeFormComponent {
 
   safeModel: SafeModel = new SafeModel;
   accountTreeList: any;
-  accountTreeType: any;
+  accountTreeType: any = null;
   constructor(private router: Router, private safeService: SafeService, private avtiveRoute: ActivatedRoute,
     public dialogRef: MatDialogRef<SafeFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -54,7 +54,7 @@ export class SafeFormComponent {
   }
 
   public save(form: NgForm) {
-    // this.safeModel = new Date(this.safeModel.Date);
+    this.safeModel.Date = new Date(this.safeModel.Date);
     this.safeService.save(this.safeModel).subscribe(response => {
     }, err => {
     });

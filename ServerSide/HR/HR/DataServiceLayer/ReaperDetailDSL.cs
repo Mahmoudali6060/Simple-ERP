@@ -61,7 +61,7 @@ namespace Clients.DataServiceLayer
             Response response = Helper.ToResult(list, dataSource);
             response.Entity = new ReaperDetailListDTO()
             {
-                BalanceTotal = list.Sum(x => x.TonPrice)
+                BalanceTotal = list.Sum(x => x.Price)
             };
             return response;
         }

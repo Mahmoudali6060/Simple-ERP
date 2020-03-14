@@ -18,6 +18,7 @@ export class TransactionFormComponent {
   lastTonPrice: number;
   pardonPercentage: number = 2;
   pardonType: string = "percentage";
+
   constructor(private farmService: FarmService,
     private router: Router,
     private transactionService: TransactionService,
@@ -25,7 +26,10 @@ export class TransactionFormComponent {
   }
 
   ngOnInit() {
-    this.getAllFarm();
+
+  }
+
+  ngAfterViewInit() {
     if (this.avtiveRoute.snapshot.params["id"]) {
       this.getTransactionById(this.avtiveRoute.snapshot.params["id"]);
     }
@@ -34,16 +38,16 @@ export class TransactionFormComponent {
     }
   }
 
-  private getAllFarm() {
-    this.farmService.getAllLite().subscribe(response => {
-      this.farmList = response.List;
-    }, err => {
-    });
-  }
-
   private getTransactionById(id) {
     this.transactionService.getById(id).subscribe(response => {
       this.transactionModel = response;
+      this.transactionModel.Date = new Date(this.transactionModel.Date);
+      this.calculateTotalAfterPardon();
+      this.calculateTotalAfterDiscount();
+      this.calculateSupplierAmount();
+      this.calculateClientAmount();
+      this.calculateSupplierTotal();
+      this.sum();
     }, err => {
     });
   }
@@ -56,9 +60,6 @@ export class TransactionFormComponent {
     });
   }
 
-  public sum() {
-    this.transactionModel.Sum = this.transactionModel.ClientTotal - this.transactionModel.SupplierTotal;
-  }
   onFarmChange(farm) {
     this.transactionModel.FarmId = farm.Id;
     this.transactionModel.FarmOwnerName = farm.OwnerName;
@@ -99,9 +100,9 @@ export class TransactionFormComponent {
   }
 
   public calculateTotalAfterPardon() {
-    if (this.pardonType == "percentage"  && this.transactionModel.SupplierQuantity) {
-      this.transactionModel.Pardon= (this.pardonPercentage / 100) * this.transactionModel.SupplierQuantity;
-      this.transactionModel.TotalAfterPardon =this.transactionModel.SupplierQuantity-this.transactionModel.Pardon;
+    if (this.pardonType == "percentage" && this.transactionModel.SupplierQuantity) {
+      this.transactionModel.Pardon = (this.pardonPercentage / 100) * this.transactionModel.SupplierQuantity;
+      this.transactionModel.TotalAfterPardon = this.transactionModel.SupplierQuantity - this.transactionModel.Pardon;
     }
     else if (this.transactionModel.Pardon && this.transactionModel.SupplierQuantity) {
       this.transactionModel.TotalAfterPardon = this.transactionModel.SupplierQuantity - this.transactionModel.Pardon;
@@ -109,4 +110,30 @@ export class TransactionFormComponent {
 
   }
 
+  public calculateTotalAfterDiscount() {
+    if (this.transactionModel.ClientDiscount && this.transactionModel.ClientQuantity) {
+      this.transactionModel.TotalAfterDiscount = this.transactionModel.ClientQuantity - this.transactionModel.ClientDiscount;
+    }
+  }
+
+  public calculateClientAmount() {
+    if (this.transactionModel.ClientDiscount && this.transactionModel.ClientQuantity && this.transactionModel.ClientPrice) {
+      this.transactionModel.ClientTotal = this.transactionModel.TotalAfterDiscount * this.transactionModel.ClientPrice;
+    }
+  }
+
+
+  public calculateSupplierAmount() {
+    if (this.transactionModel.Pardon && this.transactionModel.SupplierQuantity && this.transactionModel.SupplierPrice) {
+      this.transactionModel.SupplierAmount = this.transactionModel.TotalAfterPardon * this.transactionModel.SupplierPrice;
+    }
+  }
+
+  public calculateSupplierTotal() {
+    this.transactionModel.SupplierTotal = ((this.transactionModel.SupplierQuantity - this.transactionModel.Pardon) * this.transactionModel.SupplierPrice) + this.transactionModel.Nolon + this.transactionModel.FarmExpense + this.transactionModel.ReapersPay + this.transactionModel.SelectorsPay;
+  }
+
+  public sum() {
+    this.transactionModel.Sum = (this.transactionModel.ClientTotal - this.transactionModel.SupplierTotal)
+  }
 }

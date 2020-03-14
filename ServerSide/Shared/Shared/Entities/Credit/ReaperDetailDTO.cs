@@ -9,13 +9,10 @@ namespace Shared.Entities.Credit
     {
         public DateTime Date { get; set; }
         public decimal Weight { get; set; }
-        public decimal TonPrice { get; set; }
+        public decimal Price { get; set; }
         public string HeadName { get; set; }
-        public decimal? PaidUp { get; set; }
-        public DateTime? PaidDate { get; set; }
         public long ReaperId { get; set; }
         public long TransactionId { get; set; }
-
         public virtual ReaperDTO Reaper { get; set; }
 
 

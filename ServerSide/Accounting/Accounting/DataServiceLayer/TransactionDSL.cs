@@ -121,8 +121,9 @@ namespace Accouting.DataServiceLayer
         {
             SelectorDetailDTO selectorDetail = new SelectorDetailDTO()
             {
-                PayDate = entity.Date,
-                Pay = entity.SelectorsPay,
+                Date = entity.Date,
+                Weight = entity.ClientQuantity,
+                Price = entity.SelectorsPay,
                 TransactionId = entity.Id,
                 SelectorId = entity.SelectorId
             };
@@ -139,7 +140,7 @@ namespace Accouting.DataServiceLayer
             {
                 Date = entity.Date,
                 Weight = entity.ClientQuantity,
-                TonPrice = entity.ReapersPay,
+                Price = entity.ReapersPay,
                 ReaperId = entity.ReaperId,
                 TransactionId = entity.Id
             };

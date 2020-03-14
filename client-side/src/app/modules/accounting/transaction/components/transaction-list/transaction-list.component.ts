@@ -21,7 +21,7 @@ export class TransactionListComponent {
   transaction: TransactionModel = new TransactionModel;
   dataSourceModel: DataSourceModel = new DataSourceModel;//Pagination and Filteration Settings
   properties = ["Number", "Date", "FarmOwnerName", "CategoryName", "CarPlate", "SupplierQuantity", "Pardon", "TotalAfterPardon",
-    "SupplierPrice", "SupplierAmount", "Nolon", "ReaperHead", "ReapersPay", "StationOwnerName", "SelectorsPay", "FarmExpense",
+    "SupplierPrice", "SupplierAmount", "Nolon", "ReapersPay", "StationOwnerName", "SelectorsPay", "FarmExpense",
     "SupplierTotal", "CartNumber", "ClientQuantity", "ClientDiscount", "TotalAfterDiscount", "ClientPrice", "ClientTotal", "Sum"];
   total: number;
   constructor(private datePipe: DatePipe, public dialog: MatDialog, private router: Router, private transactionService: TransactionService) {

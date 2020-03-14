@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 export class ReaperListComponent {
   //#region Variables
   reaperList: Array<ReaperModel>;//Data List
-  properties = ["HeadName", "LastTonPrice", "Balance"];//Displayed Columns 
+  properties = ["HeadName", "LastTonPrice"];//Displayed Columns 
   reaper: ReaperModel = new ReaperModel();//For Add/Update Reaper Entity
   dataSourceModel: DataSourceModel = new DataSourceModel;//Pagination and Filteration Settings
   total: number;//Total number of rows

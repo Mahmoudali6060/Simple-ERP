@@ -1,9 +1,9 @@
 export class ReaperDetailModel {
+    Id: number;
     Date: Date;
     Weight: number;
-    TonPrice: number;
-    PaidUp: number;
-    PaidDate: number;
+    Price: number;
+    HeadName: string;
     ReperId: number;
     Reaper: any;
 }

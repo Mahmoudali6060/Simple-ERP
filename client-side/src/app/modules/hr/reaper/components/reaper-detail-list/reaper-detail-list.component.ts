@@ -16,7 +16,7 @@ import { ReportService } from 'src/app/modules/report/services/report.service';
 export class ReaperDetailListComponent {
   //#region Variables
   reaperDetailList: Array<ReaperDetailModel>;//Data List
-  properties = ["Date","HeadName", "Weight", "TonPrice"];//Displayed Columns 
+  properties = ["Date","HeadName", "Weight", "Price"];//Displayed Columns 
   reaperAccountProperties: any = ["PaidUp", "PaidDate", "RecieptNumber"];//Displayed Columns 
   reaperAccountList: any = [];//Data List
   reaperDetail: ReaperDetailModel = new ReaperDetailModel();//For Add/Update ReaperDetail Entity

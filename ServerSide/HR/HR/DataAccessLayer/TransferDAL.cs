@@ -59,8 +59,6 @@ namespace Clients.DataAccessLayer
                            StationName = s.OwnerName,
                            Nolon = t.Nolon,
                            Custody = t.Custody,
-                           Withdraws = t.Withdraws,
-                           Balance = t.Balance,
                            Notes = t.Notes
                        };
 
@@ -105,8 +103,6 @@ namespace Clients.DataAccessLayer
                            StationName = s.OwnerName,
                            Nolon = t.Nolon,
                            Custody = t.Custody,
-                           Withdraws = t.Withdraws,
-                           Balance = t.Balance,
                            Notes = t.Notes
                        };
             }

@@ -1,6 +1,6 @@
 
 export class TransactionModel {
-    Id: number;
+    Id: number=0;
     Number: string;
     Date: Date;
     FarmId: number;
