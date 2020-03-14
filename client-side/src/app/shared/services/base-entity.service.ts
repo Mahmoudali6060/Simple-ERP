@@ -6,6 +6,7 @@ import { CRUDOperation } from '../../shared/enums/CRUD-Operation.enum';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/internal/operators/catchError';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable(
     { providedIn: 'root' }
@@ -19,7 +20,7 @@ export class BaseEntityService {
     private urlGetAllLite = "GetAllLite";
     entityName: string = "";
 
-    constructor(public _http: HttpClient) {
+    constructor(public _http: HttpClient, private toastrService: ToastrService) {
         this.baseUrl = environment.apiUrl;
     }
 
@@ -48,6 +49,15 @@ export class BaseEntityService {
         return this._http.delete(this.baseUrl + "api/" + this.entityName + "/" + this.urlDelete + "/" + id);
         // .subscribe((response: Response) => response.json())
         // , catchError(this.errorHandler);
+    }
+
+    deleteFarm(id) {
+        this._http.delete(this.baseUrl + "api/" + this.entityName + "/" + this.urlDelete + "/" + id)
+            .subscribe((response: Response) => {
+                this.toastrService.success("تم الحذف بنجاح", "عملية ناجحة", { positionClass: 'toast-bottom-right' });
+                return response;
+            })
+            , catchError(this.errorHandler);
     }
 
     errorHandler(error: Response) {

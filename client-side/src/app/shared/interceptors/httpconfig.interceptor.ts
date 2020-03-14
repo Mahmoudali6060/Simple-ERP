@@ -32,7 +32,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
         return next.handle(request).pipe(
             map((event: HttpEvent<any>) => {
                 if (event instanceof HttpResponse) {
-                    // this.toastrService.success("", "عملية ناجحة", { positionClass: 'toast-bottom-right' });
+                    this.toastrService.success("", "عملية ناجحة", { positionClass: 'toast-bottom-right' });
 
                     catchError((error: HttpErrorResponse) => {
 
@@ -41,7 +41,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
                             reason: error && error.error.reason ? error.error.reason : '',
                             status: error.status
                         };
-                        // this.toastrService.error("", "عملية فاشلة", { positionClass: 'toast-bottom-right' });
+                        this.toastrService.error("", "حدث خطأ", { positionClass: 'toast-bottom-right' });
 
                         return throwError(error);
                     })
