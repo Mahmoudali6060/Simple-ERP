@@ -13,7 +13,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 export class ReaperFormComponent {
 
   reaperModel: ReaperModel = new ReaperModel;
-
+  clicked: boolean = false;
+  
   constructor(private router: Router, private reaperService: ReaperService, private avtiveRoute: ActivatedRoute,
     public dialogRef: MatDialogRef<ReaperFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {

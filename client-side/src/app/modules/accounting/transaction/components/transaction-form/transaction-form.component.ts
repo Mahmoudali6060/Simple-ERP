@@ -18,7 +18,7 @@ export class TransactionFormComponent {
   lastTonPrice: number;
   pardonPercentage: number = 2;
   pardonType: string = "percentage";
-
+  clicked: boolean = false;
   constructor(private farmService: FarmService,
     private router: Router,
     private transactionService: TransactionService,

@@ -21,6 +21,8 @@ export class SafeFormComponent {
   safeModel: SafeModel = new SafeModel;
   accountTreeList: any;
   accountTreeType: any = null;
+  clicked: boolean = false;
+  
   constructor(private router: Router, private safeService: SafeService, private avtiveRoute: ActivatedRoute,
     public dialogRef: MatDialogRef<SafeFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any

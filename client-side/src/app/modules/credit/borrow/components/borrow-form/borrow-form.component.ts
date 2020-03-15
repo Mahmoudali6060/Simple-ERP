@@ -13,7 +13,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 export class BorrowFormComponent {
 
   borrowModel: BorrowModel = new BorrowModel;
-
+  clicked: boolean = false;
+  
   constructor(private router: Router, private borrowService: BorrowService, private avtiveRoute: ActivatedRoute,
     public dialogRef: MatDialogRef<BorrowFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {

@@ -12,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent {
   invalidLogin: boolean = false;//For showing or error message in case invalid username or password
-
+  clicked = false;
   constructor(private router: Router, private authService: AuthService) {
 
   }

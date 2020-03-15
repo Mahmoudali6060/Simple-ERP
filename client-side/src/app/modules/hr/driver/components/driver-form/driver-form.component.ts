@@ -13,7 +13,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 export class DriverFormComponent {
 
   driverModel: DriverModel = new DriverModel;
-
+  clicked: boolean = false;
+  
   constructor(private router: Router, private driverService: DriverService, private avtiveRoute: ActivatedRoute,
     public dialogRef: MatDialogRef<DriverFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {

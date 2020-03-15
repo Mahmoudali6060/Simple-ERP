@@ -13,7 +13,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 export class SelectorFormComponent {
 
   selectorModel: SelectorModel = new SelectorModel;
-
+  clicked: boolean = false;
+  
   constructor(private router: Router, private selectorService: SelectorService, private avtiveRoute: ActivatedRoute,
     public dialogRef: MatDialogRef<SelectorFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {

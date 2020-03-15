@@ -13,7 +13,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 export class StationFormComponent {
 
   stationModel: StationModel = new StationModel;
-
+  clicked: boolean = false;
+  
   constructor(private router: Router, private stationService: StationService, private avtiveRoute: ActivatedRoute,
     public dialogRef: MatDialogRef<StationFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {

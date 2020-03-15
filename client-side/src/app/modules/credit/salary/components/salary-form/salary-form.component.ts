@@ -13,7 +13,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 export class SalaryFormComponent {
 
   salaryModel: SalaryModel = new SalaryModel;
-
+  clicked: boolean = false;
+  
   constructor(private router: Router, private salaryService: SalaryService, private avtiveRoute: ActivatedRoute,
     public dialogRef: MatDialogRef<SalaryFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
