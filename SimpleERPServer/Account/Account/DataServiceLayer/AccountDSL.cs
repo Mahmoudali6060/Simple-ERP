@@ -6,6 +6,7 @@ using Shared.Entities;
 using Shared.Entities.Shared;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -34,6 +35,20 @@ namespace Account.DataServiceLayer
         public string AddToken(LoginModel model)
         {
             return _accountDAL.AddToken(model);
+        }
+
+        public bool IsValidClient()
+        {
+            try
+            {
+                string curFile = @"C:\users\doc.txt";
+                return File.Exists(curFile);
+            }
+
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

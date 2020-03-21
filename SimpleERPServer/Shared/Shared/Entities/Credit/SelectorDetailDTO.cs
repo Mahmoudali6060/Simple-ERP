@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Shared.Entities.Credit
 {
-    public class SelectorDetailDTO : BasicsData
+    public class SelectorDetailDTO : BaseEntity
     {
         public DateTime Date { get; set; }
         public decimal Weight { get; set; }

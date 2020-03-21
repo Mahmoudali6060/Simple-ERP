@@ -54,15 +54,13 @@ namespace Clients.DataAccessLayer
                 return from sd in _context.SelectorDetails
                        join s in _context.Selectors on sd.SelectorId equals s.Id
                        where sd.SelectorId == selectorId
-                       orderby sd.PayDate
+                       orderby sd.Date
                        select new SelectorDetailDTO
                        {
-                           PayDate = sd.PayDate,
-                           Pay = sd.Pay,
-                           WithdrawsDate = sd.WithdrawsDate,
-                           Withdraws = sd.Withdraws,
-                           Balance = sd.Balance,
+                           Date=sd.Date,
                            HeadName = s.HeadName,
+                           Price = sd.Price,
+                           Weight = sd.Weight,
                            Selector = new SelectorDTO()
                            {
                                HeadName = s.HeadName,

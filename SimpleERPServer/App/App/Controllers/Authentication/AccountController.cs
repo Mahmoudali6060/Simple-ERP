@@ -34,20 +34,28 @@ namespace App.Controllers.Authentication
         [HttpPost, Route("Login")]
         public IActionResult Login([FromBody]LoginModel user)
         {
-            if (user == null)
+            //For Check is valid client or no
+            if (_accountDSL.IsValidClient())
             {
-                return BadRequest("Invalid client request");
-            }
+                if (user == null)
+                {
+                    return BadRequest("Invalid client request");
+                }
 
-            if (user.UserName == "admin" && user.Password == "admin@123")//Check using AppUser 
-            {
-                var tokenString = _accountDSL.AddToken(user);
-                return Ok(new { Token = tokenString });
-            }
+                if (user.UserName == "admin" && user.Password == "admin@123")//Check using AppUser 
+                {
+                    var tokenString = _accountDSL.AddToken(user);
+                    return Ok(new { Token = tokenString });
+                }
 
+                else
+                {
+                    return Unauthorized();
+                }
+            }
             else
             {
-                return Unauthorized();
+                return BadRequest("Invlid Client");
             }
         }
 

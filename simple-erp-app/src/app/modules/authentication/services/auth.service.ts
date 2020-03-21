@@ -11,8 +11,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
-
+  baseUrl: string;
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {
+    this.baseUrl = environment.apiUrl;
+  }
   isUserAuthenticated() {
     let token: string = localStorage.getItem("jwt");
     if (token && !this.jwtHelper.isTokenExpired(token)) {
@@ -24,7 +26,7 @@ export class AuthService {
   }
 
   login(model: any) {
-    return this.http.post("http://localhost:54095/Api/Account/Login", model, {
+    return this.http.post(`${this.baseUrl}/api/Account/Login`, model, {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
       })
@@ -32,7 +34,7 @@ export class AuthService {
   }
 
   register(model: any) {
-    return this.http.post("http://localhost:54095/api/Account/register", model, {
+    return this.http.post(`${this.baseUrl}/api/Account/register`, model, {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
       })

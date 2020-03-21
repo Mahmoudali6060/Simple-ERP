@@ -6,6 +6,7 @@ using Accouting.Shared.DataAccessLayer;
 using Accouting.Shared.DataServiceLayer;
 using Clients.DataAccessLayer;
 using Clients.DataServiceLayer;
+using Data.Backup;
 using DevExpress.XtraReports.Web.WebDocumentViewer;
 using Microsoft.Extensions.DependencyInjection;
 using Supplier.DataAccessLayer;
@@ -87,6 +88,7 @@ namespace App.Helper
             services.AddTransient<IAccountingSharedDSL, AccountingSharedDSL>();
             services.AddTransient<IAccountingSharedDAL, AccountingSharedDAL>();
 
+            services.AddTransient<IDatabaseBackupDSL, DatabaseBackupDSL>();
 
         }
     }

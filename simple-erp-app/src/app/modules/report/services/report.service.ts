@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 
 export class ReportService {
-  constructor(private datePipe: DatePipe) { }
+  baseUrl: string;
+  constructor(private datePipe: DatePipe) {
+    this.baseUrl = environment.apiUrl;
+  }
 
 
   public generateReport(title: any, reportData: any, paidUpTotal: number, balanceTotal: number) {
@@ -73,7 +77,7 @@ export class ReportService {
                 <td></td>
                 <td width="1000">
                   <div class="header" style="text-align: center;margin: 10px 0 10px 0;">
-                    <img src="http://localhost:54095/Images/report-header.png" width="200" height="130">
+                    <img src="`+ this.baseUrl + `/Images/report-header.png" width="200" height="130">
                   </div>
                   <div class="report" style="margin-bottom: 50px;">
                   <table class="table table-bordered">
@@ -87,8 +91,8 @@ export class ReportService {
                     <tbody>`;
     html += `<tr>
                           <td>`+ paidUpTotal.toFixed(2) + `</td>
-                          <td >`+  balanceTotal.toFixed(2) + `</td>
-                          <td >`+(paidUpTotal - balanceTotal).toFixed(2) + `</td>
+                          <td >`+ balanceTotal.toFixed(2) + `</td>
+                          <td >`+ (paidUpTotal - balanceTotal).toFixed(2) + `</td>
                         </tr>`;
     html += `</tbody>`;
     html += `</table>`;

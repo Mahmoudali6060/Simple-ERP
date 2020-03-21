@@ -27,7 +27,7 @@ namespace Accouting.DataServiceLayer
         ITransactionDAL _transactionDAL;
         IIncomeDSL _incomeDSL;
         ITransferDSL _transferDSL;
-        ISelectorDetailDSL _selectorDSL;
+        ISelectorDetailDSL _selectorDetailDSL;
         IReaperDetailDSL _reaperDetailDSL;
         IOutcomeDSL _outcomeDSL;
         AppDbContext _context;
@@ -37,7 +37,7 @@ namespace Accouting.DataServiceLayer
             _transactionDAL = transactionDAL;
             _incomeDSL = incomeDSL;
             _transferDSL = transferDSL;
-            _selectorDSL = selectorDSL;
+            _selectorDetailDSL = selectorDSL;
             _reaperDetailDSL = reaperDetailDSL;
             _outcomeDSL = outcomeDSL;
             _mapper = mapper;
@@ -122,7 +122,7 @@ namespace Accouting.DataServiceLayer
             SelectorDetailDTO selectorDetail = new SelectorDetailDTO()
             {
                 Date = entity.Date,
-                Weight = entity.ClientQuantity,
+                Weight = entity.SupplierQuantity,
                 Price = entity.SelectorsPay,
                 TransactionId = entity.Id,
                 SelectorId = entity.SelectorId
@@ -132,14 +132,14 @@ namespace Accouting.DataServiceLayer
                 var oldSelector = await GetSelectorDetailByTransactionId(entity.Id);
                 selectorDetail.Id = oldSelector.Id;
             }
-            return await _selectorDSL.Save(selectorDetail);
+            return await _selectorDetailDSL.Save(selectorDetail);
         }
         private async Task<long> SaveReaper(TransactionDTO entity)
         {
             ReaperDetailDTO reaperDetail = new ReaperDetailDTO()
             {
                 Date = entity.Date,
-                Weight = entity.ClientQuantity,
+                Weight = entity.SupplierQuantity,
                 Price = entity.ReapersPay,
                 ReaperId = entity.ReaperId,
                 TransactionId = entity.Id

@@ -34,6 +34,24 @@ namespace Accouting.DataAccessLayer
         {
             Safe farm = await GetById(id);
             _context.Safes.Remove(farm);
+
+            ///Delete related table >>> Should be in DSL Layer
+            /////[1] FarmAccount
+            var farmAccount = _context.FarmAccounts.Where(x => x.SafeId == id);
+            _context.FarmAccounts.RemoveRange(farmAccount);
+            /////[2] StationAccount
+            var stationAccount = _context.StationAccounts.Where(x => x.SafeId == id);
+            _context.StationAccounts.RemoveRange(stationAccount);
+            /////[3] DriverAccount
+            var driverAccount = _context.DriverAccounts.Where(x => x.SafeId == id);
+            _context.DriverAccounts.RemoveRange(driverAccount);
+            /////[4] ReaperAccount
+            var reaperAccount = _context.ReaperAccounts.Where(x => x.SafeId == id);
+            _context.ReaperAccounts.RemoveRange(reaperAccount);
+            /////[5] SelectorAccount
+            var selectorAccount = _context.SelectorAccounts.Where(x => x.SafeId == id);
+            _context.SelectorAccounts.RemoveRange(selectorAccount);
+
             await _context.SaveChangesAsync();
             return id;
         }

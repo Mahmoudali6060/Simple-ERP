@@ -13,6 +13,7 @@ namespace Account.DataServiceLayer
     {
         Task<IdentityResult> Register(RegisterRequestViewModel model);
         Task<RegisterResponseViewModel> AddToken(RegisterRequestViewModel model);
+        bool IsValidClient();
         string AddToken(LoginModel model);
 
     }

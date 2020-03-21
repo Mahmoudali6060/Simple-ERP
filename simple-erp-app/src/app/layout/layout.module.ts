@@ -10,6 +10,7 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { FullLayoutComponent } from './full-layout/full-layout.component';
 import { AuthService } from 'src/app/modules/authentication/services/auth.service';
+import { DatabaseModule } from 'src/app/modules/database/database.module';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { AuthService } from 'src/app/modules/authentication/services/auth.servic
   imports: [
     LayoutRoutingModule,
     SharedModule.forRoot(),
+    DatabaseModule
   ],
   providers: [
     AuthService

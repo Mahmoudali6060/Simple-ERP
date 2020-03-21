@@ -59,11 +59,16 @@
 						<span translate>Transactions</span>
 					</a>
 				</li>
-
+				<li>
+					<a [routerLink]="['/layout/safe']" class="">
+						<i class="lnr lnr-home"></i>
+						<span translate>Safe</span>
+					</a>
+				</li>
 
 				<li>
 					<a href="#transferPages" data-toggle="collapse" class="collapsed" aria-expanded="false">
-						<i class="lnr lnr-file-empty"></i>
+						<i class="lnr lnr-bus"></i>
 						<span translate>Transfer</span>
 						<i class="icon-submenu lnr lnr-chevron-left"></i>
 					</a>
@@ -120,9 +125,7 @@
 							<li>
 								<a [routerLink]="['/layout/debit-current']" class="" translate>Current</a>
 							</li>
-							<li>
-								<a [routerLink]="['/layout/safe']" class="" translate>Safe</a>
-							</li>
+
 						</ul>
 					</div>
 				</li>

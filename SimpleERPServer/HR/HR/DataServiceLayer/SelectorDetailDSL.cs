@@ -64,7 +64,7 @@ namespace Clients.DataServiceLayer
             Response response = Helper.ToResult(list, dataSource);
             response.Entity = new SelectorDetailListDTO()
             {
-                BalanceTotal = list.Sum(x => x.Balance)
+                BalanceTotal = list.Sum(x => x.Price)
             };
             return response;
         }

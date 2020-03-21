@@ -30,7 +30,7 @@ namespace Accouting.DataAccessLayer
 
         public async Task<long> Save(Transaction entity)
         {
-      
+
             _context.Entry(entity).State = entity.Id > 0 ? EntityState.Modified : EntityState.Added;
             await _context.SaveChangesAsync();
             return entity.Id;
@@ -40,6 +40,24 @@ namespace Accouting.DataAccessLayer
         {
             Transaction transaction = await GetById(id);
             _context.Transactions.Remove(transaction);
+
+            ///Delete related table >>> Should be in DSL Layer
+            /////[1] Incomes
+            var incomes = _context.Incomes.Where(x => x.TransactionId == id);
+            _context.Incomes.RemoveRange(incomes);
+            /////[2] Outcomes
+            var outcomes = _context.Outcomes.Where(x => x.TransactionId == id);
+            _context.Outcomes.RemoveRange(outcomes);
+            /////[3] Transfers
+            var transfers = _context.Transfers.Where(x => x.TransactionId == id);
+            _context.Transfers.RemoveRange(transfers);
+            /////[4] ReaperDetails
+            var reaperDetails = _context.ReaperDetails.Where(x => x.TransactionId == id);
+            _context.ReaperDetails.RemoveRange(reaperDetails);
+            /////[5] SelectorDetails
+            var selectorDetails = _context.SelectorDetails.Where(x => x.TransactionId == id);
+            _context.SelectorDetails.RemoveRange(selectorDetails);
+
             await _context.SaveChangesAsync();
             return id;
         }
