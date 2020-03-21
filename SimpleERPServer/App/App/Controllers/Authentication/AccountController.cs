@@ -13,6 +13,7 @@ using Shared.Entities;
 using Account.DataServiceLayer;
 using Account.Models;
 using Shared.Entities.Shared;
+using Setting.DataServiceLayer;
 
 namespace App.Controllers.Authentication
 {
@@ -27,8 +28,8 @@ namespace App.Controllers.Authentication
         public AccountController(IAccountDSL accountDSL)
         {
             _accountDSL = accountDSL;
+         
         }
-
 
         //GET api/values
         [HttpPost, Route("Login")]

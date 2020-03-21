@@ -50,7 +50,7 @@ namespace Data.Contexts
         public DbSet<DriverAccount> DriverAccounts { get; set; }
         public DbSet<ReaperAccount> ReaperAccounts { get; set; }
         public DbSet<SelectorAccount> SelectorAccounts { get; set; }
-
+        public DbSet<Settings> Settings { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

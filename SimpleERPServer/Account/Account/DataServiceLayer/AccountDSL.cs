@@ -1,7 +1,9 @@
 ﻿using Account.DataAccessLayer;
 using Account.Models;
 using Account.RepositoryLayer;
+using Data.Entities.Shared;
 using Microsoft.AspNetCore.Identity;
+using Setting.DataServiceLayer;
 using Shared.Entities;
 using Shared.Entities.Shared;
 using System;
@@ -15,9 +17,12 @@ namespace Account.DataServiceLayer
     public class AccountDSL : IAccountDSL
     {
         IAccountDAL _accountDAL;
-        public AccountDSL(IAccountDAL accountDAL)
+        ISettingDSL _settingDSL;
+
+        public AccountDSL(IAccountDAL accountDAL, ISettingDSL settingDSL)
         {
             this._accountDAL = accountDAL;
+            _settingDSL = settingDSL;
         }
 
         public Task<IdentityResult> Register(RegisterRequestViewModel model)
@@ -37,12 +42,17 @@ namespace Account.DataServiceLayer
             return _accountDAL.AddToken(model);
         }
 
-        public bool IsValidClient()
+        public  bool IsValidClient()
         {
             try
             {
                 string curFile = @"C:\users\doc.txt";
-                return File.Exists(curFile);
+                List<Settings> settings =  _settingDSL.GetSettings();
+                if (File.Exists(curFile) && settings[0].ExpiryDate.Date > DateTime.Now.Date)
+                {
+                    return true;
+                }
+                return false;
             }
 
             catch (Exception ex)
