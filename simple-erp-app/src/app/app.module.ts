@@ -40,9 +40,9 @@ export function tokenGetter() {
     NgxSpinnerModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: tokenGetter
-        // whitelistedDomains: ["localhost:54095"],
-        // blacklistedRoutes: []
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ["localhost:54095"],
+        blacklistedRoutes: []
       }
     }),
     MatDialogModule,
