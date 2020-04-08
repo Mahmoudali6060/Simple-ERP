@@ -25,7 +25,6 @@ export class DataListComponent {
   @Output() deleteRow = new EventEmitter<number>();//When you delete row this will send selected (Id) for parent component
   @Output() editRow = new EventEmitter<number>();//When you edit row this will send selected (Id) for parent component
   @Output() changePagination = new EventEmitter<DataSourceModel>();//When you edit row this will send selected (Id) for parent component
-  @ViewChild(ConfirmationDialogComponent, { static: false }) confirmationDialogComponent;//This open dialog for confirmation delete
   @Input() total: number;
   dataSourceModel = new DataSourceModel();
   model: any = {};

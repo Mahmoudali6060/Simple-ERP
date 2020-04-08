@@ -77,7 +77,7 @@ export class ReportService {
                 <td></td>
                 <td width="1000">
                   <div class="header" style="text-align: center;margin: 10px 0 10px 0;">
-                    <img src="`+ this.baseUrl + `/Images/report-header.png" width="200" height="130">
+                    <img src="`+ this.baseUrl + `Images/report-header.png" width="200" height="130">
                   </div>
                   <div class="report" style="margin-bottom: 50px;">
                   <table class="table table-bordered">
