@@ -16,7 +16,7 @@ import { ReportService } from 'src/app/modules/report/services/report.service';
 export class IncomeListComponent {
   //#region Variables
   incomeList: Array<IncomeModel>;//Data List
-  properties: any = ["Date", "CartNumber", "CategoryName", "FarmName", "CarPlate", "Quantity", "KiloDiscount", "QuantityAfterDiscount", "KiloPrice", "Total", "MoneyDiscount", "Balance", "StationName"];//Displayed Columns 
+  properties: any = ["Date", "CartNumber", "CategoryName", "FarmName", "CarPlate", "Quantity", "KiloDiscount", "QuantityAfterDiscount", "KiloPrice", "Total", "MoneyDiscount", "Balance"];//Displayed Columns 
   farmAccountProperties: any = ["PaidUp", "PaidDate", "RecieptNumber"];//Displayed Columns 
   farmAccountList: any = [];//Data List
   income: IncomeModel = new IncomeModel();//For Add/Update Income Entity
@@ -129,8 +129,8 @@ export class IncomeListComponent {
       let data = {
         list: response.Data,
         title: "الواردات",
-        headers: ["التاريخ", "كارتة", "صنف", "مرزعة", "سيارة", "كمية", "خصم", "صافي", "سعر", "اجمالي", "خصم", "رصيد", "محطة"],
-        properties: ["Date", "CartNumber", "CategoryName", "FarmName", "CarPlate", "Quantity", "KiloDiscount", "QuantityAfterDiscount", "KiloPrice", "Total", "MoneyDiscount", "Balance", "StationName"]
+        headers: ["التاريخ", "كارتة", "صنف", "مرزعة", "سيارة", "كمية", "خصم", "صافي", "سعر", "اجمالي", "خصم", "رصيد"],
+        properties: ["Date", "CartNumber", "CategoryName", "FarmName", "CarPlate", "Quantity", "KiloDiscount", "QuantityAfterDiscount", "KiloPrice", "Total", "MoneyDiscount", "Balance"]
       }
       this.reportData.push(data);
       this.getAllfarmAccountList(dataSourceModel);
