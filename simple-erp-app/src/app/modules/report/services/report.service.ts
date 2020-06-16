@@ -12,7 +12,9 @@ export class ReportService {
 
 
   public generateReport(title: any, reportData: any, paidUpTotal: number, balanceTotal: number) {
-
+  //   <div class="header" style="text-align: center;margin: 10px 0 10px 0;">
+  //   <img src="`+ this.baseUrl + `Images/report-header.png" width="200" height="130">
+  // </div>
     let popupWin;
     // printContents = document.getElementById('print-section').innerHTML;
     popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
@@ -76,11 +78,72 @@ export class ReportService {
               <tr>
                 <td></td>
                 <td width="1000">
-                  <div class="header" style="text-align: center;margin: 10px 0 10px 0;">
-                    <img src="`+ this.baseUrl + `Images/report-header.png" width="200" height="130">
-                  </div>
+                  
                   <div class="report" style="margin-bottom: 50px;">
-                  <table class="table table-bordered">
+                  <table  style="border:none;">
+                    <tbody>`;
+            html += `<tr>
+                        <td style="border:none;">
+                        <table  style="border:none;">
+                        <tbody>
+                          <tr>
+                            <td style="border:none;font-size: 20px;
+                            font-weight: bold;"> 
+                                شـــــركة أبو يــــوسف حجـــازي واخوتــــــه 
+                            </td>
+                          </tr>
+                          <tr>
+                          <td style="border:none;font-size: 20px;
+                          font-weight: bold;"> 
+                               لتوريـــدات الموالـــح (المصانــع والمحطــات)
+                          </td>
+                        </tr>
+                          <tr>
+                            <td style="border:none;font-size: 20px;
+                            font-weight: bold;"> 
+                                جميع أنواع الفرازة (برتقال - ليمون ايضالي)
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>  
+                        
+                        </td>
+                        <td style="border:none;"><img src="`+ this.baseUrl + `Images/report-header.png" width="200" height="130"></td>
+                        <td style="border:none;">
+                          <table  style="border:none;">
+                            <tbody>
+                              <tr>
+                                <td style="border:none;"> 
+                                     مهندس/محمد حجــــازي   :
+                                </td>
+                                <td style="border:none;">
+                                  01017181919
+                                </td>
+                              </tr>
+                              <tr>
+                                <td style="border:none;"> 
+                                     احمد يــــوسف حجــازي :
+                                </td>
+                                <td style="border:none;">
+                                  01280798977
+                                </td>
+                              </tr>
+                              <tr>
+                              <td style="border:none;"> 
+                                   مصطفى يوسف حجازي :
+                              </td>
+                              <td style="border:none;">
+                                01110989921
+                              </td>
+                            </tr>
+                            </tbody>
+                          </table>  
+                         </td>
+                      </tr>`;
+            html += `</tbody>`;
+          html += `</table>`;
+
+                  html += `<table class="table table-bordered">
                     <thead>
                       <tr>`
     html += `<th stye="background: #bec5c5;color: black;ont-weight: bold; ">اجمالي المدفوعات </th>`;
