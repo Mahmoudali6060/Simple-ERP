@@ -40,7 +40,7 @@
     "devexpress-richedit": "~19.2.6",
     "devextreme": "~19.2.6",
     "file-saver": "^2.0.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jspdf": "^1.5.3",
     "ngx-bootstrap": "^4.1.1",
     "ngx-cookie-service": "^2.1.0",
