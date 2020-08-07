@@ -7,7 +7,6 @@ using Accouting.Shared.DataServiceLayer;
 using Clients.DataAccessLayer;
 using Clients.DataServiceLayer;
 using Data.Backup;
-using DevExpress.XtraReports.Web.WebDocumentViewer;
 using Microsoft.Extensions.DependencyInjection;
 using Setting.DataAccessLayer;
 using Setting.DataServiceLayer;

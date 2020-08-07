@@ -12,8 +12,6 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
-    <PackageReference Include="DevExpress.AspNetCore.Reporting" Version="19.1.6" />
-    <PackageReference Include="DevExpress.Reporting.Core" Version="19.1.6" />
     <PackageReference Include="FastReport.OpenSource.Export.PdfSimple" Version="2020.1.25" />
     <PackageReference Include="FastReport.OpenSource.Web" Version="2020.1.25" />
     <PackageReference Include="IdentityServer4" Version="3.1.0" />
