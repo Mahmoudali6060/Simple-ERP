@@ -20,7 +20,7 @@
               <label for="signin-password" class="control-label sr-only">كلمة المرور</label>
               <input type="password" id="password" name="password" ngModel class="form-control" placeholder="Password" required>
             </div>
-            <button [disabled]="clicked" (click)="login(loginForm);clicked=true" type="button" class="btn btn-primary btn-lg btn-block">تسجيل الدخول</button>
+            <button  (click)="login(loginForm)" type="button" class="btn btn-primary btn-lg btn-block">تسجيل الدخول</button>
           </form>
         </div>
       </div>

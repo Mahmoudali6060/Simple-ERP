@@ -18,7 +18,6 @@ export class LoginComponent {
   }
 
   login(form: NgForm) {
-    debugger;
     let credentials = JSON.stringify(form.value);
     this.authService.login(credentials).subscribe(response => {
       let token = (<any>response).Token;

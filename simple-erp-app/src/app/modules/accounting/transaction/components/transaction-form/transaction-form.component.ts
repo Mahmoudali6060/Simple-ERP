@@ -12,13 +12,17 @@ import { FarmService } from '../../../../../modules/suppliers/farm/services/farm
 })
 
 export class TransactionFormComponent {
-
+  //#region  Variables
   transactionModel: TransactionModel = new TransactionModel;
   farmList: Array<FarmModel>;
   lastTonPrice: number;
   pardonPercentage: number = 2;
   pardonType: string = "percentage";
   clicked: boolean = false;
+  costTypeId: any = '1';
+  //#endregion
+
+  //#region Component Life cycle
   constructor(private farmService: FarmService,
     private router: Router,
     private transactionService: TransactionService,
@@ -37,6 +41,9 @@ export class TransactionFormComponent {
       this.transactionModel.Date = new Date();
     }
   }
+
+  //#endregion
+
 
   private getTransactionById(id) {
     this.transactionService.getById(id).subscribe(response => {
@@ -60,6 +67,7 @@ export class TransactionFormComponent {
     });
   }
 
+  //#region Selection change event
   onFarmChange(farm) {
     this.transactionModel.FarmId = farm.Id;
     this.transactionModel.FarmOwnerName = farm.OwnerName;
@@ -93,6 +101,7 @@ export class TransactionFormComponent {
   onSelectorChange(selector) {
     this.transactionModel.SelectorId = selector.Id;
   }
+  //#endregion
 
   private calculatePearsPay() {
     if (this.transactionModel.SupplierQuantity && this.lastTonPrice)
@@ -136,4 +145,19 @@ export class TransactionFormComponent {
   public sum() {
     this.transactionModel.Sum = (this.transactionModel.ClientTotal - this.transactionModel.SupplierTotal)
   }
+
+  public onCostTypeChange(event: any) {
+    this.costTypeId = event.value;
+    if (this.costTypeId == '1') {
+      this.transactionModel.ClientTotal = (this.transactionModel.ClientQuantity - this.transactionModel.ClientDiscount) * this.transactionModel.ClientPrice;
+      this.transactionModel.SupplierTotal = ((this.transactionModel.SupplierQuantity - this.transactionModel.Pardon) * this.transactionModel.SupplierPrice) + this.transactionModel.FarmExpense + this.transactionModel.Nolon + this.transactionModel.ReapersPay + this.transactionModel.SelectorsPay;
+    }
+    else {
+      this.transactionModel.ClientTotal = ((this.transactionModel.ClientQuantity - this.transactionModel.ClientDiscount) * this.transactionModel.ClientPrice) - (this.transactionModel.Nolon + this.transactionModel.ReapersPay + this.transactionModel.SelectorsPay);
+      this.transactionModel.SupplierTotal = ((this.transactionModel.SupplierQuantity - this.transactionModel.Pardon) * this.transactionModel.SupplierPrice) + this.transactionModel.FarmExpense;
+
+    }
+    this.sum();
+  }
+
 }

@@ -36,8 +36,8 @@ namespace App.Controllers.Authentication
         public IActionResult Login([FromBody]LoginModel user)
         {
             //For Check is valid client or no
-            if (_accountDSL.IsValidClient())
-            {
+            //if (_accountDSL.IsValidClient())
+            //{
                 if (user == null)
                 {
                     return BadRequest("Invalid client request");
@@ -53,11 +53,11 @@ namespace App.Controllers.Authentication
                 {
                     return Unauthorized();
                 }
-            }
-            else
-            {
-                return BadRequest("Invlid Client");
-            }
+            //}
+            //else
+            //{
+            //    return BadRequest("Invlid Client");
+            //}
         }
 
         [HttpPost]
