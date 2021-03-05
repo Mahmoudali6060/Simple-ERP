@@ -24,6 +24,7 @@ export class DataListComponent {
   @Input() properties;//Table Header
   @Output() deleteRow = new EventEmitter<number>();//When you delete row this will send selected (Id) for parent component
   @Output() editRow = new EventEmitter<number>();//When you edit row this will send selected (Id) for parent component
+  @Output() saveItem = new EventEmitter<any>();//When you edit row this will send selected item for parent component
   @Output() changePagination = new EventEmitter<DataSourceModel>();//When you edit row this will send selected (Id) for parent component
   @Input() total: number;
   dataSourceModel = new DataSourceModel();
@@ -101,6 +102,17 @@ export class DataListComponent {
       action: action
     };
     this.makeAction.emit(event);
+  }
+
+  //Transaction List Page
+  onPriceChange(item: any) {
+    if (!item.ClientPrice) item.ClientPrice = 0;
+    if (!item.SupplierPrice) item.SupplierPrice = 0;
+    item.SupplierAmount = item.SupplierPrice * (item.SupplierQuantity - item.Pardon);
+    item.SupplierTotal = ((item.SupplierPrice * (item.SupplierQuantity - item.Pardon)) + item.Nolon + item.ReapersPay + item.SelectorsPay + item.FarmExpense);
+    item.ClientTotal = item.ClientPrice * (item.ClientQuantity - item.ClientDiscount);
+    item.Sum = (item.ClientPrice * (item.ClientQuantity - item.ClientDiscount)) - ((item.SupplierPrice * (item.SupplierQuantity - item.Pardon)) + item.Nolon + item.ReapersPay + item.SelectorsPay + item.FarmExpense)
+    this.saveItem.emit(item);
   }
 }
 

@@ -7,7 +7,6 @@
             <button class="btn btn-info btn-new-record" [routerLink]="['/layout/transaction/transaction-form']" translate>Add new recod</button>
         </div>
     </div>
-    <app-data-list [properties]="properties" [list]="transactionList" (deleteRow)="delete($event)" (editRow)="onEdit($event)"
-        (changePagination)="onChangePagination($event)" [total]="total">
+    <app-data-list [properties]="properties" [list]="transactionList" (deleteRow)="delete($event)" (editRow)="onEdit($event)" (changePagination)="onChangePagination($event)" [total]="total" (saveItem)="onSave($event)">
     </app-data-list>
 </div>

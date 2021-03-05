@@ -51,6 +51,26 @@ export class TransactionListComponent {
       }
   }
 
+  public onSave(item: any) {
+    let exsitedItem = this.setUpdatedTransaction(item)
+    this.transactionService.save(exsitedItem)
+      .subscribe((data) => {
+        // this.getAllTransaction();
+      })
+      , error => {
+      }
+  }
+  
+  setUpdatedTransaction(item: any) {
+    let exsitedItem = this.transactionList.find(x => x.Id == item.Id);
+    exsitedItem.SupplierPrice = parseFloat(item.SupplierPrice);
+    exsitedItem.ClientPrice = parseFloat(item.ClientPrice);
+    exsitedItem.SupplierAmount = parseFloat(item.SupplierAmount);
+    exsitedItem.SupplierTotal = parseFloat(item.SupplierTotal);
+    exsitedItem.ClientTotal = parseFloat(item.ClientTotal);
+    exsitedItem.Sum = parseFloat(item.Sum);
+    return exsitedItem;
+  }
 
   public onEdit(id: number) {
     this.router.navigate(["/layout/transaction/transaction-form", id]);
