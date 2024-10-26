@@ -15,6 +15,8 @@ export class TransactionModel {
     SupplierPrice: number;
     SupplierAmount: number;
     Nolon: number;
+    Beata:number;
+    TotalAmount:number;
     ReaperId: number;
     ReaperHead: string;
     ReapersPay: number;

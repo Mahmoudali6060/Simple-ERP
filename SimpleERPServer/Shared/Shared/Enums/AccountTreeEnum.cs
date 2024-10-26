@@ -10,6 +10,7 @@ namespace Shared.Enums
         Clients,
         Drivers,
         Reapers,
-        Selectors
+        Selectors,
+        Other
     }
 }

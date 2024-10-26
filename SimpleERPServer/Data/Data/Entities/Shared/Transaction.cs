@@ -17,6 +17,9 @@ namespace Data.Entities.Shared
         public decimal Pardon { get; set; }
         public decimal SupplierPrice { get; set; }
         public decimal Nolon { get; set; }
+        public decimal Beata { get; set; }
+        public decimal TotalAmount { get; set; }
+
         public long ReaperId { get; set; }
         public decimal ReapersPay { get; set; }
         public long SelectorId { get; set; }

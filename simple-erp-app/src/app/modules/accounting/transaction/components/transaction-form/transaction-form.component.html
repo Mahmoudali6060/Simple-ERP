@@ -250,18 +250,32 @@
                                     </div>
 
 
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
+                                        {{transactionModel.DriverId}}
                                         <app-driver-select *ngIf="!(transactionModel.Id > 0)"
                                             (entityEmitter)="onDriverChange($event)"></app-driver-select>
                                         <app-driver-select *ngIf="transactionModel.Id > 0 && transactionModel.DriverId"
                                             (entityEmitter)="onDriverChange($event)" [id]="transactionModel.DriverId">
                                         </app-driver-select>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-2">
                                         <label translate>Nolon</label>
                                         <input type="number" id="Nolon" name="Nolon"
                                             [(ngModel)]="transactionModel.Nolon" class="form-control"
                                             placeholder="{{ 'Nolon' | translate }}">
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <label translate>Beata</label>
+                                        <input type="number" id="Beata" name="Beata"
+                                            [(ngModel)]="transactionModel.Beata" class="form-control"
+                                            placeholder="{{ 'Beata' | translate }}">
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label translate>TotalAmount</label>
+                                        <input type="number" id="TotalAmount" name="TotalAmount"
+                                            [(ngModel)]="transactionModel.TotalAmount" class="form-control"
+                                            [value]="transactionModel.Nolon+transactionModel.Beata"
+                                            placeholder="{{ 'TotalAmount' | translate }}">
                                         <br>
                                     </div>
                                     <div class="col-lg-6">

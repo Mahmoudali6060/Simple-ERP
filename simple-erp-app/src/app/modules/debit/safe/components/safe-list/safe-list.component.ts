@@ -13,7 +13,7 @@ import { MatDialog } from '@angular/material';
 export class SafeListComponent {
   //#region Variables
   safeList: Array<SafeModel>;//Data List
-  properties = ["Date", "Incoming", "Outcoming", "AccountNameAr"];//Displayed Columns 
+  properties = ["Date", "Incoming", "Outcoming", "AccountNameAr","Description"];//Displayed Columns 
   safe: SafeModel = new SafeModel();//For Add/Update Safe Entity
   dataSourceModel: DataSourceModel = new DataSourceModel;//Pagination and Filteration Settings
   total: number;//Total number of rows

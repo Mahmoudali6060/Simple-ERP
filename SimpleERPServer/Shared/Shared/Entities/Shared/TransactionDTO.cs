@@ -22,6 +22,8 @@ namespace Shared.Entities.Shared
         public decimal SupplierPrice { get; set; }
         public decimal SupplierAmount { get; set; }
         public decimal Nolon { get; set; }
+        public decimal Beata { get; set; }
+        public decimal TotalAmount { get; set; }
         public long ReaperId { get; set; }
         public string ReaperHead { get; set; }
         public decimal ReapersPay { get; set; }

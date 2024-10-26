@@ -60,6 +60,7 @@ export class TransactionFormComponent {
   }
 
   public save(form: NgForm) {
+    this.transactionModel.TotalAmount=this.transactionModel.Nolon + this.transactionModel.Beata;
     this.transactionModel.Date = new Date(this.transactionModel.Date);
     this.transactionService.save(this.transactionModel).subscribe(response => {
       this.router.navigate(["/layout/transaction/transaction-list"]);

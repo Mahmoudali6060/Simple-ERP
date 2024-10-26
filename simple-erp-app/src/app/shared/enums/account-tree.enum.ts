@@ -3,5 +3,6 @@ export enum AccountTreeEnum {
     Clients,
     Drivers,
     Reapers,
-    Selectors
+    Selectors,
+    Other
 }

@@ -143,22 +143,7 @@ export class ReportService {
             html += `</tbody>`;
           html += `</table>`;
 
-                  html += `<table class="table table-bordered">
-                    <thead>
-                      <tr>`
-    html += `<th stye="background: #bec5c5;color: black;ont-weight: bold; ">اجمالي المدفوعات </th>`;
-    html += `<th >اجمالي الرصيد</th>`;
-    html += `<th >الاجمالي </th>`;
-    html += `</tr>
-                    </thead>
-                    <tbody>`;
-    html += `<tr>
-                          <td>`+ paidUpTotal.toFixed(2) + `</td>
-                          <td >`+ balanceTotal.toFixed(2) + `</td>
-                          <td >`+ (paidUpTotal - balanceTotal).toFixed(2) + `</td>
-                        </tr>`;
-    html += `</tbody>`;
-    html += `</table>`;
+                
     for (let data of reportData) {
       html += `<h2 style="font-weight: 300;margin-left: 100%;">` + data.title + ` </h2>
                       <table class="table table-bordered">
@@ -191,8 +176,26 @@ export class ReportService {
     html += `</td>
                 <td></td>
               </tr>
-            </table>
-          </div>
+            </table>`;
+
+            html += `<table class="table table-bordered">
+            <thead>
+              <tr>`
+html += `<th stye="background: #bec5c5;color: black;ont-weight: bold; ">اجمالي المدفوعات </th>`;
+html += `<th >اجمالي الرصيد</th>`;
+html += `<th >الاجمالي </th>`;
+html += `</tr>
+            </thead>
+            <tbody>`;
+html += `<tr>
+                  <td>`+ paidUpTotal.toFixed(2) + `</td>
+                  <td >`+ balanceTotal.toFixed(2) + `</td>
+                  <td >`+ (paidUpTotal - balanceTotal).toFixed(2) + `</td>
+                </tr>`;
+html += `</tbody>`;
+html += `</table>`;
+
+html +=    `</div>
         </body>
       </html>`
     popupWin.document.write(html);
